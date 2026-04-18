@@ -1,421 +1,803 @@
 <!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>교회 웹 앱</title>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:Arial,sans-serif;background:#f0ebe3;max-width:420px;margin:0 auto;min-height:100vh;overflow-x:hidden;}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>교회 웹 앱</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0ebe3;
+        max-width: 420px;
+        margin: 0 auto;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
 
-  /* 헤더 */
-  .header{background:#5d4037;color:white;padding:16px 20px;display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2);}
-  .header h1{font-size:18px;}
+      .header {
+        background: #5d4037;
+        color: white;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+      .header h1 {
+        font-size: 18px;
+      }
 
-  /* 페이지 */
-  .page{display:none;padding:16px 16px 90px;}
-  .page.active{display:block;}
+      .page {
+        display: none;
+        padding: 16px 16px 90px;
+      }
+      .page.active {
+        display: block;
+      }
 
-  /* 카드 */
-  .card{background:white;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07);}
-  .card h2{font-size:16px;color:#5d4037;margin-bottom:12px;}
+      .card {
+        background: white;
+        border-radius: 16px;
+        padding: 18px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      }
+      .card h2 {
+        font-size: 16px;
+        color: #5d4037;
+        margin-bottom: 12px;
+      }
 
-  /* 버튼 */
-  .btn{background:#5d4037;color:white;border:none;border-radius:10px;padding:10px 16px;font-size:14px;cursor:pointer;width:100%;margin-top:10px;}
-  .btn:active{background:#4e342e;}
-  .btn-sm{background:#5d4037;color:white;border:none;border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;}
+      .btn {
+        background: #5d4037;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+      }
+      .btn:active {
+        background: #4e342e;
+      }
+      .btn-sm {
+        background: #5d4037;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 13px;
+        cursor: pointer;
+      }
 
-  /* 말씀 포도나무 */
-  .big-emoji{font-size:56px;text-align:center;margin:8px 0;}
-  .pct{font-size:32px;font-weight:bold;color:#5d4037;text-align:center;}
-  .day-txt{font-size:13px;color:#999;text-align:center;margin-top:2px;}
-  .bar-bg{background:#e0d5c5;border-radius:999px;height:16px;overflow:hidden;margin:12px 0;}
-  .bar-fill{height:100%;background:linear-gradient(90deg,#8d6e63,#5d4037);border-radius:999px;transition:width .4s;}
-  .bar-labels{display:flex;justify-content:space-between;font-size:11px;color:#aaa;}
+      /* 포도나무 */
+      .big-emoji {
+        font-size: 56px;
+        text-align: center;
+        margin: 8px 0;
+      }
+      .pct {
+        font-size: 32px;
+        font-weight: bold;
+        color: #5d4037;
+        text-align: center;
+      }
+      .day-txt {
+        font-size: 13px;
+        color: #999;
+        text-align: center;
+        margin-top: 2px;
+      }
+      .bar-bg {
+        background: #e0d5c5;
+        border-radius: 999px;
+        height: 16px;
+        overflow: hidden;
+        margin: 12px 0;
+      }
+      .bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #8d6e63, #5d4037);
+        border-radius: 999px;
+        transition: width 0.4s;
+      }
+      .bar-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #aaa;
+      }
 
-  /* 달력 */
-  .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-  .cal-nav button{background:none;border:none;font-size:20px;cursor:pointer;color:#5d4037;}
-  .cal-nav span{font-weight:bold;color:#5d4037;}
-  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;}
-  .cal-dn{font-size:11px;color:#999;padding:4px 0;}
-  .cal-d{font-size:13px;padding:6px 2px;border-radius:50%;cursor:pointer;min-height:30px;display:flex;align-items:center;justify-content:center;position:relative;}
-  .cal-d:hover{background:#f5ebe0;}
-  .cal-d.today{background:#5d4037;color:white;font-weight:bold;}
-  .cal-d.has-ev::after{content:'';display:block;width:5px;height:5px;background:#e57373;border-radius:50%;position:absolute;bottom:1px;left:50%;transform:translateX(-50%);}
-  .cal-d.other{color:#ccc;}
-  .ev-list{margin-top:10px;}
-  .ev-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f0ebe3;font-size:13px;}
-  .ev-dot{width:7px;height:7px;background:#5d4037;border-radius:50%;flex-shrink:0;}
+      /* 달력 */
+      .cal-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .cal-nav button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #5d4037;
+      }
+      .cal-nav span {
+        font-weight: bold;
+        color: #5d4037;
+      }
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+        text-align: center;
+      }
+      .cal-dn {
+        font-size: 11px;
+        color: #999;
+        padding: 4px 0;
+      }
+      .cal-d {
+        font-size: 13px;
+        padding: 6px 2px;
+        border-radius: 50%;
+        cursor: pointer;
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .cal-d:hover {
+        background: #f5ebe0;
+      }
+      .cal-d.today {
+        background: #5d4037;
+        color: white;
+        font-weight: bold;
+      }
+      .cal-d.has-ev::after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 5px;
+        background: #e57373;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .cal-d.other {
+        color: #ccc;
+      }
+      .ev-list {
+        margin-top: 10px;
+      }
+      .ev-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 0;
+        border-bottom: 1px solid #f0ebe3;
+        font-size: 13px;
+      }
+      .ev-dot {
+        width: 7px;
+        height: 7px;
+        background: #5d4037;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
 
-  /* 공지 */
-  .notice-item{padding:12px 0;border-bottom:1px solid #f0ebe3;cursor:pointer;}
-  .notice-item:last-child{border-bottom:none;}
-  .ntitle{font-size:14px;font-weight:bold;color:#333;}
-  .ndate{font-size:11px;color:#aaa;margin-top:3px;}
-  .badge{display:inline-block;background:#e57373;color:white;font-size:10px;border-radius:4px;padding:1px 5px;margin-left:6px;}
+      /* 공지 */
+      .notice-item {
+        padding: 12px 0;
+        border-bottom: 1px solid #f0ebe3;
+      }
+      .notice-item:last-child {
+        border-bottom: none;
+      }
+      .ntitle {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+      .ndate {
+        font-size: 11px;
+        color: #aaa;
+        margin-top: 3px;
+      }
+      .badge {
+        display: inline-block;
+        background: #e57373;
+        color: white;
+        font-size: 10px;
+        border-radius: 4px;
+        padding: 1px 5px;
+        margin-left: 6px;
+      }
 
-  /* 설교 영상 */
-  .video-item{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #f0ebe3;cursor:pointer;text-decoration:none;}
-  .video-item:last-child{border-bottom:none;}
-  .vthumb{width:80px;height:52px;background:#d7ccc8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;overflow:hidden;}
-  .vthumb img{width:100%;height:100%;object-fit:cover;border-radius:8px;}
-  .vtitle{font-size:13px;font-weight:bold;color:#333;}
-  .vsub{font-size:11px;color:#aaa;margin-top:3px;}
-  .yt-badge{display:inline-block;background:#ff0000;color:white;font-size:10px;border-radius:4px;padding:1px 5px;margin-top:4px;}
+      /* 설교 영상 */
+      .video-coming {
+        text-align: center;
+        padding: 30px 0;
+        color: #bbb;
+      }
+      .video-coming .big {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+      .video-coming p {
+        font-size: 13px;
+      }
+      .video-placeholder {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0ebe3;
+      }
+      .video-placeholder:last-child {
+        border-bottom: none;
+      }
+      .vthumb-ph {
+        width: 80px;
+        height: 52px;
+        background: #f0ebe3;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        flex-shrink: 0;
+      }
+      .vtitle {
+        font-size: 13px;
+        font-weight: bold;
+        color: #333;
+      }
+      .vsub {
+        font-size: 11px;
+        color: #aaa;
+        margin-top: 3px;
+      }
+      .soon-badge {
+        display: inline-block;
+        background: #bcaaa4;
+        color: white;
+        font-size: 10px;
+        border-radius: 4px;
+        padding: 1px 6px;
+        margin-top: 4px;
+      }
 
-  /* 기도 */
-  .input-row{display:flex;gap:8px;margin-top:8px;}
-  .input-row input{flex:1;padding:10px 12px;border:1px solid #ddd;border-radius:10px;font-size:14px;outline:none;}
-  .input-row input:focus{border-color:#5d4037;}
-  .prayer-item{display:flex;justify-content:space-between;align-items:center;background:#fdf8f2;border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14px;}
-  .del-btn{background:#ffcdd2;color:#c62828;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:12px;}
+      /* 기도 */
+      .input-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .input-row input {
+        flex: 1;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        outline: none;
+      }
+      .input-row input:focus {
+        border-color: #5d4037;
+      }
+      .prayer-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fdf8f2;
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      .del-btn {
+        background: #ffcdd2;
+        color: #c62828;
+        border: none;
+        border-radius: 6px;
+        padding: 4px 8px;
+        cursor: pointer;
+        font-size: 12px;
+      }
 
-  /* 설정 */
-  .setting-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0ebe3;}
-  .setting-row:last-child{border-bottom:none;}
-  .setting-label{font-size:14px;color:#333;}
-  .setting-sub{font-size:11px;color:#aaa;margin-top:2px;}
-  .setting-row input[type=time]{border:1px solid #ddd;border-radius:8px;padding:6px 10px;font-size:14px;color:#5d4037;outline:none;}
-  .toggle{width:44px;height:24px;background:#ddd;border-radius:999px;position:relative;cursor:pointer;transition:background .3s;flex-shrink:0;}
-  .toggle.on{background:#5d4037;}
-  .toggle::after{content:'';width:20px;height:20px;background:white;border-radius:50%;position:absolute;top:2px;left:2px;transition:left .3s;}
-  .toggle.on::after{left:22px;}
-  .alarm-status{font-size:12px;color:#aaa;text-align:center;margin-top:8px;}
+      /* 설정 - 알람 시간 표시 */
+      .alarm-card {
+        text-align: center;
+        padding: 20px 18px;
+      }
+      .alarm-block {
+        background: #fdf8f2;
+        border-radius: 14px;
+        padding: 18px;
+        margin-bottom: 12px;
+      }
+      .alarm-icon {
+        font-size: 32px;
+        margin-bottom: 6px;
+      }
+      .alarm-label {
+        font-size: 13px;
+        color: #888;
+        margin-bottom: 8px;
+      }
+      .time-display {
+        font-size: 42px;
+        font-weight: bold;
+        color: #5d4037;
+        letter-spacing: 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .time-input {
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1.5px solid #d7ccc8;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #5d4037;
+        text-align: center;
+        outline: none;
+      }
+      .time-input:focus {
+        border-color: #5d4037;
+      }
+      .save-hint {
+        font-size: 11px;
+        color: #bbb;
+        margin-top: 6px;
+      }
 
-  /* 탭바 */
-  .tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:white;display:flex;border-top:1px solid #eee;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:100;}
-  .tab-btn{flex:1;background:none;border:none;padding:8px 0;font-size:10px;color:#bbb;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;}
-  .tab-btn .ti{font-size:20px;}
-  .tab-btn.active{color:#5d4037;font-weight:bold;}
+      /* 탭바 */
+      .tab-bar {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 420px;
+        background: white;
+        display: flex;
+        border-top: 1px solid #eee;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+        z-index: 100;
+      }
+      .tab-btn {
+        flex: 1;
+        background: none;
+        border: none;
+        padding: 8px 0;
+        font-size: 10px;
+        color: #bbb;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+      }
+      .tab-btn .ti {
+        font-size: 20px;
+      }
+      .tab-btn.active {
+        color: #5d4037;
+        font-weight: bold;
+      }
 
-  /* 알림 토스트 */
-  .toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#5d4037;color:white;padding:10px 20px;border-radius:999px;font-size:13px;z-index:999;opacity:0;transition:opacity .4s;white-space:nowrap;}
-  .toast.show{opacity:1;}
-</style>
-</head>
-<body>
+      /* 토스트 */
+      .toast {
+        position: fixed;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #5d4037;
+        color: white;
+        padding: 10px 22px;
+        border-radius: 999px;
+        font-size: 13px;
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.4s;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+      .toast.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header"><h1 id="pageTitle">🏠 홈</h1></div>
+    <div class="toast" id="toast"></div>
 
-<div class="header"><h1 id="pageTitle">🏠 홈</h1></div>
-<div class="toast" id="toast"></div>
-
-<!-- ══ 홈 ══ -->
-<div class="page active" id="page-home">
-  <div class="card">
-    <h2>📅 이번 달 일정</h2>
-    <div class="cal-nav">
-      <button onclick="changeMonth(-1)">‹</button>
-      <span id="calTitle"></span>
-      <button onclick="changeMonth(1)">›</button>
-    </div>
-    <div class="cal-grid" id="calGrid"></div>
-    <div class="ev-list" id="evList"></div>
-  </div>
-
-  <div class="card">
-    <h2>📢 공지사항</h2>
-    <div class="notice-item" onclick="goPage('notice')">
-      <div class="ntitle">2025 여름 수련회 안내 <span class="badge">NEW</span></div>
-      <div class="ndate">2025.07.01</div>
-    </div>
-    <div class="notice-item" onclick="goPage('notice')">
-      <div class="ntitle">주일 예배 시간 변경 안내</div>
-      <div class="ndate">2025.06.20</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>🍇 말씀 포도나무</h2>
-    <div class="pct" id="h-pct">0%</div>
-    <div class="bar-bg"><div class="bar-fill" id="h-bar" style="width:0%"></div></div>
-    <div class="bar-labels"><span>0일</span><span id="h-dlabel">/ 365일</span></div>
-    <button class="btn" onclick="increaseStreak()">오늘 완료 ✅</button>
-  </div>
-</div>
-
-<!-- ══ 기도 ══ -->
-<div class="page" id="page-prayer">
-  <div class="card">
-    <h2>🙏 기도 제목</h2>
-    <div class="input-row">
-      <input id="prayerInput" placeholder="기도 제목 입력"/>
-      <button class="btn-sm" onclick="addPrayer()">추가</button>
-    </div>
-    <div id="prayerList" style="margin-top:4px"></div>
-  </div>
-</div>
-
-<!-- ══ 설교 영상 ══ -->
-<div class="page" id="page-sermon">
-  <div class="card">
-    <h2>🎬 설교 영상</h2>
-    <p style="font-size:12px;color:#aaa;margin-bottom:4px">영상을 터치하면 유튜브로 이동합니다</p>
-    <div id="videoList"></div>
-  </div>
-</div>
-
-<!-- ══ 공지사항 ══ -->
-<div class="page" id="page-notice">
-  <div class="card">
-    <h2>📢 공지사항</h2>
-    <div class="notice-item"><div class="ntitle">2025 여름 수련회 안내 <span class="badge">NEW</span></div><div class="ndate">2025.07.01 · 교회 행사부</div></div>
-    <div class="notice-item"><div class="ntitle">주일 예배 시간 변경 안내</div><div class="ndate">2025.06.20 · 담임목사</div></div>
-    <div class="notice-item"><div class="ntitle">헌금 계좌 변경 공지</div><div class="ndate">2025.06.10 · 재정부</div></div>
-    <div class="notice-item"><div class="ntitle">6월 찬양팀 모집</div><div class="ndate">2025.06.01 · 찬양부</div></div>
-  </div>
-</div>
-
-<!-- ══ 설정 ══ -->
-<div class="page" id="page-settings">
-  <div class="card">
-    <h2>⏰ 알람 설정</h2>
-    <p style="font-size:12px;color:#aaa;margin-bottom:12px">앱을 열어둔 상태에서 알림이 울립니다. 처음 사용 시 브라우저 알림 허용이 필요해요.</p>
-
-    <!-- 기도 알람 -->
-    <div class="setting-row">
-      <div>
-        <div class="setting-label">🙏 기도 알람</div>
-        <div class="setting-sub">기도 시간을 알려드려요</div>
+    <!-- ══ 홈 ══ -->
+    <div class="page active" id="page-home">
+      <div class="card">
+        <h2>📅 이번 달 일정</h2>
+        <div class="cal-nav">
+          <button onclick="changeMonth(-1)">‹</button>
+          <span id="calTitle"></span>
+          <button onclick="changeMonth(1)">›</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="ev-list" id="evList"></div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <input type="time" id="prayerTime" value="06:00"/>
-        <div class="toggle" id="prayerToggle" onclick="toggleAlarm('prayer')"></div>
+
+      <div class="card">
+        <h2>📢 공지사항</h2>
+        <div class="notice-item" onclick="goPage('notice')">
+          <div class="ntitle">
+            2025 여름 수련회 안내 <span class="badge">NEW</span>
+          </div>
+          <div class="ndate">2025.07.01</div>
+        </div>
+        <div class="notice-item" onclick="goPage('notice')">
+          <div class="ntitle">주일 예배 시간 변경 안내</div>
+          <div class="ndate">2025.06.20</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🍇 말씀 포도나무</h2>
+        <div class="pct" id="h-pct">0%</div>
+        <div class="bar-bg">
+          <div class="bar-fill" id="h-bar" style="width: 0%"></div>
+        </div>
+        <div class="bar-labels">
+          <span>0일</span><span id="h-dl">/ 365일</span>
+        </div>
+        <button class="btn" onclick="increaseStreak()">오늘 완료 ✅</button>
       </div>
     </div>
 
-    <!-- 말씀 알람 -->
-    <div class="setting-row">
-      <div>
-        <div class="setting-label">🍇 말씀 알람</div>
-        <div class="setting-sub">말씀 읽을 시간을 알려드려요</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <input type="time" id="wordTime" value="07:00"/>
-        <div class="toggle" id="wordToggle" onclick="toggleAlarm('word')"></div>
+    <!-- ══ 기도 ══ -->
+    <div class="page" id="page-prayer">
+      <div class="card">
+        <h2>🙏 기도 제목</h2>
+        <div class="input-row">
+          <input id="prayerInput" placeholder="기도 제목 입력" />
+          <button class="btn-sm" onclick="addPrayer()">추가</button>
+        </div>
+        <div id="prayerList" style="margin-top: 4px"></div>
       </div>
     </div>
 
-    <div class="alarm-status" id="alarmStatus">알람이 꺼져 있습니다</div>
-    <button class="btn" onclick="saveAlarms()">저장하기 💾</button>
-  </div>
-
-  <div class="card">
-    <h2>🔔 알림 테스트</h2>
-    <p style="font-size:13px;color:#666;margin-bottom:10px">알림이 잘 오는지 테스트해보세요</p>
-    <button class="btn" onclick="testNotif('prayer')">🙏 기도 알림 테스트</button>
-    <button class="btn" style="margin-top:8px" onclick="testNotif('word')">🍇 말씀 알림 테스트</button>
-  </div>
-</div>
-
-<!-- 말씀 포도나무 페이지(탭 없음, 홈에서만) -->
-<div class="page" id="page-grape">
-  <div class="card" style="text-align:center">
-    <h2>🍇 말씀 포도나무</h2>
-    <div class="big-emoji" id="grapeEmoji">🌱</div>
-    <div class="pct" id="g-pct">0%</div>
-    <div class="day-txt" id="g-day">0일 / 365일</div>
-    <div class="bar-bg"><div class="bar-fill" id="g-bar" style="width:0%"></div></div>
-    <div class="bar-labels"><span>🌱 시작</span><span>🍇 완성</span></div>
-    <button class="btn" style="margin-top:16px" onclick="increaseStreak()">오늘 말씀 완료 ✅</button>
-    <p style="font-size:12px;color:#aaa;margin-top:10px">매일 완료하며 포도나무를 키워요!</p>
-  </div>
-</div>
-
-<!-- 탭바 -->
-<div class="tab-bar">
-  <button class="tab-btn active" id="tab-home"     onclick="goPage('home')">    <span class="ti">🏠</span>홈</button>
-  <button class="tab-btn"        id="tab-prayer"   onclick="goPage('prayer')">  <span class="ti">🙏</span>기도</button>
-  <button class="tab-btn"        id="tab-sermon"   onclick="goPage('sermon')">  <span class="ti">🎬</span>설교</button>
-  <button class="tab-btn"        id="tab-notice"   onclick="goPage('notice')">  <span class="ti">📢</span>공지</button>
-  <button class="tab-btn"        id="tab-settings" onclick="goPage('settings')"><span class="ti">⚙️</span>설정</button>
-</div>
-
-<script>
-// ── 설교 영상 데이터 (유튜브 링크 여기서 수정) ──
-const videos = [
-  { title:'하나님의 사랑 (주일설교)', sub:'2025.06.29 · 목사님', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', thumb:'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
-  { title:'믿음으로 사는 삶',         sub:'2025.06.22 · 목사님', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', thumb:'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
-  { title:'은혜의 강',               sub:'2025.06.15 · 목사님', url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ', thumb:'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
-];
-
-function renderVideos(){
-  const el = document.getElementById('videoList');
-  el.innerHTML = videos.map(v=>`
-    <a class="video-item" href="${v.url}" target="_blank" rel="noopener">
-      <div class="vthumb"><img src="${v.thumb}" alt="thumb" onerror="this.parentElement.textContent='▶️'"/></div>
-      <div>
-        <div class="vtitle">${v.title}</div>
-        <div class="vsub">${v.sub}</div>
-        <span class="yt-badge">▶ YouTube</span>
+    <!-- ══ 설교 영상 ══ -->
+    <div class="page" id="page-sermon">
+      <div class="card">
+        <h2>🎬 설교 영상</h2>
+        <div class="video-placeholder">
+          <div class="vthumb-ph">🎬</div>
+          <div>
+            <div class="vtitle">하나님의 사랑 (주일설교)</div>
+            <div class="vsub">2025.06.29 · 목사님</div>
+            <span class="soon-badge">링크 준비 중</span>
+          </div>
+        </div>
+        <div class="video-placeholder">
+          <div class="vthumb-ph">🎬</div>
+          <div>
+            <div class="vtitle">믿음으로 사는 삶</div>
+            <div class="vsub">2025.06.22 · 목사님</div>
+            <span class="soon-badge">링크 준비 중</span>
+          </div>
+        </div>
+        <div class="video-placeholder">
+          <div class="vthumb-ph">🎬</div>
+          <div>
+            <div class="vtitle">은혜의 강</div>
+            <div class="vsub">2025.06.15 · 목사님</div>
+            <span class="soon-badge">링크 준비 중</span>
+          </div>
+        </div>
+        <p
+          style="
+            font-size: 12px;
+            color: #bbb;
+            text-align: center;
+            margin-top: 14px;
+          "
+        >
+          유튜브 링크 업로드 후 연결 예정이에요 📌
+        </p>
       </div>
-    </a>`).join('');
-}
-renderVideos();
+    </div>
 
-// ── 페이지 이동 ──
-const PAGES = ['home','prayer','sermon','notice','settings'];
-const TITLES = {home:'🏠 홈', prayer:'🙏 기도 제목', sermon:'🎬 설교 영상', notice:'📢 공지사항', settings:'⚙️ 설정'};
+    <!-- ══ 공지사항 ══ -->
+    <div class="page" id="page-notice">
+      <div class="card">
+        <h2>📢 공지사항</h2>
+        <div class="notice-item">
+          <div class="ntitle">
+            2025 여름 수련회 안내 <span class="badge">NEW</span>
+          </div>
+          <div class="ndate">2025.07.01 · 교회 행사부</div>
+        </div>
+        <div class="notice-item">
+          <div class="ntitle">주일 예배 시간 변경 안내</div>
+          <div class="ndate">2025.06.20 · 담임목사</div>
+        </div>
+        <div class="notice-item">
+          <div class="ntitle">헌금 계좌 변경 공지</div>
+          <div class="ndate">2025.06.10 · 재정부</div>
+        </div>
+        <div class="notice-item">
+          <div class="ntitle">6월 찬양팀 모집</div>
+          <div class="ndate">2025.06.01 · 찬양부</div>
+        </div>
+      </div>
+    </div>
 
-function goPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  const tab = document.getElementById('tab-'+id);
-  if(tab) tab.classList.add('active');
-  document.getElementById('pageTitle').textContent = TITLES[id]||'';
-}
+    <!-- ══ 설정 ══ -->
+    <div class="page" id="page-settings">
+      <div class="card">
+        <h2>⏰ 알람 시간 설정</h2>
+        <p style="font-size: 12px; color: #aaa; margin-bottom: 16px">
+          시간을 설정해두고 직접 확인하세요 😊
+        </p>
 
-// ── 말씀 포도나무 ──
-let streak = 0;
-const stages = ['🌱','🌿','🍃','🌾','🍇'];
+        <div class="alarm-block">
+          <div class="alarm-icon">🙏</div>
+          <div class="alarm-label">기도 알람 시간</div>
+          <div class="time-display" id="prayerDisplay">06:00</div>
+          <input
+            type="time"
+            class="time-input"
+            id="prayerTime"
+            value="06:00"
+            oninput="updateDisplay('prayer')"
+          />
+          <div class="save-hint">시간을 바꾸면 위에 바로 반영돼요</div>
+        </div>
 
-function increaseStreak(){
-  if(streak>=365){showToast('🎉 1년 말씀 완주!');return;}
-  streak++;
-  const pct = Math.round(streak/365*100);
-  document.getElementById('h-pct').textContent = pct+'%';
-  document.getElementById('g-pct').textContent = pct+'%';
-  document.getElementById('h-bar').style.width = pct+'%';
-  document.getElementById('g-bar').style.width = pct+'%';
-  document.getElementById('g-day').textContent = streak+'일 / 365일';
-  document.getElementById('grapeEmoji').textContent = stages[Math.min(Math.floor(pct/20),4)];
-  showToast('✅ 오늘 말씀 완료! '+pct+'%');
-}
+        <div class="alarm-block">
+          <div class="alarm-icon">🍇</div>
+          <div class="alarm-label">말씀 알람 시간</div>
+          <div class="time-display" id="wordDisplay">07:00</div>
+          <input
+            type="time"
+            class="time-input"
+            id="wordTime"
+            value="07:00"
+            oninput="updateDisplay('word')"
+          />
+          <div class="save-hint">시간을 바꾸면 위에 바로 반영돼요</div>
+        </div>
 
-// ── 기도 제목 ──
-function addPrayer(){
-  const inp = document.getElementById('prayerInput');
-  if(!inp.value.trim()){alert('기도 제목을 입력하세요!');return;}
-  const div = document.createElement('div'); div.className='prayer-item';
-  const span = document.createElement('span'); span.textContent=inp.value.trim();
-  const btn = document.createElement('button'); btn.className='del-btn'; btn.textContent='삭제';
-  btn.onclick=()=>div.remove();
-  div.append(span,btn);
-  document.getElementById('prayerList').appendChild(div);
-  inp.value='';
-}
-document.getElementById('prayerInput').addEventListener('keydown',e=>{if(e.key==='Enter')addPrayer();});
+        <button class="btn" onclick="saveSettings()">저장하기 💾</button>
+      </div>
 
-// ── 달력 ──
-const eventsData = {
-  '2025-7-6':'주일 예배','2025-7-13':'주일 예배',
-  '2025-7-15':'여름 수련회','2025-7-16':'여름 수련회',
-  '2025-7-20':'주일 예배','2025-7-27':'주일 예배',
-};
-let calY=2025, calM=6;
+      <div class="card">
+        <h2>📋 설정된 알람 요약</h2>
+        <div
+          style="
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            text-align: center;
+          "
+        >
+          <div>
+            <div style="font-size: 24px">🙏</div>
+            <div style="font-size: 12px; color: #888; margin-top: 4px">
+              기도
+            </div>
+            <div
+              style="font-size: 18px; font-weight: bold; color: #5d4037"
+              id="summaryPrayer"
+            >
+              06:00
+            </div>
+          </div>
+          <div style="width: 1px; background: #eee"></div>
+          <div>
+            <div style="font-size: 24px">🍇</div>
+            <div style="font-size: 12px; color: #888; margin-top: 4px">
+              말씀
+            </div>
+            <div
+              style="font-size: 18px; font-weight: bold; color: #5d4037"
+              id="summaryWord"
+            >
+              07:00
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-function renderCalendar(){
-  const now=new Date();
-  const fd=new Date(calY,calM,1).getDay();
-  const dim=new Date(calY,calM+1,0).getDate();
-  const mnames=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-  document.getElementById('calTitle').textContent=calY+'년 '+mnames[calM];
-  let h=['일','월','화','수','목','금','토'].map(d=>`<div class="cal-dn">${d}</div>`).join('');
-  for(let i=0;i<fd;i++) h+=`<div class="cal-d other"></div>`;
-  for(let d=1;d<=dim;d++){
-    const k=calY+'-'+(calM+1)+'-'+d;
-    const t=(d===now.getDate()&&calM===now.getMonth()&&calY===now.getFullYear())?'today':'';
-    const e=eventsData[k]?'has-ev':'';
-    h+=`<div class="cal-d ${t} ${e}" onclick="showEv(${d})">${d}</div>`;
-  }
-  document.getElementById('calGrid').innerHTML=h;
-  showEv(now.getDate());
-}
+    <!-- 탭바 -->
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
+        <span class="ti">🏠</span>홈
+      </button>
+      <button class="tab-btn" id="tab-prayer" onclick="goPage('prayer')">
+        <span class="ti">🙏</span>기도
+      </button>
+      <button class="tab-btn" id="tab-sermon" onclick="goPage('sermon')">
+        <span class="ti">🎬</span>설교
+      </button>
+      <button class="tab-btn" id="tab-notice" onclick="goPage('notice')">
+        <span class="ti">📢</span>공지
+      </button>
+      <button class="tab-btn" id="tab-settings" onclick="goPage('settings')">
+        <span class="ti">⚙️</span>설정
+      </button>
+    </div>
 
-function showEv(d){
-  const k=calY+'-'+(calM+1)+'-'+d;
-  const el=document.getElementById('evList');
-  el.innerHTML=eventsData[k]
-    ?`<div class="ev-item"><div class="ev-dot"></div><span>${calM+1}월 ${d}일 · ${eventsData[k]}</span></div>`
-    :`<div style="font-size:12px;color:#bbb;padding:8px 0">${calM+1}월 ${d}일 · 일정 없음</div>`;
-}
+    <script>
+      // ── 페이지 이동 ──
+      const TITLES = {
+        home: "🏠 홈",
+        prayer: "🙏 기도 제목",
+        sermon: "🎬 설교 영상",
+        notice: "📢 공지사항",
+        settings: "⚙️ 설정",
+      };
+      function goPage(id) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("page-" + id).classList.add("active");
+        const tab = document.getElementById("tab-" + id);
+        if (tab) tab.classList.add("active");
+        document.getElementById("pageTitle").textContent = TITLES[id] || "";
+      }
 
-function changeMonth(dir){
-  calM+=dir;
-  if(calM>11){calM=0;calY++;}
-  if(calM<0){calM=11;calY--;}
-  renderCalendar();
-}
-renderCalendar();
+      // ── 말씀 포도나무 ──
+      let streak = 0;
+      const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
+      function increaseStreak() {
+        if (streak >= 365) {
+          showToast("🎉 1년 말씀 완주!");
+          return;
+        }
+        streak++;
+        const pct = Math.round((streak / 365) * 100);
+        document.getElementById("h-pct").textContent = pct + "%";
+        document.getElementById("h-bar").style.width = pct + "%";
+        showToast("✅ 오늘 말씀 완료! " + pct + "%");
+      }
 
-// ── 알람 ──
-const alarmState = {prayer:false, word:false};
-let alarmInterval = null;
+      // ── 기도 제목 ──
+      function addPrayer() {
+        const inp = document.getElementById("prayerInput");
+        if (!inp.value.trim()) {
+          alert("기도 제목을 입력하세요!");
+          return;
+        }
+        const div = document.createElement("div");
+        div.className = "prayer-item";
+        const span = document.createElement("span");
+        span.textContent = inp.value.trim();
+        const btn = document.createElement("button");
+        btn.className = "del-btn";
+        btn.textContent = "삭제";
+        btn.onclick = () => div.remove();
+        div.append(span, btn);
+        document.getElementById("prayerList").appendChild(div);
+        inp.value = "";
+      }
+      document
+        .getElementById("prayerInput")
+        .addEventListener("keydown", (e) => {
+          if (e.key === "Enter") addPrayer();
+        });
 
-function toggleAlarm(type){
-  alarmState[type] = !alarmState[type];
-  document.getElementById(type+'Toggle').classList.toggle('on', alarmState[type]);
-  updateAlarmStatus();
-}
+      // ── 달력 ──
+      const eventsData = {
+        "2025-7-6": "주일 예배",
+        "2025-7-13": "주일 예배",
+        "2025-7-15": "여름 수련회",
+        "2025-7-16": "여름 수련회",
+        "2025-7-20": "주일 예배",
+        "2025-7-27": "주일 예배",
+      };
+      let calY = 2025,
+        calM = 6;
+      function renderCalendar() {
+        const now = new Date();
+        const fd = new Date(calY, calM, 1).getDay();
+        const dim = new Date(calY, calM + 1, 0).getDate();
+        const mn = [
+          "1월",
+          "2월",
+          "3월",
+          "4월",
+          "5월",
+          "6월",
+          "7월",
+          "8월",
+          "9월",
+          "10월",
+          "11월",
+          "12월",
+        ];
+        document.getElementById("calTitle").textContent =
+          calY + "년 " + mn[calM];
+        let h = ["일", "월", "화", "수", "목", "금", "토"]
+          .map((d) => `<div class="cal-dn">${d}</div>`)
+          .join("");
+        for (let i = 0; i < fd; i++) h += `<div class="cal-d other"></div>`;
+        for (let d = 1; d <= dim; d++) {
+          const k = calY + "-" + (calM + 1) + "-" + d;
+          const t =
+            d === now.getDate() &&
+            calM === now.getMonth() &&
+            calY === now.getFullYear()
+              ? "today"
+              : "";
+          const e = eventsData[k] ? "has-ev" : "";
+          h += `<div class="cal-d ${t} ${e}" onclick="showEv(${d})">${d}</div>`;
+        }
+        document.getElementById("calGrid").innerHTML = h;
+        showEv(now.getDate());
+      }
+      function showEv(d) {
+        const k = calY + "-" + (calM + 1) + "-" + d;
+        const el = document.getElementById("evList");
+        el.innerHTML = eventsData[k]
+          ? `<div class="ev-item"><div class="ev-dot"></div><span>${calM + 1}월 ${d}일 · ${eventsData[k]}</span></div>`
+          : `<div style="font-size:12px;color:#bbb;padding:8px 0">${calM + 1}월 ${d}일 · 일정 없음</div>`;
+      }
+      function changeMonth(dir) {
+        calM += dir;
+        if (calM > 11) {
+          calM = 0;
+          calY++;
+        }
+        if (calM < 0) {
+          calM = 11;
+          calY--;
+        }
+        renderCalendar();
+      }
+      renderCalendar();
 
-function updateAlarmStatus(){
-  const on = alarmState.prayer||alarmState.word;
-  document.getElementById('alarmStatus').textContent = on ? '⏰ 알람이 설정되어 있습니다' : '알람이 꺼져 있습니다';
-}
+      // ── 설정 ──
+      function updateDisplay(type) {
+        const val = document.getElementById(
+          type === "prayer" ? "prayerTime" : "wordTime",
+        ).value;
+        document.getElementById(
+          type === "prayer" ? "prayerDisplay" : "wordDisplay",
+        ).textContent = val || "--:--";
+      }
+      function saveSettings() {
+        const pt = document.getElementById("prayerTime").value;
+        const wt = document.getElementById("wordTime").value;
+        document.getElementById("summaryPrayer").textContent = pt;
+        document.getElementById("summaryWord").textContent = wt;
+        showToast("💾 알람 시간이 저장되었습니다!");
+      }
 
-function saveAlarms(){
-  if(!alarmState.prayer && !alarmState.word){
-    showToast('알람을 켜고 저장하세요');
-    return;
-  }
-  if(Notification.permission==='default'){
-    Notification.requestPermission().then(p=>{
-      if(p==='granted') startAlarmLoop();
-      else showToast('알림 권한이 필요합니다');
-    });
-  } else if(Notification.permission==='granted'){
-    startAlarmLoop();
-  } else {
-    showToast('브라우저 설정에서 알림을 허용해주세요');
-    return;
-  }
-  showToast('💾 알람이 저장되었습니다!');
-}
-
-function startAlarmLoop(){
-  if(alarmInterval) clearInterval(alarmInterval);
-  alarmInterval = setInterval(()=>{
-    const now = new Date();
-    const hh = String(now.getHours()).padStart(2,'0');
-    const mm = String(now.getMinutes()).padStart(2,'0');
-    const cur = hh+':'+mm;
-    if(alarmState.prayer && document.getElementById('prayerTime').value===cur){
-      fireNotif('🙏 기도 시간입니다','지금 기도 제목을 기억하며 기도해보세요 🙏');
-    }
-    if(alarmState.word && document.getElementById('wordTime').value===cur){
-      fireNotif('🍇 말씀 읽을 시간입니다','오늘의 말씀을 읽고 포도나무를 키워요 🍇');
-    }
-  }, 30000); // 30초마다 체크
-}
-
-function fireNotif(title, body){
-  if(Notification.permission==='granted'){
-    new Notification(title,{body, icon:'https://cdn-icons-png.flaticon.com/512/3094/3094899.png'});
-  }
-}
-
-function testNotif(type){
-  if(Notification.permission==='default'){
-    Notification.requestPermission().then(p=>{if(p==='granted') fireTestNotif(type);});
-  } else if(Notification.permission==='granted'){
-    fireTestNotif(type);
-  } else {
-    showToast('브라우저 설정에서 알림을 허용해주세요');
-  }
-}
-
-function fireTestNotif(type){
-  if(type==='prayer') fireNotif('🙏 기도 시간입니다','지금 기도 제목을 기억하며 기도해보세요 🙏');
-  else fireNotif('🍇 말씀 읽을 시간입니다','오늘의 말씀을 읽고 포도나무를 키워요 🍇');
-  showToast('테스트 알림을 보냈어요!');
-}
-
-// ── 토스트 ──
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
-</script>
-</body>
+      // ── 토스트 ──
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2500);
+      }
+    </script>
+  </body>
 </html>
