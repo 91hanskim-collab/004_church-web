@@ -18,7 +18,6 @@
         min-height: 100vh;
         overflow-x: hidden;
       }
-
       .header {
         background: #5d4037;
         color: white;
@@ -34,7 +33,6 @@
       .header h1 {
         font-size: 18px;
       }
-
       .page {
         display: none;
         padding: 16px 16px 90px;
@@ -42,7 +40,6 @@
       .page.active {
         display: block;
       }
-
       .card {
         background: white;
         border-radius: 16px;
@@ -55,7 +52,6 @@
         color: #5d4037;
         margin-bottom: 12px;
       }
-
       .btn {
         background: #5d4037;
         color: white;
@@ -79,24 +75,22 @@
         font-size: 13px;
         cursor: pointer;
       }
+      .btn-red {
+        background: #e53935;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 12px;
+        cursor: pointer;
+      }
 
       /* 포도나무 */
-      .big-emoji {
-        font-size: 56px;
-        text-align: center;
-        margin: 8px 0;
-      }
       .pct {
         font-size: 32px;
         font-weight: bold;
         color: #5d4037;
         text-align: center;
-      }
-      .day-txt {
-        font-size: 13px;
-        color: #999;
-        text-align: center;
-        margin-top: 2px;
       }
       .bar-bg {
         background: #e0d5c5;
@@ -204,6 +198,7 @@
       .notice-item {
         padding: 12px 0;
         border-bottom: 1px solid #f0ebe3;
+        cursor: pointer;
       }
       .notice-item:last-child {
         border-bottom: none;
@@ -228,39 +223,65 @@
         margin-left: 6px;
       }
 
+      /* 공지 상세 */
+      .detail-back {
+        background: none;
+        border: none;
+        color: #5d4037;
+        font-size: 14px;
+        cursor: pointer;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .detail-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 6px;
+      }
+      .detail-date {
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 16px;
+      }
+      .detail-body {
+        font-size: 14px;
+        color: #444;
+        line-height: 1.8;
+      }
+
       /* 설교 영상 */
-      .video-coming {
-        text-align: center;
-        padding: 30px 0;
-        color: #bbb;
-      }
-      .video-coming .big {
-        font-size: 48px;
-        margin-bottom: 10px;
-      }
-      .video-coming p {
-        font-size: 13px;
-      }
-      .video-placeholder {
+      .video-item {
         display: flex;
         gap: 12px;
         align-items: center;
-        padding: 12px 0;
+        padding: 10px 0;
         border-bottom: 1px solid #f0ebe3;
+        cursor: pointer;
+        text-decoration: none;
       }
-      .video-placeholder:last-child {
+      .video-item:last-child {
         border-bottom: none;
       }
-      .vthumb-ph {
+      .vthumb {
         width: 80px;
         height: 52px;
-        background: #f0ebe3;
+        background: #d7ccc8;
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 22px;
         flex-shrink: 0;
+        overflow: hidden;
+      }
+      .vthumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
       }
       .vtitle {
         font-size: 13px;
@@ -272,13 +293,22 @@
         color: #aaa;
         margin-top: 3px;
       }
+      .yt-badge {
+        display: inline-block;
+        background: #ff0000;
+        color: white;
+        font-size: 10px;
+        border-radius: 4px;
+        padding: 1px 5px;
+        margin-top: 4px;
+      }
       .soon-badge {
         display: inline-block;
         background: #bcaaa4;
         color: white;
         font-size: 10px;
         border-radius: 4px;
-        padding: 1px 6px;
+        padding: 1px 5px;
         margin-top: 4px;
       }
 
@@ -300,35 +330,40 @@
         border-color: #5d4037;
       }
       .prayer-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         background: #fdf8f2;
         border-radius: 10px;
         padding: 10px 12px;
         margin-top: 8px;
         font-size: 14px;
       }
+      .prayer-text {
+        color: #333;
+        margin-bottom: 4px;
+      }
+      .prayer-meta {
+        font-size: 11px;
+        color: #aaa;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
       .del-btn {
         background: #ffcdd2;
         color: #c62828;
         border: none;
         border-radius: 6px;
-        padding: 4px 8px;
+        padding: 3px 8px;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 11px;
       }
 
-      /* 설정 - 알람 시간 표시 */
-      .alarm-card {
-        text-align: center;
-        padding: 20px 18px;
-      }
+      /* 설정 */
       .alarm-block {
         background: #fdf8f2;
         border-radius: 14px;
         padding: 18px;
         margin-bottom: 12px;
+        text-align: center;
       }
       .alarm-icon {
         font-size: 32px;
@@ -344,7 +379,6 @@
         font-weight: bold;
         color: #5d4037;
         letter-spacing: 2px;
-        font-variant-numeric: tabular-nums;
       }
       .time-input {
         width: 100%;
@@ -357,13 +391,49 @@
         text-align: center;
         outline: none;
       }
-      .time-input:focus {
+
+      /* 관리자 */
+      .admin-login {
+        text-align: center;
+        padding: 20px 0;
+      }
+      .admin-input {
+        width: 100%;
+        padding: 12px;
+        border: 1.5px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        outline: none;
+      }
+      .admin-input:focus {
         border-color: #5d4037;
       }
-      .save-hint {
-        font-size: 11px;
-        color: #bbb;
-        margin-top: 6px;
+      .admin-section {
+        margin-bottom: 20px;
+      }
+      .admin-section h3 {
+        font-size: 14px;
+        color: #5d4037;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #f0ebe3;
+        padding-bottom: 6px;
+      }
+      .form-input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 13px;
+        margin-bottom: 8px;
+        outline: none;
+      }
+      .form-input:focus {
+        border-color: #5d4037;
+      }
+      textarea.form-input {
+        height: 80px;
+        resize: vertical;
       }
 
       /* 탭바 */
@@ -421,6 +491,19 @@
       .toast.show {
         opacity: 1;
       }
+
+      .empty {
+        text-align: center;
+        color: #bbb;
+        font-size: 13px;
+        padding: 20px 0;
+      }
+      .loading {
+        text-align: center;
+        color: #aaa;
+        font-size: 13px;
+        padding: 20px 0;
+      }
     </style>
   </head>
   <body>
@@ -439,30 +522,17 @@
         <div class="cal-grid" id="calGrid"></div>
         <div class="ev-list" id="evList"></div>
       </div>
-
       <div class="card">
-        <h2>📢 공지사항</h2>
-        <div class="notice-item" onclick="goPage('notice')">
-          <div class="ntitle">
-            2025 여름 수련회 안내 <span class="badge">NEW</span>
-          </div>
-          <div class="ndate">2025.07.01</div>
-        </div>
-        <div class="notice-item" onclick="goPage('notice')">
-          <div class="ntitle">주일 예배 시간 변경 안내</div>
-          <div class="ndate">2025.06.20</div>
-        </div>
+        <h2>📢 최신 공지</h2>
+        <div id="homeNotice"><div class="loading">불러오는 중...</div></div>
       </div>
-
       <div class="card">
         <h2>🍇 말씀 포도나무</h2>
         <div class="pct" id="h-pct">0%</div>
         <div class="bar-bg">
           <div class="bar-fill" id="h-bar" style="width: 0%"></div>
         </div>
-        <div class="bar-labels">
-          <span>0일</span><span id="h-dl">/ 365일</span>
-        </div>
+        <div class="bar-labels"><span>0일</span><span>/ 365일</span></div>
         <button class="btn" onclick="increaseStreak()">오늘 완료 ✅</button>
       </div>
     </div>
@@ -475,7 +545,9 @@
           <input id="prayerInput" placeholder="기도 제목 입력" />
           <button class="btn-sm" onclick="addPrayer()">추가</button>
         </div>
-        <div id="prayerList" style="margin-top: 4px"></div>
+        <div id="prayerList" style="margin-top: 4px">
+          <div class="loading">불러오는 중...</div>
+        </div>
       </div>
     </div>
 
@@ -483,65 +555,22 @@
     <div class="page" id="page-sermon">
       <div class="card">
         <h2>🎬 설교 영상</h2>
-        <div class="video-placeholder">
-          <div class="vthumb-ph">🎬</div>
-          <div>
-            <div class="vtitle">하나님의 사랑 (주일설교)</div>
-            <div class="vsub">2025.06.29 · 목사님</div>
-            <span class="soon-badge">링크 준비 중</span>
-          </div>
-        </div>
-        <div class="video-placeholder">
-          <div class="vthumb-ph">🎬</div>
-          <div>
-            <div class="vtitle">믿음으로 사는 삶</div>
-            <div class="vsub">2025.06.22 · 목사님</div>
-            <span class="soon-badge">링크 준비 중</span>
-          </div>
-        </div>
-        <div class="video-placeholder">
-          <div class="vthumb-ph">🎬</div>
-          <div>
-            <div class="vtitle">은혜의 강</div>
-            <div class="vsub">2025.06.15 · 목사님</div>
-            <span class="soon-badge">링크 준비 중</span>
-          </div>
-        </div>
-        <p
-          style="
-            font-size: 12px;
-            color: #bbb;
-            text-align: center;
-            margin-top: 14px;
-          "
-        >
-          유튜브 링크 업로드 후 연결 예정이에요 📌
-        </p>
+        <div id="sermonList"><div class="loading">불러오는 중...</div></div>
       </div>
     </div>
 
     <!-- ══ 공지사항 ══ -->
     <div class="page" id="page-notice">
-      <div class="card">
+      <div class="card" id="noticeListCard">
         <h2>📢 공지사항</h2>
-        <div class="notice-item">
-          <div class="ntitle">
-            2025 여름 수련회 안내 <span class="badge">NEW</span>
-          </div>
-          <div class="ndate">2025.07.01 · 교회 행사부</div>
-        </div>
-        <div class="notice-item">
-          <div class="ntitle">주일 예배 시간 변경 안내</div>
-          <div class="ndate">2025.06.20 · 담임목사</div>
-        </div>
-        <div class="notice-item">
-          <div class="ntitle">헌금 계좌 변경 공지</div>
-          <div class="ndate">2025.06.10 · 재정부</div>
-        </div>
-        <div class="notice-item">
-          <div class="ntitle">6월 찬양팀 모집</div>
-          <div class="ndate">2025.06.01 · 찬양부</div>
-        </div>
+        <div id="noticeList"><div class="loading">불러오는 중...</div></div>
+      </div>
+      <!-- 상세 보기 -->
+      <div class="card" id="noticeDetail" style="display: none">
+        <button class="detail-back" onclick="closeDetail()">← 목록으로</button>
+        <div class="detail-title" id="detailTitle"></div>
+        <div class="detail-date" id="detailDate"></div>
+        <div class="detail-body" id="detailBody"></div>
       </div>
     </div>
 
@@ -549,10 +578,6 @@
     <div class="page" id="page-settings">
       <div class="card">
         <h2>⏰ 알람 시간 설정</h2>
-        <p style="font-size: 12px; color: #aaa; margin-bottom: 16px">
-          시간을 설정해두고 직접 확인하세요 😊
-        </p>
-
         <div class="alarm-block">
           <div class="alarm-icon">🙏</div>
           <div class="alarm-label">기도 알람 시간</div>
@@ -562,11 +587,11 @@
             class="time-input"
             id="prayerTime"
             value="06:00"
-            oninput="updateDisplay('prayer')"
+            oninput="
+              document.getElementById('prayerDisplay').textContent = this.value
+            "
           />
-          <div class="save-hint">시간을 바꾸면 위에 바로 반영돼요</div>
         </div>
-
         <div class="alarm-block">
           <div class="alarm-icon">🍇</div>
           <div class="alarm-label">말씀 알람 시간</div>
@@ -576,49 +601,88 @@
             class="time-input"
             id="wordTime"
             value="07:00"
-            oninput="updateDisplay('word')"
+            oninput="
+              document.getElementById('wordDisplay').textContent = this.value
+            "
           />
-          <div class="save-hint">시간을 바꾸면 위에 바로 반영돼요</div>
         </div>
-
-        <button class="btn" onclick="saveSettings()">저장하기 💾</button>
+        <button class="btn" onclick="showToast('💾 저장되었습니다!')">
+          저장하기 💾
+        </button>
       </div>
-
       <div class="card">
-        <h2>📋 설정된 알람 요약</h2>
+        <h2>🔐 관리자</h2>
+        <p style="font-size: 13px; color: #888; margin-bottom: 10px">
+          관리자만 게시물을 올릴 수 있어요
+        </p>
+        <button class="btn" onclick="goPage('admin')">관리자 페이지 →</button>
+      </div>
+    </div>
+
+    <!-- ══ 관리자 ══ -->
+    <div class="page" id="page-admin">
+      <!-- 로그인 전 -->
+      <div class="card" id="adminLoginCard">
+        <h2>🔐 관리자 로그인</h2>
+        <div class="admin-login">
+          <p style="font-size: 13px; color: #888; margin-bottom: 16px">
+            관리자만 접근 가능합니다
+          </p>
+          <input
+            class="admin-input"
+            type="password"
+            id="adminPw"
+            placeholder="비밀번호 입력"
+          />
+          <button class="btn" onclick="adminLogin()">로그인</button>
+        </div>
+      </div>
+      <!-- 로그인 후 -->
+      <div class="card" id="adminPanel" style="display: none">
         <div
           style="
             display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
           "
         >
-          <div>
-            <div style="font-size: 24px">🙏</div>
-            <div style="font-size: 12px; color: #888; margin-top: 4px">
-              기도
-            </div>
-            <div
-              style="font-size: 18px; font-weight: bold; color: #5d4037"
-              id="summaryPrayer"
-            >
-              06:00
-            </div>
-          </div>
-          <div style="width: 1px; background: #eee"></div>
-          <div>
-            <div style="font-size: 24px">🍇</div>
-            <div style="font-size: 12px; color: #888; margin-top: 4px">
-              말씀
-            </div>
-            <div
-              style="font-size: 18px; font-weight: bold; color: #5d4037"
-              id="summaryWord"
-            >
-              07:00
-            </div>
-          </div>
+          <h2 style="margin: 0">⚙️ 관리자 패널</h2>
+          <button class="btn-red" onclick="adminLogout()">로그아웃</button>
+        </div>
+
+        <div class="admin-section">
+          <h3>📢 공지사항 등록</h3>
+          <input class="form-input" id="noticeTitle" placeholder="제목" />
+          <textarea
+            class="form-input"
+            id="noticeBody"
+            placeholder="내용을 입력하세요"
+          ></textarea>
+          <button class="btn" onclick="postNotice()">공지 등록</button>
+        </div>
+
+        <div class="admin-section">
+          <h3>🎬 설교 영상 등록</h3>
+          <input class="form-input" id="sermonTitle" placeholder="설교 제목" />
+          <input
+            class="form-input"
+            id="sermonSub"
+            placeholder="날짜 · 목사님 이름"
+          />
+          <input
+            class="form-input"
+            id="sermonUrl"
+            placeholder="유튜브 링크 (https://...)"
+          />
+          <button class="btn" onclick="postSermon()">영상 등록</button>
+        </div>
+
+        <div class="admin-section">
+          <h3>📅 일정 등록</h3>
+          <input class="form-input" type="date" id="scheduleDate" />
+          <input class="form-input" id="scheduleName" placeholder="일정 이름" />
+          <button class="btn" onclick="postSchedule()">일정 등록</button>
         </div>
       </div>
     </div>
@@ -642,79 +706,262 @@
       </button>
     </div>
 
-    <script>
-      // ── 페이지 이동 ──
-      const TITLES = {
-        home: "🏠 홈",
-        prayer: "🙏 기도 제목",
-        sermon: "🎬 설교 영상",
-        notice: "📢 공지사항",
-        settings: "⚙️ 설정",
-      };
-      function goPage(id) {
-        document
-          .querySelectorAll(".page")
-          .forEach((p) => p.classList.remove("active"));
-        document
-          .querySelectorAll(".tab-btn")
-          .forEach((b) => b.classList.remove("active"));
-        document.getElementById("page-" + id).classList.add("active");
-        const tab = document.getElementById("tab-" + id);
-        if (tab) tab.classList.add("active");
-        document.getElementById("pageTitle").textContent = TITLES[id] || "";
-      }
+    <!-- Firebase SDK -->
+    <script type="module">
+      // 전역 함수 등록 헬퍼
+      const g = (n, f) => (window[n] = f);
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        push,
+        onValue,
+        remove,
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-      // ── 말씀 포도나무 ──
-      let streak = 0;
-      const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
-      function increaseStreak() {
-        if (streak >= 365) {
-          showToast("🎉 1년 말씀 완주!");
+      // ── Firebase 설정 ──
+      const firebaseConfig = {
+        apiKey: "AIzaSyAQ9yKmwNNKxSLGrq8q2k5RN6CgIFXGhqE",
+        authDomain: "church-app-4a233.firebaseapp.com",
+        databaseURL:
+          "https://church-app-4a233-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "church-app-4a233",
+        storageBucket: "church-app-4a233.firebasestorage.app",
+        messagingSenderId: "1033367843213",
+        appId: "1:1033367843213:web:7dd24d8db59b226582cdc4",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      // ── 관리자 비밀번호 (여기서 변경하세요) ──
+      const ADMIN_PASSWORDS = ["church2025", "admin1234", "pastor0000"];
+      let isAdmin = false;
+
+      window.adminLogin = function () {
+        const pw = document.getElementById("adminPw").value;
+        if (ADMIN_PASSWORDS.includes(pw)) {
+          isAdmin = true;
+          document.getElementById("adminLoginCard").style.display = "none";
+          document.getElementById("adminPanel").style.display = "block";
+          showToast("✅ 관리자로 로그인됐어요!");
+        } else {
+          showToast("❌ 비밀번호가 틀렸어요");
+        }
+      };
+
+      window.adminLogout = function () {
+        isAdmin = false;
+        document.getElementById("adminLoginCard").style.display = "block";
+        document.getElementById("adminPanel").style.display = "none";
+        document.getElementById("adminPw").value = "";
+        showToast("로그아웃 됐어요");
+      };
+
+      // ── 공지사항 ──
+      window.postNotice = function () {
+        if (!isAdmin) {
           return;
         }
-        streak++;
-        const pct = Math.round((streak / 365) * 100);
-        document.getElementById("h-pct").textContent = pct + "%";
-        document.getElementById("h-bar").style.width = pct + "%";
-        showToast("✅ 오늘 말씀 완료! " + pct + "%");
+        const title = document.getElementById("noticeTitle").value.trim();
+        const body = document.getElementById("noticeBody").value.trim();
+        if (!title || !body) {
+          showToast("제목과 내용을 입력하세요");
+          return;
+        }
+        push(ref(db, "notices"), {
+          title,
+          body,
+          date: new Date().toISOString(),
+        });
+        document.getElementById("noticeTitle").value = "";
+        document.getElementById("noticeBody").value = "";
+        showToast("✅ 공지가 등록됐어요!");
+      };
+
+      function renderNotices(data) {
+        const items = data ? Object.entries(data).reverse() : [];
+        // 홈 미리보기
+        const homeEl = document.getElementById("homeNotice");
+        if (!items.length) {
+          homeEl.innerHTML = '<div class="empty">등록된 공지가 없어요</div>';
+        } else {
+          homeEl.innerHTML = items
+            .slice(0, 2)
+            .map(
+              ([id, n]) => `
+      <div class="notice-item" onclick="openDetail('${id}')">
+        <div class="ntitle">${n.title}</div>
+        <div class="ndate">${fmtDate(n.date)}</div>
+      </div>`,
+            )
+            .join("");
+        }
+        // 공지 탭
+        const listEl = document.getElementById("noticeList");
+        if (!items.length) {
+          listEl.innerHTML = '<div class="empty">등록된 공지가 없어요</div>';
+        } else {
+          listEl.innerHTML = items
+            .map(
+              ([id, n]) => `
+      <div class="notice-item" onclick="openDetail('${id}')">
+        <div class="ntitle">${n.title}</div>
+        <div class="ndate">${fmtDate(n.date)}</div>
+      </div>`,
+            )
+            .join("");
+        }
+        window._noticeData = data;
       }
 
+      window.openDetail = function (id) {
+        const n = window._noticeData[id];
+        document.getElementById("noticeListCard").style.display = "none";
+        document.getElementById("noticeDetail").style.display = "block";
+        document.getElementById("detailTitle").textContent = n.title;
+        document.getElementById("detailDate").textContent = fmtDate(n.date);
+        document.getElementById("detailBody").textContent = n.body;
+      };
+
+      window.closeDetail = function () {
+        document.getElementById("noticeListCard").style.display = "block";
+        document.getElementById("noticeDetail").style.display = "none";
+      };
+
+      onValue(ref(db, "notices"), (snap) => renderNotices(snap.val()));
+
+      // ── 설교 영상 ──
+      window.postSermon = function () {
+        if (!isAdmin) {
+          return;
+        }
+        const title = document.getElementById("sermonTitle").value.trim();
+        const sub = document.getElementById("sermonSub").value.trim();
+        const url = document.getElementById("sermonUrl").value.trim();
+        if (!title || !url) {
+          showToast("제목과 유튜브 링크를 입력하세요");
+          return;
+        }
+        push(ref(db, "sermons"), {
+          title,
+          sub,
+          url,
+          date: new Date().toISOString(),
+        });
+        document.getElementById("sermonTitle").value = "";
+        document.getElementById("sermonSub").value = "";
+        document.getElementById("sermonUrl").value = "";
+        showToast("✅ 설교 영상이 등록됐어요!");
+      };
+
+      function getYoutubeId(url) {
+        const m = url.match(/(?:v=|youtu\.be\/)([^&\s]+)/);
+        return m ? m[1] : null;
+      }
+
+      onValue(ref(db, "sermons"), (snap) => {
+        const data = snap.val();
+        const el = document.getElementById("sermonList");
+        if (!data) {
+          el.innerHTML = '<div class="empty">등록된 설교 영상이 없어요</div>';
+          return;
+        }
+        const items = Object.entries(data).reverse();
+        el.innerHTML = items
+          .map(([id, s]) => {
+            const vid = getYoutubeId(s.url || "");
+            const thumb = vid
+              ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="" onerror="this.parentElement.textContent='🎬'"/>`
+              : "🎬";
+            const badge = s.url
+              ? `<span class="yt-badge">▶ YouTube</span>`
+              : `<span class="soon-badge">준비 중</span>`;
+            const tag = s.url
+              ? `a href="${s.url}" target="_blank" rel="noopener"`
+              : "div";
+            const tagClose = s.url ? "a" : "div";
+            return `<${tag} class="video-item">
+      <div class="vthumb">${thumb}</div>
+      <div><div class="vtitle">${s.title}</div><div class="vsub">${s.sub || ""}</div>${badge}</div>
+    </${tagClose}>`;
+          })
+          .join("");
+      });
+
       // ── 기도 제목 ──
-      function addPrayer() {
+      window.addPrayer = function () {
         const inp = document.getElementById("prayerInput");
         if (!inp.value.trim()) {
           alert("기도 제목을 입력하세요!");
           return;
         }
-        const div = document.createElement("div");
-        div.className = "prayer-item";
-        const span = document.createElement("span");
-        span.textContent = inp.value.trim();
-        const btn = document.createElement("button");
-        btn.className = "del-btn";
-        btn.textContent = "삭제";
-        btn.onclick = () => div.remove();
-        div.append(span, btn);
-        document.getElementById("prayerList").appendChild(div);
+        push(ref(db, "prayers"), {
+          text: inp.value.trim(),
+          date: new Date().toISOString(),
+        });
         inp.value = "";
-      }
+        showToast("🙏 기도 제목이 추가됐어요!");
+      };
+
       document
         .getElementById("prayerInput")
         .addEventListener("keydown", (e) => {
-          if (e.key === "Enter") addPrayer();
+          if (e.key === "Enter") window.addPrayer();
         });
 
-      // ── 달력 ──
-      const eventsData = {
-        "2025-7-6": "주일 예배",
-        "2025-7-13": "주일 예배",
-        "2025-7-15": "여름 수련회",
-        "2025-7-16": "여름 수련회",
-        "2025-7-20": "주일 예배",
-        "2025-7-27": "주일 예배",
+      onValue(ref(db, "prayers"), (snap) => {
+        const data = snap.val();
+        const el = document.getElementById("prayerList");
+        if (!data) {
+          el.innerHTML = '<div class="empty">기도 제목을 추가해보세요</div>';
+          return;
+        }
+        const items = Object.entries(data).reverse();
+        el.innerHTML = items
+          .map(
+            ([id, p]) => `
+    <div class="prayer-item">
+      <div class="prayer-text">${p.text}</div>
+      <div class="prayer-meta">
+        <span>${fmtDateTime(p.date)}</span>
+        <button class="del-btn" onclick="deletePrayer('${id}')">삭제</button>
+      </div>
+    </div>`,
+          )
+          .join("");
+      });
+
+      window.deletePrayer = function (id) {
+        remove(ref(db, "prayers/" + id));
       };
-      let calY = 2025,
-        calM = 6;
+
+      // ── 일정 ──
+      window.postSchedule = function () {
+        if (!isAdmin) {
+          return;
+        }
+        const date = document.getElementById("scheduleDate").value;
+        const name = document.getElementById("scheduleName").value.trim();
+        if (!date || !name) {
+          showToast("날짜와 일정 이름을 입력하세요");
+          return;
+        }
+        push(ref(db, "schedules"), { date, name });
+        document.getElementById("scheduleDate").value = "";
+        document.getElementById("scheduleName").value = "";
+        showToast("✅ 일정이 등록됐어요!");
+      };
+
+      onValue(ref(db, "schedules"), (snap) => {
+        window._scheduleData = snap.val() || {};
+        renderCalendar();
+      });
+
+      // ── 달력 ──
+      let calY = new Date().getFullYear(),
+        calM = new Date().getMonth();
+
       function renderCalendar() {
         const now = new Date();
         const fd = new Date(calY, calM, 1).getDay();
@@ -735,32 +982,58 @@
         ];
         document.getElementById("calTitle").textContent =
           calY + "년 " + mn[calM];
+        const schedules = window._scheduleData || {};
+
+        // 이번달 일정 날짜 목록
+        const evDays = new Set();
+        Object.values(schedules).forEach((s) => {
+          const d = new Date(s.date);
+          if (d.getFullYear() === calY && d.getMonth() === calM)
+            evDays.add(d.getDate());
+        });
+
         let h = ["일", "월", "화", "수", "목", "금", "토"]
           .map((d) => `<div class="cal-dn">${d}</div>`)
           .join("");
         for (let i = 0; i < fd; i++) h += `<div class="cal-d other"></div>`;
         for (let d = 1; d <= dim; d++) {
-          const k = calY + "-" + (calM + 1) + "-" + d;
           const t =
             d === now.getDate() &&
             calM === now.getMonth() &&
             calY === now.getFullYear()
               ? "today"
               : "";
-          const e = eventsData[k] ? "has-ev" : "";
+          const e = evDays.has(d) ? "has-ev" : "";
           h += `<div class="cal-d ${t} ${e}" onclick="showEv(${d})">${d}</div>`;
         }
         document.getElementById("calGrid").innerHTML = h;
         showEv(now.getDate());
       }
-      function showEv(d) {
-        const k = calY + "-" + (calM + 1) + "-" + d;
+
+      window.showEv = function (d) {
+        const schedules = window._scheduleData || {};
         const el = document.getElementById("evList");
-        el.innerHTML = eventsData[k]
-          ? `<div class="ev-item"><div class="ev-dot"></div><span>${calM + 1}월 ${d}일 · ${eventsData[k]}</span></div>`
-          : `<div style="font-size:12px;color:#bbb;padding:8px 0">${calM + 1}월 ${d}일 · 일정 없음</div>`;
-      }
-      function changeMonth(dir) {
+        const items = Object.values(schedules).filter((s) => {
+          const dt = new Date(s.date);
+          return (
+            dt.getFullYear() === calY &&
+            dt.getMonth() === calM &&
+            dt.getDate() === d
+          );
+        });
+        if (items.length) {
+          el.innerHTML = items
+            .map(
+              (s) =>
+                `<div class="ev-item"><div class="ev-dot"></div><span>${calM + 1}월 ${d}일 · ${s.name}</span></div>`,
+            )
+            .join("");
+        } else {
+          el.innerHTML = `<div style="font-size:12px;color:#bbb;padding:8px 0">${calM + 1}월 ${d}일 · 일정 없음</div>`;
+        }
+      };
+
+      window.changeMonth = function (dir) {
         calM += dir;
         if (calM > 11) {
           calM = 0;
@@ -771,33 +1044,67 @@
           calY--;
         }
         renderCalendar();
-      }
+      };
+
+      window._scheduleData = {};
       renderCalendar();
 
-      // ── 설정 ──
-      function updateDisplay(type) {
-        const val = document.getElementById(
-          type === "prayer" ? "prayerTime" : "wordTime",
-        ).value;
-        document.getElementById(
-          type === "prayer" ? "prayerDisplay" : "wordDisplay",
-        ).textContent = val || "--:--";
+      // ── 말씀 포도나무 ──
+      let streak = 0;
+      window.increaseStreak = function () {
+        if (streak >= 365) {
+          showToast("🎉 1년 완주!");
+          return;
+        }
+        streak++;
+        const pct = Math.round((streak / 365) * 100);
+        document.getElementById("h-pct").textContent = pct + "%";
+        document.getElementById("h-bar").style.width = pct + "%";
+        showToast("✅ 오늘 말씀 완료! " + pct + "%");
+      };
+
+      // ── 페이지 이동 ──
+      const TITLES = {
+        home: "🏠 홈",
+        prayer: "🙏 기도 제목",
+        sermon: "🎬 설교 영상",
+        notice: "📢 공지사항",
+        settings: "⚙️ 설정",
+        admin: "🔐 관리자",
+      };
+      window.goPage = function (id) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("page-" + id).classList.add("active");
+        const tab = document.getElementById("tab-" + id);
+        if (tab) tab.classList.add("active");
+        document.getElementById("pageTitle").textContent = TITLES[id] || "";
+      };
+
+      // ── 날짜 포맷 ──
+      function fmtDate(iso) {
+        const d = new Date(iso);
+        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
       }
-      function saveSettings() {
-        const pt = document.getElementById("prayerTime").value;
-        const wt = document.getElementById("wordTime").value;
-        document.getElementById("summaryPrayer").textContent = pt;
-        document.getElementById("summaryWord").textContent = wt;
-        showToast("💾 알람 시간이 저장되었습니다!");
+      function fmtDateTime(iso) {
+        const d = new Date(iso);
+        const h = d.getHours(),
+          m = d.getMinutes();
+        const ampm = h < 12 ? "오전" : "오후";
+        return `${fmtDate(iso)} ${ampm} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
       }
 
       // ── 토스트 ──
-      function showToast(msg) {
+      window.showToast = function (msg) {
         const t = document.getElementById("toast");
         t.textContent = msg;
         t.classList.add("show");
         setTimeout(() => t.classList.remove("show"), 2500);
-      }
+      };
     </script>
   </body>
 </html>
