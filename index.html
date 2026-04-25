@@ -10,29 +10,46 @@
         margin: 0;
         padding: 0;
       }
+      :root {
+        --primary: #222;
+        --accent: #6c63ff;
+        --accent2: #ff6584;
+        --bg: #f8f8f8;
+        --card: #fff;
+        --border: #f0f0f0;
+        --text: #222;
+        --sub: #999;
+        --radius: 18px;
+      }
       body {
-        font-family: Arial, sans-serif;
-        background: #f0ebe3;
+        font-family: "Apple SD Gothic Neo", Arial, sans-serif;
+        background: var(--bg);
         max-width: 420px;
         margin: 0 auto;
         min-height: 100vh;
         overflow-x: hidden;
+        color: var(--text);
       }
+
+      /* 헤더 */
       .header {
-        background: #5d4037;
-        color: white;
-        padding: 16px 20px;
+        background: var(--card);
+        padding: 18px 20px 14px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: sticky;
         top: 0;
         z-index: 100;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid var(--border);
       }
       .header h1 {
-        font-size: 18px;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
       }
+
+      /* 페이지 */
       .page {
         display: none;
         padding: 16px 16px 90px;
@@ -40,76 +57,130 @@
       .page.active {
         display: block;
       }
+
+      /* 카드 */
       .card {
-        background: white;
-        border-radius: 16px;
-        padding: 18px;
-        margin-bottom: 16px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 20px;
+        margin-bottom: 14px;
+        border: 1px solid var(--border);
       }
-      .card h2 {
-        font-size: 16px;
-        color: #5d4037;
-        margin-bottom: 12px;
+      .card-title {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
+
+      /* 버튼 */
       .btn {
-        background: #5d4037;
-        color: white;
+        background: var(--primary);
+        color: #fff;
         border: none;
-        border-radius: 10px;
-        padding: 10px 16px;
+        border-radius: 12px;
+        padding: 13px;
         font-size: 14px;
+        font-weight: 600;
         cursor: pointer;
         width: 100%;
         margin-top: 10px;
+        letter-spacing: -0.2px;
       }
       .btn:active {
-        background: #4e342e;
+        opacity: 0.8;
+      }
+      .btn-accent {
+        background: var(--accent);
+      }
+      .btn-outline {
+        background: none;
+        border: 1.5px solid var(--primary);
+        color: var(--primary);
       }
       .btn-sm {
-        background: #5d4037;
-        color: white;
+        background: var(--primary);
+        color: #fff;
         border: none;
-        border-radius: 8px;
-        padding: 8px 14px;
+        border-radius: 10px;
+        padding: 9px 14px;
         font-size: 13px;
+        font-weight: 600;
         cursor: pointer;
       }
-      .btn-red {
-        background: #e53935;
-        color: white;
+      .btn-del {
+        background: #fff0f0;
+        color: #e53935;
         border: none;
         border-radius: 8px;
-        padding: 6px 12px;
+        padding: 5px 10px;
         font-size: 12px;
         cursor: pointer;
+        font-weight: 600;
+      }
+      .btn-ans {
+        background: #f0fff4;
+        color: #2e7d32;
+        border: none;
+        border-radius: 8px;
+        padding: 5px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: 600;
       }
 
-      /* 포도나무 */
-      .pct {
-        font-size: 32px;
-        font-weight: bold;
-        color: #5d4037;
-        text-align: center;
+      /* 인풋 */
+      .input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        font-size: 14px;
+        outline: none;
+        background: #fafafa;
+        color: var(--text);
       }
-      .bar-bg {
-        background: #e0d5c5;
-        border-radius: 999px;
-        height: 16px;
-        overflow: hidden;
-        margin: 12px 0;
+      .input:focus {
+        border-color: var(--accent);
+        background: #fff;
       }
-      .bar-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #8d6e63, #5d4037);
-        border-radius: 999px;
-        transition: width 0.4s;
+      textarea.input {
+        height: 80px;
+        resize: vertical;
       }
-      .bar-labels {
+      .input-row {
         display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        color: #aaa;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .input-row .input {
+        margin: 0;
+      }
+
+      /* 홈 히어로 */
+      .hero {
+        background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+        border-radius: var(--radius);
+        padding: 24px 20px;
+        margin-bottom: 14px;
+        color: #fff;
+      }
+      .hero-date {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-bottom: 6px;
+      }
+      .hero-verse {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+      .hero-ref {
+        font-size: 12px;
+        opacity: 0.7;
       }
 
       /* 달력 */
@@ -117,148 +188,175 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
       }
       .cal-nav button {
         background: none;
         border: none;
         font-size: 20px;
         cursor: pointer;
-        color: #5d4037;
+        color: var(--primary);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cal-nav button:hover {
+        background: var(--border);
       }
       .cal-nav span {
-        font-weight: bold;
-        color: #5d4037;
+        font-size: 15px;
+        font-weight: 700;
       }
       .cal-grid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: 2px;
+        gap: 3px;
         text-align: center;
       }
       .cal-dn {
         font-size: 11px;
-        color: #999;
+        color: var(--sub);
         padding: 4px 0;
+        font-weight: 600;
       }
       .cal-d {
         font-size: 13px;
-        padding: 6px 2px;
+        padding: 7px 2px;
         border-radius: 50%;
         cursor: pointer;
-        min-height: 30px;
+        min-height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
+        font-weight: 500;
       }
       .cal-d:hover {
-        background: #f5ebe0;
+        background: var(--border);
       }
       .cal-d.today {
-        background: #5d4037;
-        color: white;
-        font-weight: bold;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
       }
       .cal-d.has-ev::after {
         content: "";
         display: block;
-        width: 5px;
-        height: 5px;
-        background: #e57373;
+        width: 4px;
+        height: 4px;
+        background: var(--accent2);
         border-radius: 50%;
         position: absolute;
-        bottom: 1px;
+        bottom: 2px;
         left: 50%;
         transform: translateX(-50%);
       }
       .cal-d.other {
-        color: #ccc;
+        color: #ddd;
       }
       .ev-list {
-        margin-top: 10px;
+        margin-top: 12px;
       }
       .ev-item {
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 7px 0;
-        border-bottom: 1px solid #f0ebe3;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
         font-size: 13px;
       }
+      .ev-item:last-child {
+        border-bottom: none;
+      }
       .ev-dot {
-        width: 7px;
-        height: 7px;
-        background: #5d4037;
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
         border-radius: 50%;
         flex-shrink: 0;
       }
 
       /* 공지 */
       .notice-item {
-        padding: 12px 0;
-        border-bottom: 1px solid #f0ebe3;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--border);
         cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
       }
       .notice-item:last-child {
         border-bottom: none;
       }
       .ntitle {
         font-size: 14px;
-        font-weight: bold;
-        color: #333;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 3px;
       }
       .ndate {
         font-size: 11px;
-        color: #aaa;
-        margin-top: 3px;
+        color: var(--sub);
       }
-      .badge {
+      .nbadge {
         display: inline-block;
-        background: #e57373;
-        color: white;
+        background: var(--accent2);
+        color: #fff;
         font-size: 10px;
-        border-radius: 4px;
-        padding: 1px 5px;
+        border-radius: 6px;
+        padding: 1px 6px;
         margin-left: 6px;
+        font-weight: 600;
+      }
+      .arrow-icon {
+        color: var(--sub);
+        font-size: 16px;
+        margin-top: 2px;
       }
 
       /* 공지 상세 */
       .detail-back {
         background: none;
         border: none;
-        color: #5d4037;
+        color: var(--accent);
         font-size: 14px;
         cursor: pointer;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         display: flex;
         align-items: center;
         gap: 4px;
+        font-weight: 600;
+        padding: 0;
       }
       .detail-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
+        font-size: 20px;
+        font-weight: 700;
         margin-bottom: 6px;
+        line-height: 1.3;
       }
       .detail-date {
         font-size: 12px;
-        color: #aaa;
-        margin-bottom: 16px;
+        color: var(--sub);
+        margin-bottom: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--border);
       }
       .detail-body {
         font-size: 14px;
         color: #444;
-        line-height: 1.8;
+        line-height: 1.9;
       }
 
       /* 설교 영상 */
       .video-item {
         display: flex;
-        gap: 12px;
+        gap: 14px;
         align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px solid #f0ebe3;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
         cursor: pointer;
         text-decoration: none;
       }
@@ -266,14 +364,14 @@
         border-bottom: none;
       }
       .vthumb {
-        width: 80px;
-        height: 52px;
-        background: #d7ccc8;
-        border-radius: 8px;
+        width: 88px;
+        height: 56px;
+        background: var(--border);
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 22px;
+        font-size: 20px;
         flex-shrink: 0;
         overflow: hidden;
       }
@@ -281,159 +379,286 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 12px;
       }
       .vtitle {
         font-size: 13px;
-        font-weight: bold;
-        color: #333;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.4;
       }
       .vsub {
         font-size: 11px;
-        color: #aaa;
+        color: var(--sub);
         margin-top: 3px;
       }
       .yt-badge {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
         background: #ff0000;
-        color: white;
+        color: #fff;
         font-size: 10px;
-        border-radius: 4px;
-        padding: 1px 5px;
-        margin-top: 4px;
+        border-radius: 6px;
+        padding: 2px 7px;
+        margin-top: 5px;
+        font-weight: 600;
       }
       .soon-badge {
         display: inline-block;
-        background: #bcaaa4;
-        color: white;
+        background: #eee;
+        color: #999;
         font-size: 10px;
-        border-radius: 4px;
-        padding: 1px 5px;
-        margin-top: 4px;
+        border-radius: 6px;
+        padding: 2px 7px;
+        margin-top: 5px;
       }
 
       /* 기도 */
-      .input-row {
-        display: flex;
-        gap: 8px;
-        margin-top: 8px;
-      }
-      .input-row input {
-        flex: 1;
-        padding: 10px 12px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        font-size: 14px;
-        outline: none;
-      }
-      .input-row input:focus {
-        border-color: #5d4037;
-      }
       .prayer-item {
-        background: #fdf8f2;
-        border-radius: 10px;
-        padding: 10px 12px;
-        margin-top: 8px;
-        font-size: 14px;
+        background: #fafafa;
+        border-radius: 14px;
+        padding: 14px;
+        margin-top: 10px;
+        border: 1px solid var(--border);
       }
       .prayer-text {
-        color: #333;
-        margin-bottom: 4px;
+        font-size: 14px;
+        color: var(--text);
+        margin-bottom: 8px;
+        line-height: 1.5;
       }
       .prayer-meta {
         font-size: 11px;
-        color: #aaa;
+        color: var(--sub);
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
       }
-      .del-btn {
-        background: #ffcdd2;
-        color: #c62828;
-        border: none;
-        border-radius: 6px;
-        padding: 3px 8px;
-        cursor: pointer;
+      .prayer-actions {
+        display: flex;
+        gap: 6px;
+      }
+      .prayer-answered {
+        background: #f0fff4;
+        border-radius: 14px;
+        border: 1px solid #c8e6c9;
+      }
+
+      /* 말씀 나눔 */
+      .sharing-item {
+        background: #fafafa;
+        border-radius: 14px;
+        padding: 14px;
+        margin-top: 10px;
+        border: 1px solid var(--border);
+      }
+      .sharing-text {
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+      .sharing-meta {
         font-size: 11px;
+        color: var(--sub);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* 찬양 신청 */
+      .song-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .song-item:last-child {
+        border-bottom: none;
+      }
+      .song-title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .song-sub {
+        font-size: 12px;
+        color: var(--sub);
+        margin-top: 2px;
+      }
+      .song-like {
+        background: none;
+        border: 1.5px solid var(--border);
+        border-radius: 999px;
+        padding: 5px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--sub);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .song-like.liked {
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+
+      /* 포도나무 */
+      .grape-hero {
+        text-align: center;
+        padding: 10px 0 20px;
+      }
+      .grape-emoji {
+        font-size: 64px;
+        margin-bottom: 8px;
+      }
+      .grape-pct {
+        font-size: 48px;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .grape-day {
+        font-size: 13px;
+        color: var(--sub);
+        margin-top: 4px;
+      }
+      .grape-streak {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fff8e1;
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #f57c00;
+        margin-top: 10px;
+      }
+      .bar-bg {
+        background: var(--border);
+        border-radius: 999px;
+        height: 10px;
+        overflow: hidden;
+        margin: 16px 0 6px;
+      }
+      .bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 999px;
+        transition: width 0.5s ease;
+      }
+      .bar-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--sub);
       }
 
       /* 설정 */
-      .alarm-block {
-        background: #fdf8f2;
-        border-radius: 14px;
-        padding: 18px;
-        margin-bottom: 12px;
-        text-align: center;
+      .setting-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
       }
-      .alarm-icon {
-        font-size: 32px;
-        margin-bottom: 6px;
+      .setting-row:last-child {
+        border-bottom: none;
       }
-      .alarm-label {
-        font-size: 13px;
-        color: #888;
-        margin-bottom: 8px;
+      .setting-label {
+        font-size: 14px;
+        font-weight: 600;
       }
-      .time-display {
-        font-size: 42px;
-        font-weight: bold;
-        color: #5d4037;
-        letter-spacing: 2px;
+      .setting-sub {
+        font-size: 11px;
+        color: var(--sub);
+        margin-top: 2px;
       }
-      .time-input {
-        width: 100%;
-        margin-top: 10px;
-        padding: 10px;
-        border: 1.5px solid #d7ccc8;
+      .time-badge {
+        background: var(--accent);
+        color: #fff;
         border-radius: 10px;
-        font-size: 16px;
-        color: #5d4037;
+        padding: 6px 14px;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      /* 오시는 길 */
+      .map-placeholder {
+        background: linear-gradient(135deg, #e8eaf6, #e3f2fd);
+        border-radius: 14px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        margin-bottom: 14px;
+      }
+      .info-row {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .info-row:last-child {
+        border-bottom: none;
+      }
+      .info-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+        width: 28px;
         text-align: center;
-        outline: none;
+      }
+      .info-label {
+        font-size: 12px;
+        color: var(--sub);
+        margin-bottom: 2px;
+      }
+      .info-value {
+        font-size: 14px;
+        font-weight: 600;
       }
 
       /* 관리자 */
-      .admin-login {
-        text-align: center;
-        padding: 20px 0;
-      }
       .admin-input {
         width: 100%;
-        padding: 12px;
-        border: 1.5px solid #ddd;
-        border-radius: 10px;
+        padding: 13px 14px;
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
         font-size: 14px;
         margin-bottom: 10px;
         outline: none;
       }
       .admin-input:focus {
-        border-color: #5d4037;
+        border-color: var(--accent);
       }
       .admin-section {
-        margin-bottom: 20px;
+        margin-bottom: 22px;
       }
       .admin-section h3 {
-        font-size: 14px;
-        color: #5d4037;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #f0ebe3;
-        padding-bottom: 6px;
-      }
-      .form-input {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
         font-size: 13px;
-        margin-bottom: 8px;
-        outline: none;
+        font-weight: 700;
+        color: var(--sub);
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
-      .form-input:focus {
-        border-color: #5d4037;
+      .admin-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
       }
-      textarea.form-input {
-        height: 80px;
-        resize: vertical;
+      .admin-item:last-child {
+        border-bottom: none;
       }
 
       /* 탭바 */
@@ -444,49 +669,57 @@
         transform: translateX(-50%);
         width: 100%;
         max-width: 420px;
-        background: white;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
         display: flex;
-        border-top: 1px solid #eee;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+        border-top: 1px solid var(--border);
         z-index: 100;
+        padding-bottom: env(safe-area-inset-bottom);
       }
       .tab-btn {
         flex: 1;
         background: none;
         border: none;
-        padding: 8px 0;
+        padding: 10px 0 8px;
         font-size: 10px;
-        color: #bbb;
+        color: var(--sub);
         cursor: pointer;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 3px;
+        font-weight: 500;
       }
       .tab-btn .ti {
-        font-size: 20px;
+        font-size: 22px;
+        transition: transform 0.2s;
       }
       .tab-btn.active {
-        color: #5d4037;
-        font-weight: bold;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .tab-btn.active .ti {
+        transform: scale(1.1);
       }
 
       /* 토스트 */
       .toast {
         position: fixed;
-        top: 70px;
+        bottom: 90px;
         left: 50%;
         transform: translateX(-50%);
-        background: #5d4037;
-        color: white;
-        padding: 10px 22px;
+        background: var(--primary);
+        color: #fff;
+        padding: 12px 24px;
         border-radius: 999px;
         font-size: 13px;
+        font-weight: 600;
         z-index: 999;
         opacity: 0;
-        transition: opacity 0.4s;
+        transition: opacity 0.3s;
         white-space: nowrap;
         pointer-events: none;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
       }
       .toast.show {
         opacity: 1;
@@ -494,26 +727,42 @@
 
       .empty {
         text-align: center;
-        color: #bbb;
+        color: var(--sub);
         font-size: 13px;
-        padding: 20px 0;
+        padding: 24px 0;
       }
-      .loading {
-        text-align: center;
-        color: #aaa;
-        font-size: 13px;
-        padding: 20px 0;
+      .chip {
+        display: inline-block;
+        background: var(--border);
+        color: var(--sub);
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-right: 4px;
+      }
+      .chip.accent {
+        background: #ede9fe;
+        color: var(--accent);
       }
     </style>
   </head>
   <body>
-    <div class="header"><h1 id="pageTitle">🏠 홈</h1></div>
+    <div class="header"><h1 id="pageTitle">홈</h1></div>
     <div class="toast" id="toast"></div>
 
     <!-- ══ 홈 ══ -->
     <div class="page active" id="page-home">
+      <!-- 오늘의 말씀 히어로 -->
+      <div class="hero" id="heroVerse">
+        <div class="hero-date" id="heroDate"></div>
+        <div class="hero-verse" id="heroVerseText">말씀을 불러오는 중...</div>
+        <div class="hero-ref" id="heroRef"></div>
+      </div>
+
+      <!-- 달력 -->
       <div class="card">
-        <h2>📅 이번 달 일정</h2>
+        <div class="card-title">📅 이번 달 일정</div>
         <div class="cal-nav">
           <button onclick="changeMonth(-1)">‹</button>
           <span id="calTitle"></span>
@@ -522,31 +771,62 @@
         <div class="cal-grid" id="calGrid"></div>
         <div class="ev-list" id="evList"></div>
       </div>
+
+      <!-- 최신 공지 -->
       <div class="card">
-        <h2>📢 최신 공지</h2>
-        <div id="homeNotice"><div class="loading">불러오는 중...</div></div>
+        <div class="card-title">📢 최신 공지</div>
+        <div id="homeNotice"><div class="empty">불러오는 중...</div></div>
       </div>
+
+      <!-- 말씀 포도나무 미니 -->
       <div class="card">
-        <h2>🍇 말씀 포도나무</h2>
-        <div class="pct" id="h-pct">0%</div>
+        <div class="card-title">🍇 말씀 포도나무</div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <div>
+            <div
+              style="font-size: 28px; font-weight: 800; color: var(--accent)"
+              id="h-pct"
+            >
+              0%
+            </div>
+            <div
+              style="font-size: 12px; color: var(--sub); margin-top: 2px"
+              id="h-streak"
+            >
+              🔥 0일 연속
+            </div>
+          </div>
+          <div style="font-size: 48px" id="h-grape">🌱</div>
+        </div>
         <div class="bar-bg">
           <div class="bar-fill" id="h-bar" style="width: 0%"></div>
         </div>
-        <div class="bar-labels"><span>0일</span><span>/ 365일</span></div>
-        <button class="btn" onclick="increaseStreak()">오늘 완료 ✅</button>
+        <button class="btn btn-accent" onclick="increaseStreak()">
+          오늘 말씀 완료 ✅
+        </button>
       </div>
     </div>
 
     <!-- ══ 기도 ══ -->
     <div class="page" id="page-prayer">
       <div class="card">
-        <h2>🙏 기도 제목</h2>
+        <div class="card-title">🙏 기도 제목</div>
         <div class="input-row">
-          <input id="prayerInput" placeholder="기도 제목 입력" />
+          <input
+            class="input"
+            id="prayerInput"
+            placeholder="기도 제목을 입력하세요"
+          />
           <button class="btn-sm" onclick="addPrayer()">추가</button>
         </div>
         <div id="prayerList" style="margin-top: 4px">
-          <div class="loading">불러오는 중...</div>
+          <div class="empty">불러오는 중...</div>
         </div>
       </div>
     </div>
@@ -554,18 +834,17 @@
     <!-- ══ 설교 영상 ══ -->
     <div class="page" id="page-sermon">
       <div class="card">
-        <h2>🎬 설교 영상</h2>
-        <div id="sermonList"><div class="loading">불러오는 중...</div></div>
+        <div class="card-title">🎬 설교 영상</div>
+        <div id="sermonList"><div class="empty">불러오는 중...</div></div>
       </div>
     </div>
 
     <!-- ══ 공지사항 ══ -->
     <div class="page" id="page-notice">
       <div class="card" id="noticeListCard">
-        <h2>📢 공지사항</h2>
-        <div id="noticeList"><div class="loading">불러오는 중...</div></div>
+        <div class="card-title">📢 공지사항</div>
+        <div id="noticeList"><div class="empty">불러오는 중...</div></div>
       </div>
-      <!-- 상세 보기 -->
       <div class="card" id="noticeDetail" style="display: none">
         <button class="detail-back" onclick="closeDetail()">← 목록으로</button>
         <div class="detail-title" id="detailTitle"></div>
@@ -574,115 +853,335 @@
       </div>
     </div>
 
+    <!-- ══ 더보기 (말씀나눔 / 찬양신청 / 오시는길 / 포도나무) ══ -->
+    <div class="page" id="page-more">
+      <!-- 메뉴 그리드 -->
+      <div id="moreMenu">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+          "
+        >
+          <div
+            class="card"
+            style="cursor: pointer; text-align: center; padding: 24px 10px"
+            onclick="showMoreSub('grape')"
+          >
+            <div style="font-size: 36px; margin-bottom: 8px">🍇</div>
+            <div style="font-size: 13px; font-weight: 700">말씀 포도나무</div>
+          </div>
+          <div
+            class="card"
+            style="cursor: pointer; text-align: center; padding: 24px 10px"
+            onclick="showMoreSub('sharing')"
+          >
+            <div style="font-size: 36px; margin-bottom: 8px">📖</div>
+            <div style="font-size: 13px; font-weight: 700">말씀 나눔</div>
+          </div>
+          <div
+            class="card"
+            style="cursor: pointer; text-align: center; padding: 24px 10px"
+            onclick="showMoreSub('praise')"
+          >
+            <div style="font-size: 36px; margin-bottom: 8px">🎵</div>
+            <div style="font-size: 13px; font-weight: 700">찬양 신청</div>
+          </div>
+          <div
+            class="card"
+            style="cursor: pointer; text-align: center; padding: 24px 10px"
+            onclick="showMoreSub('location')"
+          >
+            <div style="font-size: 36px; margin-bottom: 8px">📍</div>
+            <div style="font-size: 13px; font-weight: 700">오시는 길</div>
+          </div>
+        </div>
+        <div
+          class="card"
+          style="cursor: pointer; text-align: center; padding: 18px"
+          onclick="goPage('settings')"
+        >
+          <div style="font-size: 14px; font-weight: 700">⚙️ 설정 / 관리자</div>
+        </div>
+      </div>
+
+      <!-- 말씀 포도나무 상세 -->
+      <div id="sub-grape" style="display: none">
+        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <div class="card">
+          <div class="grape-hero">
+            <div class="grape-emoji" id="grapeEmoji">🌱</div>
+            <div class="grape-pct" id="g-pct">0%</div>
+            <div class="grape-day" id="g-day">0일 / 365일</div>
+            <div class="grape-streak" id="g-streak">🔥 0일 연속</div>
+          </div>
+          <div class="bar-bg">
+            <div class="bar-fill" id="g-bar" style="width: 0%"></div>
+          </div>
+          <div class="bar-labels"><span>🌱 시작</span><span>🍇 완성</span></div>
+          <button
+            class="btn btn-accent"
+            style="margin-top: 16px"
+            onclick="increaseStreak()"
+          >
+            오늘 말씀 완료 ✅
+          </button>
+          <p
+            style="
+              font-size: 12px;
+              color: var(--sub);
+              text-align: center;
+              margin-top: 10px;
+            "
+          >
+            매일 완료하면 포도나무가 자라요!
+          </p>
+        </div>
+      </div>
+
+      <!-- 말씀 나눔 -->
+      <div id="sub-sharing" style="display: none">
+        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <div class="card">
+          <div class="card-title">📖 말씀 나눔</div>
+          <textarea
+            class="input"
+            id="sharingInput"
+            placeholder="오늘 읽은 말씀이나 은혜 나눠보세요 ✨"
+          ></textarea>
+          <button class="btn" onclick="addSharing()">나누기</button>
+          <div id="sharingList" style="margin-top: 12px">
+            <div class="empty">불러오는 중...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 찬양 신청 -->
+      <div id="sub-praise" style="display: none">
+        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <div class="card">
+          <div class="card-title">🎵 찬양 신청</div>
+          <div class="input-row">
+            <input
+              class="input"
+              id="praiseInput"
+              placeholder="찬양 제목 입력"
+            />
+            <button class="btn-sm" onclick="addPraise()">신청</button>
+          </div>
+          <div id="praiseList" style="margin-top: 12px">
+            <div class="empty">불러오는 중...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 오시는 길 -->
+      <div id="sub-location" style="display: none">
+        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <div class="card">
+          <div class="card-title">📍 오시는 길</div>
+          <div class="map-placeholder">🗺️</div>
+          <div class="info-row">
+            <div class="info-icon">🏛️</div>
+            <div>
+              <div class="info-label">교회명</div>
+              <div class="info-value">우리 교회</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📌</div>
+            <div>
+              <div class="info-label">주소</div>
+              <div class="info-value">주소를 입력해주세요</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🚌</div>
+            <div>
+              <div class="info-label">대중교통</div>
+              <div class="info-value">교통편을 입력해주세요</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">⏰</div>
+            <div>
+              <div class="info-label">예배 시간</div>
+              <div class="info-value">주일 오전 11:00</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-label">전화번호</div>
+              <div class="info-value">전화번호를 입력해주세요</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ══ 설정 ══ -->
     <div class="page" id="page-settings">
       <div class="card">
-        <h2>⏰ 알람 시간 설정</h2>
-        <div class="alarm-block">
-          <div class="alarm-icon">🙏</div>
-          <div class="alarm-label">기도 알람 시간</div>
-          <div class="time-display" id="prayerDisplay">06:00</div>
-          <input
-            type="time"
-            class="time-input"
-            id="prayerTime"
-            value="06:00"
-            oninput="
-              document.getElementById('prayerDisplay').textContent = this.value
-            "
-          />
+        <div class="card-title">⏰ 알람 시간</div>
+        <div class="setting-row">
+          <div>
+            <div class="setting-label">🙏 기도 알람</div>
+            <div class="setting-sub">매일 기도 시간 알림</div>
+          </div>
+          <div>
+            <div class="time-badge" id="prayerDisplay">06:00</div>
+            <input
+              type="time"
+              class="input"
+              id="prayerTime"
+              value="06:00"
+              style="margin-top: 8px; width: 120px"
+              oninput="
+                document.getElementById('prayerDisplay').textContent =
+                  this.value
+              "
+            />
+          </div>
         </div>
-        <div class="alarm-block">
-          <div class="alarm-icon">🍇</div>
-          <div class="alarm-label">말씀 알람 시간</div>
-          <div class="time-display" id="wordDisplay">07:00</div>
-          <input
-            type="time"
-            class="time-input"
-            id="wordTime"
-            value="07:00"
-            oninput="
-              document.getElementById('wordDisplay').textContent = this.value
-            "
-          />
+        <div class="setting-row">
+          <div>
+            <div class="setting-label">🍇 말씀 알람</div>
+            <div class="setting-sub">매일 말씀 시간 알림</div>
+          </div>
+          <div>
+            <div class="time-badge" id="wordDisplay">07:00</div>
+            <input
+              type="time"
+              class="input"
+              id="wordTime"
+              value="07:00"
+              style="margin-top: 8px; width: 120px"
+              oninput="
+                document.getElementById('wordDisplay').textContent = this.value
+              "
+            />
+          </div>
         </div>
-        <button class="btn" onclick="showToast('💾 저장되었습니다!')">
+        <button class="btn" onclick="showToast('💾 저장됐어요!')">
           저장하기 💾
         </button>
       </div>
       <div class="card">
-        <h2>🔐 관리자</h2>
-        <p style="font-size: 13px; color: #888; margin-bottom: 10px">
-          관리자만 게시물을 올릴 수 있어요
+        <div class="card-title">🔐 관리자</div>
+        <p style="font-size: 13px; color: var(--sub); margin-bottom: 12px">
+          관리자만 게시물을 등록·삭제할 수 있어요
         </p>
-        <button class="btn" onclick="goPage('admin')">관리자 페이지 →</button>
+        <button class="btn btn-outline" onclick="goPage('admin')">
+          관리자 페이지 →
+        </button>
       </div>
     </div>
 
     <!-- ══ 관리자 ══ -->
     <div class="page" id="page-admin">
-      <!-- 로그인 전 -->
       <div class="card" id="adminLoginCard">
-        <h2>🔐 관리자 로그인</h2>
-        <div class="admin-login">
-          <p style="font-size: 13px; color: #888; margin-bottom: 16px">
-            관리자만 접근 가능합니다
-          </p>
-          <input
-            class="admin-input"
-            type="password"
-            id="adminPw"
-            placeholder="비밀번호 입력"
-          />
-          <button class="btn" onclick="adminLogin()">로그인</button>
-        </div>
-      </div>
-      <!-- 로그인 후 -->
-      <div class="card" id="adminPanel" style="display: none">
-        <div
+        <div class="card-title">🔐 관리자 로그인</div>
+        <p
           style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 13px;
+            color: var(--sub);
             margin-bottom: 16px;
+            text-align: center;
           "
         >
-          <h2 style="margin: 0">⚙️ 관리자 패널</h2>
-          <button class="btn-red" onclick="adminLogout()">로그아웃</button>
-        </div>
+          관리자만 접근 가능합니다
+        </p>
+        <input
+          class="admin-input"
+          type="password"
+          id="adminPw"
+          placeholder="비밀번호 입력"
+        />
+        <button class="btn" onclick="adminLogin()">로그인</button>
+      </div>
+      <div id="adminPanel" style="display: none">
+        <div class="card">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 16px;
+            "
+          >
+            <div class="card-title" style="margin: 0">⚙️ 관리자 패널</div>
+            <button class="btn-del" onclick="adminLogout()">로그아웃</button>
+          </div>
 
-        <div class="admin-section">
-          <h3>📢 공지사항 등록</h3>
-          <input class="form-input" id="noticeTitle" placeholder="제목" />
-          <textarea
-            class="form-input"
-            id="noticeBody"
-            placeholder="내용을 입력하세요"
-          ></textarea>
-          <button class="btn" onclick="postNotice()">공지 등록</button>
-        </div>
+          <div class="admin-section">
+            <h3>📢 공지 등록</h3>
+            <input
+              class="input"
+              id="noticeTitle"
+              placeholder="제목"
+              style="margin-bottom: 8px"
+            />
+            <textarea
+              class="input"
+              id="noticeBody"
+              placeholder="내용"
+            ></textarea>
+            <button class="btn" onclick="postNotice()">공지 등록</button>
+          </div>
 
-        <div class="admin-section">
-          <h3>🎬 설교 영상 등록</h3>
-          <input class="form-input" id="sermonTitle" placeholder="설교 제목" />
-          <input
-            class="form-input"
-            id="sermonSub"
-            placeholder="날짜 · 목사님 이름"
-          />
-          <input
-            class="form-input"
-            id="sermonUrl"
-            placeholder="유튜브 링크 (https://...)"
-          />
-          <button class="btn" onclick="postSermon()">영상 등록</button>
-        </div>
+          <div class="admin-section">
+            <h3>🎬 설교 영상 등록</h3>
+            <input
+              class="input"
+              id="sermonTitle"
+              placeholder="설교 제목"
+              style="margin-bottom: 8px"
+            />
+            <input
+              class="input"
+              id="sermonSub"
+              placeholder="날짜 · 목사님"
+              style="margin-bottom: 8px"
+            />
+            <input class="input" id="sermonUrl" placeholder="유튜브 링크" />
+            <button class="btn" onclick="postSermon()">영상 등록</button>
+          </div>
 
-        <div class="admin-section">
-          <h3>📅 일정 등록</h3>
-          <input class="form-input" type="date" id="scheduleDate" />
-          <input class="form-input" id="scheduleName" placeholder="일정 이름" />
-          <button class="btn" onclick="postSchedule()">일정 등록</button>
+          <div class="admin-section">
+            <h3>📅 일정 등록</h3>
+            <input
+              class="input"
+              type="date"
+              id="scheduleDate"
+              style="margin-bottom: 8px"
+            />
+            <input class="input" id="scheduleName" placeholder="일정 이름" />
+            <button class="btn" onclick="postSchedule()">일정 등록</button>
+          </div>
+
+          <div class="admin-section">
+            <h3>📋 등록된 공지 관리</h3>
+            <div id="adminNoticeList">
+              <div class="empty">불러오는 중...</div>
+            </div>
+          </div>
+
+          <div class="admin-section">
+            <h3>🎬 등록된 영상 관리</h3>
+            <div id="adminSermonList">
+              <div class="empty">불러오는 중...</div>
+            </div>
+          </div>
+
+          <div class="admin-section">
+            <h3>📅 등록된 일정 관리</h3>
+            <div id="adminScheduleList">
+              <div class="empty">불러오는 중...</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -701,15 +1200,12 @@
       <button class="tab-btn" id="tab-notice" onclick="goPage('notice')">
         <span class="ti">📢</span>공지
       </button>
-      <button class="tab-btn" id="tab-settings" onclick="goPage('settings')">
-        <span class="ti">⚙️</span>설정
+      <button class="tab-btn" id="tab-more" onclick="goPage('more')">
+        <span class="ti">⋯</span>더보기
       </button>
     </div>
 
-    <!-- Firebase SDK -->
     <script type="module">
-      // 전역 함수 등록 헬퍼
-      const g = (n, f) => (window[n] = f);
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
       import {
         getDatabase,
@@ -717,9 +1213,9 @@
         push,
         onValue,
         remove,
+        update,
       } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-      // ── Firebase 설정 ──
       const firebaseConfig = {
         apiKey: "AIzaSyAQ9yKmwNNKxSLGrq8q2k5RN6CgIFXGhqE",
         authDomain: "church-app-4a233.firebaseapp.com",
@@ -733,164 +1229,299 @@
 
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
-
-      // ── 관리자 비밀번호 (여기서 변경하세요) ──
       const ADMIN_PASSWORDS = ["church2025", "admin1234", "pastor0000"];
       let isAdmin = false;
 
-      window.adminLogin = function () {
-        const pw = document.getElementById("adminPw").value;
-        if (ADMIN_PASSWORDS.includes(pw)) {
-          isAdmin = true;
-          document.getElementById("adminLoginCard").style.display = "none";
-          document.getElementById("adminPanel").style.display = "block";
-          showToast("✅ 관리자로 로그인됐어요!");
-        } else {
-          showToast("❌ 비밀번호가 틀렸어요");
-        }
-      };
+      // ── 전역 등록 ──
+      const G = (n, f) => (window[n] = f);
 
-      window.adminLogout = function () {
-        isAdmin = false;
-        document.getElementById("adminLoginCard").style.display = "block";
-        document.getElementById("adminPanel").style.display = "none";
-        document.getElementById("adminPw").value = "";
-        showToast("로그아웃 됐어요");
+      // ── 페이지 이동 ──
+      const TITLES = {
+        home: "홈",
+        prayer: "🙏 기도 제목",
+        sermon: "🎬 설교 영상",
+        notice: "📢 공지사항",
+        more: "더보기",
+        settings: "⚙️ 설정",
+        admin: "🔐 관리자",
       };
+      G("goPage", (id) => {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("page-" + id).classList.add("active");
+        const tab = document.getElementById("tab-" + id);
+        if (tab) tab.classList.add("active");
+        document.getElementById("pageTitle").textContent = TITLES[id] || "";
+        if (id === "more") hideMoreSub();
+      });
 
-      // ── 공지사항 ──
-      window.postNotice = function () {
-        if (!isAdmin) {
+      // ── 더보기 서브페이지 ──
+      G("showMoreSub", (sub) => {
+        document.getElementById("moreMenu").style.display = "none";
+        document
+          .querySelectorAll('[id^="sub-"]')
+          .forEach((el) => (el.style.display = "none"));
+        document.getElementById("sub-" + sub).style.display = "block";
+      });
+      G("hideMoreSub", () => {
+        document.getElementById("moreMenu").style.display = "block";
+        document
+          .querySelectorAll('[id^="sub-"]')
+          .forEach((el) => (el.style.display = "none"));
+      });
+
+      // ── 오늘의 말씀 ──
+      const verses = [
+        {
+          text: "여호와는 나의 목자시니 내게 부족함이 없으리로다",
+          ref: "시편 23:1",
+        },
+        {
+          text: "내가 네게 명령한 것이 아니냐 강하고 담대하라 두려워하지 말며 놀라지 말라",
+          ref: "여호수아 1:9",
+        },
+        {
+          text: "하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니",
+          ref: "요한복음 3:16",
+        },
+        {
+          text: "범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라",
+          ref: "데살로니가전서 5:18",
+        },
+        {
+          text: "내가 진실로 진실로 너희에게 이르노니 나를 믿는 자는 영생을 가졌나니",
+          ref: "요한복음 6:47",
+        },
+        {
+          text: "너희 염려를 다 주께 맡기라 이는 그가 너희를 돌보심이라",
+          ref: "베드로전서 5:7",
+        },
+        {
+          text: "사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며",
+          ref: "고린도전서 13:4",
+        },
+      ];
+      const now = new Date();
+      const v = verses[now.getDay() % verses.length];
+      const mn = [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ];
+      document.getElementById("heroDate").textContent =
+        `${now.getFullYear()}년 ${mn[now.getMonth()]} ${now.getDate()}일 오늘의 말씀`;
+      document.getElementById("heroVerseText").textContent = `"${v.text}"`;
+      document.getElementById("heroRef").textContent = v.ref;
+
+      // ── 말씀 포도나무 ──
+      let streak = 0,
+        contStreak = 0;
+      const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
+      G("increaseStreak", () => {
+        if (streak >= 365) {
+          showToast("🎉 1년 완주!");
           return;
         }
-        const title = document.getElementById("noticeTitle").value.trim();
-        const body = document.getElementById("noticeBody").value.trim();
-        if (!title || !body) {
+        streak++;
+        contStreak++;
+        updateGrape();
+        showToast("✅ 오늘 말씀 완료!");
+      });
+      function updateGrape() {
+        const pct = Math.round((streak / 365) * 100);
+        const stage = stages[Math.min(Math.floor(pct / 20), 4)];
+        ["h-pct", "g-pct"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = pct + "%";
+        });
+        ["h-bar", "g-bar"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.style.width = pct + "%";
+        });
+        const streakTxt = `🔥 ${contStreak}일 연속`;
+        ["h-streak", "g-streak"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = streakTxt;
+        });
+        const dayEl = document.getElementById("g-day");
+        if (dayEl) dayEl.textContent = `${streak}일 / 365일`;
+        ["h-grape", "grapeEmoji"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = stage;
+        });
+      }
+
+      // ── 날짜 포맷 ──
+      function fmtDate(iso) {
+        const d = new Date(iso);
+        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+      }
+      function fmtDT(iso) {
+        const d = new Date(iso);
+        const h = d.getHours(),
+          m = d.getMinutes();
+        return `${fmtDate(iso)} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
+      }
+
+      // ── 공지 ──
+      G("postNotice", () => {
+        if (!isAdmin) return;
+        const t = document.getElementById("noticeTitle").value.trim();
+        const b = document.getElementById("noticeBody").value.trim();
+        if (!t || !b) {
           showToast("제목과 내용을 입력하세요");
           return;
         }
         push(ref(db, "notices"), {
-          title,
-          body,
+          title: t,
+          body: b,
           date: new Date().toISOString(),
         });
         document.getElementById("noticeTitle").value = "";
         document.getElementById("noticeBody").value = "";
-        showToast("✅ 공지가 등록됐어요!");
-      };
+        showToast("✅ 공지 등록!");
+      });
 
-      function renderNotices(data) {
-        const items = data ? Object.entries(data).reverse() : [];
-        // 홈 미리보기
-        const homeEl = document.getElementById("homeNotice");
-        if (!items.length) {
-          homeEl.innerHTML = '<div class="empty">등록된 공지가 없어요</div>';
-        } else {
-          homeEl.innerHTML = items
-            .slice(0, 2)
-            .map(
-              ([id, n]) => `
-      <div class="notice-item" onclick="openDetail('${id}')">
-        <div class="ntitle">${n.title}</div>
-        <div class="ndate">${fmtDate(n.date)}</div>
-      </div>`,
-            )
-            .join("");
-        }
-        // 공지 탭
-        const listEl = document.getElementById("noticeList");
-        if (!items.length) {
-          listEl.innerHTML = '<div class="empty">등록된 공지가 없어요</div>';
-        } else {
-          listEl.innerHTML = items
-            .map(
-              ([id, n]) => `
-      <div class="notice-item" onclick="openDetail('${id}')">
-        <div class="ntitle">${n.title}</div>
-        <div class="ndate">${fmtDate(n.date)}</div>
-      </div>`,
-            )
-            .join("");
-        }
-        window._noticeData = data;
-      }
+      G("deleteNotice", (id) => {
+        if (!isAdmin) return;
+        if (confirm("삭제할까요?")) remove(ref(db, "notices/" + id));
+      });
 
-      window.openDetail = function (id) {
+      window._noticeData = {};
+      onValue(ref(db, "notices"), (snap) => {
+        window._noticeData = snap.val() || {};
+        const items = Object.entries(window._noticeData).reverse();
+        // 홈
+        const hEl = document.getElementById("homeNotice");
+        hEl.innerHTML = items.length
+          ? items
+              .slice(0, 2)
+              .map(
+                ([id, n]) => `
+    <div class="notice-item" onclick="openDetail('${id}')">
+      <div><div class="ntitle">${n.title}</div><div class="ndate">${fmtDate(n.date)}</div></div>
+      <div class="arrow-icon">›</div>
+    </div>`,
+              )
+              .join("")
+          : '<div class="empty">공지가 없어요</div>';
+        // 공지탭
+        const lEl = document.getElementById("noticeList");
+        lEl.innerHTML = items.length
+          ? items
+              .map(
+                ([id, n]) => `
+    <div class="notice-item" onclick="openDetail('${id}')">
+      <div><div class="ntitle">${n.title}</div><div class="ndate">${fmtDate(n.date)}</div></div>
+      <div class="arrow-icon">›</div>
+    </div>`,
+              )
+              .join("")
+          : '<div class="empty">공지가 없어요</div>';
+        // 관리자
+        const aEl = document.getElementById("adminNoticeList");
+        aEl.innerHTML = items.length
+          ? items
+              .map(
+                ([id, n]) => `
+    <div class="admin-item"><span>${n.title}</span><button class="btn-del" onclick="deleteNotice('${id}')">삭제</button></div>`,
+              )
+              .join("")
+          : '<div class="empty">없음</div>';
+      });
+
+      G("openDetail", (id) => {
         const n = window._noticeData[id];
         document.getElementById("noticeListCard").style.display = "none";
         document.getElementById("noticeDetail").style.display = "block";
         document.getElementById("detailTitle").textContent = n.title;
         document.getElementById("detailDate").textContent = fmtDate(n.date);
         document.getElementById("detailBody").textContent = n.body;
-      };
-
-      window.closeDetail = function () {
+      });
+      G("closeDetail", () => {
         document.getElementById("noticeListCard").style.display = "block";
         document.getElementById("noticeDetail").style.display = "none";
-      };
-
-      onValue(ref(db, "notices"), (snap) => renderNotices(snap.val()));
+      });
 
       // ── 설교 영상 ──
-      window.postSermon = function () {
-        if (!isAdmin) {
-          return;
-        }
-        const title = document.getElementById("sermonTitle").value.trim();
-        const sub = document.getElementById("sermonSub").value.trim();
-        const url = document.getElementById("sermonUrl").value.trim();
-        if (!title || !url) {
-          showToast("제목과 유튜브 링크를 입력하세요");
+      G("postSermon", () => {
+        if (!isAdmin) return;
+        const t = document.getElementById("sermonTitle").value.trim();
+        const s = document.getElementById("sermonSub").value.trim();
+        const u = document.getElementById("sermonUrl").value.trim();
+        if (!t) {
+          showToast("제목을 입력하세요");
           return;
         }
         push(ref(db, "sermons"), {
-          title,
-          sub,
-          url,
+          title: t,
+          sub: s,
+          url: u,
           date: new Date().toISOString(),
         });
         document.getElementById("sermonTitle").value = "";
         document.getElementById("sermonSub").value = "";
         document.getElementById("sermonUrl").value = "";
-        showToast("✅ 설교 영상이 등록됐어요!");
-      };
+        showToast("✅ 영상 등록!");
+      });
+      G("deleteSermon", (id) => {
+        if (!isAdmin) return;
+        if (confirm("삭제할까요?")) remove(ref(db, "sermons/" + id));
+      });
 
-      function getYoutubeId(url) {
-        const m = url.match(/(?:v=|youtu\.be\/)([^&\s]+)/);
+      function getVid(url) {
+        const m = (url || "").match(/(?:v=|youtu\.be\/)([^&\s]+)/);
         return m ? m[1] : null;
       }
 
       onValue(ref(db, "sermons"), (snap) => {
-        const data = snap.val();
-        const el = document.getElementById("sermonList");
-        if (!data) {
-          el.innerHTML = '<div class="empty">등록된 설교 영상이 없어요</div>';
-          return;
-        }
+        const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        el.innerHTML = items
-          .map(([id, s]) => {
-            const vid = getYoutubeId(s.url || "");
-            const thumb = vid
-              ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="" onerror="this.parentElement.textContent='🎬'"/>`
-              : "🎬";
-            const badge = s.url
-              ? `<span class="yt-badge">▶ YouTube</span>`
-              : `<span class="soon-badge">준비 중</span>`;
-            const tag = s.url
-              ? `a href="${s.url}" target="_blank" rel="noopener"`
-              : "div";
-            const tagClose = s.url ? "a" : "div";
-            return `<${tag} class="video-item">
-      <div class="vthumb">${thumb}</div>
-      <div><div class="vtitle">${s.title}</div><div class="vsub">${s.sub || ""}</div>${badge}</div>
-    </${tagClose}>`;
-          })
-          .join("");
+        const el = document.getElementById("sermonList");
+        el.innerHTML = items.length
+          ? items
+              .map(([id, s]) => {
+                const vid = getVid(s.url);
+                const thumb = vid
+                  ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" onerror="this.parentElement.textContent='🎬'"/>`
+                  : "🎬";
+                const badge = s.url
+                  ? `<span class="yt-badge">▶ YouTube</span>`
+                  : `<span class="soon-badge">준비 중</span>`;
+                const tag = s.url
+                  ? `a href="${s.url}" target="_blank" rel="noopener"`
+                  : "div";
+                return `<${tag} class="video-item"><div class="vthumb">${thumb}</div><div><div class="vtitle">${s.title}</div><div class="vsub">${s.sub || ""}</div>${badge}</div></${s.url ? "a" : "div"}>`;
+              })
+              .join("")
+          : '<div class="empty">등록된 영상이 없어요</div>';
+
+        const aEl = document.getElementById("adminSermonList");
+        aEl.innerHTML = items.length
+          ? items
+              .map(
+                ([id, s]) => `
+    <div class="admin-item"><span>${s.title}</span><button class="btn-del" onclick="deleteSermon('${id}')">삭제</button></div>`,
+              )
+              .join("")
+          : '<div class="empty">없음</div>';
       });
 
-      // ── 기도 제목 ──
-      window.addPrayer = function () {
+      // ── 기도 ──
+      G("addPrayer", () => {
         const inp = document.getElementById("prayerInput");
         if (!inp.value.trim()) {
           alert("기도 제목을 입력하세요!");
@@ -899,99 +1530,162 @@
         push(ref(db, "prayers"), {
           text: inp.value.trim(),
           date: new Date().toISOString(),
+          answered: false,
         });
         inp.value = "";
-        showToast("🙏 기도 제목이 추가됐어요!");
-      };
-
+        showToast("🙏 기도 제목 추가!");
+      });
       document
         .getElementById("prayerInput")
         .addEventListener("keydown", (e) => {
           if (e.key === "Enter") window.addPrayer();
         });
+      G("deletePrayer", (id) => remove(ref(db, "prayers/" + id)));
+      G("answerPrayer", (id) =>
+        update(ref(db, "prayers/" + id), { answered: true }),
+      );
 
       onValue(ref(db, "prayers"), (snap) => {
-        const data = snap.val();
-        const el = document.getElementById("prayerList");
-        if (!data) {
-          el.innerHTML = '<div class="empty">기도 제목을 추가해보세요</div>';
-          return;
-        }
+        const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        el.innerHTML = items
-          .map(
-            ([id, p]) => `
-    <div class="prayer-item">
-      <div class="prayer-text">${p.text}</div>
+        const el = document.getElementById("prayerList");
+        el.innerHTML = items.length
+          ? items
+              .map(
+                ([id, p]) => `
+    <div class="prayer-item ${p.answered ? "prayer-answered" : ""}">
+      <div class="prayer-text">${p.answered ? "✅ " : ""} ${p.text}</div>
       <div class="prayer-meta">
-        <span>${fmtDateTime(p.date)}</span>
-        <button class="del-btn" onclick="deletePrayer('${id}')">삭제</button>
+        <span>${fmtDT(p.date)}</span>
+        <div class="prayer-actions">
+          ${!p.answered ? `<button class="btn-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#2e7d32;font-weight:600">🙌 응답</span>'}
+          <button class="btn-del" onclick="deletePrayer('${id}')">삭제</button>
+        </div>
       </div>
     </div>`,
-          )
-          .join("");
+              )
+              .join("")
+          : '<div class="empty">기도 제목을 추가해보세요</div>';
       });
 
-      window.deletePrayer = function (id) {
-        remove(ref(db, "prayers/" + id));
-      };
+      // ── 말씀 나눔 ──
+      G("addSharing", () => {
+        const inp = document.getElementById("sharingInput");
+        if (!inp.value.trim()) {
+          alert("내용을 입력하세요!");
+          return;
+        }
+        push(ref(db, "sharings"), {
+          text: inp.value.trim(),
+          date: new Date().toISOString(),
+        });
+        inp.value = "";
+        showToast("📖 말씀 나눔 등록!");
+      });
+
+      onValue(ref(db, "sharings"), (snap) => {
+        const data = snap.val() || {};
+        const items = Object.entries(data).reverse();
+        const el = document.getElementById("sharingList");
+        el.innerHTML = items.length
+          ? items
+              .map(
+                ([id, s]) => `
+    <div class="sharing-item">
+      <div class="sharing-text">${s.text}</div>
+      <div class="sharing-meta"><span>${fmtDT(s.date)}</span></div>
+    </div>`,
+              )
+              .join("")
+          : '<div class="empty">첫 번째로 말씀을 나눠보세요 ✨</div>';
+      });
+
+      // ── 찬양 신청 ──
+      G("addPraise", () => {
+        const inp = document.getElementById("praiseInput");
+        if (!inp.value.trim()) {
+          alert("찬양 제목을 입력하세요!");
+          return;
+        }
+        push(ref(db, "praises"), {
+          title: inp.value.trim(),
+          date: new Date().toISOString(),
+          likes: 0,
+        });
+        inp.value = "";
+        showToast("🎵 찬양 신청 완료!");
+      });
+
+      onValue(ref(db, "praises"), (snap) => {
+        const data = snap.val() || {};
+        const items = Object.entries(data).reverse();
+        const el = document.getElementById("praiseList");
+        el.innerHTML = items.length
+          ? items
+              .map(
+                ([id, p]) => `
+    <div class="song-item">
+      <div><div class="song-title">${p.title}</div><div class="song-sub">${fmtDate(p.date)}</div></div>
+      <button class="song-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button>
+    </div>`,
+              )
+              .join("")
+          : '<div class="empty">신청된 찬양이 없어요</div>';
+      });
+
+      G("likePraise", (id, cur) =>
+        update(ref(db, "praises/" + id), { likes: cur + 1 }),
+      );
 
       // ── 일정 ──
-      window.postSchedule = function () {
-        if (!isAdmin) {
+      G("postSchedule", () => {
+        if (!isAdmin) return;
+        const d = document.getElementById("scheduleDate").value;
+        const n = document.getElementById("scheduleName").value.trim();
+        if (!d || !n) {
+          showToast("날짜와 이름을 입력하세요");
           return;
         }
-        const date = document.getElementById("scheduleDate").value;
-        const name = document.getElementById("scheduleName").value.trim();
-        if (!date || !name) {
-          showToast("날짜와 일정 이름을 입력하세요");
-          return;
-        }
-        push(ref(db, "schedules"), { date, name });
+        push(ref(db, "schedules"), { date: d, name: n });
         document.getElementById("scheduleDate").value = "";
         document.getElementById("scheduleName").value = "";
-        showToast("✅ 일정이 등록됐어요!");
-      };
+        showToast("✅ 일정 등록!");
+      });
+      G("deleteSchedule", (id) => {
+        if (!isAdmin) return;
+        if (confirm("삭제할까요?")) remove(ref(db, "schedules/" + id));
+      });
 
+      window._scheduleData = {};
       onValue(ref(db, "schedules"), (snap) => {
         window._scheduleData = snap.val() || {};
         renderCalendar();
+        const aEl = document.getElementById("adminScheduleList");
+        const items = Object.entries(window._scheduleData);
+        aEl.innerHTML = items.length
+          ? items
+              .map(
+                ([id, s]) => `
+    <div class="admin-item"><span>${s.date} · ${s.name}</span><button class="btn-del" onclick="deleteSchedule('${id}')">삭제</button></div>`,
+              )
+              .join("")
+          : '<div class="empty">없음</div>';
       });
 
       // ── 달력 ──
-      let calY = new Date().getFullYear(),
-        calM = new Date().getMonth();
-
+      let calY = now.getFullYear(),
+        calM = now.getMonth();
       function renderCalendar() {
-        const now = new Date();
-        const fd = new Date(calY, calM, 1).getDay();
-        const dim = new Date(calY, calM + 1, 0).getDate();
-        const mn = [
-          "1월",
-          "2월",
-          "3월",
-          "4월",
-          "5월",
-          "6월",
-          "7월",
-          "8월",
-          "9월",
-          "10월",
-          "11월",
-          "12월",
-        ];
+        const fd = new Date(calY, calM, 1).getDay(),
+          dim = new Date(calY, calM + 1, 0).getDate();
         document.getElementById("calTitle").textContent =
-          calY + "년 " + mn[calM];
-        const schedules = window._scheduleData || {};
-
-        // 이번달 일정 날짜 목록
+          `${calY}년 ${mn[calM]}`;
         const evDays = new Set();
-        Object.values(schedules).forEach((s) => {
+        Object.values(window._scheduleData).forEach((s) => {
           const d = new Date(s.date);
           if (d.getFullYear() === calY && d.getMonth() === calM)
             evDays.add(d.getDate());
         });
-
         let h = ["일", "월", "화", "수", "목", "금", "토"]
           .map((d) => `<div class="cal-dn">${d}</div>`)
           .join("");
@@ -1009,11 +1703,8 @@
         document.getElementById("calGrid").innerHTML = h;
         showEv(now.getDate());
       }
-
-      window.showEv = function (d) {
-        const schedules = window._scheduleData || {};
-        const el = document.getElementById("evList");
-        const items = Object.values(schedules).filter((s) => {
+      G("showEv", (d) => {
+        const items = Object.values(window._scheduleData).filter((s) => {
           const dt = new Date(s.date);
           return (
             dt.getFullYear() === calY &&
@@ -1021,19 +1712,17 @@
             dt.getDate() === d
           );
         });
-        if (items.length) {
-          el.innerHTML = items
-            .map(
-              (s) =>
-                `<div class="ev-item"><div class="ev-dot"></div><span>${calM + 1}월 ${d}일 · ${s.name}</span></div>`,
-            )
-            .join("");
-        } else {
-          el.innerHTML = `<div style="font-size:12px;color:#bbb;padding:8px 0">${calM + 1}월 ${d}일 · 일정 없음</div>`;
-        }
-      };
-
-      window.changeMonth = function (dir) {
+        const el = document.getElementById("evList");
+        el.innerHTML = items.length
+          ? items
+              .map(
+                (s) =>
+                  `<div class="ev-item"><div class="ev-dot"></div><span>${calM + 1}월 ${d}일 · ${s.name}</span></div>`,
+              )
+              .join("")
+          : `<div style="font-size:12px;color:var(--sub);padding:8px 0">${calM + 1}월 ${d}일 · 일정 없음</div>`;
+      });
+      G("changeMonth", (dir) => {
         calM += dir;
         if (calM > 11) {
           calM = 0;
@@ -1044,67 +1733,34 @@
           calY--;
         }
         renderCalendar();
-      };
-
-      window._scheduleData = {};
+      });
       renderCalendar();
 
-      // ── 말씀 포도나무 ──
-      let streak = 0;
-      window.increaseStreak = function () {
-        if (streak >= 365) {
-          showToast("🎉 1년 완주!");
-          return;
-        }
-        streak++;
-        const pct = Math.round((streak / 365) * 100);
-        document.getElementById("h-pct").textContent = pct + "%";
-        document.getElementById("h-bar").style.width = pct + "%";
-        showToast("✅ 오늘 말씀 완료! " + pct + "%");
-      };
-
-      // ── 페이지 이동 ──
-      const TITLES = {
-        home: "🏠 홈",
-        prayer: "🙏 기도 제목",
-        sermon: "🎬 설교 영상",
-        notice: "📢 공지사항",
-        settings: "⚙️ 설정",
-        admin: "🔐 관리자",
-      };
-      window.goPage = function (id) {
-        document
-          .querySelectorAll(".page")
-          .forEach((p) => p.classList.remove("active"));
-        document
-          .querySelectorAll(".tab-btn")
-          .forEach((b) => b.classList.remove("active"));
-        document.getElementById("page-" + id).classList.add("active");
-        const tab = document.getElementById("tab-" + id);
-        if (tab) tab.classList.add("active");
-        document.getElementById("pageTitle").textContent = TITLES[id] || "";
-      };
-
-      // ── 날짜 포맷 ──
-      function fmtDate(iso) {
-        const d = new Date(iso);
-        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
-      }
-      function fmtDateTime(iso) {
-        const d = new Date(iso);
-        const h = d.getHours(),
-          m = d.getMinutes();
-        const ampm = h < 12 ? "오전" : "오후";
-        return `${fmtDate(iso)} ${ampm} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
-      }
+      // ── 관리자 ──
+      G("adminLogin", () => {
+        const pw = document.getElementById("adminPw").value;
+        if (ADMIN_PASSWORDS.includes(pw)) {
+          isAdmin = true;
+          document.getElementById("adminLoginCard").style.display = "none";
+          document.getElementById("adminPanel").style.display = "block";
+          showToast("✅ 관리자 로그인!");
+        } else showToast("❌ 비밀번호 오류");
+      });
+      G("adminLogout", () => {
+        isAdmin = false;
+        document.getElementById("adminLoginCard").style.display = "block";
+        document.getElementById("adminPanel").style.display = "none";
+        document.getElementById("adminPw").value = "";
+        showToast("로그아웃");
+      });
 
       // ── 토스트 ──
-      window.showToast = function (msg) {
+      G("showToast", (msg) => {
         const t = document.getElementById("toast");
         t.textContent = msg;
         t.classList.add("show");
         setTimeout(() => t.classList.remove("show"), 2500);
-      };
+      });
     </script>
   </body>
 </html>
