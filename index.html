@@ -11,7 +11,6 @@
         padding: 0;
       }
       :root {
-        --primary: #222;
         --accent: #6c63ff;
         --accent2: #ff6584;
         --bg: #f8f8f8;
@@ -30,8 +29,6 @@
         overflow-x: hidden;
         color: var(--text);
       }
-
-      /* 헤더 */
       .header {
         background: var(--card);
         padding: 18px 20px 14px;
@@ -46,10 +43,7 @@
       .header h1 {
         font-size: 17px;
         font-weight: 700;
-        letter-spacing: -0.3px;
       }
-
-      /* 페이지 */
       .page {
         display: none;
         padding: 16px 16px 90px;
@@ -57,8 +51,6 @@
       .page.active {
         display: block;
       }
-
-      /* 카드 */
       .card {
         background: var(--card);
         border-radius: var(--radius);
@@ -74,10 +66,8 @@
         align-items: center;
         gap: 6px;
       }
-
-      /* 버튼 */
       .btn {
-        background: var(--primary);
+        background: #222;
         color: #fff;
         border: none;
         border-radius: 12px;
@@ -87,7 +77,6 @@
         cursor: pointer;
         width: 100%;
         margin-top: 10px;
-        letter-spacing: -0.2px;
       }
       .btn:active {
         opacity: 0.8;
@@ -97,11 +86,11 @@
       }
       .btn-outline {
         background: none;
-        border: 1.5px solid var(--primary);
-        color: var(--primary);
+        border: 1.5px solid #222;
+        color: #222;
       }
       .btn-sm {
-        background: var(--primary);
+        background: #222;
         color: #fff;
         border: none;
         border-radius: 10px;
@@ -130,8 +119,6 @@
         cursor: pointer;
         font-weight: 600;
       }
-
-      /* 인풋 */
       .input {
         width: 100%;
         padding: 12px 14px;
@@ -159,28 +146,31 @@
         margin: 0;
       }
 
-      /* 홈 히어로 */
+      /* 히어로 */
       .hero {
-        background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+        background: linear-gradient(135deg, #6c63ff, #a78bfa);
         border-radius: var(--radius);
         padding: 24px 20px;
         margin-bottom: 14px;
         color: #fff;
       }
+      .hero-label {
+        font-size: 11px;
+        opacity: 0.75;
+        margin-bottom: 8px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
       .hero-date {
-        font-size: 12px;
-        opacity: 0.8;
+        font-size: 18px;
+        font-weight: 800;
         margin-bottom: 6px;
       }
       .hero-verse {
-        font-size: 15px;
-        font-weight: 600;
-        line-height: 1.6;
-        margin-bottom: 8px;
-      }
-      .hero-ref {
-        font-size: 12px;
-        opacity: 0.7;
+        font-size: 14px;
+        line-height: 1.7;
+        opacity: 0.92;
       }
 
       /* 달력 */
@@ -195,7 +185,7 @@
         border: none;
         font-size: 20px;
         cursor: pointer;
-        color: var(--primary);
+        color: var(--text);
         width: 32px;
         height: 32px;
         border-radius: 50%;
@@ -294,30 +284,12 @@
       .ntitle {
         font-size: 14px;
         font-weight: 600;
-        color: var(--text);
         margin-bottom: 3px;
       }
       .ndate {
         font-size: 11px;
         color: var(--sub);
       }
-      .nbadge {
-        display: inline-block;
-        background: var(--accent2);
-        color: #fff;
-        font-size: 10px;
-        border-radius: 6px;
-        padding: 1px 6px;
-        margin-left: 6px;
-        font-weight: 600;
-      }
-      .arrow-icon {
-        color: var(--sub);
-        font-size: 16px;
-        margin-top: 2px;
-      }
-
-      /* 공지 상세 */
       .detail-back {
         background: none;
         border: none;
@@ -350,14 +322,13 @@
         line-height: 1.9;
       }
 
-      /* 설교 영상 */
+      /* 설교 */
       .video-item {
         display: flex;
         gap: 14px;
         align-items: center;
         padding: 12px 0;
         border-bottom: 1px solid var(--border);
-        cursor: pointer;
         text-decoration: none;
       }
       .video-item:last-child {
@@ -384,7 +355,6 @@
       .vtitle {
         font-size: 13px;
         font-weight: 600;
-        color: var(--text);
         line-height: 1.4;
       }
       .vsub {
@@ -414,61 +384,40 @@
         margin-top: 5px;
       }
 
-      /* 기도 */
-      .prayer-item {
+      /* 기도/나눔/찬양 공통 아이템 */
+      .list-item {
         background: #fafafa;
         border-radius: 14px;
         padding: 14px;
         margin-top: 10px;
         border: 1px solid var(--border);
       }
-      .prayer-text {
+      .item-text {
         font-size: 14px;
         color: var(--text);
         margin-bottom: 8px;
-        line-height: 1.5;
+        line-height: 1.6;
       }
-      .prayer-meta {
+      .item-meta {
         font-size: 11px;
         color: var(--sub);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 6px;
         flex-wrap: wrap;
+        gap: 6px;
       }
-      .prayer-actions {
+      .item-actions {
         display: flex;
         gap: 6px;
+        align-items: center;
       }
       .prayer-answered {
         background: #f0fff4;
-        border-radius: 14px;
         border: 1px solid #c8e6c9;
       }
 
-      /* 말씀 나눔 */
-      .sharing-item {
-        background: #fafafa;
-        border-radius: 14px;
-        padding: 14px;
-        margin-top: 10px;
-        border: 1px solid var(--border);
-      }
-      .sharing-text {
-        font-size: 14px;
-        color: var(--text);
-        line-height: 1.6;
-        margin-bottom: 8px;
-      }
-      .sharing-meta {
-        font-size: 11px;
-        color: var(--sub);
-        display: flex;
-        justify-content: space-between;
-      }
-
-      /* 찬양 신청 */
+      /* 찬양 */
       .song-item {
         display: flex;
         justify-content: space-between;
@@ -488,7 +437,12 @@
         color: var(--sub);
         margin-top: 2px;
       }
-      .song-like {
+      .song-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .like-btn {
         background: none;
         border: 1.5px solid var(--border);
         border-radius: 999px;
@@ -496,11 +450,8 @@
         font-size: 12px;
         cursor: pointer;
         color: var(--sub);
-        display: flex;
-        align-items: center;
-        gap: 4px;
       }
-      .song-like.liked {
+      .like-btn.liked {
         border-color: var(--accent2);
         color: var(--accent2);
       }
@@ -550,13 +501,50 @@
         height: 100%;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
         border-radius: 999px;
-        transition: width 0.5s ease;
+        transition: width 0.5s;
       }
       .bar-labels {
         display: flex;
         justify-content: space-between;
         font-size: 11px;
         color: var(--sub);
+      }
+
+      /* 오시는길 */
+      .map-placeholder {
+        background: linear-gradient(135deg, #e8eaf6, #e3f2fd);
+        border-radius: 14px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        margin-bottom: 14px;
+      }
+      .info-row {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .info-row:last-child {
+        border-bottom: none;
+      }
+      .info-icon {
+        font-size: 20px;
+        width: 28px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .info-label {
+        font-size: 12px;
+        color: var(--sub);
+        margin-bottom: 2px;
+      }
+      .info-value {
+        font-size: 14px;
+        font-weight: 600;
       }
 
       /* 설정 */
@@ -588,61 +576,12 @@
         font-weight: 700;
       }
 
-      /* 오시는 길 */
-      .map-placeholder {
-        background: linear-gradient(135deg, #e8eaf6, #e3f2fd);
-        border-radius: 14px;
-        height: 160px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 40px;
-        margin-bottom: 14px;
-      }
-      .info-row {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border);
-      }
-      .info-row:last-child {
-        border-bottom: none;
-      }
-      .info-icon {
-        font-size: 20px;
-        flex-shrink: 0;
-        width: 28px;
-        text-align: center;
-      }
-      .info-label {
-        font-size: 12px;
-        color: var(--sub);
-        margin-bottom: 2px;
-      }
-      .info-value {
-        font-size: 14px;
-        font-weight: 600;
-      }
-
       /* 관리자 */
-      .admin-input {
-        width: 100%;
-        padding: 13px 14px;
-        border: 1.5px solid var(--border);
-        border-radius: 12px;
-        font-size: 14px;
-        margin-bottom: 10px;
-        outline: none;
-      }
-      .admin-input:focus {
-        border-color: var(--accent);
-      }
       .admin-section {
         margin-bottom: 22px;
       }
       .admin-section h3 {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         color: var(--sub);
         margin-bottom: 12px;
@@ -656,9 +595,16 @@
         padding: 10px 0;
         border-bottom: 1px solid var(--border);
         font-size: 13px;
+        gap: 8px;
       }
       .admin-item:last-child {
         border-bottom: none;
+      }
+      .admin-item span {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       /* 탭바 */
@@ -708,7 +654,7 @@
         bottom: 90px;
         left: 50%;
         transform: translateX(-50%);
-        background: var(--primary);
+        background: #222;
         color: #fff;
         padding: 12px 24px;
         border-radius: 999px;
@@ -724,26 +670,38 @@
       .toast.show {
         opacity: 1;
       }
-
       .empty {
         text-align: center;
         color: var(--sub);
         font-size: 13px;
         padding: 24px 0;
       }
-      .chip {
-        display: inline-block;
-        background: var(--border);
-        color: var(--sub);
-        border-radius: 999px;
-        padding: 4px 10px;
-        font-size: 11px;
-        font-weight: 600;
-        margin-right: 4px;
+
+      /* 더보기 그리드 */
+      .more-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 14px;
       }
-      .chip.accent {
-        background: #ede9fe;
-        color: var(--accent);
+      .more-cell {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 24px 10px;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid var(--border);
+      }
+      .more-cell:active {
+        background: var(--bg);
+      }
+      .more-cell .mc-icon {
+        font-size: 36px;
+        margin-bottom: 8px;
+      }
+      .more-cell .mc-label {
+        font-size: 13px;
+        font-weight: 700;
       }
     </style>
   </head>
@@ -753,14 +711,11 @@
 
     <!-- ══ 홈 ══ -->
     <div class="page active" id="page-home">
-      <!-- 오늘의 말씀 히어로 -->
-      <div class="hero" id="heroVerse">
+      <div class="hero">
+        <div class="hero-label">📖 맥체인 365 — 오늘의 본문</div>
         <div class="hero-date" id="heroDate"></div>
-        <div class="hero-verse" id="heroVerseText">말씀을 불러오는 중...</div>
-        <div class="hero-ref" id="heroRef"></div>
+        <div class="hero-verse" id="heroVerse"></div>
       </div>
-
-      <!-- 달력 -->
       <div class="card">
         <div class="card-title">📅 이번 달 일정</div>
         <div class="cal-nav">
@@ -771,21 +726,17 @@
         <div class="cal-grid" id="calGrid"></div>
         <div class="ev-list" id="evList"></div>
       </div>
-
-      <!-- 최신 공지 -->
       <div class="card">
         <div class="card-title">📢 최신 공지</div>
         <div id="homeNotice"><div class="empty">불러오는 중...</div></div>
       </div>
-
-      <!-- 말씀 포도나무 미니 -->
       <div class="card">
         <div class="card-title">🍇 말씀 포도나무</div>
         <div
           style="
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
           "
         >
           <div>
@@ -818,20 +769,16 @@
       <div class="card">
         <div class="card-title">🙏 기도 제목</div>
         <div class="input-row">
-          <input
-            class="input"
-            id="prayerInput"
-            placeholder="기도 제목을 입력하세요"
-          />
+          <input class="input" id="prayerInput" placeholder="기도 제목 입력" />
           <button class="btn-sm" onclick="addPrayer()">추가</button>
         </div>
-        <div id="prayerList" style="margin-top: 4px">
+        <div id="prayerList" style="margin-top: 8px">
           <div class="empty">불러오는 중...</div>
         </div>
       </div>
     </div>
 
-    <!-- ══ 설교 영상 ══ -->
+    <!-- ══ 설교 ══ -->
     <div class="page" id="page-sermon">
       <div class="card">
         <div class="card-title">🎬 설교 영상</div>
@@ -839,7 +786,7 @@
       </div>
     </div>
 
-    <!-- ══ 공지사항 ══ -->
+    <!-- ══ 공지 ══ -->
     <div class="page" id="page-notice">
       <div class="card" id="noticeListCard">
         <div class="card-title">📢 공지사항</div>
@@ -853,49 +800,25 @@
       </div>
     </div>
 
-    <!-- ══ 더보기 (말씀나눔 / 찬양신청 / 오시는길 / 포도나무) ══ -->
+    <!-- ══ 더보기 ══ -->
     <div class="page" id="page-more">
-      <!-- 메뉴 그리드 -->
       <div id="moreMenu">
-        <div
-          style="
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 14px;
-          "
-        >
-          <div
-            class="card"
-            style="cursor: pointer; text-align: center; padding: 24px 10px"
-            onclick="showMoreSub('grape')"
-          >
-            <div style="font-size: 36px; margin-bottom: 8px">🍇</div>
-            <div style="font-size: 13px; font-weight: 700">말씀 포도나무</div>
+        <div class="more-grid">
+          <div class="more-cell" onclick="showSub('grape')">
+            <div class="mc-icon">🍇</div>
+            <div class="mc-label">말씀 포도나무</div>
           </div>
-          <div
-            class="card"
-            style="cursor: pointer; text-align: center; padding: 24px 10px"
-            onclick="showMoreSub('sharing')"
-          >
-            <div style="font-size: 36px; margin-bottom: 8px">📖</div>
-            <div style="font-size: 13px; font-weight: 700">말씀 나눔</div>
+          <div class="more-cell" onclick="showSub('sharing')">
+            <div class="mc-icon">📖</div>
+            <div class="mc-label">말씀 나눔</div>
           </div>
-          <div
-            class="card"
-            style="cursor: pointer; text-align: center; padding: 24px 10px"
-            onclick="showMoreSub('praise')"
-          >
-            <div style="font-size: 36px; margin-bottom: 8px">🎵</div>
-            <div style="font-size: 13px; font-weight: 700">찬양 신청</div>
+          <div class="more-cell" onclick="showSub('praise')">
+            <div class="mc-icon">🎵</div>
+            <div class="mc-label">찬양 신청</div>
           </div>
-          <div
-            class="card"
-            style="cursor: pointer; text-align: center; padding: 24px 10px"
-            onclick="showMoreSub('location')"
-          >
-            <div style="font-size: 36px; margin-bottom: 8px">📍</div>
-            <div style="font-size: 13px; font-weight: 700">오시는 길</div>
+          <div class="more-cell" onclick="showSub('location')">
+            <div class="mc-icon">📍</div>
+            <div class="mc-label">오시는 길</div>
           </div>
         </div>
         <div
@@ -903,13 +826,15 @@
           style="cursor: pointer; text-align: center; padding: 18px"
           onclick="goPage('settings')"
         >
-          <div style="font-size: 14px; font-weight: 700">⚙️ 설정 / 관리자</div>
+          <span style="font-size: 14px; font-weight: 700"
+            >⚙️ 설정 / 관리자</span
+          >
         </div>
       </div>
 
-      <!-- 말씀 포도나무 상세 -->
+      <!-- 말씀 포도나무 -->
       <div id="sub-grape" style="display: none">
-        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <button class="detail-back" onclick="hideSub()">← 뒤로</button>
         <div class="card">
           <div class="grape-hero">
             <div class="grape-emoji" id="grapeEmoji">🌱</div>
@@ -943,13 +868,13 @@
 
       <!-- 말씀 나눔 -->
       <div id="sub-sharing" style="display: none">
-        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <button class="detail-back" onclick="hideSub()">← 뒤로</button>
         <div class="card">
           <div class="card-title">📖 말씀 나눔</div>
           <textarea
             class="input"
             id="sharingInput"
-            placeholder="오늘 읽은 말씀이나 은혜 나눠보세요 ✨"
+            placeholder="오늘 읽은 말씀이나 은혜를 나눠보세요 ✨"
           ></textarea>
           <button class="btn" onclick="addSharing()">나누기</button>
           <div id="sharingList" style="margin-top: 12px">
@@ -960,7 +885,7 @@
 
       <!-- 찬양 신청 -->
       <div id="sub-praise" style="display: none">
-        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <button class="detail-back" onclick="hideSub()">← 뒤로</button>
         <div class="card">
           <div class="card-title">🎵 찬양 신청</div>
           <div class="input-row">
@@ -979,7 +904,7 @@
 
       <!-- 오시는 길 -->
       <div id="sub-location" style="display: none">
-        <button class="detail-back" onclick="hideMoreSub()">← 뒤로</button>
+        <button class="detail-back" onclick="hideSub()">← 뒤로</button>
         <div class="card">
           <div class="card-title">📍 오시는 길</div>
           <div class="map-placeholder">🗺️</div>
@@ -1029,16 +954,16 @@
         <div class="setting-row">
           <div>
             <div class="setting-label">🙏 기도 알람</div>
-            <div class="setting-sub">매일 기도 시간 알림</div>
+            <div class="setting-sub">매일 기도 시간</div>
           </div>
-          <div>
+          <div style="text-align: right">
             <div class="time-badge" id="prayerDisplay">06:00</div>
             <input
               type="time"
               class="input"
               id="prayerTime"
               value="06:00"
-              style="margin-top: 8px; width: 120px"
+              style="margin-top: 8px; width: 110px"
               oninput="
                 document.getElementById('prayerDisplay').textContent =
                   this.value
@@ -1049,16 +974,16 @@
         <div class="setting-row">
           <div>
             <div class="setting-label">🍇 말씀 알람</div>
-            <div class="setting-sub">매일 말씀 시간 알림</div>
+            <div class="setting-sub">매일 말씀 시간</div>
           </div>
-          <div>
+          <div style="text-align: right">
             <div class="time-badge" id="wordDisplay">07:00</div>
             <input
               type="time"
               class="input"
               id="wordTime"
               value="07:00"
-              style="margin-top: 8px; width: 120px"
+              style="margin-top: 8px; width: 110px"
               oninput="
                 document.getElementById('wordDisplay').textContent = this.value
               "
@@ -1095,10 +1020,11 @@
           관리자만 접근 가능합니다
         </p>
         <input
-          class="admin-input"
+          class="input"
           type="password"
           id="adminPw"
           placeholder="비밀번호 입력"
+          style="margin-bottom: 10px"
         />
         <button class="btn" onclick="adminLogin()">로그인</button>
       </div>
@@ -1109,7 +1035,7 @@
               display: flex;
               justify-content: space-between;
               align-items: center;
-              margin-bottom: 16px;
+              margin-bottom: 20px;
             "
           >
             <div class="card-title" style="margin: 0">⚙️ 관리자 패널</div>
@@ -1163,24 +1089,24 @@
           </div>
 
           <div class="admin-section">
-            <h3>📋 등록된 공지 관리</h3>
-            <div id="adminNoticeList">
-              <div class="empty">불러오는 중...</div>
-            </div>
+            <h3>📋 공지 관리</h3>
+            <div id="adminNoticeList"><div class="empty">없음</div></div>
           </div>
-
           <div class="admin-section">
-            <h3>🎬 등록된 영상 관리</h3>
-            <div id="adminSermonList">
-              <div class="empty">불러오는 중...</div>
-            </div>
+            <h3>🎬 영상 관리</h3>
+            <div id="adminSermonList"><div class="empty">없음</div></div>
           </div>
-
           <div class="admin-section">
-            <h3>📅 등록된 일정 관리</h3>
-            <div id="adminScheduleList">
-              <div class="empty">불러오는 중...</div>
-            </div>
+            <h3>📅 일정 관리</h3>
+            <div id="adminScheduleList"><div class="empty">없음</div></div>
+          </div>
+          <div class="admin-section">
+            <h3>📖 말씀나눔 관리</h3>
+            <div id="adminSharingList"><div class="empty">없음</div></div>
+          </div>
+          <div class="admin-section">
+            <h3>🎵 찬양신청 관리</h3>
+            <div id="adminPraiseList"><div class="empty">없음</div></div>
           </div>
         </div>
       </div>
@@ -1216,7 +1142,7 @@
         update,
       } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-      const firebaseConfig = {
+      const fc = {
         apiKey: "AIzaSyAQ9yKmwNNKxSLGrq8q2k5RN6CgIFXGhqE",
         authDomain: "church-app-4a233.firebaseapp.com",
         databaseURL:
@@ -1226,14 +1152,140 @@
         messagingSenderId: "1033367843213",
         appId: "1:1033367843213:web:7dd24d8db59b226582cdc4",
       };
-
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
-      const ADMIN_PASSWORDS = ["church2025", "admin1234", "pastor0000"];
+      const db = getDatabase(initializeApp(fc));
+      const ADMINS = ["church2025", "admin1234", "pastor0000"];
       let isAdmin = false;
-
-      // ── 전역 등록 ──
       const G = (n, f) => (window[n] = f);
+
+      // ── 맥체인 365 본문 (1월1일부터 순서대로 4권) ──
+      const mccheyne = [
+        ["창 1", "마 1", "에스라 1", "사도 1"],
+        ["창 2", "마 2", "에스라 2", "사도 2"],
+        ["창 3", "마 3", "에스라 3", "사도 3"],
+        ["창 4", "마 4", "에스라 4", "사도 4"],
+        ["창 5", "마 5", "에스라 5", "사도 5"],
+        ["창 6", "마 6", "에스라 6", "사도 6"],
+        ["창 7", "마 7", "에스라 7", "사도 7"],
+        ["창 8", "마 8", "에스라 8", "사도 8"],
+        ["창 9", "마 9", "에스라 9", "사도 9"],
+        ["창 10", "마 10", "에스라 10", "사도 10"],
+        ["창 11", "마 11", "느 1", "사도 11"],
+        ["창 12", "마 12", "느 2", "사도 12"],
+        ["창 13", "마 13", "느 3", "사도 13"],
+        ["창 14", "마 14", "느 4", "사도 14"],
+        ["창 15", "마 15", "느 5", "사도 15"],
+        ["창 16", "마 16", "느 6", "사도 16"],
+        ["창 17", "마 17", "느 7", "사도 17"],
+        ["창 18", "마 18", "느 8", "사도 18"],
+        ["창 19", "마 19", "느 9", "사도 19"],
+        ["창 20", "마 20", "느 10", "사도 20"],
+        ["창 21", "마 21", "느 11", "사도 21"],
+        ["창 22", "마 22", "느 12", "사도 22"],
+        ["창 23", "마 23", "느 13", "사도 23"],
+        ["창 24", "마 24", "에스더 1", "사도 24"],
+        ["창 25", "마 25", "에스더 2", "사도 25"],
+        ["창 26", "마 26", "에스더 3", "사도 26"],
+        ["창 27", "마 27", "에스더 4", "사도 27"],
+        ["창 28", "마 28", "에스더 5", "사도 28"],
+        ["창 29", "막 1", "에스더 6", "롬 1"],
+        ["창 30", "막 2", "에스더 7", "롬 2"],
+        ["창 31", "막 3", "에스더 8", "롬 3"],
+        ["창 32", "막 4", "에스더 9-10", "롬 4"],
+        ["창 33", "막 5", "욥 1", "롬 5"],
+        ["창 34", "막 6", "욥 2", "롬 6"],
+        ["창 35-36", "막 7", "욥 3", "롬 7"],
+        ["창 37", "막 8", "욥 4", "롬 8"],
+        ["창 38", "막 9", "욥 5", "롬 9"],
+        ["창 39", "막 10", "욥 6", "롬 10"],
+        ["창 40", "막 11", "욥 7", "롬 11"],
+        ["창 41", "막 12", "욥 8", "롬 12"],
+        ["창 42", "막 13", "욥 9", "롬 13"],
+        ["창 43", "막 14", "욥 10", "롬 14"],
+        ["창 44", "막 15", "욥 11", "롬 15"],
+        ["창 45", "막 16", "욥 12", "롬 16"],
+        ["창 46", "눅 1", "욥 13", "고전 1"],
+        ["창 47", "눅 2", "욥 14", "고전 2"],
+        ["창 48", "눅 3", "욥 15", "고전 3"],
+        ["창 49", "눅 4", "욥 16-17", "고전 4"],
+        ["창 50", "눅 5", "욥 18", "고전 5"],
+        ["출 1", "눅 6", "욥 19", "고전 6"],
+        ["출 2", "눅 7", "욥 20", "고전 7"],
+        ["출 3", "눅 8", "욥 21", "고전 8"],
+        ["출 4", "눅 9", "욥 22", "고전 9"],
+        ["출 5", "눅 10", "욥 23", "고전 10"],
+        ["출 6", "눅 11", "욥 24", "고전 11"],
+        ["출 7", "눅 12", "욥 25-26", "고전 12"],
+        ["출 8", "눅 13", "욥 27", "고전 13"],
+        ["출 9", "눅 14", "욥 28", "고전 14"],
+        ["출 10", "눅 15", "욥 29", "고전 15"],
+        ["출 11-12", "눅 16", "욥 30", "고전 16"],
+        ["출 13", "눅 17", "욥 31", "고후 1"],
+        ["출 14", "눅 18", "욥 32", "고후 2"],
+        ["출 15", "눅 19", "욥 33", "고후 3"],
+        ["출 16", "눅 20", "욥 34", "고후 4"],
+        ["출 17", "눅 21", "욥 35", "고후 5"],
+        ["출 18", "눅 22", "욥 36", "고후 6"],
+        ["출 19", "눅 23", "욥 37", "고후 7"],
+        ["출 20", "눅 24", "욥 38", "고후 8"],
+        ["출 21", "요 1", "욥 39", "고후 9"],
+        ["출 22", "요 2", "욥 40", "고후 10"],
+        ["출 23", "요 3", "욥 41", "고후 11"],
+        ["출 24", "요 4", "욥 42", "고후 12"],
+        ["출 25", "요 5", "잠 1", "고후 13"],
+        ["출 26", "요 6", "잠 2", "갈 1"],
+        ["출 27", "요 7", "잠 3", "갈 2"],
+        ["출 28", "요 8", "잠 4", "갈 3"],
+        ["출 29", "요 9", "잠 5", "갈 4"],
+        ["출 30", "요 10", "잠 6", "갈 5"],
+        ["출 31", "요 11", "잠 7", "갈 6"],
+        ["출 32", "요 12", "잠 8", "엡 1"],
+        ["출 33", "요 13", "잠 9", "엡 2"],
+        ["출 34", "요 14", "잠 10", "엡 3"],
+        ["출 35", "요 15", "잠 11", "엡 4"],
+        ["출 36", "요 16", "잠 12", "엡 5"],
+        ["출 37", "요 17", "잠 13", "엡 6"],
+        ["출 38", "요 18", "잠 14", "빌 1"],
+        ["출 39", "요 19", "잠 15", "빌 2"],
+        ["출 40", "요 20", "잠 16", "빌 3"],
+        ["레 1", "요 21", "잠 17", "빌 4"],
+        ["레 2-3", "행 1", "잠 18", "골 1"],
+        ["레 4", "행 2", "잠 19", "골 2"],
+        ["레 5", "행 3", "잠 20", "골 3"],
+        ["레 6", "행 4", "잠 21", "골 4"],
+        ["레 7", "행 5", "잠 22", "살전 1"],
+        ["레 8", "행 6", "잠 23", "살전 2"],
+        ["레 9", "행 7", "잠 24", "살전 3"],
+        ["레 10", "행 8", "잠 25", "살전 4"],
+        ["레 11-12", "행 9", "잠 26", "살전 5"],
+        ["레 13", "행 10", "잠 27", "살후 1"],
+        ["레 14", "행 11", "잠 28", "살후 2-3"],
+      ];
+
+      function getDayOfYear(d) {
+        const s = new Date(d.getFullYear(), 0, 0);
+        return Math.floor((d - s) / 86400000);
+      }
+      const today = new Date();
+      const doy = getDayOfYear(today) - 1;
+      const todayReading = mccheyne[Math.min(doy, mccheyne.length - 1)];
+      const mn2 = [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ];
+      document.getElementById("heroDate").textContent =
+        `${today.getFullYear()}년 ${mn2[today.getMonth()]} ${today.getDate()}일`;
+      document.getElementById("heroVerse").textContent =
+        `${todayReading[0]} · ${todayReading[1]} · ${todayReading[2]} · ${todayReading[3]}`;
 
       // ── 페이지 이동 ──
       const TITLES = {
@@ -1253,82 +1305,41 @@
           .querySelectorAll(".tab-btn")
           .forEach((b) => b.classList.remove("active"));
         document.getElementById("page-" + id).classList.add("active");
-        const tab = document.getElementById("tab-" + id);
-        if (tab) tab.classList.add("active");
+        const t = document.getElementById("tab-" + id);
+        if (t) t.classList.add("active");
         document.getElementById("pageTitle").textContent = TITLES[id] || "";
-        if (id === "more") hideMoreSub();
+        if (id === "more") hideSub();
       });
 
-      // ── 더보기 서브페이지 ──
-      G("showMoreSub", (sub) => {
+      G("showSub", (sub) => {
         document.getElementById("moreMenu").style.display = "none";
         document
           .querySelectorAll('[id^="sub-"]')
           .forEach((el) => (el.style.display = "none"));
         document.getElementById("sub-" + sub).style.display = "block";
       });
-      G("hideMoreSub", () => {
+      G("hideSub", () => {
         document.getElementById("moreMenu").style.display = "block";
         document
           .querySelectorAll('[id^="sub-"]')
           .forEach((el) => (el.style.display = "none"));
       });
 
-      // ── 오늘의 말씀 ──
-      const verses = [
-        {
-          text: "여호와는 나의 목자시니 내게 부족함이 없으리로다",
-          ref: "시편 23:1",
-        },
-        {
-          text: "내가 네게 명령한 것이 아니냐 강하고 담대하라 두려워하지 말며 놀라지 말라",
-          ref: "여호수아 1:9",
-        },
-        {
-          text: "하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니",
-          ref: "요한복음 3:16",
-        },
-        {
-          text: "범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라",
-          ref: "데살로니가전서 5:18",
-        },
-        {
-          text: "내가 진실로 진실로 너희에게 이르노니 나를 믿는 자는 영생을 가졌나니",
-          ref: "요한복음 6:47",
-        },
-        {
-          text: "너희 염려를 다 주께 맡기라 이는 그가 너희를 돌보심이라",
-          ref: "베드로전서 5:7",
-        },
-        {
-          text: "사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며",
-          ref: "고린도전서 13:4",
-        },
-      ];
-      const now = new Date();
-      const v = verses[now.getDay() % verses.length];
-      const mn = [
-        "1월",
-        "2월",
-        "3월",
-        "4월",
-        "5월",
-        "6월",
-        "7월",
-        "8월",
-        "9월",
-        "10월",
-        "11월",
-        "12월",
-      ];
-      document.getElementById("heroDate").textContent =
-        `${now.getFullYear()}년 ${mn[now.getMonth()]} ${now.getDate()}일 오늘의 말씀`;
-      document.getElementById("heroVerseText").textContent = `"${v.text}"`;
-      document.getElementById("heroRef").textContent = v.ref;
+      // ── 날짜 포맷 ──
+      function fd(iso) {
+        const d = new Date(iso);
+        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+      }
+      function fdt(iso) {
+        const d = new Date(iso);
+        const h = d.getHours(),
+          m = d.getMinutes();
+        return `${fd(iso)} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
+      }
 
       // ── 말씀 포도나무 ──
       let streak = 0,
-        contStreak = 0;
+        cont = 0;
       const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
       G("increaseStreak", () => {
         if (streak >= 365) {
@@ -1336,45 +1347,29 @@
           return;
         }
         streak++;
-        contStreak++;
-        updateGrape();
-        showToast("✅ 오늘 말씀 완료!");
-      });
-      function updateGrape() {
+        cont++;
         const pct = Math.round((streak / 365) * 100);
         const stage = stages[Math.min(Math.floor(pct / 20), 4)];
         ["h-pct", "g-pct"].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = pct + "%";
+          const e = document.getElementById(id);
+          if (e) e.textContent = pct + "%";
         });
         ["h-bar", "g-bar"].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el) el.style.width = pct + "%";
+          const e = document.getElementById(id);
+          if (e) e.style.width = pct + "%";
         });
-        const streakTxt = `🔥 ${contStreak}일 연속`;
         ["h-streak", "g-streak"].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = streakTxt;
+          const e = document.getElementById(id);
+          if (e) e.textContent = `🔥 ${cont}일 연속`;
         });
-        const dayEl = document.getElementById("g-day");
-        if (dayEl) dayEl.textContent = `${streak}일 / 365일`;
         ["h-grape", "grapeEmoji"].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = stage;
+          const e = document.getElementById(id);
+          if (e) e.textContent = stage;
         });
-      }
-
-      // ── 날짜 포맷 ──
-      function fmtDate(iso) {
-        const d = new Date(iso);
-        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
-      }
-      function fmtDT(iso) {
-        const d = new Date(iso);
-        const h = d.getHours(),
-          m = d.getMinutes();
-        return `${fmtDate(iso)} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
-      }
+        const gd = document.getElementById("g-day");
+        if (gd) gd.textContent = `${streak}일 / 365일`;
+        showToast("✅ 오늘 말씀 완료! " + pct + "%");
+      });
 
       // ── 공지 ──
       G("postNotice", () => {
@@ -1394,46 +1389,30 @@
         document.getElementById("noticeBody").value = "";
         showToast("✅ 공지 등록!");
       });
-
       G("deleteNotice", (id) => {
         if (!isAdmin) return;
         if (confirm("삭제할까요?")) remove(ref(db, "notices/" + id));
       });
 
-      window._noticeData = {};
+      window._nd = {};
       onValue(ref(db, "notices"), (snap) => {
-        window._noticeData = snap.val() || {};
-        const items = Object.entries(window._noticeData).reverse();
-        // 홈
-        const hEl = document.getElementById("homeNotice");
-        hEl.innerHTML = items.length
-          ? items
-              .slice(0, 2)
-              .map(
-                ([id, n]) => `
+        window._nd = snap.val() || {};
+        const items = Object.entries(window._nd).reverse();
+        const render = (el, limit, showArrow) =>
+          (el.innerHTML = items.length
+            ? (limit ? items.slice(0, limit) : items)
+                .map(
+                  ([id, n]) => `
     <div class="notice-item" onclick="openDetail('${id}')">
-      <div><div class="ntitle">${n.title}</div><div class="ndate">${fmtDate(n.date)}</div></div>
-      <div class="arrow-icon">›</div>
+      <div><div class="ntitle">${n.title}</div><div class="ndate">${fd(n.date)}</div></div>
+      ${showArrow ? '<span style="color:var(--sub)">›</span>' : ""}
     </div>`,
-              )
-              .join("")
-          : '<div class="empty">공지가 없어요</div>';
-        // 공지탭
-        const lEl = document.getElementById("noticeList");
-        lEl.innerHTML = items.length
-          ? items
-              .map(
-                ([id, n]) => `
-    <div class="notice-item" onclick="openDetail('${id}')">
-      <div><div class="ntitle">${n.title}</div><div class="ndate">${fmtDate(n.date)}</div></div>
-      <div class="arrow-icon">›</div>
-    </div>`,
-              )
-              .join("")
-          : '<div class="empty">공지가 없어요</div>';
-        // 관리자
-        const aEl = document.getElementById("adminNoticeList");
-        aEl.innerHTML = items.length
+                )
+                .join("")
+            : '<div class="empty">공지가 없어요</div>');
+        render(document.getElementById("homeNotice"), 2, true);
+        render(document.getElementById("noticeList"), 0, true);
+        document.getElementById("adminNoticeList").innerHTML = items.length
           ? items
               .map(
                 ([id, n]) => `
@@ -1444,11 +1423,11 @@
       });
 
       G("openDetail", (id) => {
-        const n = window._noticeData[id];
+        const n = window._nd[id];
         document.getElementById("noticeListCard").style.display = "none";
         document.getElementById("noticeDetail").style.display = "block";
         document.getElementById("detailTitle").textContent = n.title;
-        document.getElementById("detailDate").textContent = fmtDate(n.date);
+        document.getElementById("detailDate").textContent = fd(n.date);
         document.getElementById("detailBody").textContent = n.body;
       });
       G("closeDetail", () => {
@@ -1456,7 +1435,7 @@
         document.getElementById("noticeDetail").style.display = "none";
       });
 
-      // ── 설교 영상 ──
+      // ── 설교 ──
       G("postSermon", () => {
         if (!isAdmin) return;
         const t = document.getElementById("sermonTitle").value.trim();
@@ -1482,16 +1461,14 @@
         if (confirm("삭제할까요?")) remove(ref(db, "sermons/" + id));
       });
 
-      function getVid(url) {
-        const m = (url || "").match(/(?:v=|youtu\.be\/)([^&\s]+)/);
+      function getVid(u) {
+        const m = (u || "").match(/(?:v=|youtu\.be\/)([^&\s]+)/);
         return m ? m[1] : null;
       }
-
       onValue(ref(db, "sermons"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        const el = document.getElementById("sermonList");
-        el.innerHTML = items.length
+        document.getElementById("sermonList").innerHTML = items.length
           ? items
               .map(([id, s]) => {
                 const vid = getVid(s.url);
@@ -1508,9 +1485,7 @@
               })
               .join("")
           : '<div class="empty">등록된 영상이 없어요</div>';
-
-        const aEl = document.getElementById("adminSermonList");
-        aEl.innerHTML = items.length
+        document.getElementById("adminSermonList").innerHTML = items.length
           ? items
               .map(
                 ([id, s]) => `
@@ -1548,17 +1523,16 @@
       onValue(ref(db, "prayers"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        const el = document.getElementById("prayerList");
-        el.innerHTML = items.length
+        document.getElementById("prayerList").innerHTML = items.length
           ? items
               .map(
                 ([id, p]) => `
-    <div class="prayer-item ${p.answered ? "prayer-answered" : ""}">
-      <div class="prayer-text">${p.answered ? "✅ " : ""} ${p.text}</div>
-      <div class="prayer-meta">
-        <span>${fmtDT(p.date)}</span>
-        <div class="prayer-actions">
-          ${!p.answered ? `<button class="btn-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#2e7d32;font-weight:600">🙌 응답</span>'}
+    <div class="list-item ${p.answered ? "prayer-answered" : ""}">
+      <div class="item-text">${p.answered ? "✅ " : ""} ${p.text}</div>
+      <div class="item-meta">
+        <span>${fdt(p.date)}</span>
+        <div class="item-actions">
+          ${!p.answered ? `<button class="btn-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#2e7d32;font-size:12px;font-weight:600">🙌 응답</span>'}
           <button class="btn-del" onclick="deletePrayer('${id}')">삭제</button>
         </div>
       </div>
@@ -1582,22 +1556,33 @@
         inp.value = "";
         showToast("📖 말씀 나눔 등록!");
       });
+      G("deleteSharing", (id) => remove(ref(db, "sharings/" + id)));
 
       onValue(ref(db, "sharings"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        const el = document.getElementById("sharingList");
-        el.innerHTML = items.length
+        document.getElementById("sharingList").innerHTML = items.length
           ? items
               .map(
                 ([id, s]) => `
-    <div class="sharing-item">
-      <div class="sharing-text">${s.text}</div>
-      <div class="sharing-meta"><span>${fmtDT(s.date)}</span></div>
+    <div class="list-item">
+      <div class="item-text">${s.text}</div>
+      <div class="item-meta">
+        <span>${fdt(s.date)}</span>
+        <button class="btn-del" onclick="deleteSharing('${id}')">삭제</button>
+      </div>
     </div>`,
               )
               .join("")
           : '<div class="empty">첫 번째로 말씀을 나눠보세요 ✨</div>';
+        document.getElementById("adminSharingList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, s]) => `
+    <div class="admin-item"><span>${s.text.slice(0, 20)}...</span><button class="btn-del" onclick="deleteSharing('${id}')">삭제</button></div>`,
+              )
+              .join("")
+          : '<div class="empty">없음</div>';
       });
 
       // ── 찬양 신청 ──
@@ -1613,29 +1598,39 @@
           likes: 0,
         });
         inp.value = "";
-        showToast("🎵 찬양 신청 완료!");
+        showToast("🎵 찬양 신청!");
       });
+      G("deletePraise", (id) => remove(ref(db, "praises/" + id)));
+      G("likePraise", (id, cur) =>
+        update(ref(db, "praises/" + id), { likes: cur + 1 }),
+      );
 
       onValue(ref(db, "praises"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        const el = document.getElementById("praiseList");
-        el.innerHTML = items.length
+        document.getElementById("praiseList").innerHTML = items.length
           ? items
               .map(
                 ([id, p]) => `
     <div class="song-item">
-      <div><div class="song-title">${p.title}</div><div class="song-sub">${fmtDate(p.date)}</div></div>
-      <button class="song-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button>
+      <div><div class="song-title">${p.title}</div><div class="song-sub">${fd(p.date)}</div></div>
+      <div class="song-right">
+        <button class="like-btn" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button>
+        <button class="btn-del" onclick="deletePraise('${id}')">삭제</button>
+      </div>
     </div>`,
               )
               .join("")
           : '<div class="empty">신청된 찬양이 없어요</div>';
+        document.getElementById("adminPraiseList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, p]) => `
+    <div class="admin-item"><span>${p.title}</span><button class="btn-del" onclick="deletePraise('${id}')">삭제</button></div>`,
+              )
+              .join("")
+          : '<div class="empty">없음</div>';
       });
-
-      G("likePraise", (id, cur) =>
-        update(ref(db, "praises/" + id), { likes: cur + 1 }),
-      );
 
       // ── 일정 ──
       G("postSchedule", () => {
@@ -1656,13 +1651,12 @@
         if (confirm("삭제할까요?")) remove(ref(db, "schedules/" + id));
       });
 
-      window._scheduleData = {};
+      window._sd = {};
       onValue(ref(db, "schedules"), (snap) => {
-        window._scheduleData = snap.val() || {};
-        renderCalendar();
-        const aEl = document.getElementById("adminScheduleList");
-        const items = Object.entries(window._scheduleData);
-        aEl.innerHTML = items.length
+        window._sd = snap.val() || {};
+        renderCal();
+        const items = Object.entries(window._sd);
+        document.getElementById("adminScheduleList").innerHTML = items.length
           ? items
               .map(
                 ([id, s]) => `
@@ -1673,38 +1667,38 @@
       });
 
       // ── 달력 ──
-      let calY = now.getFullYear(),
-        calM = now.getMonth();
-      function renderCalendar() {
-        const fd = new Date(calY, calM, 1).getDay(),
+      let calY = today.getFullYear(),
+        calM = today.getMonth();
+      function renderCal() {
+        const fd2 = new Date(calY, calM, 1).getDay(),
           dim = new Date(calY, calM + 1, 0).getDate();
         document.getElementById("calTitle").textContent =
-          `${calY}년 ${mn[calM]}`;
-        const evDays = new Set();
-        Object.values(window._scheduleData).forEach((s) => {
+          `${calY}년 ${mn2[calM]}`;
+        const evD = new Set();
+        Object.values(window._sd).forEach((s) => {
           const d = new Date(s.date);
           if (d.getFullYear() === calY && d.getMonth() === calM)
-            evDays.add(d.getDate());
+            evD.add(d.getDate());
         });
         let h = ["일", "월", "화", "수", "목", "금", "토"]
           .map((d) => `<div class="cal-dn">${d}</div>`)
           .join("");
-        for (let i = 0; i < fd; i++) h += `<div class="cal-d other"></div>`;
+        for (let i = 0; i < fd2; i++) h += `<div class="cal-d other"></div>`;
         for (let d = 1; d <= dim; d++) {
           const t =
-            d === now.getDate() &&
-            calM === now.getMonth() &&
-            calY === now.getFullYear()
+            d === today.getDate() &&
+            calM === today.getMonth() &&
+            calY === today.getFullYear()
               ? "today"
               : "";
-          const e = evDays.has(d) ? "has-ev" : "";
+          const e = evD.has(d) ? "has-ev" : "";
           h += `<div class="cal-d ${t} ${e}" onclick="showEv(${d})">${d}</div>`;
         }
         document.getElementById("calGrid").innerHTML = h;
-        showEv(now.getDate());
+        showEv(today.getDate());
       }
       G("showEv", (d) => {
-        const items = Object.values(window._scheduleData).filter((s) => {
+        const items = Object.values(window._sd).filter((s) => {
           const dt = new Date(s.date);
           return (
             dt.getFullYear() === calY &&
@@ -1712,8 +1706,7 @@
             dt.getDate() === d
           );
         });
-        const el = document.getElementById("evList");
-        el.innerHTML = items.length
+        document.getElementById("evList").innerHTML = items.length
           ? items
               .map(
                 (s) =>
@@ -1732,14 +1725,15 @@
           calM = 11;
           calY--;
         }
-        renderCalendar();
+        renderCal();
       });
-      renderCalendar();
+      window._sd = {};
+      renderCal();
 
       // ── 관리자 ──
       G("adminLogin", () => {
         const pw = document.getElementById("adminPw").value;
-        if (ADMIN_PASSWORDS.includes(pw)) {
+        if (ADMINS.includes(pw)) {
           isAdmin = true;
           document.getElementById("adminLoginCard").style.display = "none";
           document.getElementById("adminPanel").style.display = "block";
