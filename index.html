@@ -2,8 +2,27 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="장유서은교회" />
+    <meta name="theme-color" content="#2563eb" />
     <title>장유서은교회</title>
+
+    <!-- PWA 아이콘 (SVG 인라인 → data URI) -->
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='white'/%3E%3Ctext x='256' y='200' font-size='200' text-anchor='middle' dominant-baseline='middle' fill='%232563eb'%3E✝%3C/text%3E%3Ctext x='256' y='380' font-size='72' font-weight='bold' text-anchor='middle' fill='%231e3a6e' font-family='Arial'%3E서은%3C/text%3E%3C/svg%3E"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%232563eb'/%3E%3Ctext x='256' y='256' font-size='280' text-anchor='middle' dominant-baseline='middle' fill='white'%3E✝%3C/text%3E%3C/svg%3E"
+    />
+
     <style>
       * {
         box-sizing: border-box;
@@ -11,16 +30,15 @@
         padding: 0;
       }
       :root {
-        --blue: #2563eb;
-        --blue2: #1d4ed8;
+        --blue: #1a56db;
+        --blue2: #1e3a6e;
         --blue-light: #eff6ff;
-        --blue-grad: linear-gradient(135deg, #2563eb, #60a5fa);
         --bg: #f1f5f9;
         --card: #fff;
-        --border: #e8eef5;
+        --border: #e2e8f0;
         --text: #1e293b;
-        --sub: #94a3b8;
-        --radius: 20px;
+        --sub: #64748b;
+        --radius: 16px;
       }
       body {
         font-family: "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
@@ -29,175 +47,343 @@
         margin: 0 auto;
         min-height: 100vh;
         color: var(--text);
+        overflow-x: hidden;
       }
 
-      /* ── 로그인 화면 ── */
+      /* ── 로그인 ── */
       #loginScreen {
         position: fixed;
         inset: 0;
-        background: var(--blue-grad);
+        overflow-y: auto;
+        background: #f8fafc;
+        z-index: 9999;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .ls-header {
+        background: linear-gradient(
+          160deg,
+          #1e3a6e 0%,
+          #2563eb 60%,
+          #38bdf8 100%
+        );
+        padding: 40px 24px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .ls-header::before {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        left: -20px;
+        right: -20px;
+        height: 80px;
+        background: #f8fafc;
+        border-radius: 50%;
+      }
+      .ls-logo-wrap {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+      }
+      .ls-logo {
+        width: 64px;
+        height: 64px;
+        background: #fff;
+        border-radius: 16px;
+        display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 9999;
-        padding: 32px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
       }
-      .login-logo {
-        font-size: 64px;
-        margin-bottom: 16px;
+      .ls-logo svg {
+        width: 44px;
+        height: 44px;
       }
-      .login-church {
+      .ls-name {
         color: #fff;
-        font-size: 22px;
-        font-weight: 800;
+      }
+      .ls-denom {
+        font-size: 11px;
+        opacity: 0.8;
+        font-weight: 600;
+        letter-spacing: 0.5px;
         margin-bottom: 4px;
+      }
+      .ls-church {
+        font-size: 24px;
+        font-weight: 900;
         letter-spacing: -0.5px;
       }
-      .login-sub {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 13px;
-        margin-bottom: 40px;
+      .ls-slogan {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+        position: relative;
+        z-index: 1;
       }
-      .login-card {
+
+      .ls-body {
+        padding: 32px 20px 20px;
+      }
+      .ls-card {
         background: #fff;
-        border-radius: 24px;
-        padding: 28px 24px;
-        width: 100%;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
+        padding: 24px;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        margin-bottom: 12px;
       }
-      .login-card h2 {
+      .ls-card h2 {
         font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: var(--text);
+        font-weight: 800;
+        margin-bottom: 4px;
       }
-      .l-input {
+      .ls-card p {
+        font-size: 12px;
+        color: var(--sub);
+        margin-bottom: 18px;
+      }
+      .l-inp {
         width: 100%;
-        padding: 14px 16px;
+        padding: 13px 16px;
         border: 1.5px solid var(--border);
-        border-radius: 14px;
+        border-radius: 12px;
         font-size: 15px;
         outline: none;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         background: #f8fafc;
       }
-      .l-input:focus {
+      .l-inp:focus {
         border-color: var(--blue);
+        background: #fff;
       }
-      .l-btn {
+      .l-btn-main {
         width: 100%;
-        padding: 15px;
-        background: var(--blue-grad);
+        padding: 14px;
+        background: linear-gradient(135deg, #1e3a6e, #2563eb);
         color: #fff;
         border: none;
-        border-radius: 14px;
-        font-size: 16px;
+        border-radius: 12px;
+        font-size: 15px;
         font-weight: 700;
         cursor: pointer;
-        letter-spacing: -0.3px;
+        margin-bottom: 8px;
       }
-      .l-btn:active {
+      .l-btn-main:active {
         opacity: 0.9;
+      }
+      .l-btn-sub {
+        width: 100%;
+        padding: 13px;
+        background: #fff;
+        color: var(--blue);
+        border: 2px solid var(--blue);
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
       }
       .l-err {
         color: #ef4444;
         font-size: 13px;
         text-align: center;
-        margin-top: 10px;
-        min-height: 20px;
+        min-height: 18px;
+        margin-top: 6px;
       }
-      .l-hint {
+      .auto-login-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .auto-login-row input {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--blue);
+        cursor: pointer;
+      }
+      .auto-login-row label {
+        font-size: 13px;
         color: var(--sub);
-        font-size: 12px;
+        cursor: pointer;
+      }
+      .pending-box {
         text-align: center;
-        margin-top: 14px;
+        padding: 10px 0;
+      }
+      .pending-box .pi {
+        font-size: 52px;
+        margin-bottom: 12px;
+      }
+      .pending-box h3 {
+        font-size: 17px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .pending-box p {
+        font-size: 13px;
+        color: var(--sub);
+        line-height: 1.8;
       }
 
-      /* ── 앱 전체 ── */
+      /* 교회소개 카드 */
+      .intro-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        border: 1px solid var(--border);
+        margin-bottom: 12px;
+      }
+      .intro-header {
+        background: linear-gradient(135deg, #1e3a6e, #2563eb);
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+      .intro-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+      .intro-row:last-child {
+        margin-bottom: 0;
+      }
+      .intro-num {
+        color: #c0392b;
+        font-weight: 800;
+        font-size: 14px;
+        flex-shrink: 0;
+        width: 18px;
+      }
+      .intro-key {
+        color: #c0392b;
+        font-weight: 800;
+        margin-right: 6px;
+      }
+      .intro-txt {
+        font-size: 13px;
+        color: #334155;
+        line-height: 1.6;
+      }
+
+      /* ── 앱 ── */
       #appScreen {
         display: none;
       }
-      .header {
+
+      /* 홈 상단 헤더 */
+      .app-header {
         background: #fff;
-        padding: 0 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
         position: sticky;
         top: 0;
         z-index: 100;
-        border-bottom: 1px solid var(--border);
-        height: 56px;
       }
-      .header-left {
+      .app-header-top {
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .ah-left {
         display: flex;
         align-items: center;
         gap: 10px;
       }
-      .header-icon {
-        width: 32px;
-        height: 32px;
-        background: var(--blue-grad);
+      .ah-logo {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #1e3a6e, #2563eb);
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
       }
-      .header-name {
+      .ah-logo svg {
+        width: 24px;
+        height: 24px;
+      }
+      .ah-texts {
+      }
+      .ah-denom {
+        font-size: 10px;
+        color: var(--sub);
+        font-weight: 600;
+      }
+      .ah-name {
         font-size: 15px;
-        font-weight: 700;
+        font-weight: 800;
+        color: var(--text);
         letter-spacing: -0.3px;
       }
-      .header-right {
+      .ah-right {
         display: flex;
-        gap: 10px;
         align-items: center;
+        gap: 8px;
       }
-      .icon-btn {
-        background: none;
+      .ah-btn {
+        width: 36px;
+        height: 36px;
+        background: var(--bg);
         border: none;
+        border-radius: 50%;
         cursor: pointer;
-        font-size: 20px;
-        color: var(--sub);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
       }
-      .user-chip {
-        background: var(--blue-light);
-        color: var(--blue);
+      .ah-user {
+        background: linear-gradient(135deg, #1e3a6e, #2563eb);
+        color: #fff;
+        border: none;
         border-radius: 999px;
-        padding: 4px 12px;
+        padding: 5px 14px;
         font-size: 12px;
         font-weight: 700;
-        border: none;
         cursor: pointer;
       }
 
+      /* 페이지 */
       .page {
         display: none;
-        padding: 0 0 90px;
+        padding-bottom: 90px;
       }
       .page.active {
         display: block;
       }
 
-      /* ── 홈 히어로 ── */
-      .home-hero {
-        background: var(--blue-grad);
-        padding: 24px 20px 28px;
+      /* 홈 히어로 배너 */
+      .home-banner {
+        background: linear-gradient(
+          135deg,
+          #1a56db 0%,
+          #3b82f6 60%,
+          #38bdf8 100%
+        );
+        margin: 0;
+        padding: 20px 18px 24px;
         position: relative;
         overflow: hidden;
       }
-      .home-hero::after {
-        content: "✝";
+      .home-banner::after {
+        content: "";
         position: absolute;
-        right: -10px;
-        top: -10px;
-        font-size: 120px;
-        opacity: 0.08;
-        color: #fff;
+        right: -30px;
+        top: -30px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
       }
-      .hero-badge {
+      .hb-badge {
         display: inline-flex;
         align-items: center;
         gap: 5px;
@@ -207,42 +393,41 @@
         font-size: 11px;
         color: #fff;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
-      .hero-date {
-        font-size: 26px;
-        font-weight: 800;
+      .hb-date {
+        font-size: 24px;
+        font-weight: 900;
         color: #fff;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         letter-spacing: -0.5px;
       }
-      .hero-reading {
-        font-size: 15px;
+      .hb-reading {
+        font-size: 14px;
         color: rgba(255, 255, 255, 0.9);
         font-weight: 500;
         line-height: 1.6;
       }
 
-      /* ── 카드 ── */
+      /* 섹션/카드 */
       .section {
-        padding: 16px 16px 0;
+        padding: 14px 14px 0;
       }
       .card {
         background: var(--card);
         border-radius: var(--radius);
-        padding: 20px;
-        margin-bottom: 14px;
+        padding: 18px;
+        margin-bottom: 12px;
         border: 1px solid var(--border);
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
       }
-      .card-header {
+      .card-hd {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
       .card-title {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 700;
         display: flex;
         align-items: center;
@@ -257,19 +442,19 @@
         cursor: pointer;
       }
 
-      /* ── 달력 ── */
+      /* 달력 */
       .cal-nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .cal-nav-btn {
         background: var(--bg);
         border: none;
-        width: 32px;
-        height: 32px;
-        border-radius: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
         cursor: pointer;
         font-size: 16px;
         display: flex;
@@ -287,15 +472,15 @@
         text-align: center;
       }
       .cal-dn {
-        font-size: 11px;
+        font-size: 10px;
         color: var(--sub);
-        padding: 4px 0;
+        padding: 3px 0;
         font-weight: 600;
       }
       .cal-d {
-        font-size: 13px;
-        height: 36px;
-        border-radius: 10px;
+        font-size: 12px;
+        height: 32px;
+        border-radius: 8px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -310,6 +495,7 @@
         background: var(--blue);
         color: #fff;
         font-weight: 700;
+        border-radius: 50%;
       }
       .cal-d.has-ev::after {
         content: "";
@@ -318,7 +504,7 @@
         background: #f59e0b;
         border-radius: 50%;
         position: absolute;
-        bottom: 3px;
+        bottom: 2px;
         left: 50%;
         transform: translateX(-50%);
       }
@@ -326,7 +512,7 @@
         color: #cbd5e1;
       }
       .ev-box {
-        margin-top: 12px;
+        margin-top: 10px;
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -334,15 +520,15 @@
       .ev-item {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         background: var(--blue-light);
-        border-radius: 12px;
-        padding: 10px 12px;
-        font-size: 13px;
+        border-radius: 10px;
+        padding: 9px 12px;
+        font-size: 12px;
       }
       .ev-dot {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
         background: var(--blue);
         border-radius: 50%;
         flex-shrink: 0;
@@ -351,15 +537,15 @@
         font-size: 12px;
         color: var(--sub);
         text-align: center;
-        padding: 10px 0;
+        padding: 8px 0;
       }
 
-      /* ── 공지 ── */
+      /* 공지 */
       .notice-row {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 11px 0;
+        gap: 8px;
+        padding: 10px 0;
         border-bottom: 1px solid var(--border);
         cursor: pointer;
       }
@@ -367,23 +553,11 @@
         border-bottom: none;
       }
       .n-tag {
-        border-radius: 8px;
-        padding: 3px 8px;
+        border-radius: 6px;
+        padding: 2px 8px;
         font-size: 11px;
         font-weight: 700;
         flex-shrink: 0;
-      }
-      .n-tag.공지 {
-        background: #eff6ff;
-        color: #2563eb;
-      }
-      .n-tag.소식 {
-        background: #f0fdf4;
-        color: #16a34a;
-      }
-      .n-tag.안내 {
-        background: #fefce8;
-        color: #ca8a04;
       }
       .n-title {
         font-size: 13px;
@@ -399,14 +573,14 @@
         flex-shrink: 0;
       }
 
-      /* ── 공지 상세 ── */
+      /* 공지 상세 */
       .detail-wrap {
-        padding: 20px 16px;
+        padding: 18px 14px;
       }
       .back-btn {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
         background: none;
         border: none;
         color: var(--blue);
@@ -414,105 +588,88 @@
         font-weight: 600;
         cursor: pointer;
         padding: 0;
-        margin-bottom: 20px;
-      }
-      .detail-tag {
-        display: inline-block;
-        border-radius: 8px;
-        padding: 4px 10px;
-        font-size: 12px;
-        font-weight: 700;
-        margin-bottom: 12px;
+        margin-bottom: 18px;
       }
       .detail-title2 {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 800;
         margin-bottom: 6px;
         line-height: 1.3;
-        letter-spacing: -0.5px;
       }
       .detail-date2 {
         font-size: 12px;
         color: var(--sub);
-        margin-bottom: 20px;
-        padding-bottom: 20px;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
         border-bottom: 1px solid var(--border);
       }
       .detail-body2 {
-        font-size: 15px;
+        font-size: 14px;
         color: #334155;
         line-height: 2;
       }
 
-      /* ── 포도나무 홈카드 ── */
+      /* 포도나무 홈 */
       .grape-mini {
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        margin-bottom: 14px;
+        align-items: center;
+        margin-bottom: 10px;
       }
-      .grape-pct-big {
-        font-size: 36px;
+      .grape-pct-h {
+        font-size: 32px;
         font-weight: 900;
         color: var(--blue);
       }
-      .grape-streak-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        background: #fff7ed;
-        border-radius: 999px;
-        padding: 5px 12px;
+      .grape-streak-h {
         font-size: 12px;
-        font-weight: 700;
         color: #ea580c;
-        margin-top: 4px;
+        font-weight: 700;
+        margin-top: 2px;
       }
       .bar-bg {
         background: var(--border);
         border-radius: 999px;
         height: 8px;
         overflow: hidden;
-        margin: 4px 0;
+        margin: 4px 0 12px;
       }
       .bar-fill {
         height: 100%;
-        background: var(--blue-grad);
+        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
         border-radius: 999px;
         transition: width 0.5s;
       }
 
-      /* ── 설교 ── */
-      .sermon-page-hero {
-        background: var(--blue-grad);
-        padding: 20px;
+      /* 페이지 히어로 */
+      .page-hero {
+        background: linear-gradient(135deg, #1e3a6e, #2563eb);
+        padding: 20px 18px 24px;
         color: #fff;
       }
-      .sermon-hero-title {
+      .page-hero h2 {
         font-size: 20px;
         font-weight: 800;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
       }
-      .sermon-hero-sub {
-        font-size: 13px;
+      .page-hero p {
+        font-size: 12px;
         opacity: 0.8;
       }
-      .video-list {
-        padding: 16px;
-      }
+
+      /* 설교 */
       .video-card {
         background: #fff;
-        border-radius: 16px;
-        margin-bottom: 12px;
+        border-radius: 14px;
+        margin-bottom: 10px;
         overflow: hidden;
         border: 1px solid var(--border);
-        cursor: pointer;
         text-decoration: none;
         display: block;
       }
       .v-thumb {
         width: 100%;
-        height: 180px;
+        height: 170px;
         background: #e2e8f0;
         position: relative;
         overflow: hidden;
@@ -524,34 +681,34 @@
       }
       .v-thumb-ph {
         width: 100%;
-        height: 180px;
+        height: 170px;
         background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 40px;
+        font-size: 36px;
       }
       .v-play {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 48px;
-        height: 48px;
-        background: rgba(255, 255, 255, 0.9);
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.92);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
+        font-size: 18px;
       }
       .v-info {
-        padding: 14px 16px;
+        padding: 12px 14px;
       }
       .v-title {
         font-size: 14px;
         font-weight: 700;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
       }
       .v-sub {
         font-size: 12px;
@@ -560,196 +717,194 @@
       .v-badge {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 3px;
         background: #fee2e2;
         color: #dc2626;
-        border-radius: 8px;
-        padding: 3px 8px;
+        border-radius: 6px;
+        padding: 2px 8px;
         font-size: 11px;
         font-weight: 700;
-        margin-top: 6px;
+        margin-top: 5px;
       }
 
-      /* ── 기도 페이지 ── */
-      .page-hero {
-        background: var(--blue-grad);
-        padding: 24px 20px;
-      }
-      .page-hero h2 {
-        font-size: 22px;
-        font-weight: 800;
-        color: #fff;
-        margin-bottom: 4px;
-      }
-      .page-hero p {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.8);
-      }
-      .prayer-card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 16px;
-        margin-bottom: 10px;
+      /* 기도/나눔/찬양 아이템 */
+      .list-item {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 8px;
         border: 1px solid var(--border);
       }
-      .prayer-answered {
-        background: #f0fdf4;
-        border-color: #bbf7d0;
-      }
-      .prayer-text2 {
+      .item-text {
         font-size: 14px;
         line-height: 1.6;
-        margin-bottom: 10px;
-        color: var(--text);
+        margin-bottom: 8px;
       }
-      .prayer-foot {
+      .item-meta {
+        font-size: 11px;
+        color: var(--sub);
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         gap: 6px;
       }
-      .prayer-time {
-        font-size: 11px;
-        color: var(--sub);
-      }
-      .prayer-btns {
+      .item-acts {
         display: flex;
-        gap: 6px;
+        gap: 5px;
       }
-      .tag-btn {
-        border: none;
-        border-radius: 8px;
-        padding: 5px 12px;
-        font-size: 12px;
-        font-weight: 600;
-        cursor: pointer;
+      .answered {
+        background: #f0fdf4;
+        border-color: #bbf7d0;
       }
       .tag-ans {
         background: #dcfce7;
         color: #16a34a;
+        border: none;
+        border-radius: 7px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
       }
       .tag-del {
         background: #fee2e2;
         color: #dc2626;
+        border: none;
+        border-radius: 7px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
       }
       .tag-like {
         background: #eff6ff;
         color: #2563eb;
+        border: none;
+        border-radius: 7px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
       }
 
-      /* ── 더보기 ── */
+      /* 더보기 그리드 */
       .more-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        padding: 16px;
+        gap: 10px;
+        padding: 14px;
       }
       .more-cell {
         background: #fff;
-        border-radius: 18px;
-        padding: 24px 16px;
+        border-radius: 16px;
+        padding: 22px 12px;
         text-align: center;
         cursor: pointer;
         border: 1px solid var(--border);
-        transition: transform 0.1s;
       }
       .more-cell:active {
-        transform: scale(0.97);
+        background: var(--bg);
       }
       .mc-icon {
-        font-size: 36px;
-        margin-bottom: 10px;
+        font-size: 32px;
+        margin-bottom: 8px;
       }
       .mc-label {
         font-size: 13px;
         font-weight: 700;
-        color: var(--text);
       }
       .mc-desc {
         font-size: 11px;
         color: var(--sub);
-        margin-top: 3px;
+        margin-top: 2px;
       }
 
-      /* ── 서브페이지 ── */
+      /* 서브 페이지 */
       .sub-wrap {
-        padding: 0 0 90px;
-      }
-      .sharing-card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 16px;
-        margin-bottom: 10px;
-        border: 1px solid var(--border);
-      }
-      .sharing-text2 {
-        font-size: 14px;
-        line-height: 1.7;
-        color: var(--text);
-        margin-bottom: 10px;
-      }
-      .sharing-foot {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .song-card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 14px 16px;
-        margin-bottom: 10px;
-        border: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .song-right {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        padding-bottom: 90px;
       }
 
-      /* ── 오시는 길 ── */
+      /* 포도나무 상세 */
+      .grape-full {
+        text-align: center;
+        padding: 28px 18px;
+      }
+      .grape-emoji-big {
+        font-size: 72px;
+        margin-bottom: 10px;
+      }
+      .grape-pct-full {
+        font-size: 52px;
+        font-weight: 900;
+        color: var(--blue);
+      }
+      .grape-day-full {
+        font-size: 13px;
+        color: var(--sub);
+        margin-top: 4px;
+      }
+      .grape-streak-full {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #fff7ed;
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #ea580c;
+        margin-top: 10px;
+      }
+      .bar-bg2 {
+        background: var(--border);
+        border-radius: 999px;
+        height: 10px;
+        overflow: hidden;
+        margin: 16px 0 6px;
+      }
+      .bar-fill2 {
+        height: 100%;
+        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
+        border-radius: 999px;
+        transition: width 0.5s;
+      }
+
+      /* 오시는 길 */
       .map-box {
         background: linear-gradient(135deg, #dbeafe, #e0f2fe);
-        border-radius: 16px;
-        height: 180px;
+        height: 160px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 48px;
-        margin: 16px;
-        margin-bottom: 0;
-      }
-      .info-list {
-        padding: 16px;
+        font-size: 44px;
+        margin: 14px;
       }
       .info-row {
         display: flex;
-        gap: 14px;
+        gap: 12px;
         align-items: flex-start;
-        padding: 14px 0;
+        padding: 12px 0;
         border-bottom: 1px solid var(--border);
       }
       .info-row:last-child {
         border-bottom: none;
       }
       .info-icon-box {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         background: var(--blue-light);
-        border-radius: 12px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
+        font-size: 16px;
         flex-shrink: 0;
       }
       .info-label2 {
         font-size: 11px;
         color: var(--sub);
-        margin-bottom: 3px;
+        margin-bottom: 2px;
         font-weight: 600;
       }
       .info-value2 {
@@ -757,36 +912,12 @@
         font-weight: 600;
       }
 
-      /* ── 포도나무 상세 ── */
-      .grape-full {
-        text-align: center;
-        padding: 30px 20px;
-      }
-      .grape-emoji-big {
-        font-size: 80px;
-        margin-bottom: 12px;
-      }
-      .grape-pct-full {
-        font-size: 56px;
-        font-weight: 900;
-        color: var(--blue);
-        letter-spacing: -2px;
-      }
-      .grape-day-full {
-        font-size: 14px;
-        color: var(--sub);
-        margin-top: 4px;
-      }
-
-      /* ── 설정 ── */
-      .settings-section {
-        padding: 16px;
-      }
+      /* 설정 */
       .s-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 0;
+        padding: 14px 0;
         border-bottom: 1px solid var(--border);
       }
       .s-row:last-child {
@@ -797,21 +928,21 @@
         font-weight: 600;
       }
       .s-sub {
-        font-size: 12px;
+        font-size: 11px;
         color: var(--sub);
-        margin-top: 3px;
+        margin-top: 2px;
       }
       .time-pill {
         background: var(--blue);
         color: #fff;
-        border-radius: 10px;
-        padding: 6px 14px;
-        font-size: 14px;
+        border-radius: 8px;
+        padding: 5px 12px;
+        font-size: 13px;
         font-weight: 700;
       }
 
-      /* ── 관리자 ── */
-      .admin-section-title {
+      /* 관리자 */
+      .adm-sec-title {
         font-size: 11px;
         font-weight: 700;
         color: var(--sub);
@@ -819,105 +950,103 @@
         letter-spacing: 0.5px;
         margin-bottom: 10px;
       }
-      .form-gap {
-        margin-bottom: 10px;
-      }
-      .admin-list-item {
+      .adm-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 0;
+        padding: 9px 0;
         border-bottom: 1px solid var(--border);
         font-size: 13px;
         gap: 8px;
       }
-      .admin-list-item:last-child {
+      .adm-item:last-child {
         border-bottom: none;
       }
-      .admin-list-item span {
+      .adm-item span {
         flex: 1;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: var(--text);
       }
 
-      /* ── 공통 버튼 ── */
-      .btn-primary {
-        background: var(--blue-grad);
+      /* 공통 버튼 */
+      .btn-p {
+        background: linear-gradient(135deg, #1e3a6e, #2563eb);
         color: #fff;
         border: none;
-        border-radius: 14px;
-        padding: 14px;
-        font-size: 15px;
+        border-radius: 12px;
+        padding: 13px;
+        font-size: 14px;
         font-weight: 700;
         cursor: pointer;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 8px;
       }
-      .btn-primary:active {
+      .btn-p:active {
         opacity: 0.9;
       }
-      .btn-outline {
-        background: none;
+      .btn-o {
+        background: #fff;
         border: 1.5px solid var(--blue);
         color: var(--blue);
-        border-radius: 14px;
+        border-radius: 12px;
         padding: 12px;
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 8px;
       }
-      .btn-sm-blue {
+      .btn-sm {
         background: var(--blue);
         color: #fff;
         border: none;
-        border-radius: 10px;
-        padding: 10px 16px;
+        border-radius: 9px;
+        padding: 9px 14px;
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
       }
-      .btn-del2 {
+      .btn-del {
         background: #fee2e2;
         color: #dc2626;
         border: none;
-        border-radius: 8px;
-        padding: 5px 12px;
+        border-radius: 7px;
+        padding: 5px 10px;
         font-size: 12px;
         font-weight: 700;
         cursor: pointer;
       }
       .inp {
         width: 100%;
-        padding: 13px 16px;
+        padding: 12px 14px;
         border: 1.5px solid var(--border);
-        border-radius: 14px;
+        border-radius: 12px;
         font-size: 14px;
         outline: none;
         background: #f8fafc;
-        color: var(--text);
       }
       .inp:focus {
         border-color: var(--blue);
         background: #fff;
       }
       textarea.inp {
-        height: 90px;
+        height: 80px;
         resize: vertical;
       }
       .inp-row {
         display: flex;
         gap: 8px;
-        margin-top: 10px;
+        margin-top: 8px;
       }
       .inp-row .inp {
         margin: 0;
       }
+      .mb8 {
+        margin-bottom: 8px;
+      }
 
-      /* ── 탭바 ── */
+      /* 탭바 */
       .tab-bar {
         position: fixed;
         bottom: 0;
@@ -943,11 +1072,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 3px;
+        gap: 2px;
         font-weight: 500;
       }
       .tab-btn .ti {
-        font-size: 24px;
+        font-size: 22px;
         transition: transform 0.2s;
       }
       .tab-btn.active {
@@ -955,18 +1084,18 @@
         font-weight: 700;
       }
       .tab-btn.active .ti {
-        transform: scale(1.15);
+        transform: scale(1.1);
       }
 
-      /* ── 토스트 ── */
+      /* 토스트 */
       .toast {
         position: fixed;
-        bottom: 100px;
+        bottom: 96px;
         left: 50%;
         transform: translateX(-50%);
         background: #1e293b;
         color: #fff;
-        padding: 12px 24px;
+        padding: 11px 22px;
         border-radius: 999px;
         font-size: 13px;
         font-weight: 600;
@@ -975,7 +1104,7 @@
         transition: opacity 0.3s;
         white-space: nowrap;
         pointer-events: none;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
       }
       .toast.show {
         opacity: 1;
@@ -984,494 +1113,241 @@
         text-align: center;
         color: var(--sub);
         font-size: 13px;
-        padding: 28px 0;
+        padding: 24px 0;
       }
     </style>
   </head>
   <body>
-    <!-- ══ 로그인 ══ -->
-    <div
-      id="loginScreen"
-      style="
-        position: fixed;
-        inset: 0;
-        overflow-y: auto;
-        background: #f1f5f9;
-        z-index: 9999;
-      "
-    >
-      <!-- 로그인/회원가입 폼 -->
-      <div
-        id="loginFormWrap"
-        style="min-height: 100vh; display: flex; flex-direction: column"
-      >
-        <!-- 상단 헤더 -->
-        <div
-          style="
-            background: linear-gradient(135deg, #1e3a6e, #2563eb);
-            padding: 32px 20px 32px;
-          "
-        >
-          <div
-            style="
-              font-size: 12px;
-              color: rgba(255, 255, 255, 0.75);
-              font-weight: 600;
-              letter-spacing: 0.5px;
-              margin-bottom: 14px;
-            "
-          >
-            대한예수교 장로회(고신)
+    <!-- ══ 로그인 화면 ══ -->
+    <div id="loginScreen">
+      <div class="ls-header">
+        <div class="ls-logo-wrap">
+          <div class="ls-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="40" y="5" width="20" height="90" rx="4" fill="#1e3a6e" />
+              <rect
+                x="10"
+                y="25"
+                width="80"
+                height="20"
+                rx="4"
+                fill="#1e3a6e"
+              />
+              <rect
+                x="30"
+                y="55"
+                width="40"
+                height="14"
+                rx="3"
+                fill="#2563eb"
+              />
+            </svg>
           </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 14px;
-              margin-bottom: 14px;
-            "
-          >
-            <div
-              style="
-                background: rgba(255, 255, 255, 0.25);
-                border-radius: 14px;
-                width: 60px;
-                height: 60px;
-                min-width: 60px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 32px;
-                flex-shrink: 0;
-              "
-            >
-              ✝
-            </div>
-            <div
-              style="
-                font-size: 30px;
-                font-weight: 900;
-                color: #fff;
-                letter-spacing: -0.5px;
-                line-height: 1.2;
-                word-break: keep-all;
-              "
-            >
-              장유서은교회
-            </div>
-          </div>
-          <div
-            style="
-              font-size: 14px;
-              color: rgba(255, 255, 255, 0.8);
-              font-weight: 500;
-            "
-          >
-            부흥 · 정통 · 회복
+          <div class="ls-name">
+            <div class="ls-denom">대한예수교 장로회(고신)</div>
+            <div class="ls-church">장유서은교회</div>
           </div>
         </div>
+        <div class="ls-slogan">부흥 · 정통 · 회복</div>
+      </div>
 
+      <div class="ls-body">
         <!-- 로그인 카드 -->
-        <div id="loginCard" style="padding: 20px 16px 0">
-          <div
-            style="
-              background: #fff;
-              border-radius: 20px;
-              padding: 24px;
-              border: 1px solid #e2e8f0;
-              margin-bottom: 12px;
-            "
-          >
-            <div style="font-size: 17px; font-weight: 800; margin-bottom: 16px">
-              로그인
-            </div>
-            <input
-              class="l-input"
-              id="loginName"
-              placeholder="이름"
-              autocomplete="name"
-            />
-            <input
-              class="l-input"
-              type="password"
-              id="loginPw"
-              placeholder="비밀번호"
-              autocomplete="current-password"
-            />
-            <button class="l-btn" onclick="doLogin()">로그인</button>
-            <div class="l-err" id="loginErr"></div>
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-top: 14px;
-              "
-            >
-              <input
-                type="checkbox"
-                id="autoLoginCheck"
-                style="
-                  width: 16px;
-                  height: 16px;
-                  accent-color: #2563eb;
-                  cursor: pointer;
-                  flex-shrink: 0;
-                "
-              />
-              <label
-                for="autoLoginCheck"
-                style="font-size: 13px; color: #64748b; cursor: pointer"
-                >자동 로그인</label
-              >
-            </div>
+        <div class="ls-card" id="loginCard">
+          <h2>로그인</h2>
+          <p>교인 계정으로 로그인하세요</p>
+          <input
+            class="l-inp"
+            id="loginName"
+            placeholder="이름"
+            autocomplete="name"
+          />
+          <input
+            class="l-inp"
+            type="password"
+            id="loginPw"
+            placeholder="비밀번호"
+            autocomplete="current-password"
+          />
+          <div class="auto-login-row">
+            <input type="checkbox" id="autoLoginCheck" />
+            <label for="autoLoginCheck">자동 로그인</label>
           </div>
+          <div class="l-err" id="loginErr"></div>
           <button
-            class="l-btn"
-            onclick="showSignup()"
-            style="
-              background: #fff;
-              color: #2563eb;
-              border: 2px solid #2563eb;
-              margin-bottom: 8px;
-            "
+            class="l-btn-main"
+            style="margin-top: 14px"
+            onclick="doLogin()"
           >
-            회원가입
+            로그인
           </button>
         </div>
+        <button class="l-btn-sub" onclick="showSignup()">회원가입</button>
 
         <!-- 회원가입 카드 -->
-        <div id="signupCard" style="display: none; padding: 20px 16px 0">
-          <div
-            style="
-              background: #fff;
-              border-radius: 20px;
-              padding: 24px;
-              border: 1px solid #e2e8f0;
-              margin-bottom: 12px;
-            "
-          >
-            <div style="font-size: 17px; font-weight: 800; margin-bottom: 4px">
-              회원가입
-            </div>
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 16px">
-              가입 후 관리자 승인이 필요해요
-            </div>
-            <input class="l-input" id="signupName" placeholder="이름" />
-            <input
-              class="l-input"
-              type="password"
-              id="signupPw"
-              placeholder="비밀번호 (4자 이상)"
-            />
-            <input
-              class="l-input"
-              type="password"
-              id="signupPw2"
-              placeholder="비밀번호 확인"
-            />
-            <button class="l-btn" onclick="doSignup()">가입 신청</button>
-            <div class="l-err" id="signupErr"></div>
-          </div>
+        <div class="ls-card" id="signupCard" style="display: none">
+          <h2>회원가입</h2>
+          <p>가입 후 관리자 승인이 필요해요</p>
+          <input class="l-inp" id="signupName" placeholder="이름" />
+          <input
+            class="l-inp"
+            type="password"
+            id="signupPw"
+            placeholder="비밀번호 (4자 이상)"
+          />
+          <input
+            class="l-inp"
+            type="password"
+            id="signupPw2"
+            placeholder="비밀번호 확인"
+          />
+          <div class="l-err" id="signupErr"></div>
           <button
-            class="l-btn"
-            onclick="showLogin()"
-            style="background: #fff; color: #64748b; border: 2px solid #e2e8f0"
+            class="l-btn-main"
+            style="margin-top: 6px"
+            onclick="doSignup()"
           >
-            ← 로그인으로 돌아가기
+            가입 신청
           </button>
+          <button class="l-btn-sub" onclick="showLogin()">← 로그인으로</button>
         </div>
 
-        <!-- 대기 안내 -->
-        <div id="pendingCard" style="display: none; padding: 20px 16px 0">
-          <div
-            style="
-              background: #fff;
-              border-radius: 20px;
-              padding: 32px 24px;
-              border: 1px solid #e2e8f0;
-              text-align: center;
-              margin-bottom: 12px;
-            "
-          >
-            <div style="font-size: 56px; margin-bottom: 14px">⏳</div>
-            <div style="font-size: 18px; font-weight: 800; margin-bottom: 10px">
-              승인 대기 중
-            </div>
-            <p style="font-size: 13px; color: #64748b; line-height: 1.8">
-              관리자가 가입을 승인하면<br />로그인할 수 있어요.<br />잠시만
-              기다려주세요 🙏
-            </p>
+        <!-- 대기 카드 -->
+        <div class="ls-card" id="pendingCard" style="display: none">
+          <div class="pending-box">
+            <div class="pi">⏳</div>
+            <h3>승인 대기 중</h3>
+            <p>관리자가 승인하면<br />로그인할 수 있어요 🙏</p>
+            <button
+              class="l-btn-sub"
+              style="margin-top: 18px"
+              onclick="showLogin()"
+            >
+              ← 로그인으로
+            </button>
           </div>
-          <button
-            class="l-btn"
-            onclick="showLogin()"
-            style="background: #fff; color: #64748b; border: 2px solid #e2e8f0"
-          >
-            ← 로그인으로 돌아가기
-          </button>
         </div>
 
         <!-- 교회 소개 -->
-        <div style="padding: 24px 16px 40px" id="churchInfoSection">
-          <!-- 교회 소개 -->
-          <div
-            style="
-              background: #fff;
-              border-radius: 20px;
-              padding: 20px;
-              margin-bottom: 12px;
-              border: 1px solid #e2e8f0;
-            "
-          >
-            <div
-              style="
-                background: #1e3a6e;
-                color: #fff;
-                border-radius: 10px;
-                padding: 10px 16px;
-                font-size: 15px;
-                font-weight: 800;
-                margin-bottom: 16px;
-              "
-            >
-              장유서은교회는
+        <div id="churchInfo">
+          <div class="intro-card">
+            <div class="intro-header">장유서은교회는</div>
+            <div class="intro-row">
+              <span class="intro-num">1.</span>
+              <div>
+                <span class="intro-key">성경</span
+                ><span class="intro-txt"
+                  >영감과 무오성, 역사성과 참된 교리를 수호하는
+                  <b>복음적 교회</b>입니다.</span
+                >
+              </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 12px">
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 14px;
-                    flex-shrink: 0;
-                    width: 20px;
-                  "
-                  >1.</span
+            <div class="intro-row">
+              <span class="intro-num">2.</span>
+              <div>
+                <span class="intro-key">정통</span
+                ><span class="intro-txt"
+                  >그리스도의 참된 복음을 전하는 <b>사도적 교회</b>입니다.</span
                 >
-                <div>
-                  <span style="color: #c0392b; font-weight: 800">성경</span
-                  ><span
-                    style="font-size: 13px; color: #334155; margin-left: 6px"
-                    >영감과 무오성, 역사성과 참된 교리를 수호하는
-                    <b>복음적 교회</b>입니다.</span
-                  >
-                </div>
               </div>
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 14px;
-                    flex-shrink: 0;
-                    width: 20px;
-                  "
-                  >2.</span
+            </div>
+            <div class="intro-row">
+              <span class="intro-num">3.</span>
+              <div>
+                <span class="intro-key">회복</span
+                ><span class="intro-txt"
+                  >로마천주교회, 동방정교회와 구별되어 참 신앙을 회복하는
+                  <b>개신교회</b>입니다.</span
                 >
-                <div>
-                  <span style="color: #c0392b; font-weight: 800">정통</span
-                  ><span
-                    style="font-size: 13px; color: #334155; margin-left: 6px"
-                    >그리스도의 참된 복음을 전하는
-                    <b>사도적 교회</b>입니다.</span
-                  >
-                </div>
               </div>
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 14px;
-                    flex-shrink: 0;
-                    width: 20px;
-                  "
-                  >3.</span
+            </div>
+            <div class="intro-row">
+              <span class="intro-num">4.</span>
+              <div>
+                <span class="intro-key">역사</span
+                ><span class="intro-txt"
+                  >역사적 공교회 신조들과 신앙고백을 고백하는
+                  <b>개혁주의 교회</b>입니다.</span
                 >
-                <div>
-                  <span style="color: #c0392b; font-weight: 800">회복</span
-                  ><span
-                    style="font-size: 13px; color: #334155; margin-left: 6px"
-                    >로마천주교회, 동방정교회와 구별되어 참 신앙을 회복하는
-                    <b>개신교회</b>입니다.</span
-                  >
-                </div>
               </div>
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 14px;
-                    flex-shrink: 0;
-                    width: 20px;
-                  "
-                  >4.</span
+            </div>
+            <div class="intro-row">
+              <span class="intro-num">5.</span>
+              <div>
+                <span class="intro-key">정치</span
+                ><span class="intro-txt"
+                  >장로회의 치리와 감독 하에 질서를 유지하는
+                  <b>장로교회</b>입니다.</span
                 >
-                <div>
-                  <span style="color: #c0392b; font-weight: 800">역사</span
-                  ><span
-                    style="font-size: 13px; color: #334155; margin-left: 6px"
-                    >역사적 공교회 신조들과 신앙고백을 고백하는
-                    <b>개혁주의 교회</b>입니다.</span
-                  >
-                </div>
               </div>
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 14px;
-                    flex-shrink: 0;
-                    width: 20px;
-                  "
-                  >5.</span
+            </div>
+            <div class="intro-row">
+              <span class="intro-num">6.</span>
+              <div>
+                <span class="intro-key">연합</span
+                ><span class="intro-txt"
+                  >신앙의 일치 속에서 연합하는 <b>보편적 교회</b>입니다.</span
                 >
-                <div>
-                  <span style="color: #c0392b; font-weight: 800">정치</span
-                  ><span
-                    style="font-size: 13px; color: #334155; margin-left: 6px"
-                    >장로회의 치리와 감독 하에 질서를 유지하는
-                    <b>장로교회</b>입니다.</span
-                  >
-                </div>
-              </div>
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 14px;
-                    flex-shrink: 0;
-                    width: 20px;
-                  "
-                  >6.</span
-                >
-                <div>
-                  <span style="color: #c0392b; font-weight: 800">연합</span
-                  ><span
-                    style="font-size: 13px; color: #334155; margin-left: 6px"
-                    >신앙의 일치 속에서 연합하는 <b>보편적 교회</b>입니다.</span
-                  >
-                </div>
               </div>
             </div>
           </div>
-
-          <!-- 성도 소개 -->
-          <div
-            style="
-              background: #fff;
-              border-radius: 20px;
-              padding: 20px;
-              border: 1px solid #e2e8f0;
-            "
-          >
-            <div
-              style="
-                background: #1e3a6e;
-                color: #fff;
-                border-radius: 10px;
-                padding: 10px 16px;
-                font-size: 15px;
-                font-weight: 800;
-                margin-bottom: 16px;
-              "
-            >
-              장유서은교회 성도는
+          <div class="intro-card">
+            <div class="intro-header">장유서은교회 성도는</div>
+            <div class="intro-row">
+              <span class="intro-num">1.</span>
+              <div>
+                <div
+                  style="
+                    color: #c0392b;
+                    font-weight: 800;
+                    font-size: 13px;
+                    margin-bottom: 3px;
+                  "
+                >
+                  그리스도인으로서
+                </div>
+                <span class="intro-txt"
+                  >초대교회의 3대 공교회 신조인 사도신경, 니케아신경,
+                  아타나시우스 신경을 고백합니다.</span
+                >
+              </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 14px">
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
+            <div class="intro-row">
+              <span class="intro-num">2.</span>
+              <div>
+                <div
                   style="
                     color: #c0392b;
                     font-weight: 800;
                     font-size: 13px;
-                    flex-shrink: 0;
-                    width: 20px;
+                    margin-bottom: 3px;
                   "
-                  >1.</span
                 >
-                <div>
-                  <div
-                    style="
-                      color: #c0392b;
-                      font-weight: 800;
-                      font-size: 13px;
-                      margin-bottom: 3px;
-                    "
-                  >
-                    그리스도인으로서
-                  </div>
-                  <div
-                    style="font-size: 12px; color: #475569; line-height: 1.7"
-                  >
-                    초대교회의 3대 공교회 신조인 사도신경, 니케아신경,
-                    아타나시우스 신경을 고백합니다.
-                  </div>
+                  개혁신앙인으로서
                 </div>
+                <span class="intro-txt"
+                  >하이델베르크 요리문답, 벨직 신앙고백서, 도르트 신조를
+                  신뢰합니다.</span
+                >
               </div>
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
+            </div>
+            <div class="intro-row">
+              <span class="intro-num">3.</span>
+              <div>
+                <div
                   style="
                     color: #c0392b;
                     font-weight: 800;
                     font-size: 13px;
-                    flex-shrink: 0;
-                    width: 20px;
+                    margin-bottom: 3px;
                   "
-                  >2.</span
                 >
-                <div>
-                  <div
-                    style="
-                      color: #c0392b;
-                      font-weight: 800;
-                      font-size: 13px;
-                      margin-bottom: 3px;
-                    "
-                  >
-                    개혁신앙인으로서
-                  </div>
-                  <div
-                    style="font-size: 12px; color: #475569; line-height: 1.7"
-                  >
-                    개혁교회의 세 일치신조인 하이델베르크 요리문답,
-                    벨직(네덜란드) 신앙고백서, 도르트 신조를 신뢰합니다.
-                  </div>
+                  장로교인으로서
                 </div>
-              </div>
-              <div style="display: flex; gap: 12px; align-items: flex-start">
-                <span
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 13px;
-                    flex-shrink: 0;
-                    width: 20px;
-                  "
-                  >3.</span
+                <span class="intro-txt"
+                  >웨스트민스터 신앙고백서, 대교리문답, 소교리문답을
+                  고백합니다.</span
                 >
-                <div>
-                  <div
-                    style="
-                      color: #c0392b;
-                      font-weight: 800;
-                      font-size: 13px;
-                      margin-bottom: 3px;
-                    "
-                  >
-                    장로교인으로서
-                  </div>
-                  <div
-                    style="font-size: 12px; color: #475569; line-height: 1.7"
-                  >
-                    장로교회의 표준 고백문서인 웨스트민스터 신앙고백서,
-                    대교리문답, 소교리문답을 고백합니다.
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -1482,18 +1358,41 @@
     <!-- ══ 앱 ══ -->
     <div id="appScreen">
       <!-- 헤더 -->
-      <div class="header">
-        <div class="header-left">
-          <div class="header-icon">✝</div>
-          <div>
-            <div class="header-name">장유서은교회</div>
+      <div class="app-header">
+        <div class="app-header-top">
+          <div class="ah-left">
+            <div class="ah-logo">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="40" y="5" width="20" height="90" rx="4" fill="white" />
+                <rect
+                  x="10"
+                  y="25"
+                  width="80"
+                  height="20"
+                  rx="4"
+                  fill="white"
+                />
+                <rect
+                  x="30"
+                  y="55"
+                  width="40"
+                  height="14"
+                  rx="3"
+                  fill="rgba(255,255,255,0.7)"
+                />
+              </svg>
+            </div>
+            <div class="ah-texts">
+              <div class="ah-denom">대한예수교 장로회(고신)</div>
+              <div class="ah-name">장유서은교회</div>
+            </div>
           </div>
-        </div>
-        <div class="header-right">
-          <button class="user-chip" id="userChip" onclick="goPage('settings')">
-            나
-          </button>
-          <button class="icon-btn" onclick="goPage('settings')">☰</button>
+          <div class="ah-right">
+            <button class="ah-btn" onclick="goPage('settings')">🔔</button>
+            <button class="ah-user" id="userChip" onclick="goPage('settings')">
+              나
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1501,15 +1400,14 @@
 
       <!-- ══ 홈 ══ -->
       <div class="page active" id="page-home">
-        <div class="home-hero">
-          <div class="hero-badge">📖 맥체인 365 — 오늘의 본문</div>
-          <div class="hero-date" id="heroDate"></div>
-          <div class="hero-reading" id="heroReading"></div>
+        <div class="home-banner">
+          <div class="hb-badge">📖 맥체인 365 — 오늘의 본문</div>
+          <div class="hb-date" id="heroDate"></div>
+          <div class="hb-reading" id="heroReading"></div>
         </div>
         <div class="section">
-          <!-- 달력 -->
           <div class="card">
-            <div class="card-header">
+            <div class="card-hd">
               <div class="card-title">📅 이번 달 일정</div>
             </div>
             <div class="cal-nav">
@@ -1520,9 +1418,8 @@
             <div class="cal-grid" id="calGrid"></div>
             <div class="ev-box" id="evList"></div>
           </div>
-          <!-- 공지 -->
           <div class="card">
-            <div class="card-header">
+            <div class="card-hd">
               <div class="card-title">📢 최신 공지</div>
               <button class="card-more" onclick="goPage('notice')">
                 더보기 ›
@@ -1530,22 +1427,21 @@
             </div>
             <div id="homeNotice"><div class="empty2">불러오는 중...</div></div>
           </div>
-          <!-- 포도나무 -->
           <div class="card">
-            <div class="card-header">
+            <div class="card-hd">
               <div class="card-title">🍇 말씀 포도나무</div>
-              <span id="h-grape" style="font-size: 28px">🌱</span>
+              <span id="h-grape" style="font-size: 26px">🌱</span>
             </div>
             <div class="grape-mini">
               <div>
-                <div class="grape-pct-big" id="h-pct">0%</div>
-                <div class="grape-streak-chip" id="h-streak">🔥 0일 연속</div>
+                <div class="grape-pct-h" id="h-pct">0%</div>
+                <div class="grape-streak-h" id="h-streak">🔥 0일 연속</div>
               </div>
             </div>
             <div class="bar-bg">
               <div class="bar-fill" id="h-bar" style="width: 0%"></div>
             </div>
-            <button class="btn-primary" onclick="increaseStreak()">
+            <button class="btn-p" onclick="increaseStreak()">
               오늘 말씀 완료 ✅
             </button>
           </div>
@@ -1566,7 +1462,7 @@
                 id="prayerInput"
                 placeholder="기도 제목을 입력하세요"
               />
-              <button class="btn-sm-blue" onclick="addPrayer()">추가</button>
+              <button class="btn-sm" onclick="addPrayer()">추가</button>
             </div>
           </div>
           <div id="prayerList"><div class="empty2">불러오는 중...</div></div>
@@ -1575,11 +1471,11 @@
 
       <!-- ══ 설교 ══ -->
       <div class="page" id="page-sermon">
-        <div class="sermon-page-hero">
-          <div class="sermon-hero-title">🎬 설교 영상</div>
-          <div class="sermon-hero-sub">말씀을 다시 들어보세요</div>
+        <div class="page-hero">
+          <h2>🎬 설교 영상</h2>
+          <p>말씀을 다시 들어보세요</p>
         </div>
-        <div class="video-list" id="sermonList">
+        <div style="padding: 14px" id="sermonList">
           <div class="empty2">불러오는 중...</div>
         </div>
       </div>
@@ -1601,13 +1497,6 @@
         </div>
         <div class="detail-wrap" id="noticeDetail" style="display: none">
           <button class="back-btn" onclick="closeDetail()">← 목록으로</button>
-          <div
-            class="detail-tag 공지"
-            id="detailTag"
-            style="background: #eff6ff; color: #2563eb"
-          >
-            공지
-          </div>
           <div class="detail-title2" id="detailTitle"></div>
           <div class="detail-date2" id="detailDate"></div>
           <div class="detail-body2" id="detailBody"></div>
@@ -1643,7 +1532,7 @@
               <div class="mc-desc">교회 위치 안내</div>
             </div>
           </div>
-          <div style="padding: 0 16px 16px">
+          <div style="padding: 0 14px 14px">
             <div
               class="more-cell"
               style="
@@ -1651,11 +1540,11 @@
                 align-items: center;
                 gap: 12px;
                 text-align: left;
-                padding: 16px 20px;
+                padding: 16px 18px;
               "
               onclick="goPage('settings')"
             >
-              <div style="font-size: 28px">⚙️</div>
+              <div style="font-size: 26px">⚙️</div>
               <div>
                 <div class="mc-label">설정 / 관리자</div>
                 <div class="mc-desc">앱 설정 및 관리자 페이지</div>
@@ -1664,33 +1553,21 @@
           </div>
         </div>
 
-        <!-- 포도나무 상세 -->
+        <!-- 포도나무 -->
         <div class="sub-wrap" id="sub-grape" style="display: none">
           <div class="page-hero">
             <h2>🍇 말씀 포도나무</h2>
             <p>매일 말씀으로 자라가요</p>
           </div>
           <div class="section">
-            <button
-              class="back-btn"
-              onclick="hideSub()"
-              style="margin-bottom: 0"
-            >
-              ← 뒤로
-            </button>
-            <div class="card" style="text-align: center; margin-top: 14px">
+            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
+            <div class="card" style="text-align: center; margin-top: 12px">
               <div class="grape-emoji-big" id="grapeEmoji">🌱</div>
               <div class="grape-pct-full" id="g-pct">0%</div>
               <div class="grape-day-full" id="g-day">0일 / 365일</div>
-              <div
-                class="grape-streak-chip"
-                id="g-streak"
-                style="margin: 10px auto; display: inline-flex"
-              >
-                🔥 0일 연속
-              </div>
-              <div class="bar-bg" style="margin: 16px 0 6px">
-                <div class="bar-fill" id="g-bar" style="width: 0%"></div>
+              <div class="grape-streak-full" id="g-streak">🔥 0일 연속</div>
+              <div class="bar-bg2">
+                <div class="bar-fill2" id="g-bar" style="width: 0%"></div>
               </div>
               <div
                 style="
@@ -1702,7 +1579,7 @@
               >
                 <span>🌱 시작</span><span>🍇 완성</span>
               </div>
-              <button class="btn-primary" onclick="increaseStreak()">
+              <button class="btn-p" onclick="increaseStreak()">
                 오늘 말씀 완료 ✅
               </button>
             </div>
@@ -1723,7 +1600,7 @@
                 id="sharingInput"
                 placeholder="오늘 읽은 말씀이나 은혜를 나눠보세요 ✨"
               ></textarea>
-              <button class="btn-primary" onclick="addSharing()">나누기</button>
+              <button class="btn-p" onclick="addSharing()">나누기</button>
             </div>
             <div id="sharingList"><div class="empty2">불러오는 중...</div></div>
           </div>
@@ -1744,7 +1621,7 @@
                   id="praiseInput"
                   placeholder="찬양 제목 입력"
                 />
-                <button class="btn-sm-blue" onclick="addPraise()">신청</button>
+                <button class="btn-sm" onclick="addPraise()">신청</button>
               </div>
             </div>
             <div id="praiseList"><div class="empty2">불러오는 중...</div></div>
@@ -1760,12 +1637,14 @@
           <button
             class="back-btn"
             onclick="hideSub()"
-            style="padding: 16px 16px 0"
+            style="padding: 16px 14px 0"
           >
             ← 뒤로
           </button>
-          <div class="map-box">🗺️</div>
-          <div class="info-list">
+          <div class="map-box" style="border-radius: 14px; margin: 14px">
+            🗺️
+          </div>
+          <div style="padding: 0 14px">
             <div class="info-row">
               <div class="info-icon-box">🏛️</div>
               <div>
@@ -1811,9 +1690,9 @@
           <h2>⚙️ 설정</h2>
           <p id="settingsUser">안녕하세요!</p>
         </div>
-        <div class="settings-section">
+        <div class="section">
           <div class="card">
-            <div class="admin-section-title">⏰ 알람 시간</div>
+            <div class="adm-sec-title">⏰ 알람 시간</div>
             <div class="s-row">
               <div>
                 <div class="s-label">🙏 기도 알람</div>
@@ -1854,20 +1733,25 @@
                 />
               </div>
             </div>
-            <button class="btn-primary" onclick="showToast('💾 저장됐어요!')">
+            <button class="btn-p" onclick="showToast('💾 저장됐어요!')">
               저장하기 💾
             </button>
           </div>
           <div class="card">
-            <div class="admin-section-title">🔐 관리자</div>
-            <button class="btn-outline" onclick="goPage('admin')">
+            <div class="adm-sec-title">🔐 관리자</div>
+            <button class="btn-o" onclick="goPage('admin')">
               관리자 페이지 →
             </button>
           </div>
           <div class="card">
             <button
-              class="btn-del2"
-              style="width: 100%; padding: 12px; font-size: 14px"
+              class="btn-del"
+              style="
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+                border-radius: 12px;
+              "
               onclick="doLogout()"
             >
               로그아웃
@@ -1882,16 +1766,16 @@
           <h2>🔐 관리자</h2>
           <p>게시물 등록 및 관리</p>
         </div>
-        <div class="settings-section">
+        <div class="section">
           <div class="card" id="adminLoginCard">
-            <div class="admin-section-title">관리자 로그인</div>
+            <div class="adm-sec-title">관리자 로그인</div>
             <input
-              class="inp form-gap"
+              class="inp mb8"
               type="password"
               id="adminPw"
               placeholder="관리자 비밀번호"
             />
-            <button class="btn-primary" onclick="adminLogin()">로그인</button>
+            <button class="btn-p" onclick="adminLogin()">로그인</button>
           </div>
           <div id="adminPanel" style="display: none">
             <div class="card">
@@ -1903,82 +1787,62 @@
                   margin-bottom: 16px;
                 "
               >
-                <div class="admin-section-title" style="margin: 0">
+                <div class="adm-sec-title" style="margin: 0">
                   ✅ 관리자 모드
                 </div>
-                <button class="btn-del2" onclick="adminLogout()">
+                <button class="btn-del" onclick="adminLogout()">
                   로그아웃
                 </button>
               </div>
-
-              <!-- 가입 승인 -->
-              <div class="admin-section-title">⏳ 가입 승인 대기</div>
+              <div class="adm-sec-title">⏳ 가입 승인 대기</div>
               <div id="pendingListAdmin">
                 <div class="empty2">대기 중인 가입이 없어요</div>
               </div>
-              <div style="margin-top: 16px" class="admin-section-title">
-                👤 승인된 교인 목록
+              <div style="margin-top: 16px" class="adm-sec-title">
+                👤 승인된 교인
               </div>
               <div id="userListAdmin"></div>
             </div>
-
             <div class="card">
-              <div class="admin-section-title">📢 공지 등록</div>
-              <input class="inp form-gap" id="noticeTitle" placeholder="제목" />
+              <div class="adm-sec-title">📢 공지 등록</div>
+              <input class="inp mb8" id="noticeTitle" placeholder="제목" />
               <textarea
-                class="inp form-gap"
+                class="inp mb8"
                 id="noticeBody"
                 placeholder="내용"
               ></textarea>
-              <button class="btn-primary" onclick="postNotice()">
-                공지 등록
-              </button>
+              <button class="btn-p" onclick="postNotice()">공지 등록</button>
               <div style="margin-top: 12px" id="adminNoticeList"></div>
             </div>
-
             <div class="card">
-              <div class="admin-section-title">🎬 설교 영상 등록</div>
+              <div class="adm-sec-title">🎬 설교 영상 등록</div>
+              <input class="inp mb8" id="sermonTitle" placeholder="설교 제목" />
               <input
-                class="inp form-gap"
-                id="sermonTitle"
-                placeholder="설교 제목"
-              />
-              <input
-                class="inp form-gap"
+                class="inp mb8"
                 id="sermonSub"
                 placeholder="날짜 · 목사님"
               />
-              <input
-                class="inp form-gap"
-                id="sermonUrl"
-                placeholder="유튜브 링크"
-              />
-              <button class="btn-primary" onclick="postSermon()">
-                영상 등록
-              </button>
+              <input class="inp mb8" id="sermonUrl" placeholder="유튜브 링크" />
+              <button class="btn-p" onclick="postSermon()">영상 등록</button>
               <div style="margin-top: 12px" id="adminSermonList"></div>
             </div>
-
             <div class="card">
-              <div class="admin-section-title">📅 일정 등록</div>
-              <input class="inp form-gap" type="date" id="scheduleDate" />
+              <div class="adm-sec-title">📅 일정 등록</div>
+              <input class="inp mb8" type="date" id="scheduleDate" />
               <input
-                class="inp form-gap"
+                class="inp mb8"
                 id="scheduleName"
                 placeholder="일정 이름"
               />
-              <button class="btn-primary" onclick="postSchedule()">
-                일정 등록
-              </button>
+              <button class="btn-p" onclick="postSchedule()">일정 등록</button>
               <div style="margin-top: 12px" id="adminScheduleList"></div>
             </div>
-
             <div class="card">
-              <div class="admin-section-title">📖 말씀나눔 관리</div>
+              <div class="adm-sec-title">📖 말씀나눔 관리</div>
               <div id="adminSharingList"></div>
             </div>
             <div class="card">
-              <div class="admin-section-title">🎵 찬양신청 관리</div>
+              <div class="adm-sec-title">🎵 찬양신청 관리</div>
               <div id="adminPraiseList"></div>
             </div>
           </div>
@@ -2004,7 +1868,6 @@
         </button>
       </div>
     </div>
-    <!-- /appScreen -->
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -2015,7 +1878,6 @@
         onValue,
         remove,
         update,
-        set,
       } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
       const fc = {
@@ -2034,16 +1896,70 @@
         currentUser = null;
       const G = (n, f) => (window[n] = f);
 
+      // ── 자동 로그인 ──
+      function saveAutoLogin(user) {
+        localStorage.setItem("seun_user", JSON.stringify(user));
+      }
+      function clearAutoLogin() {
+        localStorage.removeItem("seun_user");
+      }
+      function loadAutoLogin() {
+        try {
+          const d = localStorage.getItem("seun_user");
+          return d ? JSON.parse(d) : null;
+        } catch {
+          return null;
+        }
+      }
+
       // ── 화면 전환 ──
-      G("showSignup", () => {
-        document.getElementById("loginCard").style.display = "none";
-        document.getElementById("signupCard").style.display = "block";
-        document.getElementById("pendingCard").style.display = "none";
-      });
       G("showLogin", () => {
         document.getElementById("loginCard").style.display = "block";
         document.getElementById("signupCard").style.display = "none";
         document.getElementById("pendingCard").style.display = "none";
+        document.getElementById("churchInfo").style.display = "block";
+      });
+      G("showSignup", () => {
+        document.getElementById("loginCard").style.display = "none";
+        document.getElementById("signupCard").style.display = "block";
+        document.getElementById("pendingCard").style.display = "none";
+        document.getElementById("churchInfo").style.display = "none";
+      });
+
+      // ── DB ──
+      let usersDB = {},
+        pendingDB = {};
+      onValue(ref(db, "users"), (snap) => {
+        usersDB = snap.val() || {};
+        const el = document.getElementById("userListAdmin");
+        if (el)
+          el.innerHTML =
+            Object.entries(usersDB)
+              .map(
+                ([id, u]) => `
+    <div class="adm-item"><span>✅ ${u.name}</span><button class="btn-del" onclick="deleteUser('${id}')">삭제</button></div>`,
+              )
+              .join("") || '<div class="empty2">없음</div>';
+      });
+      onValue(ref(db, "pending"), (snap) => {
+        pendingDB = snap.val() || {};
+        const el = document.getElementById("pendingListAdmin");
+        if (!el) return;
+        const items = Object.entries(pendingDB);
+        el.innerHTML = items.length
+          ? items
+              .map(
+                ([id, u]) => `
+    <div class="adm-item">
+      <span>⏳ ${u.name}</span>
+      <div style="display:flex;gap:6px">
+        <button class="tag-ans" onclick="approveUser('${id}')">승인</button>
+        <button class="btn-del" onclick="rejectUser('${id}')">거절</button>
+      </div>
+    </div>`,
+              )
+              .join("")
+          : '<div class="empty2">대기 중인 가입이 없어요</div>';
       });
 
       // ── 회원가입 ──
@@ -2064,93 +1980,32 @@
           err.textContent = "비밀번호는 4자 이상이어야 해요";
           return;
         }
-        // 중복 체크
-        const dup = Object.values(usersDB).find((u) => u.name === name);
-        const dupP = Object.values(pendingDB).find((u) => u.name === name);
-        if (dup || dupP) {
+        if (
+          Object.values(usersDB).find((u) => u.name === name) ||
+          Object.values(pendingDB).find((u) => u.name === name)
+        ) {
           err.textContent = "이미 존재하는 이름이에요";
           return;
         }
         push(ref(db, "pending"), { name, pw, date: new Date().toISOString() });
         document.getElementById("signupCard").style.display = "none";
         document.getElementById("pendingCard").style.display = "block";
-        showToast("🙏 가입 신청 완료! 승인 대기 중이에요");
+        showToast("🙏 가입 신청 완료!");
       });
 
       // ── 로그인 ──
-      let usersDB = {},
-        pendingDB = {};
-      onValue(ref(db, "users"), (snap) => {
-        usersDB = snap.val() || {};
-      });
-      onValue(ref(db, "pending"), (snap) => {
-        pendingDB = snap.val() || {};
-        // 관리자 패널 대기 목록 업데이트
-        const el = document.getElementById("pendingListAdmin");
-        if (!el) return;
-        const items = Object.entries(pendingDB);
-        el.innerHTML = items.length
-          ? items
-              .map(
-                ([id, u]) => `
-    <div class="admin-list-item">
-      <span>⏳ ${u.name}</span>
-      <div style="display:flex;gap:6px">
-        <button class="tag-btn tag-ans" onclick="approveUser('${id}')">승인</button>
-        <button class="btn-del2" onclick="rejectUser('${id}')">거절</button>
-      </div>
-    </div>`,
-              )
-              .join("")
-          : '<div class="empty2">대기 중인 가입이 없어요</div>';
-      });
-      onValue(ref(db, "users"), (snap) => {
-        usersDB = snap.val() || {};
-        const el = document.getElementById("userListAdmin");
-        if (!el) return;
-        const items = Object.entries(usersDB);
-        el.innerHTML = items.length
-          ? items
-              .map(
-                ([id, u]) => `
-    <div class="admin-list-item"><span>✅ ${u.name}</span><button class="btn-del2" onclick="deleteUser('${id}')">삭제</button></div>`,
-              )
-              .join("")
-          : '<div class="empty2">승인된 교인이 없어요</div>';
-      });
-
-      G("approveUser", async (id) => {
-        if (!isAdmin) return;
-        const u = pendingDB[id];
-        if (!u) return;
-        await push(ref(db, "users"), {
-          name: u.name,
-          pw: u.pw,
-          date: new Date().toISOString(),
-        });
-        await remove(ref(db, "pending/" + id));
-        showToast("✅ " + u.name + "님 가입 승인!");
-      });
-      G("rejectUser", (id) => {
-        if (!isAdmin) return;
-        if (confirm("가입을 거절할까요?")) remove(ref(db, "pending/" + id));
-        showToast("거절됐어요");
-      });
-      G("deleteUser", (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "users/" + id));
-      });
-
       G("doLogin", () => {
         const name = document.getElementById("loginName").value.trim();
         const pw = document.getElementById("loginPw").value;
         const err = document.getElementById("loginErr");
+        const auto = document.getElementById("autoLoginCheck").checked;
         if (!name || !pw) {
           err.textContent = "이름과 비밀번호를 입력하세요";
           return;
         }
         if (ADMINS.includes(pw)) {
           currentUser = { name, role: "admin" };
+          if (auto) saveAutoLogin({ name, pw, role: "admin" });
           startApp();
           return;
         }
@@ -2159,13 +2014,13 @@
         );
         if (found) {
           currentUser = { name, role: "user" };
+          if (auto) saveAutoLogin({ name, pw, role: "user" });
           startApp();
           return;
         }
-        const pending = Object.values(pendingDB).find(
-          (u) => u.name === name && u.pw === pw,
-        );
-        if (pending) {
+        if (
+          Object.values(pendingDB).find((u) => u.name === name && u.pw === pw)
+        ) {
           err.textContent = "⏳ 아직 승인 대기 중이에요";
           return;
         }
@@ -2185,16 +2040,67 @@
       }
 
       G("doLogout", () => {
+        clearAutoLogin();
         currentUser = null;
-        document.getElementById("loginScreen").style.display = "flex";
+        document.getElementById("loginScreen").style.display = "block";
         document.getElementById("appScreen").style.display = "none";
         document.getElementById("loginCard").style.display = "block";
         document.getElementById("signupCard").style.display = "none";
         document.getElementById("pendingCard").style.display = "none";
+        document.getElementById("churchInfo").style.display = "block";
         document.getElementById("loginName").value = "";
         document.getElementById("loginPw").value = "";
         document.getElementById("loginErr").textContent = "";
+        document.getElementById("autoLoginCheck").checked = false;
         goPage("home");
+      });
+
+      // ── 자동 로그인 체크 ──
+      const saved = loadAutoLogin();
+      if (saved) {
+        // 관리자
+        if (ADMINS.includes(saved.pw)) {
+          currentUser = { name: saved.name, role: "admin" };
+          startApp();
+        } else {
+          // 교인 - DB 로드 후 확인
+          onValue(
+            ref(db, "users"),
+            (snap) => {
+              const u = snap.val() || {};
+              const found = Object.values(u).find(
+                (x) => x.name === saved.name && x.pw === saved.pw,
+              );
+              if (found && !currentUser) {
+                currentUser = { name: saved.name, role: "user" };
+                startApp();
+              }
+            },
+            { onlyOnce: true },
+          );
+        }
+      }
+
+      // ── 승인/거절 ──
+      G("approveUser", async (id) => {
+        if (!isAdmin) return;
+        const u = pendingDB[id];
+        if (!u) return;
+        await push(ref(db, "users"), {
+          name: u.name,
+          pw: u.pw,
+          date: new Date().toISOString(),
+        });
+        await remove(ref(db, "pending/" + id));
+        showToast("✅ " + u.name + "님 승인!");
+      });
+      G("rejectUser", (id) => {
+        if (!isAdmin) return;
+        if (confirm("거절?")) remove(ref(db, "pending/" + id));
+      });
+      G("deleteUser", (id) => {
+        if (!isAdmin) return;
+        if (confirm("삭제?")) remove(ref(db, "users/" + id));
       });
 
       // ── 맥체인 365 ──
@@ -2301,6 +2207,21 @@
         ["레 10", "행 11", "잠 26", "살후 2"],
         ["레 11", "행 12", "잠 27", "살후 3"],
         ["레 12", "행 13", "잠 28", "딤전 1"],
+        ["레 13", "행 14", "잠 29", "딤전 2"],
+        ["레 14", "행 15", "잠 30", "딤전 3"],
+        ["레 15", "행 16", "잠 31", "딤전 4"],
+        ["레 16", "행 17", "전 1", "딤전 5"],
+        ["레 17", "행 18", "전 2", "딤전 6"],
+        ["레 18", "행 19", "전 3", "딤후 1"],
+        ["레 19", "행 20", "전 4", "딤후 2"],
+        ["레 20", "행 21", "전 5", "딤후 3"],
+        ["레 21", "행 22", "전 6", "딤후 4"],
+        ["레 22", "행 23", "전 7", "딛 1"],
+        ["레 23", "행 24", "전 8", "딛 2-3"],
+        ["레 24", "행 25", "전 9", "몬"],
+        ["레 25", "행 26", "전 10", "히 1"],
+        ["레 26", "행 27", "전 11", "히 2"],
+        ["레 27", "행 28", "전 12", "히 3"],
       ];
       const now = new Date();
       const doy =
@@ -2346,11 +2267,8 @@
         const t = document.getElementById("tab-" + id);
         if (t) t.classList.add("active");
         if (id === "more") hideSub();
-        if (id === "notice") {
-          closeDetail();
-        }
+        if (id === "notice") closeDetail();
       });
-
       G("showSub", (sub) => {
         document.getElementById("moreMenu").style.display = "none";
         document
@@ -2365,7 +2283,7 @@
           .forEach((el) => (el.style.display = "none"));
       });
 
-      // ── 날짜 포맷 ──
+      // ── 날짜 ──
       function fd(iso) {
         const d = new Date(iso);
         return `${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
@@ -2433,44 +2351,37 @@
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "notices/" + id));
       });
-
       window._nd = {};
       onValue(ref(db, "notices"), (snap) => {
         window._nd = snap.val() || {};
         const items = Object.entries(window._nd).reverse();
-        const tags = ["공지", "소식", "안내"];
-        const tagColors = [
-          ["#eff6ff", "#2563eb"],
-          ["#f0fdf4", "#16a34a"],
-          ["#fefce8", "#ca8a04"],
+        const tags = [
+          ["#eff6ff", "#1a56db", "공지"],
+          ["#f0fdf4", "#16a34a", "소식"],
+          ["#fefce8", "#ca8a04", "안내"],
         ];
-        function noticeRow(id, n, i) {
-          const ti = i % 3;
-          return `<div class="notice-row" onclick="openDetail('${id}')">
-      <span class="n-tag" style="background:${tagColors[ti][0]};color:${tagColors[ti][1]}">${tags[ti]}</span>
-      <span class="n-title">${n.title}</span>
-      <span class="n-date">${fd(n.date)}</span>
-    </div>`;
-        }
+        const row = (id, n, i) => {
+          const [bg, cl, lb] = tags[i % 3];
+          return `<div class="notice-row" onclick="openDetail('${id}')"><span class="n-tag" style="background:${bg};color:${cl}">${lb}</span><span class="n-title">${n.title}</span><span class="n-date">${fd(n.date)}</span></div>`;
+        };
         document.getElementById("homeNotice").innerHTML = items.length
           ? items
               .slice(0, 3)
-              .map(([id, n], i) => noticeRow(id, n, i))
+              .map(([id, n], i) => row(id, n, i))
               .join("")
           : '<div class="empty2">공지가 없어요</div>';
         document.getElementById("noticeList").innerHTML = items.length
-          ? items.map(([id, n], i) => noticeRow(id, n, i)).join("")
+          ? items.map(([id, n], i) => row(id, n, i)).join("")
           : '<div class="empty2">공지가 없어요</div>';
         document.getElementById("adminNoticeList").innerHTML = items.length
           ? items
               .map(
                 ([id, n]) =>
-                  `<div class="admin-list-item"><span>${n.title}</span><button class="btn-del2" onclick="deleteNotice('${id}')">삭제</button></div>`,
+                  `<div class="adm-item"><span>${n.title}</span><button class="btn-del" onclick="deleteNotice('${id}')">삭제</button></div>`,
               )
               .join("")
           : "";
       });
-
       G("openDetail", (id) => {
         const n = window._nd[id];
         document.getElementById("noticeListView").style.display = "none";
@@ -2509,7 +2420,6 @@
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "sermons/" + id));
       });
-
       function getVid(u) {
         const m = (u || "").match(/(?:v=|youtu\.be\/)([^&\s]+)/);
         return m ? m[1] : null;
@@ -2522,16 +2432,9 @@
           ? items
               .map(([id, s]) => {
                 const vid = getVid(s.url);
-                const thumbContent = vid
-                  ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<div class=v-thumb-ph>🎬</div>'"/>`
-                  : "";
                 return `<${s.url ? `a href="${s.url}" target="_blank" rel="noopener"` : "div"} class="video-card">
-      <div class="v-thumb">${vid ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover;"/><div class="v-play">▶</div>` : '<div class="v-thumb-ph">🎬</div>'}</div>
-      <div class="v-info">
-        <div class="v-title">${s.title}</div>
-        <div class="v-sub">${s.sub || ""}</div>
-        ${s.url ? '<div class="v-badge">▶ YouTube</div>' : '<div style="display:inline-block;background:#f1f5f9;color:#94a3b8;border-radius:8px;padding:3px 8px;font-size:11px;margin-top:6px">준비 중</div>'}
-      </div>
+      <div class="v-thumb">${vid ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover"/><div class="v-play">▶</div>` : '<div class="v-thumb-ph">🎬</div>'}</div>
+      <div class="v-info"><div class="v-title">${s.title}</div><div class="v-sub">${s.sub || ""}</div>${s.url ? '<div class="v-badge">▶ YouTube</div>' : ""}</div>
     </${s.url ? "a" : "div"}>`;
               })
               .join("")
@@ -2540,7 +2443,7 @@
           ? items
               .map(
                 ([id, s]) =>
-                  `<div class="admin-list-item"><span>${s.title}</span><button class="btn-del2" onclick="deleteSermon('${id}')">삭제</button></div>`,
+                  `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteSermon('${id}')">삭제</button></div>`,
               )
               .join("")
           : "";
@@ -2571,7 +2474,6 @@
       G("answerPrayer", (id) =>
         update(ref(db, "prayers/" + id), { answered: true }),
       );
-
       onValue(ref(db, "prayers"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -2579,13 +2481,13 @@
           ? items
               .map(
                 ([id, p]) => `
-    <div class="prayer-card ${p.answered ? "prayer-answered" : ""}" style="margin:0 16px 10px">
-      <div class="prayer-text2">${p.answered ? "✅ " : ""} ${p.text}</div>
-      <div class="prayer-foot">
-        <div class="prayer-time">${p.author ? p.author + " · " : ""}${fdt(p.date)}</div>
-        <div class="prayer-btns">
-          ${!p.answered ? `<button class="tag-btn tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}
-          <button class="tag-btn tag-del" onclick="deletePrayer('${id}')">삭제</button>
+    <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 14px 8px">
+      <div class="item-text">${p.answered ? "✅ " : ""} ${p.text}</div>
+      <div class="item-meta">
+        <span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span>
+        <div class="item-acts">
+          ${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}
+          <button class="tag-del" onclick="deletePrayer('${id}')">삭제</button>
         </div>
       </div>
     </div>`,
@@ -2610,7 +2512,6 @@
         showToast("📖 말씀 나눔 등록!");
       });
       G("deleteSharing", (id) => remove(ref(db, "sharings/" + id)));
-
       onValue(ref(db, "sharings"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -2618,12 +2519,9 @@
           ? items
               .map(
                 ([id, s]) => `
-    <div class="sharing-card">
-      <div class="sharing-text2">${s.text}</div>
-      <div class="sharing-foot">
-        <span style="font-size:11px;color:var(--sub)">${s.author ? s.author + " · " : ""}${fdt(s.date)}</span>
-        <button class="tag-btn tag-del" onclick="deleteSharing('${id}')">삭제</button>
-      </div>
+    <div class="list-item">
+      <div class="item-text">${s.text}</div>
+      <div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="deleteSharing('${id}')">삭제</button></div>
     </div>`,
               )
               .join("")
@@ -2632,7 +2530,7 @@
           ? items
               .map(
                 ([id, s]) =>
-                  `<div class="admin-list-item"><span>${s.text.slice(0, 20)}</span><button class="btn-del2" onclick="deleteSharing('${id}')">삭제</button></div>`,
+                  `<div class="adm-item"><span>${s.text.slice(0, 20)}</span><button class="btn-del" onclick="deleteSharing('${id}')">삭제</button></div>`,
               )
               .join("")
           : '<div class="empty2">없음</div>';
@@ -2658,7 +2556,6 @@
       G("likePraise", (id, cur) =>
         update(ref(db, "praises/" + id), { likes: cur + 1 }),
       );
-
       onValue(ref(db, "praises"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -2666,11 +2563,11 @@
           ? items
               .map(
                 ([id, p]) => `
-    <div class="song-card">
-      <div><div class="song-title" style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
-      <div class="song-right">
-        <button class="tag-btn tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button>
-        <button class="tag-btn tag-del" onclick="deletePraise('${id}')">삭제</button>
+    <div class="list-item" style="display:flex;justify-content:space-between;align-items:center;">
+      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
+      <div style="display:flex;gap:6px">
+        <button class="tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button>
+        <button class="tag-del" onclick="deletePraise('${id}')">삭제</button>
       </div>
     </div>`,
               )
@@ -2680,7 +2577,7 @@
           ? items
               .map(
                 ([id, p]) =>
-                  `<div class="admin-list-item"><span>${p.title}</span><button class="btn-del2" onclick="deletePraise('${id}')">삭제</button></div>`,
+                  `<div class="adm-item"><span>${p.title}</span><button class="btn-del" onclick="deletePraise('${id}')">삭제</button></div>`,
               )
               .join("")
           : '<div class="empty2">없음</div>';
@@ -2704,7 +2601,6 @@
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "schedules/" + id));
       });
-
       window._sd = {};
       onValue(ref(db, "schedules"), (snap) => {
         window._sd = snap.val() || {};
@@ -2715,7 +2611,7 @@
           ? Object.entries(window._sd)
               .map(
                 ([id, s]) =>
-                  `<div class="admin-list-item"><span>${s.date} · ${s.name}</span><button class="btn-del2" onclick="deleteSchedule('${id}')">삭제</button></div>`,
+                  `<div class="adm-item"><span>${s.date} · ${s.name}</span><button class="btn-del" onclick="deleteSchedule('${id}')">삭제</button></div>`,
               )
               .join("")
           : '<div class="empty2">없음</div>';
