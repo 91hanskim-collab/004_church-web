@@ -13,14 +13,14 @@
     <meta name="theme-color" content="#2563eb" />
     <title>장유서은교회</title>
 
-    <!-- PWA 아이콘 (SVG 인라인 → data URI) -->
+    <!-- PWA 아이콘 -->
     <link
       rel="apple-touch-icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='white'/%3E%3Ctext x='256' y='200' font-size='200' text-anchor='middle' dominant-baseline='middle' fill='%232563eb'%3E✝%3C/text%3E%3Ctext x='256' y='380' font-size='72' font-weight='bold' text-anchor='middle' fill='%231e3a6e' font-family='Arial'%3E서은%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='white'/%3E%3Cg transform='translate(90,40) scale(0.65)'%3E%3Cpath d='M230 20 L290 20 L290 180 L420 180 L420 240 L290 240 L290 310 L370 310 L370 370 L230 370 L230 240 L100 240 L100 180 L230 180 Z' fill='%231a56db'/%3E%3Cpath d='M180 160 Q230 110 280 160' fill='none' stroke='white' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M230 110 Q280 60 330 110' fill='none' stroke='white' stroke-width='18' stroke-linecap='round'/%3E%3C/g%3E%3Ctext x='256' y='460' font-size='52' font-weight='900' text-anchor='middle' fill='%231e3a6e' font-family='Arial'%3E서은%3C/text%3E%3C/svg%3E"
     />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%232563eb'/%3E%3Ctext x='256' y='256' font-size='280' text-anchor='middle' dominant-baseline='middle' fill='white'%3E✝%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='white'/%3E%3Cg transform='translate(90,40) scale(0.65)'%3E%3Cpath d='M230 20 L290 20 L290 180 L420 180 L420 240 L290 240 L290 310 L370 310 L370 370 L230 370 L230 240 L100 240 L100 180 L230 180 Z' fill='%231a56db'/%3E%3C/g%3E%3C/svg%3E"
     />
 
     <style>
@@ -278,7 +278,7 @@
         display: none;
       }
 
-      /* 홈 상단 헤더 */
+      /* 홈 상단 헤더 — 두번째 이미지 스타일 */
       .app-header {
         background: #fff;
         border-bottom: 1px solid var(--border);
@@ -287,7 +287,7 @@
         z-index: 100;
       }
       .app-header-top {
-        padding: 12px 16px;
+        padding: 10px 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -298,17 +298,18 @@
         gap: 10px;
       }
       .ah-logo {
-        width: 36px;
-        height: 36px;
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
-        border-radius: 10px;
+        width: 44px;
+        height: 44px;
+        background: #fff;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
+        border: 1px solid var(--border);
       }
       .ah-logo svg {
-        width: 24px;
-        height: 24px;
+        width: 38px;
+        height: 38px;
       }
       .ah-texts {
       }
@@ -318,10 +319,10 @@
         font-weight: 600;
       }
       .ah-name {
-        font-size: 15px;
-        font-weight: 800;
+        font-size: 16px;
+        font-weight: 900;
         color: var(--text);
-        letter-spacing: -0.3px;
+        letter-spacing: -0.5px;
       }
       .ah-right {
         display: flex;
@@ -329,8 +330,8 @@
         gap: 8px;
       }
       .ah-btn {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
         background: var(--bg);
         border: none;
         border-radius: 50%;
@@ -338,15 +339,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
+        font-size: 18px;
       }
       .ah-user {
         background: linear-gradient(135deg, #1e3a6e, #2563eb);
         color: #fff;
         border: none;
         border-radius: 999px;
-        padding: 5px 14px;
-        font-size: 12px;
+        padding: 6px 16px;
+        font-size: 13px;
         font-weight: 700;
         cursor: pointer;
       }
@@ -360,28 +361,40 @@
         display: block;
       }
 
-      /* 홈 히어로 배너 */
+      /* 홈 히어로 배너 — 두번째 이미지처럼 */
       .home-banner {
         background: linear-gradient(
           135deg,
           #1a56db 0%,
-          #3b82f6 60%,
-          #38bdf8 100%
+          #2d7dd2 50%,
+          #56aee8 100%
         );
         margin: 0;
-        padding: 20px 18px 24px;
+        padding: 22px 18px 26px;
         position: relative;
         overflow: hidden;
+        border-radius: 0 0 0 0;
+      }
+      .home-banner::before {
+        content: "";
+        position: absolute;
+        right: -10px;
+        top: 0;
+        bottom: 0;
+        width: 120px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 Q30 20 35 45 Q20 50 25 70 Q40 90 60 80 Q80 70 75 50 Q85 35 70 20 Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E")
+          no-repeat center/contain;
+        opacity: 0.6;
       }
       .home-banner::after {
         content: "";
         position: absolute;
-        right: -30px;
-        top: -30px;
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
+        right: 10px;
+        top: 10px;
+        width: 80px;
+        height: 80px;
         background: rgba(255, 255, 255, 0.06);
+        border-radius: 50%;
       }
       .hb-badge {
         display: inline-flex;
@@ -393,20 +406,22 @@
         font-size: 11px;
         color: #fff;
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        letter-spacing: 0.3px;
       }
       .hb-date {
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 900;
         color: #fff;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
         letter-spacing: -0.5px;
       }
       .hb-reading {
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255, 255, 255, 0.92);
         font-weight: 500;
-        line-height: 1.6;
+        line-height: 1.7;
+        letter-spacing: 0.2px;
       }
 
       /* 섹션/카드 */
@@ -1123,23 +1138,59 @@
       <div class="ls-header">
         <div class="ls-logo-wrap">
           <div class="ls-logo">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <rect x="40" y="5" width="20" height="90" rx="4" fill="#1e3a6e" />
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <rect
-                x="10"
-                y="25"
-                width="80"
-                height="20"
-                rx="4"
-                fill="#1e3a6e"
+                x="85"
+                y="8"
+                width="30"
+                height="120"
+                rx="6"
+                fill="#1a56db"
               />
               <rect
                 x="30"
                 y="55"
-                width="40"
-                height="14"
-                rx="3"
-                fill="#2563eb"
+                width="140"
+                height="30"
+                rx="6"
+                fill="#1a56db"
+              />
+              <rect
+                x="70"
+                y="128"
+                width="60"
+                height="22"
+                rx="5"
+                fill="#2d7dd2"
+              />
+              <path
+                d="M85 30 Q100 18 115 30"
+                fill="none"
+                stroke="#fff"
+                stroke-width="7"
+                stroke-linecap="round"
+              />
+              <path
+                d="M72 52 Q100 35 128 52"
+                fill="none"
+                stroke="rgba(255,255,255,0.6)"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M20 165 Q50 150 80 165 Q110 180 140 165 Q170 150 190 165"
+                fill="none"
+                stroke="#1a56db"
+                stroke-width="8"
+                stroke-linecap="round"
+              />
+              <path
+                d="M10 182 Q45 167 75 182 Q105 197 135 182 Q165 167 195 182"
+                fill="none"
+                stroke="#2d9cdb"
+                stroke-width="6"
+                stroke-linecap="round"
+                opacity=".6"
               />
             </svg>
           </div>
@@ -1148,7 +1199,6 @@
             <div class="ls-church">장유서은교회</div>
           </div>
         </div>
-        <div class="ls-slogan">부흥 · 정통 · 회복</div>
       </div>
 
       <div class="ls-body">
@@ -1357,28 +1407,66 @@
 
     <!-- ══ 앱 ══ -->
     <div id="appScreen">
-      <!-- 헤더 -->
       <div class="app-header">
         <div class="app-header-top">
           <div class="ah-left">
             <div class="ah-logo">
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <rect x="40" y="5" width="20" height="90" rx="4" fill="white" />
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- 십자가+책 로고 -->
                 <rect
-                  x="10"
-                  y="25"
-                  width="80"
-                  height="20"
-                  rx="4"
-                  fill="white"
+                  x="85"
+                  y="8"
+                  width="30"
+                  height="120"
+                  rx="6"
+                  fill="#1a56db"
                 />
                 <rect
                   x="30"
                   y="55"
-                  width="40"
-                  height="14"
-                  rx="3"
-                  fill="rgba(255,255,255,0.7)"
+                  width="140"
+                  height="30"
+                  rx="6"
+                  fill="#1a56db"
+                />
+                <rect
+                  x="70"
+                  y="128"
+                  width="60"
+                  height="22"
+                  rx="5"
+                  fill="#2d7dd2"
+                />
+                <!-- 책 날개 -->
+                <path
+                  d="M85 30 Q100 18 115 30"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-width="7"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M72 52 Q100 35 128 52"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.6)"
+                  stroke-width="5"
+                  stroke-linecap="round"
+                />
+                <!-- 물결 -->
+                <path
+                  d="M20 165 Q50 150 80 165 Q110 180 140 165 Q170 150 190 165"
+                  fill="none"
+                  stroke="#1a56db"
+                  stroke-width="8"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M10 182 Q45 167 75 182 Q105 197 135 182 Q165 167 195 182"
+                  fill="none"
+                  stroke="#2d9cdb"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  opacity=".6"
                 />
               </svg>
             </div>

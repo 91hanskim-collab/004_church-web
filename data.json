@@ -1,10 +1,8 @@
 {
-  "pending": {},
-  "users": {
-    "user1": {
-      "name": "김한성",
-      "pw": "tjd13574",
-      "date": "2026-04-25T15:22:01.958Z"
-    }
+  "user1": {
+    "name": "김한성",
+    "pw": "tjd13574",
+    "date": "2026-04-25T15:22:01.958Z",
+    "isApproved": true
   }
 }
