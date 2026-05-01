@@ -1,2799 +1,1011 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="장유서은교회" />
-    <meta name="theme-color" content="#2563eb" />
-    <title>장유서은교회</title>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="장유서은교회"/>
+<meta name="theme-color" content="#2563eb"/>
+<title>장유서은교회</title>
 
-    <!-- PWA 아이콘 -->
-    <link
-      rel="apple-touch-icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='white'/%3E%3Cg transform='translate(90,40) scale(0.65)'%3E%3Cpath d='M230 20 L290 20 L290 180 L420 180 L420 240 L290 240 L290 310 L370 310 L370 370 L230 370 L230 240 L100 240 L100 180 L230 180 Z' fill='%231a56db'/%3E%3Cpath d='M180 160 Q230 110 280 160' fill='none' stroke='white' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M230 110 Q280 60 330 110' fill='none' stroke='white' stroke-width='18' stroke-linecap='round'/%3E%3C/g%3E%3Ctext x='256' y='460' font-size='52' font-weight='900' text-anchor='middle' fill='%231e3a6e' font-family='Arial'%3E서은%3C/text%3E%3C/svg%3E"
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='white'/%3E%3Cg transform='translate(90,40) scale(0.65)'%3E%3Cpath d='M230 20 L290 20 L290 180 L420 180 L420 240 L290 240 L290 310 L370 310 L370 370 L230 370 L230 240 L100 240 L100 180 L230 180 Z' fill='%231a56db'/%3E%3C/g%3E%3C/svg%3E"
-    />
+<!-- PWA 아이콘 -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='white'/%3E%3Cg transform='translate(90,40) scale(0.65)'%3E%3Cpath d='M230 20 L290 20 L290 180 L420 180 L420 240 L290 240 L290 310 L370 310 L370 370 L230 370 L230 240 L100 240 L100 180 L230 180 Z' fill='%231a56db'/%3E%3Cpath d='M180 160 Q230 110 280 160' fill='none' stroke='white' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M230 110 Q280 60 330 110' fill='none' stroke='white' stroke-width='18' stroke-linecap='round'/%3E%3C/g%3E%3Ctext x='256' y='460' font-size='52' font-weight='900' text-anchor='middle' fill='%231e3a6e' font-family='Arial'%3E서은%3C/text%3E%3C/svg%3E"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='white'/%3E%3Cg transform='translate(90,40) scale(0.65)'%3E%3Cpath d='M230 20 L290 20 L290 180 L420 180 L420 240 L290 240 L290 310 L370 310 L370 370 L230 370 L230 240 L100 240 L100 180 L230 180 Z' fill='%231a56db'/%3E%3C/g%3E%3C/svg%3E"/>
 
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      :root {
-        --blue: #1a56db;
-        --blue2: #1e3a6e;
-        --blue-light: #eff6ff;
-        --bg: #f1f5f9;
-        --card: #fff;
-        --border: #e2e8f0;
-        --text: #1e293b;
-        --sub: #64748b;
-        --radius: 16px;
-      }
-      body {
-        font-family: "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
-        background: var(--bg);
-        max-width: 420px;
-        margin: 0 auto;
-        min-height: 100vh;
-        color: var(--text);
-        overflow-x: hidden;
-      }
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#1a56db;--blue2:#1e3a6e;--blue-light:#eff6ff;
+  --bg:#f1f5f9;--card:#fff;--border:#e2e8f0;
+  --text:#1e293b;--sub:#64748b;--radius:16px;
+}
+body{font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;background:var(--bg);max-width:420px;margin:0 auto;min-height:100vh;color:var(--text);overflow-x:hidden;}
 
-      /* ── 로그인 ── */
-      #loginScreen {
-        position: fixed;
-        inset: 0;
-        overflow-y: auto;
-        background: #f8fafc;
-        z-index: 9999;
-        max-width: 420px;
-        margin: 0 auto;
-      }
-      .ls-header {
-        background: linear-gradient(
-          160deg,
-          #1e3a6e 0%,
-          #2563eb 60%,
-          #38bdf8 100%
-        );
-        padding: 40px 24px 32px;
-        position: relative;
-        overflow: hidden;
-      }
-      .ls-header::before {
-        content: "";
-        position: absolute;
-        bottom: -40px;
-        left: -20px;
-        right: -20px;
-        height: 80px;
-        background: #f8fafc;
-        border-radius: 50%;
-      }
-      .ls-logo-wrap {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        margin-bottom: 16px;
-        position: relative;
-        z-index: 1;
-      }
-      .ls-logo {
-        width: 64px;
-        height: 64px;
-        background: #fff;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-      }
-      .ls-logo svg {
-        width: 44px;
-        height: 44px;
-      }
-      .ls-name {
-        color: #fff;
-      }
-      .ls-denom {
-        font-size: 11px;
-        opacity: 0.8;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        margin-bottom: 4px;
-      }
-      .ls-church {
-        font-size: 24px;
-        font-weight: 900;
-        letter-spacing: -0.5px;
-      }
-      .ls-slogan {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.75);
-        position: relative;
-        z-index: 1;
-      }
+/* ── 로그인 ── */
+#loginScreen{position:fixed;inset:0;overflow-y:auto;background:#f8fafc;z-index:9999;max-width:420px;margin:0 auto;}
+.ls-header{background:linear-gradient(160deg,#1e3a6e 0%,#2563eb 60%,#38bdf8 100%);padding:40px 24px 32px;position:relative;overflow:hidden;}
+.ls-header::before{content:'';position:absolute;bottom:-40px;left:-20px;right:-20px;height:80px;background:#f8fafc;border-radius:50%;}
+.ls-logo-wrap{display:flex;align-items:center;gap:14px;margin-bottom:16px;position:relative;z-index:1;}
+.ls-logo{width:64px;height:64px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.15);}
+.ls-logo svg{width:44px;height:44px;}
+.ls-name{color:#fff;}
+.ls-denom{font-size:11px;opacity:.8;font-weight:600;letter-spacing:.5px;margin-bottom:4px;}
+.ls-church{font-size:24px;font-weight:900;letter-spacing:-.5px;}
+.ls-slogan{font-size:12px;color:rgba(255,255,255,.75);position:relative;z-index:1;}
 
-      .ls-body {
-        padding: 32px 20px 20px;
-      }
-      .ls-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 24px;
-        border: 1px solid var(--border);
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        margin-bottom: 12px;
-      }
-      .ls-card h2 {
-        font-size: 18px;
-        font-weight: 800;
-        margin-bottom: 4px;
-      }
-      .ls-card p {
-        font-size: 12px;
-        color: var(--sub);
-        margin-bottom: 18px;
-      }
-      .l-inp {
-        width: 100%;
-        padding: 13px 16px;
-        border: 1.5px solid var(--border);
-        border-radius: 12px;
-        font-size: 15px;
-        outline: none;
-        margin-bottom: 10px;
-        background: #f8fafc;
-      }
-      .l-inp:focus {
-        border-color: var(--blue);
-        background: #fff;
-      }
-      .l-btn-main {
-        width: 100%;
-        padding: 14px;
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
-        color: #fff;
-        border: none;
-        border-radius: 12px;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-bottom: 8px;
-      }
-      .l-btn-main:active {
-        opacity: 0.9;
-      }
-      .l-btn-sub {
-        width: 100%;
-        padding: 13px;
-        background: #fff;
-        color: var(--blue);
-        border: 2px solid var(--blue);
-        border-radius: 12px;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .l-err {
-        color: #ef4444;
-        font-size: 13px;
-        text-align: center;
-        min-height: 18px;
-        margin-top: 6px;
-      }
-      .auto-login-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 10px;
-      }
-      .auto-login-row input {
-        width: 18px;
-        height: 18px;
-        accent-color: var(--blue);
-        cursor: pointer;
-      }
-      .auto-login-row label {
-        font-size: 13px;
-        color: var(--sub);
-        cursor: pointer;
-      }
-      .pending-box {
-        text-align: center;
-        padding: 10px 0;
-      }
-      .pending-box .pi {
-        font-size: 52px;
-        margin-bottom: 12px;
-      }
-      .pending-box h3 {
-        font-size: 17px;
-        font-weight: 800;
-        margin-bottom: 8px;
-      }
-      .pending-box p {
-        font-size: 13px;
-        color: var(--sub);
-        line-height: 1.8;
-      }
+.ls-body{padding:32px 20px 20px;}
+.ls-card{background:#fff;border-radius:20px;padding:24px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:12px;}
+.ls-card h2{font-size:18px;font-weight:800;margin-bottom:4px;}
+.ls-card p{font-size:12px;color:var(--sub);margin-bottom:18px;}
+.l-inp{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;outline:none;margin-bottom:10px;background:#f8fafc;}
+.l-inp:focus{border-color:var(--blue);background:#fff;}
+.l-btn-main{width:100%;padding:14px;background:linear-gradient(135deg,#1e3a6e,#2563eb);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:8px;}
+.l-btn-main:active{opacity:.9;}
+.l-btn-sub{width:100%;padding:13px;background:#fff;color:var(--blue);border:2px solid var(--blue);border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;}
+.l-err{color:#ef4444;font-size:13px;text-align:center;min-height:18px;margin-top:6px;}
+.auto-login-row{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.auto-login-row input{width:18px;height:18px;accent-color:var(--blue);cursor:pointer;}
+.auto-login-row label{font-size:13px;color:var(--sub);cursor:pointer;}
+.pending-box{text-align:center;padding:10px 0;}
+.pending-box .pi{font-size:52px;margin-bottom:12px;}
+.pending-box h3{font-size:17px;font-weight:800;margin-bottom:8px;}
+.pending-box p{font-size:13px;color:var(--sub);line-height:1.8;}
 
-      /* 교회소개 카드 */
-      .intro-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 20px;
-        border: 1px solid var(--border);
-        margin-bottom: 12px;
-      }
-      .intro-header {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
-        color: #fff;
-        border-radius: 10px;
-        padding: 10px 16px;
-        font-size: 14px;
-        font-weight: 800;
-        margin-bottom: 16px;
-      }
-      .intro-row {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        margin-bottom: 12px;
-      }
-      .intro-row:last-child {
-        margin-bottom: 0;
-      }
-      .intro-num {
-        color: #c0392b;
-        font-weight: 800;
-        font-size: 14px;
-        flex-shrink: 0;
-        width: 18px;
-      }
-      .intro-key {
-        color: #c0392b;
-        font-weight: 800;
-        margin-right: 6px;
-      }
-      .intro-txt {
-        font-size: 13px;
-        color: #334155;
-        line-height: 1.6;
-      }
+/* 교회소개 카드 */
+.intro-card{background:#fff;border-radius:20px;padding:20px;border:1px solid var(--border);margin-bottom:12px;}
+.intro-header{background:linear-gradient(135deg,#1e3a6e,#2563eb);color:#fff;border-radius:10px;padding:10px 16px;font-size:14px;font-weight:800;margin-bottom:16px;}
+.intro-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;}
+.intro-row:last-child{margin-bottom:0;}
+.intro-num{color:#c0392b;font-weight:800;font-size:14px;flex-shrink:0;width:18px;}
+.intro-key{color:#c0392b;font-weight:800;margin-right:6px;}
+.intro-txt{font-size:13px;color:#334155;line-height:1.6;}
 
-      /* ── 앱 ── */
-      #appScreen {
-        display: none;
-      }
+/* ── 앱 ── */
+#appScreen{display:none;}
 
-      /* 홈 상단 헤더 — 두번째 이미지 스타일 */
-      .app-header {
-        background: #fff;
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .app-header-top {
-        padding: 10px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .ah-left {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .ah-logo {
-        width: 44px;
-        height: 44px;
-        background: #fff;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--border);
-      }
-      .ah-logo svg {
-        width: 38px;
-        height: 38px;
-      }
-      .ah-texts {
-      }
-      .ah-denom {
-        font-size: 10px;
-        color: var(--sub);
-        font-weight: 600;
-      }
-      .ah-name {
-        font-size: 16px;
-        font-weight: 900;
-        color: var(--text);
-        letter-spacing: -0.5px;
-      }
-      .ah-right {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .ah-btn {
-        width: 38px;
-        height: 38px;
-        background: var(--bg);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-      }
-      .ah-user {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
-        color: #fff;
-        border: none;
-        border-radius: 999px;
-        padding: 6px 16px;
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-      }
+/* 홈 상단 헤더 — 두번째 이미지 스타일 */
+.app-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.app-header-top{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;}
+.ah-left{display:flex;align-items:center;gap:10px;}
+.ah-logo{width:44px;height:44px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);}
+.ah-logo svg{width:38px;height:38px;}
+.ah-texts{}
+.ah-denom{font-size:10px;color:var(--sub);font-weight:600;}
+.ah-name{font-size:16px;font-weight:900;color:var(--text);letter-spacing:-.5px;}
+.ah-right{display:flex;align-items:center;gap:8px;}
+.ah-btn{width:38px;height:38px;background:var(--bg);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.ah-user{background:linear-gradient(135deg,#1e3a6e,#2563eb);color:#fff;border:none;border-radius:999px;padding:6px 16px;font-size:13px;font-weight:700;cursor:pointer;}
 
-      /* 페이지 */
-      .page {
-        display: none;
-        padding-bottom: 90px;
-      }
-      .page.active {
-        display: block;
-      }
+/* 페이지 */
+.page{display:none;padding-bottom:90px;}
+.page.active{display:block;}
 
-      /* 홈 히어로 배너 — 두번째 이미지처럼 */
-      .home-banner {
-        background: linear-gradient(
-          135deg,
-          #1a56db 0%,
-          #2d7dd2 50%,
-          #56aee8 100%
-        );
-        margin: 0;
-        padding: 22px 18px 26px;
-        position: relative;
-        overflow: hidden;
-        border-radius: 0 0 0 0;
-      }
-      .home-banner::before {
-        content: "";
-        position: absolute;
-        right: -10px;
-        top: 0;
-        bottom: 0;
-        width: 120px;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 Q30 20 35 45 Q20 50 25 70 Q40 90 60 80 Q80 70 75 50 Q85 35 70 20 Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E")
-          no-repeat center/contain;
-        opacity: 0.6;
-      }
-      .home-banner::after {
-        content: "";
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        width: 80px;
-        height: 80px;
-        background: rgba(255, 255, 255, 0.06);
-        border-radius: 50%;
-      }
-      .hb-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 999px;
-        padding: 4px 12px;
-        font-size: 11px;
-        color: #fff;
-        font-weight: 600;
-        margin-bottom: 12px;
-        letter-spacing: 0.3px;
-      }
-      .hb-date {
-        font-size: 26px;
-        font-weight: 900;
-        color: #fff;
-        margin-bottom: 8px;
-        letter-spacing: -0.5px;
-      }
-      .hb-reading {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.92);
-        font-weight: 500;
-        line-height: 1.7;
-        letter-spacing: 0.2px;
-      }
+/* 홈 히어로 배너 — 두번째 이미지처럼 */
+.home-banner{background:linear-gradient(135deg,#1a56db 0%,#2d7dd2 50%,#56aee8 100%);margin:0;padding:22px 18px 26px;position:relative;overflow:hidden;border-radius:0 0 0 0;}
+.home-banner::before{content:'';position:absolute;right:-10px;top:0;bottom:0;width:120px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 Q30 20 35 45 Q20 50 25 70 Q40 90 60 80 Q80 70 75 50 Q85 35 70 20 Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") no-repeat center/contain;opacity:.6;}
+.home-banner::after{content:'';position:absolute;right:10px;top:10px;width:80px;height:80px;background:rgba(255,255,255,.06);border-radius:50%;}
+.hb-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.2);border-radius:999px;padding:4px 12px;font-size:11px;color:#fff;font-weight:600;margin-bottom:12px;letter-spacing:.3px;}
+.hb-date{font-size:26px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.5px;}
+.hb-reading{font-size:14px;color:rgba(255,255,255,.92);font-weight:500;line-height:1.7;letter-spacing:.2px;}
 
-      /* 섹션/카드 */
-      .section {
-        padding: 14px 14px 0;
-      }
-      .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 18px;
-        margin-bottom: 12px;
-        border: 1px solid var(--border);
-      }
-      .card-hd {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 14px;
-      }
-      .card-title {
-        font-size: 14px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      .card-more {
-        font-size: 12px;
-        color: var(--blue);
-        font-weight: 600;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
+/* 섹션/카드 */
+.section{padding:14px 14px 0;}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:12px;border:1px solid var(--border);}
+.card-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.card-title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.card-more{font-size:12px;color:var(--blue);font-weight:600;background:none;border:none;cursor:pointer;}
 
-      /* 달력 */
-      .cal-nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      .cal-nav-btn {
-        background: var(--bg);
-        border: none;
-        width: 30px;
-        height: 30px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .cal-nav span {
-        font-size: 14px;
-        font-weight: 700;
-      }
-      .cal-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 2px;
-        text-align: center;
-      }
-      .cal-dn {
-        font-size: 10px;
-        color: var(--sub);
-        padding: 3px 0;
-        font-weight: 600;
-      }
-      .cal-d {
-        font-size: 12px;
-        height: 32px;
-        border-radius: 8px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        font-weight: 500;
-      }
-      .cal-d:hover {
-        background: var(--blue-light);
-      }
-      .cal-d.today {
-        background: var(--blue);
-        color: #fff;
-        font-weight: 700;
-        border-radius: 50%;
-      }
-      .cal-d.has-ev::after {
-        content: "";
-        width: 4px;
-        height: 4px;
-        background: #f59e0b;
-        border-radius: 50%;
-        position: absolute;
-        bottom: 2px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .cal-d.other {
-        color: #cbd5e1;
-      }
-      .ev-box {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      .ev-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: var(--blue-light);
-        border-radius: 10px;
-        padding: 9px 12px;
-        font-size: 12px;
-      }
-      .ev-dot {
-        width: 6px;
-        height: 6px;
-        background: var(--blue);
-        border-radius: 50%;
-        flex-shrink: 0;
-      }
-      .ev-empty {
-        font-size: 12px;
-        color: var(--sub);
-        text-align: center;
-        padding: 8px 0;
-      }
+/* 달력 */
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.cal-nav-btn{background:var(--bg);border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.cal-nav span{font-size:14px;font-weight:700;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;}
+.cal-dn{font-size:10px;color:var(--sub);padding:3px 0;font-weight:600;}
+.cal-d{font-size:12px;height:32px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;font-weight:500;}
+.cal-d:hover{background:var(--blue-light);}
+.cal-d.today{background:var(--blue);color:#fff;font-weight:700;border-radius:50%;}
+.cal-d.has-ev::after{content:'';width:4px;height:4px;background:#f59e0b;border-radius:50%;position:absolute;bottom:2px;left:50%;transform:translateX(-50%);}
+.cal-d.other{color:#cbd5e1;}
+.ev-box{margin-top:10px;display:flex;flex-direction:column;gap:6px;}
+.ev-item{display:flex;align-items:center;gap:8px;background:var(--blue-light);border-radius:10px;padding:9px 12px;font-size:12px;}
+.ev-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;flex-shrink:0;}
+.ev-empty{font-size:12px;color:var(--sub);text-align:center;padding:8px 0;}
 
-      /* 공지 */
-      .notice-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border);
-        cursor: pointer;
-      }
-      .notice-row:last-child {
-        border-bottom: none;
-      }
-      .n-tag {
-        border-radius: 6px;
-        padding: 2px 8px;
-        font-size: 11px;
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-      .n-title {
-        font-size: 13px;
-        font-weight: 600;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .n-date {
-        font-size: 11px;
-        color: var(--sub);
-        flex-shrink: 0;
-      }
+/* 공지 */
+.notice-row{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.notice-row:last-child{border-bottom:none;}
+.n-tag{border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;flex-shrink:0;}
+.n-title{font-size:13px;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.n-date{font-size:11px;color:var(--sub);flex-shrink:0;}
 
-      /* 공지 상세 */
-      .detail-wrap {
-        padding: 18px 14px;
-      }
-      .back-btn {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        background: none;
-        border: none;
-        color: var(--blue);
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        padding: 0;
-        margin-bottom: 18px;
-      }
-      .detail-title2 {
-        font-size: 20px;
-        font-weight: 800;
-        margin-bottom: 6px;
-        line-height: 1.3;
-      }
-      .detail-date2 {
-        font-size: 12px;
-        color: var(--sub);
-        margin-bottom: 16px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid var(--border);
-      }
-      .detail-body2 {
-        font-size: 14px;
-        color: #334155;
-        line-height: 2;
-      }
+/* 공지 상세 */
+.detail-wrap{padding:18px 14px;}
+.back-btn{display:flex;align-items:center;gap:5px;background:none;border:none;color:var(--blue);font-size:14px;font-weight:600;cursor:pointer;padding:0;margin-bottom:18px;}
+.detail-title2{font-size:20px;font-weight:800;margin-bottom:6px;line-height:1.3;}
+.detail-date2{font-size:12px;color:var(--sub);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.detail-body2{font-size:14px;color:#334155;line-height:2;}
 
-      /* 포도나무 홈 */
-      .grape-mini {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      .grape-pct-h {
-        font-size: 32px;
-        font-weight: 900;
-        color: var(--blue);
-      }
-      .grape-streak-h {
-        font-size: 12px;
-        color: #ea580c;
-        font-weight: 700;
-        margin-top: 2px;
-      }
-      .bar-bg {
-        background: var(--border);
-        border-radius: 999px;
-        height: 8px;
-        overflow: hidden;
-        margin: 4px 0 12px;
-      }
-      .bar-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
-        border-radius: 999px;
-        transition: width 0.5s;
-      }
+/* 포도나무 홈 */
+.grape-mini{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.grape-pct-h{font-size:32px;font-weight:900;color:var(--blue);}
+.grape-streak-h{font-size:12px;color:#ea580c;font-weight:700;margin-top:2px;}
+.bar-bg{background:var(--border);border-radius:999px;height:8px;overflow:hidden;margin:4px 0 12px;}
+.bar-fill{height:100%;background:linear-gradient(90deg,#1e3a6e,#3b82f6);border-radius:999px;transition:width .5s;}
 
-      /* 페이지 히어로 */
-      .page-hero {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
-        padding: 20px 18px 24px;
-        color: #fff;
-      }
-      .page-hero h2 {
-        font-size: 20px;
-        font-weight: 800;
-        margin-bottom: 3px;
-      }
-      .page-hero p {
-        font-size: 12px;
-        opacity: 0.8;
-      }
+/* 페이지 히어로 */
+.page-hero{background:linear-gradient(135deg,#1e3a6e,#2563eb);padding:20px 18px 24px;color:#fff;}
+.page-hero h2{font-size:20px;font-weight:800;margin-bottom:3px;}
+.page-hero p{font-size:12px;opacity:.8;}
 
-      /* 설교 */
-      .video-card {
-        background: #fff;
-        border-radius: 14px;
-        margin-bottom: 10px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        text-decoration: none;
-        display: block;
-      }
-      .v-thumb {
-        width: 100%;
-        height: 170px;
-        background: #e2e8f0;
-        position: relative;
-        overflow: hidden;
-      }
-      .v-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .v-thumb-ph {
-        width: 100%;
-        height: 170px;
-        background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 36px;
-      }
-      .v-play {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 44px;
-        height: 44px;
-        background: rgba(255, 255, 255, 0.92);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-      }
-      .v-info {
-        padding: 12px 14px;
-      }
-      .v-title {
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 3px;
-      }
-      .v-sub {
-        font-size: 12px;
-        color: var(--sub);
-      }
-      .v-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 3px;
-        background: #fee2e2;
-        color: #dc2626;
-        border-radius: 6px;
-        padding: 2px 8px;
-        font-size: 11px;
-        font-weight: 700;
-        margin-top: 5px;
-      }
+/* 설교 */
+.video-card{background:#fff;border-radius:14px;margin-bottom:10px;overflow:hidden;border:1px solid var(--border);text-decoration:none;display:block;}
+.v-thumb{width:100%;height:170px;background:#e2e8f0;position:relative;overflow:hidden;}
+.v-thumb img{width:100%;height:100%;object-fit:cover;}
+.v-thumb-ph{width:100%;height:170px;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;font-size:36px;}
+.v-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.v-info{padding:12px 14px;}
+.v-title{font-size:14px;font-weight:700;margin-bottom:3px;}
+.v-sub{font-size:12px;color:var(--sub);}
+.v-badge{display:inline-flex;align-items:center;gap:3px;background:#fee2e2;color:#dc2626;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;margin-top:5px;}
 
-      /* 기도/나눔/찬양 아이템 */
-      .list-item {
-        background: #f8fafc;
-        border-radius: 12px;
-        padding: 14px;
-        margin-bottom: 8px;
-        border: 1px solid var(--border);
-      }
-      .item-text {
-        font-size: 14px;
-        line-height: 1.6;
-        margin-bottom: 8px;
-      }
-      .item-meta {
-        font-size: 11px;
-        color: var(--sub);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .item-acts {
-        display: flex;
-        gap: 5px;
-      }
-      .answered {
-        background: #f0fdf4;
-        border-color: #bbf7d0;
-      }
-      .tag-ans {
-        background: #dcfce7;
-        color: #16a34a;
-        border: none;
-        border-radius: 7px;
-        padding: 4px 10px;
-        font-size: 11px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .tag-del {
-        background: #fee2e2;
-        color: #dc2626;
-        border: none;
-        border-radius: 7px;
-        padding: 4px 10px;
-        font-size: 11px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .tag-like {
-        background: #eff6ff;
-        color: #2563eb;
-        border: none;
-        border-radius: 7px;
-        padding: 4px 10px;
-        font-size: 11px;
-        font-weight: 700;
-        cursor: pointer;
-      }
+/* 기도/나눔/찬양 아이템 */
+.list-item{background:#f8fafc;border-radius:12px;padding:14px;margin-bottom:8px;border:1px solid var(--border);}
+.item-text{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.item-meta{font-size:11px;color:var(--sub);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+.item-acts{display:flex;gap:5px;}
+.answered{background:#f0fdf4;border-color:#bbf7d0;}
+.tag-ans{background:#dcfce7;color:#16a34a;border:none;border-radius:7px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;}
+.tag-del{background:#fee2e2;color:#dc2626;border:none;border-radius:7px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;}
+.tag-like{background:#eff6ff;color:#2563eb;border:none;border-radius:7px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;}
 
-      /* 더보기 그리드 */
-      .more-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding: 14px;
-      }
-      .more-cell {
-        background: #fff;
-        border-radius: 16px;
-        padding: 22px 12px;
-        text-align: center;
-        cursor: pointer;
-        border: 1px solid var(--border);
-      }
-      .more-cell:active {
-        background: var(--bg);
-      }
-      .mc-icon {
-        font-size: 32px;
-        margin-bottom: 8px;
-      }
-      .mc-label {
-        font-size: 13px;
-        font-weight: 700;
-      }
-      .mc-desc {
-        font-size: 11px;
-        color: var(--sub);
-        margin-top: 2px;
-      }
+/* 더보기 그리드 */
+.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;}
+.more-cell{background:#fff;border-radius:16px;padding:22px 12px;text-align:center;cursor:pointer;border:1px solid var(--border);}
+.more-cell:active{background:var(--bg);}
+.mc-icon{font-size:32px;margin-bottom:8px;}
+.mc-label{font-size:13px;font-weight:700;}
+.mc-desc{font-size:11px;color:var(--sub);margin-top:2px;}
 
-      /* 서브 페이지 */
-      .sub-wrap {
-        padding-bottom: 90px;
-      }
+/* 서브 페이지 */
+.sub-wrap{padding-bottom:90px;}
 
-      /* 포도나무 상세 */
-      .grape-full {
-        text-align: center;
-        padding: 28px 18px;
-      }
-      .grape-emoji-big {
-        font-size: 72px;
-        margin-bottom: 10px;
-      }
-      .grape-pct-full {
-        font-size: 52px;
-        font-weight: 900;
-        color: var(--blue);
-      }
-      .grape-day-full {
-        font-size: 13px;
-        color: var(--sub);
-        margin-top: 4px;
-      }
-      .grape-streak-full {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        background: #fff7ed;
-        border-radius: 999px;
-        padding: 6px 14px;
-        font-size: 13px;
-        font-weight: 700;
-        color: #ea580c;
-        margin-top: 10px;
-      }
-      .bar-bg2 {
-        background: var(--border);
-        border-radius: 999px;
-        height: 10px;
-        overflow: hidden;
-        margin: 16px 0 6px;
-      }
-      .bar-fill2 {
-        height: 100%;
-        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
-        border-radius: 999px;
-        transition: width 0.5s;
-      }
+/* 포도나무 상세 */
+.grape-full{text-align:center;padding:28px 18px;}
+.grape-emoji-big{font-size:72px;margin-bottom:10px;}
+.grape-pct-full{font-size:52px;font-weight:900;color:var(--blue);}
+.grape-day-full{font-size:13px;color:var(--sub);margin-top:4px;}
+.grape-streak-full{display:inline-flex;align-items:center;gap:5px;background:#fff7ed;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;color:#ea580c;margin-top:10px;}
+.bar-bg2{background:var(--border);border-radius:999px;height:10px;overflow:hidden;margin:16px 0 6px;}
+.bar-fill2{height:100%;background:linear-gradient(90deg,#1e3a6e,#3b82f6);border-radius:999px;transition:width .5s;}
 
-      /* 오시는 길 */
-      .map-box {
-        background: linear-gradient(135deg, #dbeafe, #e0f2fe);
-        height: 160px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 44px;
-        margin: 14px;
-      }
-      .info-row {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--border);
-      }
-      .info-row:last-child {
-        border-bottom: none;
-      }
-      .info-icon-box {
-        width: 36px;
-        height: 36px;
-        background: var(--blue-light);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        flex-shrink: 0;
-      }
-      .info-label2 {
-        font-size: 11px;
-        color: var(--sub);
-        margin-bottom: 2px;
-        font-weight: 600;
-      }
-      .info-value2 {
-        font-size: 14px;
-        font-weight: 600;
-      }
+/* 오시는 길 */
+.map-box{background:linear-gradient(135deg,#dbeafe,#e0f2fe);height:160px;display:flex;align-items:center;justify-content:center;font-size:44px;margin:14px;}
+.info-row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+.info-row:last-child{border-bottom:none;}
+.info-icon-box{width:36px;height:36px;background:var(--blue-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.info-label2{font-size:11px;color:var(--sub);margin-bottom:2px;font-weight:600;}
+.info-value2{font-size:14px;font-weight:600;}
 
-      /* 설정 */
-      .s-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 14px 0;
-        border-bottom: 1px solid var(--border);
-      }
-      .s-row:last-child {
-        border-bottom: none;
-      }
-      .s-label {
-        font-size: 14px;
-        font-weight: 600;
-      }
-      .s-sub {
-        font-size: 11px;
-        color: var(--sub);
-        margin-top: 2px;
-      }
-      .time-pill {
-        background: var(--blue);
-        color: #fff;
-        border-radius: 8px;
-        padding: 5px 12px;
-        font-size: 13px;
-        font-weight: 700;
-      }
+/* 설정 */
+.s-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);}
+.s-row:last-child{border-bottom:none;}
+.s-label{font-size:14px;font-weight:600;}
+.s-sub{font-size:11px;color:var(--sub);margin-top:2px;}
+.time-pill{background:var(--blue);color:#fff;border-radius:8px;padding:5px 12px;font-size:13px;font-weight:700;}
 
-      /* 관리자 */
-      .adm-sec-title {
-        font-size: 11px;
-        font-weight: 700;
-        color: var(--sub);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 10px;
-      }
-      .adm-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 9px 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 13px;
-        gap: 8px;
-      }
-      .adm-item:last-child {
-        border-bottom: none;
-      }
-      .adm-item span {
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+/* 관리자 */
+.adm-sec-title{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.adm-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;gap:8px;}
+.adm-item:last-child{border-bottom:none;}
+.adm-item span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
-      /* 공통 버튼 */
-      .btn-p {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
-        color: #fff;
-        border: none;
-        border-radius: 12px;
-        padding: 13px;
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 8px;
-      }
-      .btn-p:active {
-        opacity: 0.9;
-      }
-      .btn-o {
-        background: #fff;
-        border: 1.5px solid var(--blue);
-        color: var(--blue);
-        border-radius: 12px;
-        padding: 12px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 8px;
-      }
-      .btn-sm {
-        background: var(--blue);
-        color: #fff;
-        border: none;
-        border-radius: 9px;
-        padding: 9px 14px;
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .btn-del {
-        background: #fee2e2;
-        color: #dc2626;
-        border: none;
-        border-radius: 7px;
-        padding: 5px 10px;
-        font-size: 12px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-      .inp {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1.5px solid var(--border);
-        border-radius: 12px;
-        font-size: 14px;
-        outline: none;
-        background: #f8fafc;
-      }
-      .inp:focus {
-        border-color: var(--blue);
-        background: #fff;
-      }
-      textarea.inp {
-        height: 80px;
-        resize: vertical;
-      }
-      .inp-row {
-        display: flex;
-        gap: 8px;
-        margin-top: 8px;
-      }
-      .inp-row .inp {
-        margin: 0;
-      }
-      .mb8 {
-        margin-bottom: 8px;
-      }
+/* 공통 버튼 */
+.btn-p{background:linear-gradient(135deg,#1e3a6e,#2563eb);color:#fff;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-top:8px;}
+.btn-p:active{opacity:.9;}
+.btn-o{background:#fff;border:1.5px solid var(--blue);color:var(--blue);border-radius:12px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;width:100%;margin-top:8px;}
+.btn-sm{background:var(--blue);color:#fff;border:none;border-radius:9px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-del{background:#fee2e2;color:#dc2626;border:none;border-radius:7px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer;}
+.inp{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;outline:none;background:#f8fafc;}
+.inp:focus{border-color:var(--blue);background:#fff;}
+textarea.inp{height:80px;resize:vertical;}
+.inp-row{display:flex;gap:8px;margin-top:8px;}
+.inp-row .inp{margin:0;}
+.mb8{margin-bottom:8px;}
 
-      /* 탭바 */
-      .tab-bar {
-        position: fixed;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 420px;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(16px);
-        display: flex;
-        border-top: 1px solid var(--border);
-        z-index: 100;
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-      .tab-btn {
-        flex: 1;
-        background: none;
-        border: none;
-        padding: 10px 0 8px;
-        font-size: 10px;
-        color: var(--sub);
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2px;
-        font-weight: 500;
-      }
-      .tab-btn .ti {
-        font-size: 22px;
-        transition: transform 0.2s;
-      }
-      .tab-btn.active {
-        color: var(--blue);
-        font-weight: 700;
-      }
-      .tab-btn.active .ti {
-        transform: scale(1.1);
-      }
+/* 탭바 */
+.tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);display:flex;border-top:1px solid var(--border);z-index:100;padding-bottom:env(safe-area-inset-bottom);}
+.tab-btn{flex:1;background:none;border:none;padding:10px 0 8px;font-size:10px;color:var(--sub);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:500;}
+.tab-btn .ti{font-size:22px;transition:transform .2s;}
+.tab-btn.active{color:var(--blue);font-weight:700;}
+.tab-btn.active .ti{transform:scale(1.1);}
 
-      /* 토스트 */
-      .toast {
-        position: fixed;
-        bottom: 96px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #1e293b;
-        color: #fff;
-        padding: 11px 22px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 600;
-        z-index: 9998;
-        opacity: 0;
-        transition: opacity 0.3s;
-        white-space: nowrap;
-        pointer-events: none;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-      }
-      .toast.show {
-        opacity: 1;
-      }
-      .empty2 {
-        text-align: center;
-        color: var(--sub);
-        font-size: 13px;
-        padding: 24px 0;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- ══ 로그인 화면 ══ -->
-    <div id="loginScreen">
-      <div class="ls-header">
-        <div class="ls-logo-wrap">
-          <div class="ls-logo">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <rect
-                x="85"
-                y="8"
-                width="30"
-                height="120"
-                rx="6"
-                fill="#1a56db"
-              />
-              <rect
-                x="30"
-                y="55"
-                width="140"
-                height="30"
-                rx="6"
-                fill="#1a56db"
-              />
-              <rect
-                x="70"
-                y="128"
-                width="60"
-                height="22"
-                rx="5"
-                fill="#2d7dd2"
-              />
-              <path
-                d="M85 30 Q100 18 115 30"
-                fill="none"
-                stroke="#fff"
-                stroke-width="7"
-                stroke-linecap="round"
-              />
-              <path
-                d="M72 52 Q100 35 128 52"
-                fill="none"
-                stroke="rgba(255,255,255,0.6)"
-                stroke-width="5"
-                stroke-linecap="round"
-              />
-              <path
-                d="M20 165 Q50 150 80 165 Q110 180 140 165 Q170 150 190 165"
-                fill="none"
-                stroke="#1a56db"
-                stroke-width="8"
-                stroke-linecap="round"
-              />
-              <path
-                d="M10 182 Q45 167 75 182 Q105 197 135 182 Q165 167 195 182"
-                fill="none"
-                stroke="#2d9cdb"
-                stroke-width="6"
-                stroke-linecap="round"
-                opacity=".6"
-              />
-            </svg>
-          </div>
-          <div class="ls-name">
-            <div class="ls-denom">대한예수교 장로회(고신)</div>
-            <div class="ls-church">장유서은교회</div>
-          </div>
+/* 토스트 */
+.toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:11px 22px;border-radius:999px;font-size:13px;font-weight:600;z-index:9998;opacity:0;transition:opacity .3s;white-space:nowrap;pointer-events:none;box-shadow:0 6px 20px rgba(0,0,0,.18);}
+.toast.show{opacity:1;}
+.empty2{text-align:center;color:var(--sub);font-size:13px;padding:24px 0;}
+</style>
+</head>
+<body>
+
+<!-- ══ 로그인 화면 ══ -->
+<div id="loginScreen">
+  <div class="ls-header">
+    <div class="ls-logo-wrap">
+      <div class="ls-logo">
+          <img src="https://raw.githubusercontent.com/91hanskim-collab/004_church-web/main/logo.png" style="width:60px;height:60px;object-fit:contain;" onerror="this.style.display='none'"/>
+        </div>
+      <div class="ls-name">
+        <div class="ls-denom">대한예수교 장로회(고신)</div>
+        <div class="ls-church">장유서은교회</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ls-body">
+    <!-- 로그인 카드 -->
+    <div class="ls-card" id="loginCard">
+      <h2>로그인</h2>
+      <p>교인 계정으로 로그인하세요</p>
+      <input class="l-inp" id="loginName" placeholder="이름" autocomplete="name"/>
+      <input class="l-inp" type="password" id="loginPw" placeholder="비밀번호" autocomplete="current-password"/>
+      <div class="auto-login-row">
+        <input type="checkbox" id="autoLoginCheck"/>
+        <label for="autoLoginCheck">자동 로그인</label>
+      </div>
+      <div class="l-err" id="loginErr"></div>
+      <button class="l-btn-main" style="margin-top:14px" onclick="doLogin()">로그인</button>
+    </div>
+    <button class="l-btn-sub" onclick="showSignup()">회원가입</button>
+
+    <!-- 회원가입 카드 -->
+    <div class="ls-card" id="signupCard" style="display:none">
+      <h2>회원가입</h2>
+      <p>가입 후 관리자 승인이 필요해요</p>
+      <input class="l-inp" id="signupName" placeholder="이름"/>
+      <input class="l-inp" type="password" id="signupPw" placeholder="비밀번호 (4자 이상)"/>
+      <input class="l-inp" type="password" id="signupPw2" placeholder="비밀번호 확인"/>
+      <div class="l-err" id="signupErr"></div>
+      <button class="l-btn-main" style="margin-top:6px" onclick="doSignup()">가입 신청</button>
+      <button class="l-btn-sub" onclick="showLogin()">← 로그인으로</button>
+    </div>
+
+    <!-- 대기 카드 -->
+    <div class="ls-card" id="pendingCard" style="display:none">
+      <div class="pending-box">
+        <div class="pi">⏳</div>
+        <h3>승인 대기 중</h3>
+        <p>관리자가 승인하면<br>로그인할 수 있어요 🙏</p>
+        <button class="l-btn-sub" style="margin-top:18px" onclick="showLogin()">← 로그인으로</button>
+      </div>
+    </div>
+
+    <!-- 교회 소개 -->
+    <div id="churchInfo">
+      <div class="intro-card">
+        <div class="intro-header">장유서은교회는</div>
+        <div class="intro-row"><span class="intro-num">1.</span><div><span class="intro-key">성경</span><span class="intro-txt">영감과 무오성, 역사성과 참된 교리를 수호하는 <b>복음적 교회</b>입니다.</span></div></div>
+        <div class="intro-row"><span class="intro-num">2.</span><div><span class="intro-key">정통</span><span class="intro-txt">그리스도의 참된 복음을 전하는 <b>사도적 교회</b>입니다.</span></div></div>
+        <div class="intro-row"><span class="intro-num">3.</span><div><span class="intro-key">회복</span><span class="intro-txt">로마천주교회, 동방정교회와 구별되어 참 신앙을 회복하는 <b>개신교회</b>입니다.</span></div></div>
+        <div class="intro-row"><span class="intro-num">4.</span><div><span class="intro-key">역사</span><span class="intro-txt">역사적 공교회 신조들과 신앙고백을 고백하는 <b>개혁주의 교회</b>입니다.</span></div></div>
+        <div class="intro-row"><span class="intro-num">5.</span><div><span class="intro-key">정치</span><span class="intro-txt">장로회의 치리와 감독 하에 질서를 유지하는 <b>장로교회</b>입니다.</span></div></div>
+        <div class="intro-row"><span class="intro-num">6.</span><div><span class="intro-key">연합</span><span class="intro-txt">신앙의 일치 속에서 연합하는 <b>보편적 교회</b>입니다.</span></div></div>
+      </div>
+      <div class="intro-card">
+        <div class="intro-header">장유서은교회 성도는</div>
+        <div class="intro-row"><span class="intro-num">1.</span><div><div style="color:#c0392b;font-weight:800;font-size:13px;margin-bottom:3px">그리스도인으로서</div><span class="intro-txt">초대교회의 3대 공교회 신조인 사도신경, 니케아신경, 아타나시우스 신경을 고백합니다.</span></div></div>
+        <div class="intro-row"><span class="intro-num">2.</span><div><div style="color:#c0392b;font-weight:800;font-size:13px;margin-bottom:3px">개혁신앙인으로서</div><span class="intro-txt">하이델베르크 요리문답, 벨직 신앙고백서, 도르트 신조를 신뢰합니다.</span></div></div>
+        <div class="intro-row"><span class="intro-num">3.</span><div><div style="color:#c0392b;font-weight:800;font-size:13px;margin-bottom:3px">장로교인으로서</div><span class="intro-txt">웨스트민스터 신앙고백서, 대교리문답, 소교리문답을 고백합니다.</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 앱 ══ -->
+<div id="appScreen">
+  <div class="app-header">
+    <div class="app-header-top">
+      <div class="ah-left">
+        <div class="ah-logo">
+          <img src="https://raw.githubusercontent.com/91hanskim-collab/004_church-web/main/logo.png" style="width:42px;height:42px;object-fit:contain;" onerror="this.style.display='none'"/>
+        </div>
+        <div class="ah-texts">
+          <div class="ah-denom">대한예수교 장로회(고신)</div>
+          <div class="ah-name">장유서은교회</div>
         </div>
       </div>
+      <div class="ah-right">
+        <button class="ah-btn" onclick="goPage('settings')">🔔</button>
+        <button class="ah-user" id="userChip" onclick="goPage('settings')">나</button>
+      </div>
+    </div>
+  </div>
 
-      <div class="ls-body">
-        <!-- 로그인 카드 -->
-        <div class="ls-card" id="loginCard">
-          <h2>로그인</h2>
-          <p>교인 계정으로 로그인하세요</p>
-          <input
-            class="l-inp"
-            id="loginName"
-            placeholder="이름"
-            autocomplete="name"
-          />
-          <input
-            class="l-inp"
-            type="password"
-            id="loginPw"
-            placeholder="비밀번호"
-            autocomplete="current-password"
-          />
-          <div class="auto-login-row">
-            <input type="checkbox" id="autoLoginCheck" />
-            <label for="autoLoginCheck">자동 로그인</label>
-          </div>
-          <div class="l-err" id="loginErr"></div>
-          <button
-            class="l-btn-main"
-            style="margin-top: 14px"
-            onclick="doLogin()"
-          >
-            로그인
-          </button>
+  <div class="toast" id="toast"></div>
+
+  <!-- ══ 홈 ══ -->
+  <div class="page active" id="page-home">
+    <div class="section">
+      <div class="card">
+        <div class="card-hd"><div class="card-title">📅 이번 달 일정</div></div>
+        <div class="cal-nav">
+          <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+          <span id="calTitle"></span>
+          <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
         </div>
-        <button class="l-btn-sub" onclick="showSignup()">회원가입</button>
-
-        <!-- 회원가입 카드 -->
-        <div class="ls-card" id="signupCard" style="display: none">
-          <h2>회원가입</h2>
-          <p>가입 후 관리자 승인이 필요해요</p>
-          <input class="l-inp" id="signupName" placeholder="이름" />
-          <input
-            class="l-inp"
-            type="password"
-            id="signupPw"
-            placeholder="비밀번호 (4자 이상)"
-          />
-          <input
-            class="l-inp"
-            type="password"
-            id="signupPw2"
-            placeholder="비밀번호 확인"
-          />
-          <div class="l-err" id="signupErr"></div>
-          <button
-            class="l-btn-main"
-            style="margin-top: 6px"
-            onclick="doSignup()"
-          >
-            가입 신청
-          </button>
-          <button class="l-btn-sub" onclick="showLogin()">← 로그인으로</button>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="ev-box" id="evList"></div>
+      </div>
+      <div class="card">
+        <div class="card-hd">
+          <div class="card-title">📢 최신 공지</div>
+          <button class="card-more" onclick="goPage('notice')">더보기 ›</button>
         </div>
-
-        <!-- 대기 카드 -->
-        <div class="ls-card" id="pendingCard" style="display: none">
-          <div class="pending-box">
-            <div class="pi">⏳</div>
-            <h3>승인 대기 중</h3>
-            <p>관리자가 승인하면<br />로그인할 수 있어요 🙏</p>
-            <button
-              class="l-btn-sub"
-              style="margin-top: 18px"
-              onclick="showLogin()"
-            >
-              ← 로그인으로
-            </button>
+        <div id="homeNotice"><div class="empty2">불러오는 중...</div></div>
+      </div>
+      <div class="card">
+        <div class="card-hd">
+          <div class="card-title">📖 주간생명의 양식</div>
+          <span id="h-grape" style="font-size:26px">🌱</span>
+        </div>
+        <div class="grape-mini">
+          <div>
+            <div class="grape-pct-h" id="h-pct">0%</div>
+            <div class="grape-streak-h" id="h-streak">🔥 0주 연속</div>
           </div>
         </div>
+        <div class="bar-bg"><div class="bar-fill" id="h-bar" style="width:0%"></div></div>
+        <button class="btn-p" onclick="increaseStreak()">이번 주 완료 ✅</button>
+      </div>
+    </div>
+  </div>
 
-        <!-- 교회 소개 -->
-        <div id="churchInfo">
-          <div class="intro-card">
-            <div class="intro-header">장유서은교회는</div>
-            <div class="intro-row">
-              <span class="intro-num">1.</span>
-              <div>
-                <span class="intro-key">성경</span
-                ><span class="intro-txt"
-                  >영감과 무오성, 역사성과 참된 교리를 수호하는
-                  <b>복음적 교회</b>입니다.</span
-                >
-              </div>
-            </div>
-            <div class="intro-row">
-              <span class="intro-num">2.</span>
-              <div>
-                <span class="intro-key">정통</span
-                ><span class="intro-txt"
-                  >그리스도의 참된 복음을 전하는 <b>사도적 교회</b>입니다.</span
-                >
-              </div>
-            </div>
-            <div class="intro-row">
-              <span class="intro-num">3.</span>
-              <div>
-                <span class="intro-key">회복</span
-                ><span class="intro-txt"
-                  >로마천주교회, 동방정교회와 구별되어 참 신앙을 회복하는
-                  <b>개신교회</b>입니다.</span
-                >
-              </div>
-            </div>
-            <div class="intro-row">
-              <span class="intro-num">4.</span>
-              <div>
-                <span class="intro-key">역사</span
-                ><span class="intro-txt"
-                  >역사적 공교회 신조들과 신앙고백을 고백하는
-                  <b>개혁주의 교회</b>입니다.</span
-                >
-              </div>
-            </div>
-            <div class="intro-row">
-              <span class="intro-num">5.</span>
-              <div>
-                <span class="intro-key">정치</span
-                ><span class="intro-txt"
-                  >장로회의 치리와 감독 하에 질서를 유지하는
-                  <b>장로교회</b>입니다.</span
-                >
-              </div>
-            </div>
-            <div class="intro-row">
-              <span class="intro-num">6.</span>
-              <div>
-                <span class="intro-key">연합</span
-                ><span class="intro-txt"
-                  >신앙의 일치 속에서 연합하는 <b>보편적 교회</b>입니다.</span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="intro-card">
-            <div class="intro-header">장유서은교회 성도는</div>
-            <div class="intro-row">
-              <span class="intro-num">1.</span>
-              <div>
-                <div
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 13px;
-                    margin-bottom: 3px;
-                  "
-                >
-                  그리스도인으로서
-                </div>
-                <span class="intro-txt"
-                  >초대교회의 3대 공교회 신조인 사도신경, 니케아신경,
-                  아타나시우스 신경을 고백합니다.</span
-                >
-              </div>
-            </div>
-            <div class="intro-row">
-              <span class="intro-num">2.</span>
-              <div>
-                <div
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 13px;
-                    margin-bottom: 3px;
-                  "
-                >
-                  개혁신앙인으로서
-                </div>
-                <span class="intro-txt"
-                  >하이델베르크 요리문답, 벨직 신앙고백서, 도르트 신조를
-                  신뢰합니다.</span
-                >
-              </div>
-            </div>
-            <div class="intro-row">
-              <span class="intro-num">3.</span>
-              <div>
-                <div
-                  style="
-                    color: #c0392b;
-                    font-weight: 800;
-                    font-size: 13px;
-                    margin-bottom: 3px;
-                  "
-                >
-                  장로교인으로서
-                </div>
-                <span class="intro-txt"
-                  >웨스트민스터 신앙고백서, 대교리문답, 소교리문답을
-                  고백합니다.</span
-                >
-              </div>
-            </div>
-          </div>
+  <!-- ══ 기도 ══ -->
+  <div class="page" id="page-prayer">
+    <div class="page-hero"><h2>🙏 기도 제목</h2><p>함께 기도해요</p></div>
+    <div class="section">
+      <div class="card">
+        <div class="inp-row">
+          <input class="inp" id="prayerInput" placeholder="기도 제목을 입력하세요"/>
+          <button class="btn-sm" onclick="addPrayer()">추가</button>
+        </div>
+      </div>
+      <div id="prayerList"><div class="empty2">불러오는 중...</div></div>
+    </div>
+  </div>
+
+  <!-- ══ 설교 ══ -->
+  <div class="page" id="page-sermon">
+    <div class="page-hero"><h2>🎬 설교 영상</h2><p>말씀을 다시 들어보세요</p></div>
+    <div style="padding:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="sermonList">
+        <div class="empty2" style="grid-column:1/-1">불러오는 중...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 공지 ══ -->
+  <div class="page" id="page-notice">
+    <div id="noticeListView">
+      <div class="page-hero"><h2>📢 공지사항</h2><p>교회 소식을 확인하세요</p></div>
+      <div class="section">
+        <div class="card" id="noticeListCard">
+          <div id="noticeList"><div class="empty2">불러오는 중...</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-wrap" id="noticeDetail" style="display:none">
+      <button class="back-btn" onclick="closeDetail()">← 목록으로</button>
+      <div class="detail-title2" id="detailTitle"></div>
+      <div class="detail-date2" id="detailDate"></div>
+      <div class="detail-body2" id="detailBody"></div>
+    </div>
+  </div>
+
+  <!-- ══ 더보기 ══ -->
+  <div class="page" id="page-more">
+    <div id="moreMenu">
+      <div class="page-hero"><h2>더보기</h2><p>다양한 기능을 이용해보세요</p></div>
+      <div class="more-grid">
+        <div class="more-cell" onclick="showSub('grape')"><div class="mc-icon">📖</div><div class="mc-label">주간생명의 양식</div><div class="mc-desc">1년 52주 성장</div></div>
+        <div class="more-cell" onclick="showSub('bulletin')"><div class="mc-icon">📋</div><div class="mc-label">주보</div><div class="mc-desc">이번 주 주보</div></div>
+        <div class="more-cell" onclick="showSub('sharing')"><div class="mc-icon">✏️</div><div class="mc-label">말씀 나눔</div><div class="mc-desc">은혜를 함께해요</div></div>
+        <div class="more-cell" onclick="showSub('praise')"><div class="mc-icon">🎵</div><div class="mc-label">찬양 신청</div><div class="mc-desc">찬양을 신청하세요</div></div>
+        <div class="more-cell" onclick="showSub('location')"><div class="mc-icon">📍</div><div class="mc-label">오시는 길</div><div class="mc-desc">교회 위치 안내</div></div>
+      </div>
+      <div style="padding:0 14px 14px">
+        <div class="more-cell" style="display:flex;align-items:center;gap:12px;text-align:left;padding:16px 18px;" onclick="goPage('settings')">
+          <div style="font-size:26px">⚙️</div>
+          <div><div class="mc-label">설정 / 관리자</div><div class="mc-desc">앱 설정 및 관리자 페이지</div></div>
         </div>
       </div>
     </div>
 
-    <!-- ══ 앱 ══ -->
-    <div id="appScreen">
-      <div class="app-header">
-        <div class="app-header-top">
-          <div class="ah-left">
-            <div class="ah-logo">
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <!-- 십자가+책 로고 -->
-                <rect
-                  x="85"
-                  y="8"
-                  width="30"
-                  height="120"
-                  rx="6"
-                  fill="#1a56db"
-                />
-                <rect
-                  x="30"
-                  y="55"
-                  width="140"
-                  height="30"
-                  rx="6"
-                  fill="#1a56db"
-                />
-                <rect
-                  x="70"
-                  y="128"
-                  width="60"
-                  height="22"
-                  rx="5"
-                  fill="#2d7dd2"
-                />
-                <!-- 책 날개 -->
-                <path
-                  d="M85 30 Q100 18 115 30"
-                  fill="none"
-                  stroke="#fff"
-                  stroke-width="7"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M72 52 Q100 35 128 52"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.6)"
-                  stroke-width="5"
-                  stroke-linecap="round"
-                />
-                <!-- 물결 -->
-                <path
-                  d="M20 165 Q50 150 80 165 Q110 180 140 165 Q170 150 190 165"
-                  fill="none"
-                  stroke="#1a56db"
-                  stroke-width="8"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M10 182 Q45 167 75 182 Q105 197 135 182 Q165 167 195 182"
-                  fill="none"
-                  stroke="#2d9cdb"
-                  stroke-width="6"
-                  stroke-linecap="round"
-                  opacity=".6"
-                />
-              </svg>
-            </div>
-            <div class="ah-texts">
-              <div class="ah-denom">대한예수교 장로회(고신)</div>
-              <div class="ah-name">장유서은교회</div>
-            </div>
-          </div>
-          <div class="ah-right">
-            <button class="ah-btn" onclick="goPage('settings')">🔔</button>
-            <button class="ah-user" id="userChip" onclick="goPage('settings')">
-              나
-            </button>
-          </div>
+    <!-- 주간생명의 양식 -->
+    <div class="sub-wrap" id="sub-grape" style="display:none">
+      <div class="page-hero"><h2>📖 주간생명의 양식</h2><p>매주 말씀으로 자라가요</p></div>
+      <div class="section">
+        <button class="back-btn" onclick="hideSub()">← 뒤로</button>
+        <div class="card" style="text-align:center;margin-top:12px">
+          <div class="grape-emoji-big" id="grapeEmoji">🌱</div>
+          <div class="grape-pct-full" id="g-pct">0%</div>
+          <div class="grape-day-full" id="g-day">0주 / 52주</div>
+          <div class="grape-streak-full" id="g-streak">🔥 0주 연속</div>
+          <div class="bar-bg2"><div class="bar-fill2" id="g-bar" style="width:0%"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--sub)"><span>🌱 시작</span><span>🍇 완성</span></div>
+          <button class="btn-p" onclick="increaseStreak()">이번 주 완료 ✅</button>
         </div>
-      </div>
-
-      <div class="toast" id="toast"></div>
-
-      <!-- ══ 홈 ══ -->
-      <div class="page active" id="page-home">
-        <div class="home-banner">
-          <div class="hb-badge">📖 맥체인 365 — 오늘의 본문</div>
-          <div class="hb-date" id="heroDate"></div>
-          <div class="hb-reading" id="heroReading"></div>
-        </div>
-        <div class="section">
-          <div class="card">
-            <div class="card-hd">
-              <div class="card-title">📅 이번 달 일정</div>
-            </div>
-            <div class="cal-nav">
-              <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
-              <span id="calTitle"></span>
-              <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
-            </div>
-            <div class="cal-grid" id="calGrid"></div>
-            <div class="ev-box" id="evList"></div>
-          </div>
-          <div class="card">
-            <div class="card-hd">
-              <div class="card-title">📢 최신 공지</div>
-              <button class="card-more" onclick="goPage('notice')">
-                더보기 ›
-              </button>
-            </div>
-            <div id="homeNotice"><div class="empty2">불러오는 중...</div></div>
-          </div>
-          <div class="card">
-            <div class="card-hd">
-              <div class="card-title">🍇 말씀 포도나무</div>
-              <span id="h-grape" style="font-size: 26px">🌱</span>
-            </div>
-            <div class="grape-mini">
-              <div>
-                <div class="grape-pct-h" id="h-pct">0%</div>
-                <div class="grape-streak-h" id="h-streak">🔥 0일 연속</div>
-              </div>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" id="h-bar" style="width: 0%"></div>
-            </div>
-            <button class="btn-p" onclick="increaseStreak()">
-              오늘 말씀 완료 ✅
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ 기도 ══ -->
-      <div class="page" id="page-prayer">
-        <div class="page-hero">
-          <h2>🙏 기도 제목</h2>
-          <p>함께 기도해요</p>
-        </div>
-        <div class="section">
-          <div class="card">
-            <div class="inp-row">
-              <input
-                class="inp"
-                id="prayerInput"
-                placeholder="기도 제목을 입력하세요"
-              />
-              <button class="btn-sm" onclick="addPrayer()">추가</button>
-            </div>
-          </div>
-          <div id="prayerList"><div class="empty2">불러오는 중...</div></div>
-        </div>
-      </div>
-
-      <!-- ══ 설교 ══ -->
-      <div class="page" id="page-sermon">
-        <div class="page-hero">
-          <h2>🎬 설교 영상</h2>
-          <p>말씀을 다시 들어보세요</p>
-        </div>
-        <div style="padding: 14px" id="sermonList">
-          <div class="empty2">불러오는 중...</div>
-        </div>
-      </div>
-
-      <!-- ══ 공지 ══ -->
-      <div class="page" id="page-notice">
-        <div id="noticeListView">
-          <div class="page-hero">
-            <h2>📢 공지사항</h2>
-            <p>교회 소식을 확인하세요</p>
-          </div>
-          <div class="section">
-            <div class="card" id="noticeListCard">
-              <div id="noticeList">
-                <div class="empty2">불러오는 중...</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="detail-wrap" id="noticeDetail" style="display: none">
-          <button class="back-btn" onclick="closeDetail()">← 목록으로</button>
-          <div class="detail-title2" id="detailTitle"></div>
-          <div class="detail-date2" id="detailDate"></div>
-          <div class="detail-body2" id="detailBody"></div>
-        </div>
-      </div>
-
-      <!-- ══ 더보기 ══ -->
-      <div class="page" id="page-more">
-        <div id="moreMenu">
-          <div class="page-hero">
-            <h2>더보기</h2>
-            <p>다양한 기능을 이용해보세요</p>
-          </div>
-          <div class="more-grid">
-            <div class="more-cell" onclick="showSub('grape')">
-              <div class="mc-icon">🍇</div>
-              <div class="mc-label">말씀 포도나무</div>
-              <div class="mc-desc">1년 365일 성장</div>
-            </div>
-            <div class="more-cell" onclick="showSub('sharing')">
-              <div class="mc-icon">📖</div>
-              <div class="mc-label">말씀 나눔</div>
-              <div class="mc-desc">은혜를 함께해요</div>
-            </div>
-            <div class="more-cell" onclick="showSub('praise')">
-              <div class="mc-icon">🎵</div>
-              <div class="mc-label">찬양 신청</div>
-              <div class="mc-desc">찬양을 신청하세요</div>
-            </div>
-            <div class="more-cell" onclick="showSub('location')">
-              <div class="mc-icon">📍</div>
-              <div class="mc-label">오시는 길</div>
-              <div class="mc-desc">교회 위치 안내</div>
-            </div>
-          </div>
-          <div style="padding: 0 14px 14px">
-            <div
-              class="more-cell"
-              style="
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                text-align: left;
-                padding: 16px 18px;
-              "
-              onclick="goPage('settings')"
-            >
-              <div style="font-size: 26px">⚙️</div>
-              <div>
-                <div class="mc-label">설정 / 관리자</div>
-                <div class="mc-desc">앱 설정 및 관리자 페이지</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 포도나무 -->
-        <div class="sub-wrap" id="sub-grape" style="display: none">
-          <div class="page-hero">
-            <h2>🍇 말씀 포도나무</h2>
-            <p>매일 말씀으로 자라가요</p>
-          </div>
-          <div class="section">
-            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
-            <div class="card" style="text-align: center; margin-top: 12px">
-              <div class="grape-emoji-big" id="grapeEmoji">🌱</div>
-              <div class="grape-pct-full" id="g-pct">0%</div>
-              <div class="grape-day-full" id="g-day">0일 / 365일</div>
-              <div class="grape-streak-full" id="g-streak">🔥 0일 연속</div>
-              <div class="bar-bg2">
-                <div class="bar-fill2" id="g-bar" style="width: 0%"></div>
-              </div>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  font-size: 11px;
-                  color: var(--sub);
-                "
-              >
-                <span>🌱 시작</span><span>🍇 완성</span>
-              </div>
-              <button class="btn-p" onclick="increaseStreak()">
-                오늘 말씀 완료 ✅
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 말씀 나눔 -->
-        <div class="sub-wrap" id="sub-sharing" style="display: none">
-          <div class="page-hero">
-            <h2>📖 말씀 나눔</h2>
-            <p>은혜를 함께 나눠요</p>
-          </div>
-          <div class="section">
-            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
-            <div class="card">
-              <textarea
-                class="inp"
-                id="sharingInput"
-                placeholder="오늘 읽은 말씀이나 은혜를 나눠보세요 ✨"
-              ></textarea>
-              <button class="btn-p" onclick="addSharing()">나누기</button>
-            </div>
-            <div id="sharingList"><div class="empty2">불러오는 중...</div></div>
-          </div>
-        </div>
-
-        <!-- 찬양 신청 -->
-        <div class="sub-wrap" id="sub-praise" style="display: none">
-          <div class="page-hero">
-            <h2>🎵 찬양 신청</h2>
-            <p>함께 부를 찬양을 신청하세요</p>
-          </div>
-          <div class="section">
-            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
-            <div class="card">
-              <div class="inp-row">
-                <input
-                  class="inp"
-                  id="praiseInput"
-                  placeholder="찬양 제목 입력"
-                />
-                <button class="btn-sm" onclick="addPraise()">신청</button>
-              </div>
-            </div>
-            <div id="praiseList"><div class="empty2">불러오는 중...</div></div>
-          </div>
-        </div>
-
-        <!-- 오시는 길 -->
-        <div class="sub-wrap" id="sub-location" style="display: none">
-          <div class="page-hero">
-            <h2>📍 오시는 길</h2>
-            <p>장유서은교회로 오세요</p>
-          </div>
-          <button
-            class="back-btn"
-            onclick="hideSub()"
-            style="padding: 16px 14px 0"
-          >
-            ← 뒤로
-          </button>
-          <div class="map-box" style="border-radius: 14px; margin: 14px">
-            🗺️
-          </div>
-          <div style="padding: 0 14px">
-            <div class="info-row">
-              <div class="info-icon-box">🏛️</div>
-              <div>
-                <div class="info-label2">교회명</div>
-                <div class="info-value2">장유서은교회</div>
-              </div>
-            </div>
-            <div class="info-row">
-              <div class="info-icon-box">📌</div>
-              <div>
-                <div class="info-label2">주소</div>
-                <div class="info-value2">주소를 입력해주세요</div>
-              </div>
-            </div>
-            <div class="info-row">
-              <div class="info-icon-box">🚌</div>
-              <div>
-                <div class="info-label2">대중교통</div>
-                <div class="info-value2">교통편을 입력해주세요</div>
-              </div>
-            </div>
-            <div class="info-row">
-              <div class="info-icon-box">⏰</div>
-              <div>
-                <div class="info-label2">예배 시간</div>
-                <div class="info-value2">주일 오전 11:00</div>
-              </div>
-            </div>
-            <div class="info-row">
-              <div class="info-icon-box">📞</div>
-              <div>
-                <div class="info-label2">전화번호</div>
-                <div class="info-value2">전화번호를 입력해주세요</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ 설정 ══ -->
-      <div class="page" id="page-settings">
-        <div class="page-hero">
-          <h2>⚙️ 설정</h2>
-          <p id="settingsUser">안녕하세요!</p>
-        </div>
-        <div class="section">
-          <div class="card">
-            <div class="adm-sec-title">⏰ 알람 시간</div>
-            <div class="s-row">
-              <div>
-                <div class="s-label">🙏 기도 알람</div>
-                <div class="s-sub">매일 기도 시간</div>
-              </div>
-              <div style="text-align: right">
-                <div class="time-pill" id="prayerDisplay">06:00</div>
-                <input
-                  type="time"
-                  class="inp"
-                  id="prayerTime"
-                  value="06:00"
-                  style="margin-top: 8px; width: 110px"
-                  oninput="
-                    document.getElementById('prayerDisplay').textContent =
-                      this.value
-                  "
-                />
-              </div>
-            </div>
-            <div class="s-row">
-              <div>
-                <div class="s-label">🍇 말씀 알람</div>
-                <div class="s-sub">매일 말씀 시간</div>
-              </div>
-              <div style="text-align: right">
-                <div class="time-pill" id="wordDisplay">07:00</div>
-                <input
-                  type="time"
-                  class="inp"
-                  id="wordTime"
-                  value="07:00"
-                  style="margin-top: 8px; width: 110px"
-                  oninput="
-                    document.getElementById('wordDisplay').textContent =
-                      this.value
-                  "
-                />
-              </div>
-            </div>
-            <button class="btn-p" onclick="showToast('💾 저장됐어요!')">
-              저장하기 💾
-            </button>
-          </div>
-          <div class="card">
-            <div class="adm-sec-title">🔐 관리자</div>
-            <button class="btn-o" onclick="goPage('admin')">
-              관리자 페이지 →
-            </button>
-          </div>
-          <div class="card">
-            <button
-              class="btn-del"
-              style="
-                width: 100%;
-                padding: 12px;
-                font-size: 14px;
-                border-radius: 12px;
-              "
-              onclick="doLogout()"
-            >
-              로그아웃
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ 관리자 ══ -->
-      <div class="page" id="page-admin">
-        <div class="page-hero">
-          <h2>🔐 관리자</h2>
-          <p>게시물 등록 및 관리</p>
-        </div>
-        <div class="section">
-          <div class="card" id="adminLoginCard">
-            <div class="adm-sec-title">관리자 로그인</div>
-            <input
-              class="inp mb8"
-              type="password"
-              id="adminPw"
-              placeholder="관리자 비밀번호"
-            />
-            <button class="btn-p" onclick="adminLogin()">로그인</button>
-          </div>
-          <div id="adminPanel" style="display: none">
-            <div class="card">
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  margin-bottom: 16px;
-                "
-              >
-                <div class="adm-sec-title" style="margin: 0">
-                  ✅ 관리자 모드
-                </div>
-                <button class="btn-del" onclick="adminLogout()">
-                  로그아웃
-                </button>
-              </div>
-              <div class="adm-sec-title">⏳ 가입 승인 대기</div>
-              <div id="pendingListAdmin">
-                <div class="empty2">대기 중인 가입이 없어요</div>
-              </div>
-              <div style="margin-top: 16px" class="adm-sec-title">
-                👤 승인된 교인
-              </div>
-              <div id="userListAdmin"></div>
-            </div>
-            <div class="card">
-              <div class="adm-sec-title">📢 공지 등록</div>
-              <input class="inp mb8" id="noticeTitle" placeholder="제목" />
-              <textarea
-                class="inp mb8"
-                id="noticeBody"
-                placeholder="내용"
-              ></textarea>
-              <button class="btn-p" onclick="postNotice()">공지 등록</button>
-              <div style="margin-top: 12px" id="adminNoticeList"></div>
-            </div>
-            <div class="card">
-              <div class="adm-sec-title">🎬 설교 영상 등록</div>
-              <input class="inp mb8" id="sermonTitle" placeholder="설교 제목" />
-              <input
-                class="inp mb8"
-                id="sermonSub"
-                placeholder="날짜 · 목사님"
-              />
-              <input class="inp mb8" id="sermonUrl" placeholder="유튜브 링크" />
-              <button class="btn-p" onclick="postSermon()">영상 등록</button>
-              <div style="margin-top: 12px" id="adminSermonList"></div>
-            </div>
-            <div class="card">
-              <div class="adm-sec-title">📅 일정 등록</div>
-              <input class="inp mb8" type="date" id="scheduleDate" />
-              <input
-                class="inp mb8"
-                id="scheduleName"
-                placeholder="일정 이름"
-              />
-              <button class="btn-p" onclick="postSchedule()">일정 등록</button>
-              <div style="margin-top: 12px" id="adminScheduleList"></div>
-            </div>
-            <div class="card">
-              <div class="adm-sec-title">📖 말씀나눔 관리</div>
-              <div id="adminSharingList"></div>
-            </div>
-            <div class="card">
-              <div class="adm-sec-title">🎵 찬양신청 관리</div>
-              <div id="adminPraiseList"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 탭바 -->
-      <div class="tab-bar">
-        <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
-          <span class="ti">🏠</span>홈
-        </button>
-        <button class="tab-btn" id="tab-prayer" onclick="goPage('prayer')">
-          <span class="ti">🙏</span>기도
-        </button>
-        <button class="tab-btn" id="tab-sermon" onclick="goPage('sermon')">
-          <span class="ti">🎬</span>설교
-        </button>
-        <button class="tab-btn" id="tab-notice" onclick="goPage('notice')">
-          <span class="ti">📢</span>공지
-        </button>
-        <button class="tab-btn" id="tab-more" onclick="goPage('more')">
-          <span class="ti">⋯</span>더보기
-        </button>
       </div>
     </div>
 
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        push,
-        onValue,
-        remove,
-        update,
-      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+    <!-- 주보 -->
+    <div class="sub-wrap" id="sub-bulletin" style="display:none">
+      <div class="page-hero"><h2>📋 주보</h2><p>이번 주 주보를 확인하세요</p></div>
+      <div class="section">
+        <button class="back-btn" onclick="hideSub()">← 뒤로</button>
+        <div id="bulletinList" style="margin-top:12px"><div class="empty2">불러오는 중...</div></div>
+      </div>
+    </div>
 
-      const fc = {
-        apiKey: "AIzaSyAQ9yKmwNNKxSLGrq8q2k5RN6CgIFXGhqE",
-        authDomain: "church-app-4a233.firebaseapp.com",
-        databaseURL:
-          "https://church-app-4a233-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "church-app-4a233",
-        storageBucket: "church-app-4a233.firebasestorage.app",
-        messagingSenderId: "1033367843213",
-        appId: "1:1033367843213:web:7dd24d8db59b226582cdc4",
-      };
-      const db = getDatabase(initializeApp(fc));
-      const ADMINS = ["church2025", "admin1234", "pastor0000"];
-      let isAdmin = false,
-        currentUser = null;
-      const G = (n, f) => (window[n] = f);
+    <!-- 말씀 나눔 -->
+    <div class="sub-wrap" id="sub-sharing" style="display:none">
+      <div class="page-hero"><h2>📖 말씀 나눔</h2><p>은혜를 함께 나눠요</p></div>
+      <div class="section">
+        <button class="back-btn" onclick="hideSub()">← 뒤로</button>
+        <div class="card">
+          <textarea class="inp" id="sharingInput" placeholder="오늘 읽은 말씀이나 은혜를 나눠보세요 ✨"></textarea>
+          <button class="btn-p" onclick="addSharing()">나누기</button>
+        </div>
+        <div id="sharingList"><div class="empty2">불러오는 중...</div></div>
+      </div>
+    </div>
 
-      // ── 자동 로그인 ──
-      function saveAutoLogin(user) {
-        localStorage.setItem("seun_user", JSON.stringify(user));
-      }
-      function clearAutoLogin() {
-        localStorage.removeItem("seun_user");
-      }
-      function loadAutoLogin() {
-        try {
-          const d = localStorage.getItem("seun_user");
-          return d ? JSON.parse(d) : null;
-        } catch {
-          return null;
-        }
-      }
+    <!-- 찬양 신청 -->
+    <div class="sub-wrap" id="sub-praise" style="display:none">
+      <div class="page-hero"><h2>🎵 찬양 신청</h2><p>함께 부를 찬양을 신청하세요</p></div>
+      <div class="section">
+        <button class="back-btn" onclick="hideSub()">← 뒤로</button>
+        <div class="card">
+          <div class="inp-row">
+            <input class="inp" id="praiseInput" placeholder="찬양 제목 입력"/>
+            <button class="btn-sm" onclick="addPraise()">신청</button>
+          </div>
+        </div>
+        <div id="praiseList"><div class="empty2">불러오는 중...</div></div>
+      </div>
+    </div>
 
-      // ── 화면 전환 ──
-      G("showLogin", () => {
-        document.getElementById("loginCard").style.display = "block";
-        document.getElementById("signupCard").style.display = "none";
-        document.getElementById("pendingCard").style.display = "none";
-        document.getElementById("churchInfo").style.display = "block";
-      });
-      G("showSignup", () => {
-        document.getElementById("loginCard").style.display = "none";
-        document.getElementById("signupCard").style.display = "block";
-        document.getElementById("pendingCard").style.display = "none";
-        document.getElementById("churchInfo").style.display = "none";
-      });
+    <!-- 오시는 길 -->
+    <div class="sub-wrap" id="sub-location" style="display:none">
+      <div class="page-hero"><h2>📍 오시는 길</h2><p>장유서은교회로 오세요</p></div>
+      <button class="back-btn" onclick="hideSub()" style="padding:16px 14px 0">← 뒤로</button>
+      <div class="map-box" style="border-radius:14px;margin:14px">🗺️</div>
+      <div style="padding:0 14px">
+        <div class="info-row"><div class="info-icon-box">🏛️</div><div><div class="info-label2">교회명</div><div class="info-value2">장유서은교회</div></div></div>
+        <div class="info-row"><div class="info-icon-box">📌</div><div><div class="info-label2">주소</div><div class="info-value2">주소를 입력해주세요</div></div></div>
+        <div class="info-row"><div class="info-icon-box">🚌</div><div><div class="info-label2">대중교통</div><div class="info-value2">교통편을 입력해주세요</div></div></div>
+        <div class="info-row"><div class="info-icon-box">⏰</div><div><div class="info-label2">예배 시간</div><div class="info-value2">주일 오전 11:00</div></div></div>
+        <div class="info-row"><div class="info-icon-box">📞</div><div><div class="info-label2">전화번호</div><div class="info-value2">전화번호를 입력해주세요</div></div></div>
+      </div>
+    </div>
+  </div>
 
-      // ── DB ──
-      let usersDB = {},
-        pendingDB = {};
-      onValue(ref(db, "users"), (snap) => {
-        usersDB = snap.val() || {};
-        const el = document.getElementById("userListAdmin");
-        if (el)
-          el.innerHTML =
-            Object.entries(usersDB)
-              .map(
-                ([id, u]) => `
-    <div class="adm-item"><span>✅ ${u.name}</span><button class="btn-del" onclick="deleteUser('${id}')">삭제</button></div>`,
-              )
-              .join("") || '<div class="empty2">없음</div>';
-      });
-      onValue(ref(db, "pending"), (snap) => {
-        pendingDB = snap.val() || {};
-        const el = document.getElementById("pendingListAdmin");
-        if (!el) return;
-        const items = Object.entries(pendingDB);
-        el.innerHTML = items.length
-          ? items
-              .map(
-                ([id, u]) => `
+  <!-- ══ 설정 ══ -->
+  <div class="page" id="page-settings">
+    <div class="page-hero"><h2>⚙️ 설정</h2><p id="settingsUser">안녕하세요!</p></div>
+    <div class="section">
+      <div class="card">
+        <div class="adm-sec-title">⏰ 알람 시간</div>
+        <div class="s-row">
+          <div><div class="s-label">🙏 기도 알람</div><div class="s-sub">매일 기도 시간</div></div>
+          <div style="text-align:right">
+            <div class="time-pill" id="prayerDisplay">06:00</div>
+            <input type="time" class="inp" id="prayerTime" value="06:00" style="margin-top:8px;width:110px;" oninput="document.getElementById('prayerDisplay').textContent=this.value"/>
+          </div>
+        </div>
+        <div class="s-row">
+          <div><div class="s-label">🍇 말씀 알람</div><div class="s-sub">매일 말씀 시간</div></div>
+          <div style="text-align:right">
+            <div class="time-pill" id="wordDisplay">07:00</div>
+            <input type="time" class="inp" id="wordTime" value="07:00" style="margin-top:8px;width:110px;" oninput="document.getElementById('wordDisplay').textContent=this.value"/>
+          </div>
+        </div>
+        <button class="btn-p" onclick="showToast('💾 저장됐어요!')">저장하기 💾</button>
+      </div>
+      <div class="card">
+        <div class="adm-sec-title">🔐 관리자</div>
+        <button class="btn-o" onclick="goPage('admin')">관리자 페이지 →</button>
+      </div>
+      <div class="card">
+        <button class="btn-del" style="width:100%;padding:12px;font-size:14px;border-radius:12px" onclick="doLogout()">로그아웃</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 관리자 ══ -->
+  <div class="page" id="page-admin">
+    <div class="page-hero"><h2>🔐 관리자</h2><p>게시물 등록 및 관리</p></div>
+    <div class="section">
+      <div class="card" id="adminLoginCard">
+        <div class="adm-sec-title">관리자 로그인</div>
+        <input class="inp mb8" type="password" id="adminPw" placeholder="관리자 비밀번호"/>
+        <button class="btn-p" onclick="adminLogin()">로그인</button>
+      </div>
+      <div id="adminPanel" style="display:none">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <div class="adm-sec-title" style="margin:0">✅ 관리자 모드</div>
+            <button class="btn-del" onclick="adminLogout()">로그아웃</button>
+          </div>
+          <div class="adm-sec-title">⏳ 가입 승인 대기</div>
+          <div id="pendingListAdmin"><div class="empty2">대기 중인 가입이 없어요</div></div>
+          <div style="margin-top:16px" class="adm-sec-title">👤 승인된 교인</div>
+          <div id="userListAdmin"></div>
+        </div>
+        <div class="card">
+          <div class="adm-sec-title">📢 공지 등록</div>
+          <input class="inp mb8" id="noticeTitle" placeholder="제목"/>
+          <textarea class="inp mb8" id="noticeBody" placeholder="내용"></textarea>
+          <button class="btn-p" onclick="postNotice()">공지 등록</button>
+          <div style="margin-top:12px" id="adminNoticeList"></div>
+        </div>
+        <div class="card">
+          <div class="adm-sec-title">📋 주보 등록</div>
+          <input class="inp mb8" id="bulletinTitle" placeholder="주보 제목 (예: 2026년 5월 1일)"/>
+          <input class="inp mb8" id="bulletinUrl" placeholder="주보 링크 (Google Drive, PDF 등)"/>
+          <input class="inp mb8" type="date" id="bulletinDate"/>
+          <button class="btn-p" onclick="postBulletin()">주보 등록</button>
+          <div style="margin-top:12px" id="adminBulletinList"></div>
+        </div>
+          <input class="inp mb8" id="sermonTitle" placeholder="설교 제목"/>
+          <input class="inp mb8" id="sermonSub" placeholder="날짜 · 목사님"/>
+          <input class="inp mb8" id="sermonUrl" placeholder="유튜브 링크"/>
+          <button class="btn-p" onclick="postSermon()">영상 등록</button>
+          <div style="margin-top:12px" id="adminSermonList"></div>
+        </div>
+        <div class="card">
+          <div class="adm-sec-title">📅 일정 등록</div>
+          <input class="inp mb8" type="date" id="scheduleDate"/>
+          <input class="inp mb8" id="scheduleName" placeholder="일정 이름"/>
+          <button class="btn-p" onclick="postSchedule()">일정 등록</button>
+          <div style="margin-top:12px" id="adminScheduleList"></div>
+        </div>
+        <div class="card">
+          <div class="adm-sec-title">📖 말씀나눔 관리</div>
+          <div id="adminSharingList"></div>
+        </div>
+        <div class="card">
+          <div class="adm-sec-title">🎵 찬양신청 관리</div>
+          <div id="adminPraiseList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 탭바 -->
+  <div class="tab-bar">
+    <button class="tab-btn active" id="tab-home"   onclick="goPage('home')">  <span class="ti">🏠</span>홈</button>
+    <button class="tab-btn"        id="tab-prayer" onclick="goPage('prayer')"><span class="ti">🙏</span>기도</button>
+    <button class="tab-btn"        id="tab-sermon" onclick="goPage('sermon')"><span class="ti">🎬</span>설교</button>
+    <button class="tab-btn"        id="tab-notice" onclick="goPage('notice')"><span class="ti">📢</span>공지</button>
+    <button class="tab-btn"        id="tab-more"   onclick="goPage('more')"> <span class="ti">⋯</span>더보기</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const fc={apiKey:"AIzaSyAQ9yKmwNNKxSLGrq8q2k5RN6CgIFXGhqE",authDomain:"church-app-4a233.firebaseapp.com",databaseURL:"https://church-app-4a233-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"church-app-4a233",storageBucket:"church-app-4a233.firebasestorage.app",messagingSenderId:"1033367843213",appId:"1:1033367843213:web:7dd24d8db59b226582cdc4"};
+const db=getDatabase(initializeApp(fc));
+const ADMINS=["church2025","admin1234","pastor0000"];
+let isAdmin=false, currentUser=null;
+const G=(n,f)=>window[n]=f;
+
+// ── 자동 로그인 ──
+function saveAutoLogin(user){localStorage.setItem('seun_user',JSON.stringify(user));}
+function clearAutoLogin(){localStorage.removeItem('seun_user');}
+function loadAutoLogin(){try{const d=localStorage.getItem('seun_user');return d?JSON.parse(d):null;}catch{return null;}}
+
+// ── 화면 전환 ──
+G('showLogin',()=>{
+  document.getElementById('loginCard').style.display='block';
+  document.getElementById('signupCard').style.display='none';
+  document.getElementById('pendingCard').style.display='none';
+  document.getElementById('churchInfo').style.display='block';
+});
+G('showSignup',()=>{
+  document.getElementById('loginCard').style.display='none';
+  document.getElementById('signupCard').style.display='block';
+  document.getElementById('pendingCard').style.display='none';
+  document.getElementById('churchInfo').style.display='none';
+});
+
+// ── DB ──
+let usersDB={}, pendingDB={};
+onValue(ref(db,'users'),snap=>{
+  usersDB=snap.val()||{};
+  const el=document.getElementById('userListAdmin');
+  if(el) el.innerHTML=Object.entries(usersDB).map(([id,u])=>`
+    <div class="adm-item"><span>✅ ${u.name}</span><button class="btn-del" onclick="deleteUser('${id}')">삭제</button></div>`).join('')||'<div class="empty2">없음</div>';
+});
+onValue(ref(db,'pending'),snap=>{
+  pendingDB=snap.val()||{};
+  const el=document.getElementById('pendingListAdmin');
+  if(!el)return;
+  const items=Object.entries(pendingDB);
+  el.innerHTML=items.length?items.map(([id,u])=>`
     <div class="adm-item">
       <span>⏳ ${u.name}</span>
       <div style="display:flex;gap:6px">
         <button class="tag-ans" onclick="approveUser('${id}')">승인</button>
         <button class="btn-del" onclick="rejectUser('${id}')">거절</button>
       </div>
-    </div>`,
-              )
-              .join("")
-          : '<div class="empty2">대기 중인 가입이 없어요</div>';
-      });
+    </div>`).join(''):'<div class="empty2">대기 중인 가입이 없어요</div>';
+});
 
-      // ── 회원가입 ──
-      G("doSignup", () => {
-        const name = document.getElementById("signupName").value.trim();
-        const pw = document.getElementById("signupPw").value;
-        const pw2 = document.getElementById("signupPw2").value;
-        const err = document.getElementById("signupErr");
-        if (!name || !pw) {
-          err.textContent = "이름과 비밀번호를 입력하세요";
-          return;
-        }
-        if (pw !== pw2) {
-          err.textContent = "비밀번호가 일치하지 않아요";
-          return;
-        }
-        if (pw.length < 4) {
-          err.textContent = "비밀번호는 4자 이상이어야 해요";
-          return;
-        }
-        if (
-          Object.values(usersDB).find((u) => u.name === name) ||
-          Object.values(pendingDB).find((u) => u.name === name)
-        ) {
-          err.textContent = "이미 존재하는 이름이에요";
-          return;
-        }
-        push(ref(db, "pending"), { name, pw, date: new Date().toISOString() });
-        document.getElementById("signupCard").style.display = "none";
-        document.getElementById("pendingCard").style.display = "block";
-        showToast("🙏 가입 신청 완료!");
-      });
+// ── 회원가입 ──
+G('doSignup',()=>{
+  const name=document.getElementById('signupName').value.trim();
+  const pw=document.getElementById('signupPw').value;
+  const pw2=document.getElementById('signupPw2').value;
+  const err=document.getElementById('signupErr');
+  if(!name||!pw){err.textContent='이름과 비밀번호를 입력하세요';return;}
+  if(pw!==pw2){err.textContent='비밀번호가 일치하지 않아요';return;}
+  if(pw.length<4){err.textContent='비밀번호는 4자 이상이어야 해요';return;}
+  if(Object.values(usersDB).find(u=>u.name===name)||Object.values(pendingDB).find(u=>u.name===name)){err.textContent='이미 존재하는 이름이에요';return;}
+  push(ref(db,'pending'),{name,pw,date:new Date().toISOString()});
+  document.getElementById('signupCard').style.display='none';
+  document.getElementById('pendingCard').style.display='block';
+  showToast('🙏 가입 신청 완료!');
+});
 
-      // ── 로그인 ──
-      G("doLogin", () => {
-        const name = document.getElementById("loginName").value.trim();
-        const pw = document.getElementById("loginPw").value;
-        const err = document.getElementById("loginErr");
-        const auto = document.getElementById("autoLoginCheck").checked;
-        if (!name || !pw) {
-          err.textContent = "이름과 비밀번호를 입력하세요";
-          return;
-        }
-        if (ADMINS.includes(pw)) {
-          currentUser = { name, role: "admin" };
-          if (auto) saveAutoLogin({ name, pw, role: "admin" });
-          startApp();
-          return;
-        }
-        const found = Object.values(usersDB).find(
-          (u) => u.name === name && u.pw === pw,
-        );
-        if (found) {
-          currentUser = { name, role: "user" };
-          if (auto) saveAutoLogin({ name, pw, role: "user" });
-          startApp();
-          return;
-        }
-        if (
-          Object.values(pendingDB).find((u) => u.name === name && u.pw === pw)
-        ) {
-          err.textContent = "⏳ 아직 승인 대기 중이에요";
-          return;
-        }
-        err.textContent = "이름 또는 비밀번호가 맞지 않아요";
-      });
-      document.getElementById("loginPw").addEventListener("keydown", (e) => {
-        if (e.key === "Enter") window.doLogin();
-      });
+// ── 로그인 ──
+G('doLogin',()=>{
+  const name=document.getElementById('loginName').value.trim();
+  const pw=document.getElementById('loginPw').value;
+  const err=document.getElementById('loginErr');
+  const auto=document.getElementById('autoLoginCheck').checked;
+  if(!name||!pw){err.textContent='이름과 비밀번호를 입력하세요';return;}
+  if(ADMINS.includes(pw)){
+    currentUser={name,role:'admin'};
+    if(auto)saveAutoLogin({name,pw,role:'admin'});
+    startApp();return;
+  }
+  const found=Object.values(usersDB).find(u=>u.name===name&&u.pw===pw);
+  if(found){
+    currentUser={name,role:'user'};
+    if(auto)saveAutoLogin({name,pw,role:'user'});
+    startApp();return;
+  }
+  if(Object.values(pendingDB).find(u=>u.name===name&&u.pw===pw)){err.textContent='⏳ 아직 승인 대기 중이에요';return;}
+  err.textContent='이름 또는 비밀번호가 맞지 않아요';
+});
+document.getElementById('loginPw').addEventListener('keydown',e=>{if(e.key==='Enter')window.doLogin();});
 
-      function startApp() {
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("appScreen").style.display = "block";
-        document.getElementById("userChip").textContent =
-          currentUser.name.charAt(0);
-        document.getElementById("settingsUser").textContent =
-          `${currentUser.name}님, 안녕하세요! 🙏`;
-      }
+function startApp(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('appScreen').style.display='block';
+  document.getElementById('userChip').textContent=currentUser.name.charAt(0);
+  document.getElementById('settingsUser').textContent=`${currentUser.name}님, 안녕하세요! 🙏`;
+}
 
-      G("doLogout", () => {
-        clearAutoLogin();
-        currentUser = null;
-        document.getElementById("loginScreen").style.display = "block";
-        document.getElementById("appScreen").style.display = "none";
-        document.getElementById("loginCard").style.display = "block";
-        document.getElementById("signupCard").style.display = "none";
-        document.getElementById("pendingCard").style.display = "none";
-        document.getElementById("churchInfo").style.display = "block";
-        document.getElementById("loginName").value = "";
-        document.getElementById("loginPw").value = "";
-        document.getElementById("loginErr").textContent = "";
-        document.getElementById("autoLoginCheck").checked = false;
-        goPage("home");
-      });
+G('doLogout',()=>{
+  clearAutoLogin();
+  currentUser=null;
+  document.getElementById('loginScreen').style.display='block';
+  document.getElementById('appScreen').style.display='none';
+  document.getElementById('loginCard').style.display='block';
+  document.getElementById('signupCard').style.display='none';
+  document.getElementById('pendingCard').style.display='none';
+  document.getElementById('churchInfo').style.display='block';
+  document.getElementById('loginName').value='';
+  document.getElementById('loginPw').value='';
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('autoLoginCheck').checked=false;
+  goPage('home');
+});
 
-      // ── 자동 로그인 체크 ──
-      const saved = loadAutoLogin();
-      if (saved) {
-        // 관리자
-        if (ADMINS.includes(saved.pw)) {
-          currentUser = { name: saved.name, role: "admin" };
-          startApp();
-        } else {
-          // 교인 - DB 로드 후 확인
-          onValue(
-            ref(db, "users"),
-            (snap) => {
-              const u = snap.val() || {};
-              const found = Object.values(u).find(
-                (x) => x.name === saved.name && x.pw === saved.pw,
-              );
-              if (found && !currentUser) {
-                currentUser = { name: saved.name, role: "user" };
-                startApp();
-              }
-            },
-            { onlyOnce: true },
-          );
-        }
-      }
+// ── 자동 로그인 체크 ──
+const saved=loadAutoLogin();
+if(saved){
+  // 관리자
+  if(ADMINS.includes(saved.pw)){currentUser={name:saved.name,role:'admin'};startApp();}
+  else {
+    // 교인 - DB 로드 후 확인
+    onValue(ref(db,'users'),snap=>{
+      const u=snap.val()||{};
+      const found=Object.values(u).find(x=>x.name===saved.name&&x.pw===saved.pw);
+      if(found&&!currentUser){currentUser={name:saved.name,role:'user'};startApp();}
+    },{onlyOnce:true});
+  }
+}
 
-      // ── 승인/거절 ──
-      G("approveUser", async (id) => {
-        if (!isAdmin) return;
-        const u = pendingDB[id];
-        if (!u) return;
-        await push(ref(db, "users"), {
-          name: u.name,
-          pw: u.pw,
-          date: new Date().toISOString(),
-        });
-        await remove(ref(db, "pending/" + id));
-        showToast("✅ " + u.name + "님 승인!");
-      });
-      G("rejectUser", (id) => {
-        if (!isAdmin) return;
-        if (confirm("거절?")) remove(ref(db, "pending/" + id));
-      });
-      G("deleteUser", (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "users/" + id));
-      });
+// ── 승인/거절 ──
+G('approveUser',async id=>{
+  if(!isAdmin)return;
+  const u=pendingDB[id];if(!u)return;
+  await push(ref(db,'users'),{name:u.name,pw:u.pw,date:new Date().toISOString()});
+  await remove(ref(db,'pending/'+id));
+  showToast('✅ '+u.name+'님 승인!');
+});
+G('rejectUser',id=>{if(!isAdmin)return;if(confirm('거절?'))remove(ref(db,'pending/'+id));});
+G('deleteUser',id=>{if(!isAdmin)return;if(confirm('삭제?'))remove(ref(db,'users/'+id));});
 
-      // ── 맥체인 365 ──
-      const mc = [
-        ["창 1", "마 1", "에스라 1", "행 1"],
-        ["창 2", "마 2", "에스라 2", "행 2"],
-        ["창 3", "마 3", "에스라 3", "행 3"],
-        ["창 4", "마 4", "에스라 4", "행 4"],
-        ["창 5", "마 5", "에스라 5", "행 5"],
-        ["창 6", "마 6", "에스라 6", "행 6"],
-        ["창 7", "마 7", "에스라 7", "행 7"],
-        ["창 8", "마 8", "에스라 8", "행 8"],
-        ["창 9", "마 9", "에스라 9", "행 9"],
-        ["창 10", "마 10", "에스라 10", "행 10"],
-        ["창 11", "마 11", "느 1", "행 11"],
-        ["창 12", "마 12", "느 2", "행 12"],
-        ["창 13", "마 13", "느 3", "행 13"],
-        ["창 14", "마 14", "느 4", "행 14"],
-        ["창 15", "마 15", "느 5", "행 15"],
-        ["창 16", "마 16", "느 6", "행 16"],
-        ["창 17", "마 17", "느 7", "행 17"],
-        ["창 18", "마 18", "느 8", "행 18"],
-        ["창 19", "마 19", "느 9", "행 19"],
-        ["창 20", "마 20", "느 10", "행 20"],
-        ["창 21", "마 21", "느 11", "행 21"],
-        ["창 22", "마 22", "느 12", "행 22"],
-        ["창 23", "마 23", "느 13", "행 23"],
-        ["창 24", "마 24", "에스더 1", "행 24"],
-        ["창 25", "마 25", "에스더 2", "행 25"],
-        ["창 26", "마 26", "에스더 3", "행 26"],
-        ["창 27", "마 27", "에스더 4", "행 27"],
-        ["창 28", "마 28", "에스더 5", "행 28"],
-        ["창 29", "막 1", "에스더 6", "롬 1"],
-        ["창 30", "막 2", "에스더 7", "롬 2"],
-        ["창 31", "막 3", "에스더 8", "롬 3"],
-        ["창 32", "막 4", "에스더 9-10", "롬 4"],
-        ["창 33", "막 5", "욥 1", "롬 5"],
-        ["창 34", "막 6", "욥 2", "롬 6"],
-        ["창 35", "막 7", "욥 3", "롬 7"],
-        ["창 36", "막 8", "욥 4", "롬 8"],
-        ["창 37", "막 9", "욥 5", "롬 9"],
-        ["창 38", "막 10", "욥 6", "롬 10"],
-        ["창 39", "막 11", "욥 7", "롬 11"],
-        ["창 40", "막 12", "욥 8", "롬 12"],
-        ["창 41", "막 13", "욥 9", "롬 13"],
-        ["창 42", "막 14", "욥 10", "롬 14"],
-        ["창 43", "막 15", "욥 11", "롬 15"],
-        ["창 44", "막 16", "욥 12", "롬 16"],
-        ["창 45", "눅 1", "욥 13", "고전 1"],
-        ["창 46", "눅 2", "욥 14", "고전 2"],
-        ["창 47", "눅 3", "욥 15", "고전 3"],
-        ["창 48", "눅 4", "욥 16", "고전 4"],
-        ["창 49", "눅 5", "욥 17", "고전 5"],
-        ["창 50", "눅 6", "욥 18", "고전 6"],
-        ["출 1", "눅 7", "욥 19", "고전 7"],
-        ["출 2", "눅 8", "욥 20", "고전 8"],
-        ["출 3", "눅 9", "욥 21", "고전 9"],
-        ["출 4", "눅 10", "욥 22", "고전 10"],
-        ["출 5", "눅 11", "욥 23", "고전 11"],
-        ["출 6", "눅 12", "욥 24", "고전 12"],
-        ["출 7", "눅 13", "욥 25", "고전 13"],
-        ["출 8", "눅 14", "욥 26", "고전 14"],
-        ["출 9", "눅 15", "욥 27", "고전 15"],
-        ["출 10", "눅 16", "욥 28", "고전 16"],
-        ["출 11", "눅 17", "욥 29", "고후 1"],
-        ["출 12", "눅 18", "욥 30", "고후 2"],
-        ["출 13", "눅 19", "욥 31", "고후 3"],
-        ["출 14", "눅 20", "욥 32", "고후 4"],
-        ["출 15", "눅 21", "욥 33", "고후 5"],
-        ["출 16", "눅 22", "욥 34", "고후 6"],
-        ["출 17", "눅 23", "욥 35", "고후 7"],
-        ["출 18", "눅 24", "욥 36", "고후 8"],
-        ["출 19", "요 1", "욥 37", "고후 9"],
-        ["출 20", "요 2", "욥 38", "고후 10"],
-        ["출 21", "요 3", "욥 39", "고후 11"],
-        ["출 22", "요 4", "욥 40", "고후 12"],
-        ["출 23", "요 5", "욥 41", "고후 13"],
-        ["출 24", "요 6", "욥 42", "갈 1"],
-        ["출 25", "요 7", "잠 1", "갈 2"],
-        ["출 26", "요 8", "잠 2", "갈 3"],
-        ["출 27", "요 9", "잠 3", "갈 4"],
-        ["출 28", "요 10", "잠 4", "갈 5"],
-        ["출 29", "요 11", "잠 5", "갈 6"],
-        ["출 30", "요 12", "잠 6", "엡 1"],
-        ["출 31", "요 13", "잠 7", "엡 2"],
-        ["출 32", "요 14", "잠 8", "엡 3"],
-        ["출 33", "요 15", "잠 9", "엡 4"],
-        ["출 34", "요 16", "잠 10", "엡 5"],
-        ["출 35", "요 17", "잠 11", "엡 6"],
-        ["출 36", "요 18", "잠 12", "빌 1"],
-        ["출 37", "요 19", "잠 13", "빌 2"],
-        ["출 38", "요 20", "잠 14", "빌 3"],
-        ["출 39", "요 21", "잠 15", "빌 4"],
-        ["출 40", "행 1", "잠 16", "골 1"],
-        ["레 1", "행 2", "잠 17", "골 2"],
-        ["레 2", "행 3", "잠 18", "골 3"],
-        ["레 3", "행 4", "잠 19", "골 4"],
-        ["레 4", "행 5", "잠 20", "살전 1"],
-        ["레 5", "행 6", "잠 21", "살전 2"],
-        ["레 6", "행 7", "잠 22", "살전 3"],
-        ["레 7", "행 8", "잠 23", "살전 4"],
-        ["레 8", "행 9", "잠 24", "살전 5"],
-        ["레 9", "행 10", "잠 25", "살후 1"],
-        ["레 10", "행 11", "잠 26", "살후 2"],
-        ["레 11", "행 12", "잠 27", "살후 3"],
-        ["레 12", "행 13", "잠 28", "딤전 1"],
-        ["레 13", "행 14", "잠 29", "딤전 2"],
-        ["레 14", "행 15", "잠 30", "딤전 3"],
-        ["레 15", "행 16", "잠 31", "딤전 4"],
-        ["레 16", "행 17", "전 1", "딤전 5"],
-        ["레 17", "행 18", "전 2", "딤전 6"],
-        ["레 18", "행 19", "전 3", "딤후 1"],
-        ["레 19", "행 20", "전 4", "딤후 2"],
-        ["레 20", "행 21", "전 5", "딤후 3"],
-        ["레 21", "행 22", "전 6", "딤후 4"],
-        ["레 22", "행 23", "전 7", "딛 1"],
-        ["레 23", "행 24", "전 8", "딛 2-3"],
-        ["레 24", "행 25", "전 9", "몬"],
-        ["레 25", "행 26", "전 10", "히 1"],
-        ["레 26", "행 27", "전 11", "히 2"],
-        ["레 27", "행 28", "전 12", "히 3"],
-      ];
-      const now = new Date();
-      const doy =
-        Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000) - 1;
-      const reading = mc[Math.min(doy, mc.length - 1)];
-      const mnArr = [
-        "1월",
-        "2월",
-        "3월",
-        "4월",
-        "5월",
-        "6월",
-        "7월",
-        "8월",
-        "9월",
-        "10월",
-        "11월",
-        "12월",
-      ];
-      document.getElementById("heroDate").textContent =
-        `${now.getFullYear()}년 ${mnArr[now.getMonth()]} ${now.getDate()}일`;
-      document.getElementById("heroReading").textContent =
-        `${reading[0]} · ${reading[1]} · ${reading[2]} · ${reading[3]}`;
+// ── 맥체인 365 ──
+const mc=[["창 1","마 1","에스라 1","행 1"],["창 2","마 2","에스라 2","행 2"],["창 3","마 3","에스라 3","행 3"],["창 4","마 4","에스라 4","행 4"],["창 5","마 5","에스라 5","행 5"],["창 6","마 6","에스라 6","행 6"],["창 7","마 7","에스라 7","행 7"],["창 8","마 8","에스라 8","행 8"],["창 9","마 9","에스라 9","행 9"],["창 10","마 10","에스라 10","행 10"],["창 11","마 11","느 1","행 11"],["창 12","마 12","느 2","행 12"],["창 13","마 13","느 3","행 13"],["창 14","마 14","느 4","행 14"],["창 15","마 15","느 5","행 15"],["창 16","마 16","느 6","행 16"],["창 17","마 17","느 7","행 17"],["창 18","마 18","느 8","행 18"],["창 19","마 19","느 9","행 19"],["창 20","마 20","느 10","행 20"],["창 21","마 21","느 11","행 21"],["창 22","마 22","느 12","행 22"],["창 23","마 23","느 13","행 23"],["창 24","마 24","에스더 1","행 24"],["창 25","마 25","에스더 2","행 25"],["창 26","마 26","에스더 3","행 26"],["창 27","마 27","에스더 4","행 27"],["창 28","마 28","에스더 5","행 28"],["창 29","막 1","에스더 6","롬 1"],["창 30","막 2","에스더 7","롬 2"],["창 31","막 3","에스더 8","롬 3"],["창 32","막 4","에스더 9-10","롬 4"],["창 33","막 5","욥 1","롬 5"],["창 34","막 6","욥 2","롬 6"],["창 35","막 7","욥 3","롬 7"],["창 36","막 8","욥 4","롬 8"],["창 37","막 9","욥 5","롬 9"],["창 38","막 10","욥 6","롬 10"],["창 39","막 11","욥 7","롬 11"],["창 40","막 12","욥 8","롬 12"],["창 41","막 13","욥 9","롬 13"],["창 42","막 14","욥 10","롬 14"],["창 43","막 15","욥 11","롬 15"],["창 44","막 16","욥 12","롬 16"],["창 45","눅 1","욥 13","고전 1"],["창 46","눅 2","욥 14","고전 2"],["창 47","눅 3","욥 15","고전 3"],["창 48","눅 4","욥 16","고전 4"],["창 49","눅 5","욥 17","고전 5"],["창 50","눅 6","욥 18","고전 6"],["출 1","눅 7","욥 19","고전 7"],["출 2","눅 8","욥 20","고전 8"],["출 3","눅 9","욥 21","고전 9"],["출 4","눅 10","욥 22","고전 10"],["출 5","눅 11","욥 23","고전 11"],["출 6","눅 12","욥 24","고전 12"],["출 7","눅 13","욥 25","고전 13"],["출 8","눅 14","욥 26","고전 14"],["출 9","눅 15","욥 27","고전 15"],["출 10","눅 16","욥 28","고전 16"],["출 11","눅 17","욥 29","고후 1"],["출 12","눅 18","욥 30","고후 2"],["출 13","눅 19","욥 31","고후 3"],["출 14","눅 20","욥 32","고후 4"],["출 15","눅 21","욥 33","고후 5"],["출 16","눅 22","욥 34","고후 6"],["출 17","눅 23","욥 35","고후 7"],["출 18","눅 24","욥 36","고후 8"],["출 19","요 1","욥 37","고후 9"],["출 20","요 2","욥 38","고후 10"],["출 21","요 3","욥 39","고후 11"],["출 22","요 4","욥 40","고후 12"],["출 23","요 5","욥 41","고후 13"],["출 24","요 6","욥 42","갈 1"],["출 25","요 7","잠 1","갈 2"],["출 26","요 8","잠 2","갈 3"],["출 27","요 9","잠 3","갈 4"],["출 28","요 10","잠 4","갈 5"],["출 29","요 11","잠 5","갈 6"],["출 30","요 12","잠 6","엡 1"],["출 31","요 13","잠 7","엡 2"],["출 32","요 14","잠 8","엡 3"],["출 33","요 15","잠 9","엡 4"],["출 34","요 16","잠 10","엡 5"],["출 35","요 17","잠 11","엡 6"],["출 36","요 18","잠 12","빌 1"],["출 37","요 19","잠 13","빌 2"],["출 38","요 20","잠 14","빌 3"],["출 39","요 21","잠 15","빌 4"],["출 40","행 1","잠 16","골 1"],["레 1","행 2","잠 17","골 2"],["레 2","행 3","잠 18","골 3"],["레 3","행 4","잠 19","골 4"],["레 4","행 5","잠 20","살전 1"],["레 5","행 6","잠 21","살전 2"],["레 6","행 7","잠 22","살전 3"],["레 7","행 8","잠 23","살전 4"],["레 8","행 9","잠 24","살전 5"],["레 9","행 10","잠 25","살후 1"],["레 10","행 11","잠 26","살후 2"],["레 11","행 12","잠 27","살후 3"],["레 12","행 13","잠 28","딤전 1"],["레 13","행 14","잠 29","딤전 2"],["레 14","행 15","잠 30","딤전 3"],["레 15","행 16","잠 31","딤전 4"],["레 16","행 17","전 1","딤전 5"],["레 17","행 18","전 2","딤전 6"],["레 18","행 19","전 3","딤후 1"],["레 19","행 20","전 4","딤후 2"],["레 20","행 21","전 5","딤후 3"],["레 21","행 22","전 6","딤후 4"],["레 22","행 23","전 7","딛 1"],["레 23","행 24","전 8","딛 2-3"],["레 24","행 25","전 9","몬"],["레 25","행 26","전 10","히 1"],["레 26","행 27","전 11","히 2"],["레 27","행 28","전 12","히 3"]];
+const now=new Date();
+const doy=Math.floor((now-new Date(now.getFullYear(),0,0))/86400000)-1;
+const reading=mc[Math.min(doy,mc.length-1)];
+const mnArr=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+document.getElementById('heroDate').textContent=`${now.getFullYear()}년 ${mnArr[now.getMonth()]} ${now.getDate()}일`;
+document.getElementById('heroReading').textContent=`${reading[0]} · ${reading[1]} · ${reading[2]} · ${reading[3]}`;
 
-      // ── 페이지 이동 ──
-      const TITLES = {
-        home: "홈",
-        prayer: "기도 제목",
-        sermon: "설교 영상",
-        notice: "공지사항",
-        more: "더보기",
-        settings: "설정",
-        admin: "관리자",
-      };
-      G("goPage", (id) => {
-        document
-          .querySelectorAll(".page")
-          .forEach((p) => p.classList.remove("active"));
-        document
-          .querySelectorAll(".tab-btn")
-          .forEach((b) => b.classList.remove("active"));
-        document.getElementById("page-" + id).classList.add("active");
-        const t = document.getElementById("tab-" + id);
-        if (t) t.classList.add("active");
-        if (id === "more") hideSub();
-        if (id === "notice") closeDetail();
-      });
-      G("showSub", (sub) => {
-        document.getElementById("moreMenu").style.display = "none";
-        document
-          .querySelectorAll('[id^="sub-"]')
-          .forEach((el) => (el.style.display = "none"));
-        document.getElementById("sub-" + sub).style.display = "block";
-      });
-      G("hideSub", () => {
-        document.getElementById("moreMenu").style.display = "block";
-        document
-          .querySelectorAll('[id^="sub-"]')
-          .forEach((el) => (el.style.display = "none"));
-      });
+// ── 페이지 이동 ──
+const TITLES={home:'홈',prayer:'기도 제목',sermon:'설교 영상',notice:'공지사항',more:'더보기',settings:'설정',admin:'관리자'};
+G('goPage',id=>{
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const t=document.getElementById('tab-'+id);if(t)t.classList.add('active');
+  if(id==='more')hideSub();
+  if(id==='notice')closeDetail();
+});
+G('showSub',sub=>{
+  document.getElementById('moreMenu').style.display='none';
+  document.querySelectorAll('[id^="sub-"]').forEach(el=>el.style.display='none');
+  document.getElementById('sub-'+sub).style.display='block';
+});
+G('hideSub',()=>{
+  document.getElementById('moreMenu').style.display='block';
+  document.querySelectorAll('[id^="sub-"]').forEach(el=>el.style.display='none');
+});
 
-      // ── 날짜 ──
-      function fd(iso) {
-        const d = new Date(iso);
-        return `${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
-      }
-      function fdt(iso) {
-        const d = new Date(iso);
-        const h = d.getHours(),
-          m = d.getMinutes();
-        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
-      }
+// ── 날짜 ──
+function fd(iso){const d=new Date(iso);return`${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;}
+function fdt(iso){const d=new Date(iso);const h=d.getHours(),m=d.getMinutes();return`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${h<12?'오전':'오후'} ${h%12||12}:${String(m).padStart(2,'0')}`;}
 
-      // ── 포도나무 ──
-      let streak = 0,
-        cont = 0;
-      const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
-      G("increaseStreak", () => {
-        if (streak >= 365) {
-          showToast("🎉 1년 완주!");
-          return;
-        }
-        streak++;
-        cont++;
-        const pct = Math.round((streak / 365) * 100);
-        const stage = stages[Math.min(Math.floor(pct / 20), 4)];
-        ["h-pct", "g-pct"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.textContent = pct + "%";
-        });
-        ["h-bar", "g-bar"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.style.width = pct + "%";
-        });
-        ["h-streak", "g-streak"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.textContent = `🔥 ${cont}일 연속`;
-        });
-        ["h-grape", "grapeEmoji"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.textContent = stage;
-        });
-        const gd = document.getElementById("g-day");
-        if (gd) gd.textContent = `${streak}일 / 365일`;
-        showToast("✅ 오늘 말씀 완료! " + pct + "%");
-      });
+// ── 주간생명의 양식 (52주) ──
+let streak=0,cont=0;
+const stages=['🌱','🌿','🍃','🌾','🍇'];
+G('increaseStreak',()=>{
+  if(streak>=52){showToast('🎉 1년 완주!');return;}
+  streak++;cont++;
+  const pct=Math.round(streak/52*100);
+  const stage=stages[Math.min(Math.floor(pct/20),4)];
+  ['h-pct','g-pct'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=pct+'%';});
+  ['h-bar','g-bar'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.width=pct+'%';});
+  ['h-streak','g-streak'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=`🔥 ${cont}주 연속`;});
+  ['h-grape','grapeEmoji'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=stage;});
+  const gd=document.getElementById('g-day');if(gd)gd.textContent=`${streak}주 / 52주`;
+  showToast('✅ 이번 주 완료! '+pct+'%');
+});
 
-      // ── 공지 ──
-      G("postNotice", () => {
-        if (!isAdmin) return;
-        const t = document.getElementById("noticeTitle").value.trim();
-        const b = document.getElementById("noticeBody").value.trim();
-        if (!t || !b) {
-          showToast("제목과 내용을 입력하세요");
-          return;
-        }
-        push(ref(db, "notices"), {
-          title: t,
-          body: b,
-          date: new Date().toISOString(),
-        });
-        document.getElementById("noticeTitle").value = "";
-        document.getElementById("noticeBody").value = "";
-        showToast("✅ 공지 등록!");
-      });
-      G("deleteNotice", (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "notices/" + id));
-      });
-      window._nd = {};
-      onValue(ref(db, "notices"), (snap) => {
-        window._nd = snap.val() || {};
-        const items = Object.entries(window._nd).reverse();
-        const tags = [
-          ["#eff6ff", "#1a56db", "공지"],
-          ["#f0fdf4", "#16a34a", "소식"],
-          ["#fefce8", "#ca8a04", "안내"],
-        ];
-        const row = (id, n, i) => {
-          const [bg, cl, lb] = tags[i % 3];
-          return `<div class="notice-row" onclick="openDetail('${id}')"><span class="n-tag" style="background:${bg};color:${cl}">${lb}</span><span class="n-title">${n.title}</span><span class="n-date">${fd(n.date)}</span></div>`;
-        };
-        document.getElementById("homeNotice").innerHTML = items.length
-          ? items
-              .slice(0, 3)
-              .map(([id, n], i) => row(id, n, i))
-              .join("")
-          : '<div class="empty2">공지가 없어요</div>';
-        document.getElementById("noticeList").innerHTML = items.length
-          ? items.map(([id, n], i) => row(id, n, i)).join("")
-          : '<div class="empty2">공지가 없어요</div>';
-        document.getElementById("adminNoticeList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, n]) =>
-                  `<div class="adm-item"><span>${n.title}</span><button class="btn-del" onclick="deleteNotice('${id}')">삭제</button></div>`,
-              )
-              .join("")
-          : "";
-      });
-      G("openDetail", (id) => {
-        const n = window._nd[id];
-        document.getElementById("noticeListView").style.display = "none";
-        document.getElementById("noticeDetail").style.display = "block";
-        document.getElementById("detailTitle").textContent = n.title;
-        document.getElementById("detailDate").textContent = fdt(n.date);
-        document.getElementById("detailBody").textContent = n.body;
-      });
-      G("closeDetail", () => {
-        document.getElementById("noticeListView").style.display = "block";
-        document.getElementById("noticeDetail").style.display = "none";
-      });
+// ── 공지 ──
+G('postNotice',()=>{
+  if(!isAdmin)return;
+  const t=document.getElementById('noticeTitle').value.trim();
+  const b=document.getElementById('noticeBody').value.trim();
+  if(!t||!b){showToast('제목과 내용을 입력하세요');return;}
+  push(ref(db,'notices'),{title:t,body:b,date:new Date().toISOString()});
+  document.getElementById('noticeTitle').value='';document.getElementById('noticeBody').value='';
+  showToast('✅ 공지 등록!');
+});
+G('deleteNotice',id=>{if(!isAdmin)return;if(confirm('삭제?'))remove(ref(db,'notices/'+id));});
+window._nd={};
+onValue(ref(db,'notices'),snap=>{
+  window._nd=snap.val()||{};
+  const items=Object.entries(window._nd).reverse();
+  const tags=[['#eff6ff','#1a56db','공지'],['#f0fdf4','#16a34a','소식'],['#fefce8','#ca8a04','안내']];
+  const row=(id,n,i)=>{const[bg,cl,lb]=tags[i%3];return`<div class="notice-row" onclick="openDetail('${id}')"><span class="n-tag" style="background:${bg};color:${cl}">${lb}</span><span class="n-title">${n.title}</span><span class="n-date">${fd(n.date)}</span></div>`;};
+  document.getElementById('homeNotice').innerHTML=items.length?items.slice(0,3).map(([id,n],i)=>row(id,n,i)).join(''):'<div class="empty2">공지가 없어요</div>';
+  document.getElementById('noticeList').innerHTML=items.length?items.map(([id,n],i)=>row(id,n,i)).join(''):'<div class="empty2">공지가 없어요</div>';
+  document.getElementById('adminNoticeList').innerHTML=items.length?items.map(([id,n])=>`<div class="adm-item"><span>${n.title}</span><button class="btn-del" onclick="deleteNotice('${id}')">삭제</button></div>`).join(''):'';
+});
+G('openDetail',id=>{
+  const n=window._nd[id];
+  document.getElementById('noticeListView').style.display='none';
+  document.getElementById('noticeDetail').style.display='block';
+  document.getElementById('detailTitle').textContent=n.title;
+  document.getElementById('detailDate').textContent=fdt(n.date);
+  document.getElementById('detailBody').textContent=n.body;
+});
+G('closeDetail',()=>{
+  document.getElementById('noticeListView').style.display='block';
+  document.getElementById('noticeDetail').style.display='none';
+});
 
-      // ── 설교 ──
-      G("postSermon", () => {
-        if (!isAdmin) return;
-        const t = document.getElementById("sermonTitle").value.trim();
-        const s = document.getElementById("sermonSub").value.trim();
-        const u = document.getElementById("sermonUrl").value.trim();
-        if (!t) {
-          showToast("제목을 입력하세요");
-          return;
-        }
-        push(ref(db, "sermons"), {
-          title: t,
-          sub: s,
-          url: u,
-          date: new Date().toISOString(),
-        });
-        document.getElementById("sermonTitle").value = "";
-        document.getElementById("sermonSub").value = "";
-        document.getElementById("sermonUrl").value = "";
-        showToast("✅ 영상 등록!");
-      });
-      G("deleteSermon", (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "sermons/" + id));
-      });
-      function getVid(u) {
-        const m = (u || "").match(/(?:v=|youtu\.be\/)([^&\s]+)/);
-        return m ? m[1] : null;
-      }
-      onValue(ref(db, "sermons"), (snap) => {
-        const data = snap.val() || {};
-        const items = Object.entries(data).reverse();
-        const el = document.getElementById("sermonList");
-        el.innerHTML = items.length
-          ? items
-              .map(([id, s]) => {
-                const vid = getVid(s.url);
-                return `<${s.url ? `a href="${s.url}" target="_blank" rel="noopener"` : "div"} class="video-card">
-      <div class="v-thumb">${vid ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover"/><div class="v-play">▶</div>` : '<div class="v-thumb-ph">🎬</div>'}</div>
-      <div class="v-info"><div class="v-title">${s.title}</div><div class="v-sub">${s.sub || ""}</div>${s.url ? '<div class="v-badge">▶ YouTube</div>' : ""}</div>
-    </${s.url ? "a" : "div"}>`;
-              })
-              .join("")
-          : '<div class="empty2">등록된 영상이 없어요</div>';
-        document.getElementById("adminSermonList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, s]) =>
-                  `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteSermon('${id}')">삭제</button></div>`,
-              )
-              .join("")
-          : "";
-      });
+// ── 설교 영상 (2열 그리드) ──
+G('postSermon',()=>{
+  if(!isAdmin)return;
+  const t=document.getElementById('sermonTitle').value.trim();
+  const s=document.getElementById('sermonSub').value.trim();
+  const u=document.getElementById('sermonUrl').value.trim();
+  if(!t){showToast('제목을 입력하세요');return;}
+  push(ref(db,'sermons'),{title:t,sub:s,url:u,date:new Date().toISOString()});
+  document.getElementById('sermonTitle').value='';document.getElementById('sermonSub').value='';document.getElementById('sermonUrl').value='';
+  showToast('✅ 영상 등록!');
+});
+G('deleteSermon',id=>{if(!isAdmin)return;if(confirm('삭제?'))remove(ref(db,'sermons/'+id));});
+function getVid(u){const m=(u||'').match(/(?:v=|youtu\.be\/)([^&\s]+)/);return m?m[1]:null;}
+onValue(ref(db,'sermons'),snap=>{
+  const data=snap.val()||{};const items=Object.entries(data).reverse().slice(0,6);
+  const el=document.getElementById('sermonList');
+  el.innerHTML=items.length?items.map(([id,s])=>{
+    const vid=getVid(s.url);
+    const thumb=vid?`<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover"/><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px">▶</div>`:'<div style="width:100%;height:100%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;font-size:28px">🎬</div>';
+    return`<${s.url?`a href="${s.url}" target="_blank" rel="noopener"`:'div'} style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--border);text-decoration:none;display:block;">
+      <div style="position:relative;width:100%;padding-top:56%;overflow:hidden;">${thumb}</div>
+      <div style="padding:10px 10px 12px">
+        <div style="font-size:12px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:4px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">${s.title}</div>
+        <div style="font-size:10px;color:var(--sub)">${s.sub||''}</div>
+        ${s.url?'<div style="display:inline-block;background:#fee2e2;color:#dc2626;border-radius:5px;padding:2px 6px;font-size:10px;font-weight:700;margin-top:4px">▶ YouTube</div>':''}
+      </div>
+    </${s.url?'a':'div'}>`;
+  }).join(''):'<div class="empty2" style="grid-column:1/-1">등록된 영상이 없어요</div>';
+  document.getElementById('adminSermonList').innerHTML=items.length?items.map(([id,s])=>`<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteSermon('${id}')">삭제</button></div>`).join(''):'';
+});
 
-      // ── 기도 ──
-      G("addPrayer", () => {
-        const inp = document.getElementById("prayerInput");
-        if (!inp.value.trim()) {
-          alert("기도 제목을 입력하세요!");
-          return;
-        }
-        push(ref(db, "prayers"), {
-          text: inp.value.trim(),
-          date: new Date().toISOString(),
-          answered: false,
-          author: currentUser?.name || "",
-        });
-        inp.value = "";
-        showToast("🙏 기도 제목 추가!");
-      });
-      document
-        .getElementById("prayerInput")
-        .addEventListener("keydown", (e) => {
-          if (e.key === "Enter") window.addPrayer();
-        });
-      G("deletePrayer", (id) => remove(ref(db, "prayers/" + id)));
-      G("answerPrayer", (id) =>
-        update(ref(db, "prayers/" + id), { answered: true }),
-      );
-      onValue(ref(db, "prayers"), (snap) => {
-        const data = snap.val() || {};
-        const items = Object.entries(data).reverse();
-        document.getElementById("prayerList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, p]) => `
-    <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 14px 8px">
-      <div class="item-text">${p.answered ? "✅ " : ""} ${p.text}</div>
+// ── 주보 ──
+G('postBulletin',()=>{
+  if(!isAdmin)return;
+  const t=document.getElementById('bulletinTitle').value.trim();
+  const u=document.getElementById('bulletinUrl').value.trim();
+  const d=document.getElementById('bulletinDate').value;
+  if(!t||!u){showToast('제목과 링크를 입력하세요');return;}
+  push(ref(db,'bulletins'),{title:t,url:u,date:d||new Date().toISOString()});
+  document.getElementById('bulletinTitle').value='';
+  document.getElementById('bulletinUrl').value='';
+  document.getElementById('bulletinDate').value='';
+  showToast('✅ 주보 등록!');
+});
+G('deleteBulletin',id=>{if(!isAdmin)return;if(confirm('삭제?'))remove(ref(db,'bulletins/'+id));});
+onValue(ref(db,'bulletins'),snap=>{
+  const data=snap.val()||{};const items=Object.entries(data).reverse();
+  const el=document.getElementById('bulletinList');
+  if(el) el.innerHTML=items.length?items.map(([id,b])=>`
+    <div class="card" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+      <div>
+        <div style="font-size:14px;font-weight:700">${b.title}</div>
+        <div style="font-size:11px;color:var(--sub);margin-top:2px">${b.date?fd(b.date):''}</div>
+      </div>
+      <a href="${b.url}" target="_blank" rel="noopener" style="background:var(--blue);color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;text-decoration:none;flex-shrink:0">보기</a>
+    </div>`).join(''):'<div class="empty2">등록된 주보가 없어요</div>';
+  const aEl=document.getElementById('adminBulletinList');
+  if(aEl) aEl.innerHTML=items.length?items.map(([id,b])=>`<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBulletin('${id}')">삭제</button></div>`).join(''):'<div class="empty2">없음</div>';
+});
+
+// ── 기도 ──
+G('addPrayer',()=>{
+  const inp=document.getElementById('prayerInput');
+  if(!inp.value.trim()){alert('기도 제목을 입력하세요!');return;}
+  push(ref(db,'prayers'),{text:inp.value.trim(),date:new Date().toISOString(),answered:false,author:currentUser?.name||''});
+  inp.value='';showToast('🙏 기도 제목 추가!');
+});
+document.getElementById('prayerInput').addEventListener('keydown',e=>{if(e.key==='Enter')window.addPrayer();});
+G('deletePrayer',id=>remove(ref(db,'prayers/'+id)));
+G('answerPrayer',id=>update(ref(db,'prayers/'+id),{answered:true}));
+onValue(ref(db,'prayers'),snap=>{
+  const data=snap.val()||{};const items=Object.entries(data).reverse();
+  document.getElementById('prayerList').innerHTML=items.length?items.map(([id,p])=>`
+    <div class="list-item ${p.answered?'answered':''}" style="margin:0 14px 8px">
+      <div class="item-text">${p.answered?'✅ ':''} ${p.text}</div>
       <div class="item-meta">
-        <span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span>
+        <span>${p.author?p.author+' · ':''}${fdt(p.date)}</span>
         <div class="item-acts">
-          ${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}
+          ${!p.answered?`<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>`:'<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}
           <button class="tag-del" onclick="deletePrayer('${id}')">삭제</button>
         </div>
       </div>
-    </div>`,
-              )
-              .join("")
-          : '<div class="empty2">기도 제목을 추가해보세요</div>';
-      });
+    </div>`).join(''):'<div class="empty2">기도 제목을 추가해보세요</div>';
+});
 
-      // ── 말씀 나눔 ──
-      G("addSharing", () => {
-        const inp = document.getElementById("sharingInput");
-        if (!inp.value.trim()) {
-          alert("내용을 입력하세요!");
-          return;
-        }
-        push(ref(db, "sharings"), {
-          text: inp.value.trim(),
-          date: new Date().toISOString(),
-          author: currentUser?.name || "",
-        });
-        inp.value = "";
-        showToast("📖 말씀 나눔 등록!");
-      });
-      G("deleteSharing", (id) => remove(ref(db, "sharings/" + id)));
-      onValue(ref(db, "sharings"), (snap) => {
-        const data = snap.val() || {};
-        const items = Object.entries(data).reverse();
-        document.getElementById("sharingList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, s]) => `
+// ── 말씀 나눔 ──
+G('addSharing',()=>{
+  const inp=document.getElementById('sharingInput');
+  if(!inp.value.trim()){alert('내용을 입력하세요!');return;}
+  push(ref(db,'sharings'),{text:inp.value.trim(),date:new Date().toISOString(),author:currentUser?.name||''});
+  inp.value='';showToast('📖 말씀 나눔 등록!');
+});
+G('deleteSharing',id=>remove(ref(db,'sharings/'+id)));
+onValue(ref(db,'sharings'),snap=>{
+  const data=snap.val()||{};const items=Object.entries(data).reverse();
+  document.getElementById('sharingList').innerHTML=items.length?items.map(([id,s])=>`
     <div class="list-item">
       <div class="item-text">${s.text}</div>
-      <div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="deleteSharing('${id}')">삭제</button></div>
-    </div>`,
-              )
-              .join("")
-          : '<div class="empty2">첫 번째로 말씀을 나눠보세요 ✨</div>';
-        document.getElementById("adminSharingList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, s]) =>
-                  `<div class="adm-item"><span>${s.text.slice(0, 20)}</span><button class="btn-del" onclick="deleteSharing('${id}')">삭제</button></div>`,
-              )
-              .join("")
-          : '<div class="empty2">없음</div>';
-      });
+      <div class="item-meta"><span>${s.author?s.author+' · ':''}${fdt(s.date)}</span><button class="tag-del" onclick="deleteSharing('${id}')">삭제</button></div>
+    </div>`).join(''):'<div class="empty2">첫 번째로 말씀을 나눠보세요 ✨</div>';
+  document.getElementById('adminSharingList').innerHTML=items.length?items.map(([id,s])=>`<div class="adm-item"><span>${s.text.slice(0,20)}</span><button class="btn-del" onclick="deleteSharing('${id}')">삭제</button></div>`).join(''):'<div class="empty2">없음</div>';
+});
 
-      // ── 찬양 신청 ──
-      G("addPraise", () => {
-        const inp = document.getElementById("praiseInput");
-        if (!inp.value.trim()) {
-          alert("찬양 제목을 입력하세요!");
-          return;
-        }
-        push(ref(db, "praises"), {
-          title: inp.value.trim(),
-          date: new Date().toISOString(),
-          likes: 0,
-          author: currentUser?.name || "",
-        });
-        inp.value = "";
-        showToast("🎵 찬양 신청!");
-      });
-      G("deletePraise", (id) => remove(ref(db, "praises/" + id)));
-      G("likePraise", (id, cur) =>
-        update(ref(db, "praises/" + id), { likes: cur + 1 }),
-      );
-      onValue(ref(db, "praises"), (snap) => {
-        const data = snap.val() || {};
-        const items = Object.entries(data).reverse();
-        document.getElementById("praiseList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, p]) => `
+// ── 찬양 신청 ──
+G('addPraise',()=>{
+  const inp=document.getElementById('praiseInput');
+  if(!inp.value.trim()){alert('찬양 제목을 입력하세요!');return;}
+  push(ref(db,'praises'),{title:inp.value.trim(),date:new Date().toISOString(),likes:0,author:currentUser?.name||''});
+  inp.value='';showToast('🎵 찬양 신청!');
+});
+G('deletePraise',id=>remove(ref(db,'praises/'+id)));
+G('likePraise',(id,cur)=>update(ref(db,'praises/'+id),{likes:cur+1}));
+onValue(ref(db,'praises'),snap=>{
+  const data=snap.val()||{};const items=Object.entries(data).reverse();
+  document.getElementById('praiseList').innerHTML=items.length?items.map(([id,p])=>`
     <div class="list-item" style="display:flex;justify-content:space-between;align-items:center;">
-      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
+      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author?p.author+' · ':''}${fd(p.date)}</div></div>
       <div style="display:flex;gap:6px">
-        <button class="tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button>
+        <button class="tag-like" onclick="likePraise('${id}',${p.likes||0})">❤️ ${p.likes||0}</button>
         <button class="tag-del" onclick="deletePraise('${id}')">삭제</button>
       </div>
-    </div>`,
-              )
-              .join("")
-          : '<div class="empty2">신청된 찬양이 없어요</div>';
-        document.getElementById("adminPraiseList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, p]) =>
-                  `<div class="adm-item"><span>${p.title}</span><button class="btn-del" onclick="deletePraise('${id}')">삭제</button></div>`,
-              )
-              .join("")
-          : '<div class="empty2">없음</div>';
-      });
+    </div>`).join(''):'<div class="empty2">신청된 찬양이 없어요</div>';
+  document.getElementById('adminPraiseList').innerHTML=items.length?items.map(([id,p])=>`<div class="adm-item"><span>${p.title}</span><button class="btn-del" onclick="deletePraise('${id}')">삭제</button></div>`).join(''):'<div class="empty2">없음</div>';
+});
 
-      // ── 일정 ──
-      G("postSchedule", () => {
-        if (!isAdmin) return;
-        const d = document.getElementById("scheduleDate").value;
-        const n = document.getElementById("scheduleName").value.trim();
-        if (!d || !n) {
-          showToast("날짜와 이름을 입력하세요");
-          return;
-        }
-        push(ref(db, "schedules"), { date: d, name: n });
-        document.getElementById("scheduleDate").value = "";
-        document.getElementById("scheduleName").value = "";
-        showToast("✅ 일정 등록!");
-      });
-      G("deleteSchedule", (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "schedules/" + id));
-      });
-      window._sd = {};
-      onValue(ref(db, "schedules"), (snap) => {
-        window._sd = snap.val() || {};
-        renderCal();
-        document.getElementById("adminScheduleList").innerHTML = Object.entries(
-          window._sd,
-        ).length
-          ? Object.entries(window._sd)
-              .map(
-                ([id, s]) =>
-                  `<div class="adm-item"><span>${s.date} · ${s.name}</span><button class="btn-del" onclick="deleteSchedule('${id}')">삭제</button></div>`,
-              )
-              .join("")
-          : '<div class="empty2">없음</div>';
-      });
+// ── 일정 ──
+G('postSchedule',()=>{
+  if(!isAdmin)return;
+  const d=document.getElementById('scheduleDate').value;
+  const n=document.getElementById('scheduleName').value.trim();
+  if(!d||!n){showToast('날짜와 이름을 입력하세요');return;}
+  push(ref(db,'schedules'),{date:d,name:n});
+  document.getElementById('scheduleDate').value='';document.getElementById('scheduleName').value='';
+  showToast('✅ 일정 등록!');
+});
+G('deleteSchedule',id=>{if(!isAdmin)return;if(confirm('삭제?'))remove(ref(db,'schedules/'+id));});
+window._sd={};
+onValue(ref(db,'schedules'),snap=>{
+  window._sd=snap.val()||{};renderCal();
+  document.getElementById('adminScheduleList').innerHTML=Object.entries(window._sd).length?Object.entries(window._sd).map(([id,s])=>`<div class="adm-item"><span>${s.date} · ${s.name}</span><button class="btn-del" onclick="deleteSchedule('${id}')">삭제</button></div>`).join(''):'<div class="empty2">없음</div>';
+});
 
-      // ── 달력 ──
-      let calY = now.getFullYear(),
-        calM = now.getMonth();
-      function renderCal() {
-        const fd2 = new Date(calY, calM, 1).getDay(),
-          dim = new Date(calY, calM + 1, 0).getDate();
-        document.getElementById("calTitle").textContent =
-          `${calY}년 ${mnArr[calM]}`;
-        const evD = new Set();
-        Object.values(window._sd).forEach((s) => {
-          const d = new Date(s.date);
-          if (d.getFullYear() === calY && d.getMonth() === calM)
-            evD.add(d.getDate());
-        });
-        let h = ["일", "월", "화", "수", "목", "금", "토"]
-          .map((d) => `<div class="cal-dn">${d}</div>`)
-          .join("");
-        for (let i = 0; i < fd2; i++) h += `<div class="cal-d other"></div>`;
-        for (let d = 1; d <= dim; d++) {
-          const t =
-            d === now.getDate() &&
-            calM === now.getMonth() &&
-            calY === now.getFullYear()
-              ? "today"
-              : "";
-          const e = evD.has(d) ? "has-ev" : "";
-          h += `<div class="cal-d ${t} ${e}" onclick="showEv(${d})">${d}</div>`;
-        }
-        document.getElementById("calGrid").innerHTML = h;
-        showEv(now.getDate());
-      }
-      G("showEv", (d) => {
-        const items = Object.values(window._sd).filter((s) => {
-          const dt = new Date(s.date);
-          return (
-            dt.getFullYear() === calY &&
-            dt.getMonth() === calM &&
-            dt.getDate() === d
-          );
-        });
-        document.getElementById("evList").innerHTML = items.length
-          ? items
-              .map(
-                (s) =>
-                  `<div class="ev-item"><div class="ev-dot"></div><span>${calM + 1}월 ${d}일 · ${s.name}</span></div>`,
-              )
-              .join("")
-          : `<div class="ev-empty">${calM + 1}월 ${d}일 · 일정 없음</div>`;
-      });
-      G("changeMonth", (dir) => {
-        calM += dir;
-        if (calM > 11) {
-          calM = 0;
-          calY++;
-        }
-        if (calM < 0) {
-          calM = 11;
-          calY--;
-        }
-        renderCal();
-      });
-      window._sd = {};
-      renderCal();
+// ── 달력 ──
+let calY=now.getFullYear(),calM=now.getMonth();
+function renderCal(){
+  const fd2=new Date(calY,calM,1).getDay(),dim=new Date(calY,calM+1,0).getDate();
+  document.getElementById('calTitle').textContent=`${calY}년 ${mnArr[calM]}`;
+  const evD=new Set();
+  Object.values(window._sd).forEach(s=>{const d=new Date(s.date);if(d.getFullYear()===calY&&d.getMonth()===calM)evD.add(d.getDate());});
+  let h=['일','월','화','수','목','금','토'].map(d=>`<div class="cal-dn">${d}</div>`).join('');
+  for(let i=0;i<fd2;i++)h+=`<div class="cal-d other"></div>`;
+  for(let d=1;d<=dim;d++){
+    const t=(d===now.getDate()&&calM===now.getMonth()&&calY===now.getFullYear())?'today':'';
+    const e=evD.has(d)?'has-ev':'';
+    h+=`<div class="cal-d ${t} ${e}" onclick="showEv(${d})">${d}</div>`;
+  }
+  document.getElementById('calGrid').innerHTML=h;showEv(now.getDate());
+}
+G('showEv',d=>{
+  const items=Object.values(window._sd).filter(s=>{const dt=new Date(s.date);return dt.getFullYear()===calY&&dt.getMonth()===calM&&dt.getDate()===d;});
+  document.getElementById('evList').innerHTML=items.length?items.map(s=>`<div class="ev-item"><div class="ev-dot"></div><span>${calM+1}월 ${d}일 · ${s.name}</span></div>`).join(''):`<div class="ev-empty">${calM+1}월 ${d}일 · 일정 없음</div>`;
+});
+G('changeMonth',dir=>{calM+=dir;if(calM>11){calM=0;calY++;}if(calM<0){calM=11;calY--;}renderCal();});
+window._sd={};renderCal();
 
-      // ── 관리자 ──
-      G("adminLogin", () => {
-        const pw = document.getElementById("adminPw").value;
-        if (ADMINS.includes(pw)) {
-          isAdmin = true;
-          document.getElementById("adminLoginCard").style.display = "none";
-          document.getElementById("adminPanel").style.display = "block";
-          showToast("✅ 관리자 로그인!");
-        } else showToast("❌ 비밀번호 오류");
-      });
-      G("adminLogout", () => {
-        isAdmin = false;
-        document.getElementById("adminLoginCard").style.display = "block";
-        document.getElementById("adminPanel").style.display = "none";
-        document.getElementById("adminPw").value = "";
-        showToast("로그아웃");
-      });
+// ── 관리자 ──
+G('adminLogin',()=>{
+  const pw=document.getElementById('adminPw').value;
+  if(ADMINS.includes(pw)){
+    isAdmin=true;
+    document.getElementById('adminLoginCard').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+    showToast('✅ 관리자 로그인!');
+  } else showToast('❌ 비밀번호 오류');
+});
+G('adminLogout',()=>{
+  isAdmin=false;
+  document.getElementById('adminLoginCard').style.display='block';
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('adminPw').value='';
+  showToast('로그아웃');
+});
 
-      // ── 토스트 ──
-      G("showToast", (msg) => {
-        const t = document.getElementById("toast");
-        t.textContent = msg;
-        t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 2500);
-      });
-    </script>
-  </body>
+// ── 토스트 ──
+G('showToast',msg=>{
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+});
+</script>
+</body>
 </html>
