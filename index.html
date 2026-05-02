@@ -163,9 +163,6 @@
         cursor: pointer;
         margin-bottom: 8px;
       }
-      .l-btn-main:active {
-        opacity: 0.9;
-      }
       .l-btn-sub {
         width: 100%;
         padding: 13px;
@@ -345,7 +342,6 @@
       .page.active {
         display: block;
       }
-
       .section {
         padding: 14px 14px 0;
       }
@@ -574,6 +570,45 @@
         border-radius: 999px;
         transition: width 0.5s;
       }
+      .grape-emoji-big {
+        font-size: 72px;
+        margin-bottom: 10px;
+      }
+      .grape-pct-full {
+        font-size: 52px;
+        font-weight: 900;
+        color: var(--blue);
+      }
+      .grape-day-full {
+        font-size: 13px;
+        color: var(--sub);
+        margin-top: 4px;
+      }
+      .grape-streak-full {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #fff7ed;
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #ea580c;
+        margin-top: 10px;
+      }
+      .bar-bg2 {
+        background: var(--border);
+        border-radius: 999px;
+        height: 10px;
+        overflow: hidden;
+        margin: 16px 0 6px;
+      }
+      .bar-fill2 {
+        height: 100%;
+        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
+        border-radius: 999px;
+        transition: width 0.5s;
+      }
 
       /* 페이지 히어로 */
       .page-hero {
@@ -591,7 +626,7 @@
         opacity: 0.8;
       }
 
-      /* 기도/나눔 아이템 */
+      /* 아이템 */
       .list-item {
         background: #f8fafc;
         border-radius: 12px;
@@ -652,6 +687,107 @@
         cursor: pointer;
       }
 
+      /* 2열 그리드 카드 (설교/신앙서적) */
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 14px;
+      }
+      .grid2-card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        display: block;
+      }
+      .grid2-thumb {
+        position: relative;
+        width: 100%;
+        padding-top: 56%;
+        overflow: hidden;
+      }
+      .grid2-thumb-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .grid2-thumb-ph {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+      }
+      .grid2-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+      .grid2-info {
+        padding: 10px 10px 12px;
+      }
+      .grid2-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.4;
+        margin-bottom: 4px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .grid2-sub {
+        font-size: 10px;
+        color: var(--sub);
+      }
+      .grid2-desc {
+        font-size: 10px;
+        color: var(--sub);
+        margin-top: 4px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        line-height: 1.5;
+      }
+      .yt-badge {
+        display: inline-block;
+        background: #fee2e2;
+        color: #dc2626;
+        border-radius: 5px;
+        padding: 2px 6px;
+        font-size: 10px;
+        font-weight: 700;
+        margin-top: 4px;
+      }
+      .book-badge {
+        display: inline-block;
+        background: #ede9fe;
+        color: #7c3aed;
+        border-radius: 5px;
+        padding: 2px 6px;
+        font-size: 10px;
+        font-weight: 700;
+        margin-top: 4px;
+      }
+
       /* 더보기 */
       .more-grid {
         display: grid;
@@ -685,47 +821,6 @@
       }
       .sub-wrap {
         padding-bottom: 90px;
-      }
-
-      /* 포도나무 상세 */
-      .grape-emoji-big {
-        font-size: 72px;
-        margin-bottom: 10px;
-      }
-      .grape-pct-full {
-        font-size: 52px;
-        font-weight: 900;
-        color: var(--blue);
-      }
-      .grape-day-full {
-        font-size: 13px;
-        color: var(--sub);
-        margin-top: 4px;
-      }
-      .grape-streak-full {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        background: #fff7ed;
-        border-radius: 999px;
-        padding: 6px 14px;
-        font-size: 13px;
-        font-weight: 700;
-        color: #ea580c;
-        margin-top: 10px;
-      }
-      .bar-bg2 {
-        background: var(--border);
-        border-radius: 999px;
-        height: 10px;
-        overflow: hidden;
-        margin: 16px 0 6px;
-      }
-      .bar-fill2 {
-        height: 100%;
-        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
-        border-radius: 999px;
-        transition: width 0.5s;
       }
 
       /* 오시는 길 */
@@ -828,7 +923,7 @@
         white-space: nowrap;
       }
 
-      /* 공통 버튼 */
+      /* 버튼 */
       .btn-p {
         background: linear-gradient(135deg, #1e3a6e, #2563eb);
         color: #fff;
@@ -946,7 +1041,6 @@
         transform: scale(1.1);
       }
 
-      /* 토스트 */
       .toast {
         position: fixed;
         bottom: 96px;
@@ -993,7 +1087,6 @@
           </div>
         </div>
       </div>
-
       <div class="ls-body">
         <div class="ls-card" id="loginCard">
           <h2>로그인</h2>
@@ -1012,8 +1105,10 @@
             autocomplete="current-password"
           />
           <div class="auto-login-row">
-            <input type="checkbox" id="autoLoginCheck" />
-            <label for="autoLoginCheck">자동 로그인</label>
+            <input type="checkbox" id="autoLoginCheck" /><label
+              for="autoLoginCheck"
+              >자동 로그인</label
+            >
           </div>
           <div class="l-err" id="loginErr"></div>
           <button
@@ -1025,7 +1120,6 @@
           </button>
         </div>
         <button class="l-btn-sub" onclick="showSignup()">회원가입</button>
-
         <div class="ls-card" id="signupCard" style="display: none">
           <h2>회원가입</h2>
           <p>가입 후 관리자 승인이 필요해요</p>
@@ -1052,7 +1146,6 @@
           </button>
           <button class="l-btn-sub" onclick="showLogin()">← 로그인으로</button>
         </div>
-
         <div class="ls-card" id="pendingCard" style="display: none">
           <div class="pending-box">
             <div class="pi">⏳</div>
@@ -1067,7 +1160,6 @@
             </button>
           </div>
         </div>
-
         <div id="churchInfo">
           <div class="intro-card">
             <div class="intro-header">장유서은교회는</div>
@@ -1218,7 +1310,6 @@
           </div>
         </div>
       </div>
-
       <div class="toast" id="toast"></div>
 
       <!-- ══ 홈 ══ -->
@@ -1266,24 +1357,48 @@
         </div>
       </div>
 
-      <!-- ══ 기도 ══ -->
-      <div class="page" id="page-prayer">
+      <!-- ══ 주간생명의 양식 탭 ══ -->
+      <div class="page" id="page-julife">
         <div class="page-hero">
-          <h2>🙏 기도 제목</h2>
-          <p>함께 기도해요</p>
+          <h2>📖 주간생명의 양식</h2>
+          <p>매주 말씀으로 자라가요</p>
         </div>
         <div class="section">
-          <div class="card">
-            <div class="inp-row">
-              <input
-                class="inp"
-                id="prayerInput"
-                placeholder="기도 제목을 입력하세요"
-              />
-              <button class="btn-sm" onclick="addPrayer()">추가</button>
+          <div class="card" style="text-align: center">
+            <div class="grape-emoji-big" id="grapeEmoji">🌱</div>
+            <div class="grape-pct-full" id="g-pct">0%</div>
+            <div class="grape-day-full" id="g-day">0주 / 52주</div>
+            <div class="grape-streak-full" id="g-streak">🔥 0주 연속</div>
+            <div class="bar-bg2">
+              <div class="bar-fill2" id="g-bar" style="width: 0%"></div>
             </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                font-size: 11px;
+                color: var(--sub);
+              "
+            >
+              <span>🌱 시작</span><span>🍇 완성</span>
+            </div>
+            <button class="btn-p" onclick="increaseStreak()">
+              이번 주 완료 ✅
+            </button>
           </div>
-          <div id="prayerList"><div class="empty2">불러오는 중...</div></div>
+          <!-- 주생 글 등록 -->
+          <div class="card">
+            <div class="card-title" style="margin-bottom: 12px">
+              ✏️ 이번 주 나눔 올리기
+            </div>
+            <textarea
+              class="inp mb8"
+              id="julifeInput"
+              placeholder="이번 주 말씀 묵상이나 은혜를 나눠보세요 🙏"
+            ></textarea>
+            <button class="btn-p" onclick="addJulife()">등록하기</button>
+          </div>
+          <div id="julifeList"><div class="empty2">불러오는 중...</div></div>
         </div>
       </div>
 
@@ -1293,36 +1408,19 @@
           <h2>🎬 설교 영상</h2>
           <p>말씀을 다시 들어보세요</p>
         </div>
-        <div style="padding: 14px">
-          <div
-            style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px"
-            id="sermonList"
-          >
-            <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
-          </div>
+        <div class="grid2" id="sermonList">
+          <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
         </div>
       </div>
 
-      <!-- ══ 공지 ══ -->
-      <div class="page" id="page-notice">
-        <div id="noticeListView">
-          <div class="page-hero">
-            <h2>📢 공지사항</h2>
-            <p>교회 소식을 확인하세요</p>
-          </div>
-          <div class="section">
-            <div class="card">
-              <div id="noticeList">
-                <div class="empty2">불러오는 중...</div>
-              </div>
-            </div>
-          </div>
+      <!-- ══ 주보 탭 ══ -->
+      <div class="page" id="page-bulletin">
+        <div class="page-hero">
+          <h2>📋 주보</h2>
+          <p>이번 주 주보를 확인하세요</p>
         </div>
-        <div class="detail-wrap" id="noticeDetail" style="display: none">
-          <button class="back-btn" onclick="closeDetail()">← 목록으로</button>
-          <div class="detail-title2" id="detailTitle"></div>
-          <div class="detail-date2" id="detailDate"></div>
-          <div class="detail-body2" id="detailBody"></div>
+        <div class="section">
+          <div id="bulletinList"><div class="empty2">불러오는 중...</div></div>
         </div>
       </div>
 
@@ -1334,15 +1432,15 @@
             <p>다양한 기능을 이용해보세요</p>
           </div>
           <div class="more-grid">
-            <div class="more-cell" onclick="showSub('grape')">
-              <div class="mc-icon">📖</div>
-              <div class="mc-label">주간생명의 양식</div>
-              <div class="mc-desc">1년 52주 성장</div>
+            <div class="more-cell" onclick="goPage('prayer')">
+              <div class="mc-icon">🙏</div>
+              <div class="mc-label">기도 제목</div>
+              <div class="mc-desc">함께 기도해요</div>
             </div>
-            <div class="more-cell" onclick="showSub('bulletin')">
-              <div class="mc-icon">📋</div>
-              <div class="mc-label">주보</div>
-              <div class="mc-desc">이번 주 주보</div>
+            <div class="more-cell" onclick="showSub('books')">
+              <div class="mc-icon">📚</div>
+              <div class="mc-label">신앙서적</div>
+              <div class="mc-desc">추천 도서</div>
             </div>
             <div class="more-cell" onclick="showSub('sharing')">
               <div class="mc-icon">✏️</div>
@@ -1358,6 +1456,11 @@
               <div class="mc-icon">📍</div>
               <div class="mc-label">오시는 길</div>
               <div class="mc-desc">교회 위치 안내</div>
+            </div>
+            <div class="more-cell" onclick="goPage('notice')">
+              <div class="mc-icon">📢</div>
+              <div class="mc-label">공지사항</div>
+              <div class="mc-desc">교회 소식</div>
             </div>
           </div>
           <div style="padding: 0 14px 14px">
@@ -1381,50 +1484,21 @@
           </div>
         </div>
 
-        <!-- 주간생명의 양식 -->
-        <div class="sub-wrap" id="sub-grape" style="display: none">
+        <!-- 신앙서적 -->
+        <div class="sub-wrap" id="sub-books" style="display: none">
           <div class="page-hero">
-            <h2>📖 주간생명의 양식</h2>
-            <p>매주 말씀으로 자라가요</p>
+            <h2>📚 신앙서적</h2>
+            <p>추천 신앙 도서</p>
           </div>
-          <div class="section">
-            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
-            <div class="card" style="text-align: center; margin-top: 12px">
-              <div class="grape-emoji-big" id="grapeEmoji">🌱</div>
-              <div class="grape-pct-full" id="g-pct">0%</div>
-              <div class="grape-day-full" id="g-day">0주 / 52주</div>
-              <div class="grape-streak-full" id="g-streak">🔥 0주 연속</div>
-              <div class="bar-bg2">
-                <div class="bar-fill2" id="g-bar" style="width: 0%"></div>
-              </div>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  font-size: 11px;
-                  color: var(--sub);
-                "
-              >
-                <span>🌱 시작</span><span>🍇 완성</span>
-              </div>
-              <button class="btn-p" onclick="increaseStreak()">
-                이번 주 완료 ✅
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 주보 -->
-        <div class="sub-wrap" id="sub-bulletin" style="display: none">
-          <div class="page-hero">
-            <h2>📋 주보</h2>
-            <p>이번 주 주보를 확인하세요</p>
-          </div>
-          <div class="section">
-            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
-            <div id="bulletinList" style="margin-top: 12px">
-              <div class="empty2">불러오는 중...</div>
-            </div>
+          <button
+            class="back-btn"
+            onclick="hideSub()"
+            style="padding: 16px 14px 0"
+          >
+            ← 뒤로
+          </button>
+          <div class="grid2" id="bookList">
+            <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
           </div>
         </div>
 
@@ -1462,8 +1536,7 @@
                   class="inp"
                   id="praiseInput"
                   placeholder="찬양 제목 입력"
-                />
-                <button class="btn-sm" onclick="addPraise()">신청</button>
+                /><button class="btn-sm" onclick="addPraise()">신청</button>
               </div>
             </div>
             <div id="praiseList"><div class="empty2">불러오는 중...</div></div>
@@ -1521,6 +1594,49 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- ══ 기도 ══ -->
+      <div class="page" id="page-prayer">
+        <div class="page-hero">
+          <h2>🙏 기도 제목</h2>
+          <p>함께 기도해요</p>
+        </div>
+        <div class="section">
+          <div class="card">
+            <div class="inp-row">
+              <input
+                class="inp"
+                id="prayerInput"
+                placeholder="기도 제목을 입력하세요"
+              /><button class="btn-sm" onclick="addPrayer()">추가</button>
+            </div>
+          </div>
+          <div id="prayerList"><div class="empty2">불러오는 중...</div></div>
+        </div>
+      </div>
+
+      <!-- ══ 공지 ══ -->
+      <div class="page" id="page-notice">
+        <div id="noticeListView">
+          <div class="page-hero">
+            <h2>📢 공지사항</h2>
+            <p>교회 소식을 확인하세요</p>
+          </div>
+          <div class="section">
+            <div class="card">
+              <div id="noticeList">
+                <div class="empty2">불러오는 중...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-wrap" id="noticeDetail" style="display: none">
+          <button class="back-btn" onclick="closeDetail()">← 목록으로</button>
+          <div class="detail-title2" id="detailTitle"></div>
+          <div class="detail-date2" id="detailDate"></div>
+          <div class="detail-body2" id="detailBody"></div>
         </div>
       </div>
 
@@ -1683,6 +1799,22 @@
               <div style="margin-top: 12px" id="adminSermonList"></div>
             </div>
             <div class="card">
+              <div class="adm-sec-title">📚 신앙서적 등록</div>
+              <input class="inp mb8" id="bookTitle" placeholder="책 제목" />
+              <input
+                class="inp mb8"
+                id="bookImg"
+                placeholder="책 표지 이미지 URL (GitHub Raw 링크)"
+              />
+              <textarea
+                class="inp mb8"
+                id="bookDesc"
+                placeholder="책 소개 (간단하게)"
+              ></textarea>
+              <button class="btn-p" onclick="postBook()">서적 등록</button>
+              <div style="margin-top: 12px" id="adminBookList"></div>
+            </div>
+            <div class="card">
               <div class="adm-sec-title">📅 일정 등록</div>
               <input class="inp mb8" type="date" id="scheduleDate" />
               <input
@@ -1772,7 +1904,6 @@
         }
       }
 
-      // ── 화면 전환 ──
       G("showLogin", () => {
         document.getElementById("loginCard").style.display = "block";
         document.getElementById("signupCard").style.display = "none";
@@ -1786,7 +1917,6 @@
         document.getElementById("churchInfo").style.display = "none";
       });
 
-      // ── DB ──
       let usersDB = {},
         pendingDB = {};
       onValue(ref(db, "users"), (snap) => {
@@ -1796,8 +1926,8 @@
           el.innerHTML =
             Object.entries(usersDB)
               .map(
-                ([id, u]) => `
-    <div class="adm-item"><span>✅ ${u.name}</span><button class="btn-del" onclick="deleteUser('${id}')">삭제</button></div>`,
+                ([id, u]) =>
+                  `<div class="adm-item"><span>✅ ${u.name}</span><button class="btn-del" onclick="deleteUser('${id}')">삭제</button></div>`,
               )
               .join("") || '<div class="empty2">없음</div>';
       });
@@ -1809,20 +1939,13 @@
         el.innerHTML = items.length
           ? items
               .map(
-                ([id, u]) => `
-    <div class="adm-item">
-      <span>⏳ ${u.name}</span>
-      <div style="display:flex;gap:6px">
-        <button class="tag-ans" onclick="approveUser('${id}')">승인</button>
-        <button class="btn-del" onclick="rejectUser('${id}')">거절</button>
-      </div>
-    </div>`,
+                ([id, u]) =>
+                  `<div class="adm-item"><span>⏳ ${u.name}</span><div style="display:flex;gap:6px"><button class="tag-ans" onclick="approveUser('${id}')">승인</button><button class="btn-del" onclick="rejectUser('${id}')">거절</button></div></div>`,
               )
               .join("")
           : '<div class="empty2">대기 없음</div>';
       });
 
-      // ── 회원가입 ──
       G("doSignup", () => {
         const name = document.getElementById("signupName").value.trim();
         const pw = document.getElementById("signupPw").value;
@@ -1853,7 +1976,6 @@
         showToast("🙏 가입 신청 완료!");
       });
 
-      // ── 로그인 ──
       G("doLogin", () => {
         const name = document.getElementById("loginName").value.trim();
         const pw = document.getElementById("loginPw").value;
@@ -1898,7 +2020,6 @@
         document.getElementById("settingsUser").textContent =
           `${currentUser.name}님, 안녕하세요! 🙏`;
       }
-
       G("doLogout", () => {
         clearAutoLogin();
         currentUser = null;
@@ -1915,7 +2036,6 @@
         goPage("home");
       });
 
-      // ── 자동 로그인 체크 ──
       const saved = loadAutoLogin();
       if (saved) {
         if (ADMINS.includes(saved.pw)) {
@@ -1939,7 +2059,6 @@
         }
       }
 
-      // ── 승인/거절 ──
       G("approveUser", async (id) => {
         if (!isAdmin) return;
         const u = pendingDB[id];
@@ -1964,10 +2083,12 @@
       // ── 페이지 이동 ──
       const TITLES = {
         home: "홈",
-        prayer: "기도 제목",
+        julife: "주간생명의 양식",
         sermon: "설교 영상",
-        notice: "공지사항",
+        bulletin: "주보",
         more: "더보기",
+        prayer: "기도 제목",
+        notice: "공지사항",
         settings: "설정",
         admin: "관리자",
       };
@@ -2010,7 +2131,7 @@
         return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
       }
 
-      // ── 주간생명의 양식 (52주) ──
+      // ── 주간생명의 양식 ──
       let streak = 0,
         cont = 0;
       const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
@@ -2042,6 +2163,40 @@
         const gd = document.getElementById("g-day");
         if (gd) gd.textContent = `${streak}주 / 52주`;
         showToast("✅ 이번 주 완료! " + pct + "%");
+      });
+
+      // 주생 나눔 글
+      G("addJulife", () => {
+        const inp = document.getElementById("julifeInput");
+        if (!inp.value.trim()) {
+          alert("내용을 입력하세요!");
+          return;
+        }
+        push(ref(db, "julife"), {
+          text: inp.value.trim(),
+          date: new Date().toISOString(),
+          author: currentUser?.name || "",
+        });
+        inp.value = "";
+        showToast("📖 주생 나눔 등록!");
+      });
+      G("deleteJulife", (id) => remove(ref(db, "julife/" + id)));
+      onValue(ref(db, "julife"), (snap) => {
+        const data = snap.val() || {};
+        const items = Object.entries(data).reverse();
+        const el = document.getElementById("julifeList");
+        if (el)
+          el.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, s]) => `
+    <div class="list-item" style="margin:0 14px 8px">
+      <div class="item-text">${s.text}</div>
+      <div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="deleteJulife('${id}')">삭제</button></div>
+    </div>`,
+                )
+                .join("")
+            : '<div class="empty2">첫 나눔을 올려보세요 🙏</div>';
       });
 
       // ── 공지 ──
@@ -2162,7 +2317,7 @@
             : '<div class="empty2">없음</div>';
       });
 
-      // ── 설교 영상 (2열 그리드) ──
+      // ── 설교 영상 ──
       G("postSermon", () => {
         if (!isAdmin) return;
         const t = document.getElementById("sermonTitle").value.trim();
@@ -2200,14 +2355,14 @@
               .map(([id, s]) => {
                 const vid = getVid(s.url);
                 const thumb = vid
-                  ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;">▶</div>`
-                  : '<div style="position:absolute;inset:0;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;font-size:28px;">🎬</div>';
-                return `<${s.url ? `a href="${s.url}" target="_blank" rel="noopener"` : "div"} style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--border);text-decoration:none;display:block;">
-      <div style="position:relative;width:100%;padding-top:56%;overflow:hidden;">${thumb}</div>
-      <div style="padding:10px 10px 12px;">
-        <div style="font-size:12px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:4px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${s.title}</div>
-        <div style="font-size:10px;color:var(--sub);">${s.sub || ""}</div>
-        ${s.url ? '<div style="display:inline-block;background:#fee2e2;color:#dc2626;border-radius:5px;padding:2px 6px;font-size:10px;font-weight:700;margin-top:4px;">▶ YouTube</div>' : ""}
+                  ? `<img class="grid2-thumb-img" src="https://img.youtube.com/vi/${vid}/mqdefault.jpg"/><div class="grid2-play">▶</div>`
+                  : '<div class="grid2-thumb-ph">🎬</div>';
+                return `<${s.url ? `a href="${s.url}" target="_blank" rel="noopener"` : "div"} class="grid2-card">
+      <div class="grid2-thumb">${thumb}</div>
+      <div class="grid2-info">
+        <div class="grid2-title">${s.title}</div>
+        <div class="grid2-sub">${s.sub || ""}</div>
+        ${s.url ? '<div class="yt-badge">▶ YouTube</div>' : ""}
       </div>
     </${s.url ? "a" : "div"}>`;
               })
@@ -2221,6 +2376,63 @@
                 `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteSermon('${id}')">삭제</button></div>`,
             )
             .join("") || "";
+      });
+
+      // ── 신앙서적 ──
+      G("postBook", () => {
+        if (!isAdmin) return;
+        const t = document.getElementById("bookTitle").value.trim();
+        const img = document.getElementById("bookImg").value.trim();
+        const desc = document.getElementById("bookDesc").value.trim();
+        if (!t) {
+          showToast("책 제목을 입력하세요");
+          return;
+        }
+        push(ref(db, "books"), {
+          title: t,
+          img,
+          desc,
+          date: new Date().toISOString(),
+        });
+        document.getElementById("bookTitle").value = "";
+        document.getElementById("bookImg").value = "";
+        document.getElementById("bookDesc").value = "";
+        showToast("✅ 서적 등록!");
+      });
+      G("deleteBook", (id) => {
+        if (!isAdmin) return;
+        if (confirm("삭제?")) remove(ref(db, "books/" + id));
+      });
+      onValue(ref(db, "books"), (snap) => {
+        const data = snap.val() || {};
+        const items = Object.entries(data).reverse().slice(0, 6);
+        const el = document.getElementById("bookList");
+        if (el)
+          el.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, b]) => `
+    <div class="grid2-card">
+      <div class="grid2-thumb">${b.img ? `<img class="grid2-thumb-img" src="${b.img}" onerror="this.parentElement.innerHTML='<div class=grid2-thumb-ph>📚</div>'/>` : '<div class="grid2-thumb-ph">📚</div>'}</div>
+      <div class="grid2-info">
+        <div class="grid2-title">${b.title}</div>
+        <div class="grid2-desc">${b.desc || ""}</div>
+        <div class="book-badge">📚 추천도서</div>
+      </div>
+    </div>`,
+                )
+                .join("")
+            : '<div class="empty2" style="grid-column:1/-1">등록된 서적이 없어요</div>';
+        const aEl = document.getElementById("adminBookList");
+        if (aEl)
+          aEl.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, b]) =>
+                    `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBook('${id}')">삭제</button></div>`,
+                )
+                .join("")
+            : '<div class="empty2">없음</div>';
       });
 
       // ── 기도 ──
@@ -2255,12 +2467,12 @@
           ? items
               .map(
                 ([id, p]) => `
-    <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 14px 8px;">
+    <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 14px 8px">
       <div class="item-text">${p.answered ? "✅ " : ""} ${p.text}</div>
       <div class="item-meta">
         <span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span>
         <div class="item-acts">
-          ${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700;">🙌 응답</span>'}
+          ${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}
           <button class="tag-del" onclick="deletePrayer('${id}')">삭제</button>
         </div>
       </div>
@@ -2338,11 +2550,8 @@
               .map(
                 ([id, p]) => `
     <div class="list-item" style="display:flex;justify-content:space-between;align-items:center;">
-      <div><div style="font-size:14px;font-weight:700;">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px;">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
-      <div style="display:flex;gap:6px;">
-        <button class="tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button>
-        <button class="tag-del" onclick="deletePraise('${id}')">삭제</button>
-      </div>
+      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
+      <div style="display:flex;gap:6px"><button class="tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button><button class="tag-del" onclick="deletePraise('${id}')">삭제</button></div>
     </div>`,
               )
               .join("")
