@@ -47,7 +47,7 @@
         overflow-x: hidden;
       }
 
-      /* ── 로그인 ── */
+      /* 로그인 */
       #loginScreen {
         position: fixed;
         inset: 0;
@@ -259,7 +259,7 @@
         line-height: 1.6;
       }
 
-      /* ── 앱 ── */
+      /* 앱 */
       #appScreen {
         display: none;
       }
@@ -687,7 +687,7 @@
         cursor: pointer;
       }
 
-      /* 2열 그리드 카드 (설교/신앙서적) */
+      /* 2열 그리드 */
       .grid2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -705,10 +705,11 @@
       .grid2-thumb {
         position: relative;
         width: 100%;
-        padding-top: 56%;
+        padding-top: 120%;
         overflow: hidden;
+        background: #f1f5f9;
       }
-      .grid2-thumb-img {
+      .grid2-thumb img {
         position: absolute;
         top: 0;
         left: 0;
@@ -719,11 +720,11 @@
       .grid2-thumb-ph {
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 28px;
+        font-size: 32px;
+        background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
       }
       .grid2-play {
         position: absolute;
@@ -786,6 +787,69 @@
         font-size: 10px;
         font-weight: 700;
         margin-top: 4px;
+      }
+
+      /* 이미지 업로드 */
+      .img-upload-box {
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        background: #f8fafc;
+        margin-bottom: 10px;
+        transition: border-color 0.2s;
+      }
+      .img-upload-box:hover {
+        border-color: var(--blue);
+      }
+      .img-upload-box input {
+        display: none;
+      }
+      .img-upload-box .icon {
+        font-size: 32px;
+        margin-bottom: 8px;
+      }
+      .img-upload-box p {
+        font-size: 13px;
+        color: var(--sub);
+      }
+      .img-preview {
+        width: 100%;
+        border-radius: 10px;
+        max-height: 200px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        display: none;
+      }
+
+      /* 주보/주생 이미지 뷰어 */
+      .bulletin-card {
+        background: #fff;
+        border-radius: 14px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .bulletin-img {
+        width: 100%;
+        display: block;
+        border-radius: 14px 14px 0 0;
+      }
+      .bulletin-info {
+        padding: 12px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .bulletin-title {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .bulletin-date {
+        font-size: 11px;
+        color: var(--sub);
+        margin-top: 2px;
       }
 
       /* 더보기 */
@@ -1068,10 +1132,16 @@
         font-size: 13px;
         padding: 24px 0;
       }
+      .loading-spinner {
+        text-align: center;
+        padding: 20px;
+        color: var(--sub);
+        font-size: 13px;
+      }
     </style>
   </head>
   <body>
-    <!-- ══ 로그인 ══ -->
+    <!-- 로그인 -->
     <div id="loginScreen">
       <div class="ls-header">
         <div class="ls-logo-wrap">
@@ -1091,18 +1161,12 @@
         <div class="ls-card" id="loginCard">
           <h2>로그인</h2>
           <p>교인 계정으로 로그인하세요</p>
-          <input
-            class="l-inp"
-            id="loginName"
-            placeholder="이름"
-            autocomplete="name"
-          />
+          <input class="l-inp" id="loginName" placeholder="이름" />
           <input
             class="l-inp"
             type="password"
             id="loginPw"
             placeholder="비밀번호"
-            autocomplete="current-password"
           />
           <div class="auto-login-row">
             <input type="checkbox" id="autoLoginCheck" /><label
@@ -1286,7 +1350,7 @@
       </div>
     </div>
 
-    <!-- ══ 앱 ══ -->
+    <!-- 앱 -->
     <div id="appScreen">
       <div class="app-header">
         <div class="app-header-top">
@@ -1312,7 +1376,7 @@
       </div>
       <div class="toast" id="toast"></div>
 
-      <!-- ══ 홈 ══ -->
+      <!-- 홈 -->
       <div class="page active" id="page-home">
         <div class="section">
           <div class="card">
@@ -1357,7 +1421,40 @@
         </div>
       </div>
 
-      <!-- ══ 주간생명의 양식 탭 ══ -->
+      <!-- 설교 영상 -->
+      <div class="page" id="page-sermon">
+        <div class="page-hero">
+          <h2>🎬 설교 영상</h2>
+          <p>말씀을 다시 들어보세요</p>
+        </div>
+        <div class="grid2" id="sermonList">
+          <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
+        </div>
+      </div>
+
+      <!-- 신앙서적 -->
+      <div class="page" id="page-books">
+        <div class="page-hero">
+          <h2>📚 신앙서적</h2>
+          <p>추천 신앙 도서</p>
+        </div>
+        <div class="grid2" id="bookList">
+          <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
+        </div>
+      </div>
+
+      <!-- 주보 -->
+      <div class="page" id="page-bulletin">
+        <div class="page-hero">
+          <h2>📋 주보</h2>
+          <p>이번 주 주보를 확인하세요</p>
+        </div>
+        <div class="section" id="bulletinList">
+          <div class="empty2">불러오는 중...</div>
+        </div>
+      </div>
+
+      <!-- 주생 -->
       <div class="page" id="page-julife">
         <div class="page-hero">
           <h2>📖 주간생명의 양식</h2>
@@ -1386,45 +1483,48 @@
               이번 주 완료 ✅
             </button>
           </div>
-          <!-- 주생 글 등록 -->
+          <!-- 주생 이미지 업로드 -->
           <div class="card">
             <div class="card-title" style="margin-bottom: 12px">
-              ✏️ 이번 주 나눔 올리기
+              📸 이번 주 주생 올리기
             </div>
-            <textarea
+            <label class="img-upload-box" for="julifeFileInput">
+              <div class="icon">📸</div>
+              <p>
+                이미지를 선택하세요<br /><span
+                  style="font-size: 11px; color: #aaa"
+                  >JPG, PNG 등</span
+                >
+              </p>
+              <input
+                type="file"
+                id="julifeFileInput"
+                accept="image/*"
+                onchange="
+                  previewImage(this, 'julifePreview', 'julifeUploadBtn')
+                "
+              />
+            </label>
+            <img id="julifePreview" class="img-preview" />
+            <input
               class="inp mb8"
-              id="julifeInput"
-              placeholder="이번 주 말씀 묵상이나 은혜를 나눠보세요 🙏"
-            ></textarea>
-            <button class="btn-p" onclick="addJulife()">등록하기</button>
+              id="julifeTitle"
+              placeholder="제목 (예: 2026년 5월 1일 주생)"
+            />
+            <button
+              class="btn-p"
+              id="julifeUploadBtn"
+              onclick="uploadJulife()"
+              style="display: none"
+            >
+              업로드
+            </button>
           </div>
           <div id="julifeList"><div class="empty2">불러오는 중...</div></div>
         </div>
       </div>
 
-      <!-- ══ 설교 ══ -->
-      <div class="page" id="page-sermon">
-        <div class="page-hero">
-          <h2>🎬 설교 영상</h2>
-          <p>말씀을 다시 들어보세요</p>
-        </div>
-        <div class="grid2" id="sermonList">
-          <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
-        </div>
-      </div>
-
-      <!-- ══ 주보 탭 ══ -->
-      <div class="page" id="page-bulletin">
-        <div class="page-hero">
-          <h2>📋 주보</h2>
-          <p>이번 주 주보를 확인하세요</p>
-        </div>
-        <div class="section">
-          <div id="bulletinList"><div class="empty2">불러오는 중...</div></div>
-        </div>
-      </div>
-
-      <!-- ══ 더보기 ══ -->
+      <!-- 더보기 -->
       <div class="page" id="page-more">
         <div id="moreMenu">
           <div class="page-hero">
@@ -1437,10 +1537,10 @@
               <div class="mc-label">기도 제목</div>
               <div class="mc-desc">함께 기도해요</div>
             </div>
-            <div class="more-cell" onclick="showSub('books')">
-              <div class="mc-icon">📚</div>
-              <div class="mc-label">신앙서적</div>
-              <div class="mc-desc">추천 도서</div>
+            <div class="more-cell" onclick="goPage('notice')">
+              <div class="mc-icon">📢</div>
+              <div class="mc-label">공지사항</div>
+              <div class="mc-desc">교회 소식</div>
             </div>
             <div class="more-cell" onclick="showSub('sharing')">
               <div class="mc-icon">✏️</div>
@@ -1456,11 +1556,6 @@
               <div class="mc-icon">📍</div>
               <div class="mc-label">오시는 길</div>
               <div class="mc-desc">교회 위치 안내</div>
-            </div>
-            <div class="more-cell" onclick="goPage('notice')">
-              <div class="mc-icon">📢</div>
-              <div class="mc-label">공지사항</div>
-              <div class="mc-desc">교회 소식</div>
             </div>
           </div>
           <div style="padding: 0 14px 14px">
@@ -1483,25 +1578,6 @@
             </div>
           </div>
         </div>
-
-        <!-- 신앙서적 -->
-        <div class="sub-wrap" id="sub-books" style="display: none">
-          <div class="page-hero">
-            <h2>📚 신앙서적</h2>
-            <p>추천 신앙 도서</p>
-          </div>
-          <button
-            class="back-btn"
-            onclick="hideSub()"
-            style="padding: 16px 14px 0"
-          >
-            ← 뒤로
-          </button>
-          <div class="grid2" id="bookList">
-            <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
-          </div>
-        </div>
-
         <!-- 말씀 나눔 -->
         <div class="sub-wrap" id="sub-sharing" style="display: none">
           <div class="page-hero">
@@ -1521,7 +1597,6 @@
             <div id="sharingList"><div class="empty2">불러오는 중...</div></div>
           </div>
         </div>
-
         <!-- 찬양 신청 -->
         <div class="sub-wrap" id="sub-praise" style="display: none">
           <div class="page-hero">
@@ -1542,7 +1617,6 @@
             <div id="praiseList"><div class="empty2">불러오는 중...</div></div>
           </div>
         </div>
-
         <!-- 오시는 길 -->
         <div class="sub-wrap" id="sub-location" style="display: none">
           <div class="page-hero">
@@ -1597,7 +1671,7 @@
         </div>
       </div>
 
-      <!-- ══ 기도 ══ -->
+      <!-- 기도 -->
       <div class="page" id="page-prayer">
         <div class="page-hero">
           <h2>🙏 기도 제목</h2>
@@ -1617,7 +1691,7 @@
         </div>
       </div>
 
-      <!-- ══ 공지 ══ -->
+      <!-- 공지 -->
       <div class="page" id="page-notice">
         <div id="noticeListView">
           <div class="page-hero">
@@ -1640,7 +1714,7 @@
         </div>
       </div>
 
-      <!-- ══ 설정 ══ -->
+      <!-- 설정 -->
       <div class="page" id="page-settings">
         <div class="page-hero">
           <h2>⚙️ 설정</h2>
@@ -1716,7 +1790,7 @@
         </div>
       </div>
 
-      <!-- ══ 관리자 ══ -->
+      <!-- 관리자 -->
       <div class="page" id="page-admin">
         <div class="page-hero">
           <h2>🔐 관리자</h2>
@@ -1770,21 +1844,82 @@
               <button class="btn-p" onclick="postNotice()">공지 등록</button>
               <div style="margin-top: 12px" id="adminNoticeList"></div>
             </div>
+            <!-- 주보 등록 (이미지) -->
             <div class="card">
-              <div class="adm-sec-title">📋 주보 등록</div>
+              <div class="adm-sec-title">📋 주보 등록 (이미지)</div>
+              <label class="img-upload-box" for="bulletinFileInput">
+                <div class="icon">📋</div>
+                <p>
+                  주보 이미지 선택<br /><span
+                    style="font-size: 11px; color: #aaa"
+                    >JPG, PNG</span
+                  >
+                </p>
+                <input
+                  type="file"
+                  id="bulletinFileInput"
+                  accept="image/*"
+                  onchange="
+                    previewImage(
+                      this,
+                      'bulletinImgPreview',
+                      'bulletinUploadBtn',
+                    )
+                  "
+                />
+              </label>
+              <img id="bulletinImgPreview" class="img-preview" />
               <input
                 class="inp mb8"
                 id="bulletinTitle"
                 placeholder="주보 제목 (예: 2026년 5월 1일)"
               />
-              <input
-                class="inp mb8"
-                id="bulletinUrl"
-                placeholder="주보 링크 (Google Drive, PDF 등)"
-              />
-              <input class="inp mb8" type="date" id="bulletinDate" />
-              <button class="btn-p" onclick="postBulletin()">주보 등록</button>
+              <button
+                class="btn-p"
+                id="bulletinUploadBtn"
+                onclick="uploadBulletin()"
+                style="display: none"
+              >
+                업로드
+              </button>
               <div style="margin-top: 12px" id="adminBulletinList"></div>
+            </div>
+            <!-- 신앙서적 등록 (이미지) -->
+            <div class="card">
+              <div class="adm-sec-title">📚 신앙서적 등록 (이미지)</div>
+              <label class="img-upload-box" for="bookFileInput">
+                <div class="icon">📚</div>
+                <p>
+                  책 표지 이미지 선택<br /><span
+                    style="font-size: 11px; color: #aaa"
+                    >JPG, PNG</span
+                  >
+                </p>
+                <input
+                  type="file"
+                  id="bookFileInput"
+                  accept="image/*"
+                  onchange="
+                    previewImage(this, 'bookImgPreview', 'bookUploadBtn')
+                  "
+                />
+              </label>
+              <img id="bookImgPreview" class="img-preview" />
+              <input class="inp mb8" id="bookTitle" placeholder="책 제목" />
+              <textarea
+                class="inp mb8"
+                id="bookDesc"
+                placeholder="책 소개 (간단하게)"
+              ></textarea>
+              <button
+                class="btn-p"
+                id="bookUploadBtn"
+                onclick="uploadBook()"
+                style="display: none"
+              >
+                등록
+              </button>
+              <div style="margin-top: 12px" id="adminBookList"></div>
             </div>
             <div class="card">
               <div class="adm-sec-title">🎬 설교 영상 등록</div>
@@ -1797,22 +1932,6 @@
               <input class="inp mb8" id="sermonUrl" placeholder="유튜브 링크" />
               <button class="btn-p" onclick="postSermon()">영상 등록</button>
               <div style="margin-top: 12px" id="adminSermonList"></div>
-            </div>
-            <div class="card">
-              <div class="adm-sec-title">📚 신앙서적 등록</div>
-              <input class="inp mb8" id="bookTitle" placeholder="책 제목" />
-              <input
-                class="inp mb8"
-                id="bookImg"
-                placeholder="책 표지 이미지 URL (GitHub Raw 링크)"
-              />
-              <textarea
-                class="inp mb8"
-                id="bookDesc"
-                placeholder="책 소개 (간단하게)"
-              ></textarea>
-              <button class="btn-p" onclick="postBook()">서적 등록</button>
-              <div style="margin-top: 12px" id="adminBookList"></div>
             </div>
             <div class="card">
               <div class="adm-sec-title">📅 일정 등록</div>
@@ -1837,22 +1956,22 @@
         </div>
       </div>
 
-      <!-- 탭바 -->
+      <!-- 탭바: 홈-설교-신앙서적-주보-주생 -->
       <div class="tab-bar">
         <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
           <span class="ti">🏠</span>홈
         </button>
-        <button class="tab-btn" id="tab-julife" onclick="goPage('julife')">
-          <span class="ti">📖</span>주생
-        </button>
         <button class="tab-btn" id="tab-sermon" onclick="goPage('sermon')">
           <span class="ti">🎬</span>설교
+        </button>
+        <button class="tab-btn" id="tab-books" onclick="goPage('books')">
+          <span class="ti">📚</span>서적
         </button>
         <button class="tab-btn" id="tab-bulletin" onclick="goPage('bulletin')">
           <span class="ti">📋</span>주보
         </button>
-        <button class="tab-btn" id="tab-more" onclick="goPage('more')">
-          <span class="ti">⋯</span>더보기
+        <button class="tab-btn" id="tab-julife" onclick="goPage('julife')">
+          <span class="ti">📖</span>주생
         </button>
       </div>
     </div>
@@ -1885,19 +2004,19 @@
       const G = (n, f) => (window[n] = f);
 
       // ── 자동 로그인 ──
-      function saveAutoLogin(u) {
+      function saveAL(u) {
         try {
-          localStorage.setItem("seun_user", JSON.stringify(u));
+          localStorage.setItem("seun_u", JSON.stringify(u));
         } catch {}
       }
-      function clearAutoLogin() {
+      function clearAL() {
         try {
-          localStorage.removeItem("seun_user");
+          localStorage.removeItem("seun_u");
         } catch {}
       }
-      function loadAutoLogin() {
+      function loadAL() {
         try {
-          const d = localStorage.getItem("seun_user");
+          const d = localStorage.getItem("seun_u");
           return d ? JSON.parse(d) : null;
         } catch {
           return null;
@@ -1905,16 +2024,19 @@
       }
 
       G("showLogin", () => {
-        document.getElementById("loginCard").style.display = "block";
-        document.getElementById("signupCard").style.display = "none";
-        document.getElementById("pendingCard").style.display = "none";
-        document.getElementById("churchInfo").style.display = "block";
+        ["loginCard", "churchInfo"].forEach(
+          (id) => (document.getElementById(id).style.display = "block"),
+        );
+        ["signupCard", "pendingCard"].forEach(
+          (id) => (document.getElementById(id).style.display = "none"),
+        );
       });
       G("showSignup", () => {
-        document.getElementById("loginCard").style.display = "none";
         document.getElementById("signupCard").style.display = "block";
+        ["loginCard", "churchInfo"].forEach(
+          (id) => (document.getElementById(id).style.display = "none"),
+        );
         document.getElementById("pendingCard").style.display = "none";
-        document.getElementById("churchInfo").style.display = "none";
       });
 
       let usersDB = {},
@@ -1987,7 +2109,7 @@
         }
         if (ADMINS.includes(pw)) {
           currentUser = { name, role: "admin" };
-          if (auto) saveAutoLogin({ name, pw, role: "admin" });
+          if (auto) saveAL({ name, pw });
           startApp();
           return;
         }
@@ -1996,7 +2118,7 @@
         );
         if (found) {
           currentUser = { name, role: "user" };
-          if (auto) saveAutoLogin({ name, pw, role: "user" });
+          if (auto) saveAL({ name, pw });
           startApp();
           return;
         }
@@ -2021,14 +2143,16 @@
           `${currentUser.name}님, 안녕하세요! 🙏`;
       }
       G("doLogout", () => {
-        clearAutoLogin();
+        clearAL();
         currentUser = null;
         document.getElementById("loginScreen").style.display = "block";
         document.getElementById("appScreen").style.display = "none";
-        document.getElementById("loginCard").style.display = "block";
-        document.getElementById("signupCard").style.display = "none";
-        document.getElementById("pendingCard").style.display = "none";
-        document.getElementById("churchInfo").style.display = "block";
+        ["loginCard", "churchInfo"].forEach(
+          (id) => (document.getElementById(id).style.display = "block"),
+        );
+        ["signupCard", "pendingCard"].forEach(
+          (id) => (document.getElementById(id).style.display = "none"),
+        );
         document.getElementById("loginName").value = "";
         document.getElementById("loginPw").value = "";
         document.getElementById("loginErr").textContent = "";
@@ -2036,7 +2160,8 @@
         goPage("home");
       });
 
-      const saved = loadAutoLogin();
+      // 자동 로그인
+      const saved = loadAL();
       if (saved) {
         if (ADMINS.includes(saved.pw)) {
           currentUser = { name: saved.name, role: "admin" };
@@ -2046,10 +2171,10 @@
             ref(db, "users"),
             (snap) => {
               const u = snap.val() || {};
-              const found = Object.values(u).find(
+              const f = Object.values(u).find(
                 (x) => x.name === saved.name && x.pw === saved.pw,
               );
-              if (found && !currentUser) {
+              if (f && !currentUser) {
                 currentUser = { name: saved.name, role: "user" };
                 startApp();
               }
@@ -2080,12 +2205,55 @@
         if (confirm("삭제?")) remove(ref(db, "users/" + id));
       });
 
+      // ── 이미지 파일 → Base64 변환 ──
+      function fileToBase64(file) {
+        return new Promise((res, rej) => {
+          // 이미지 압축 (max 800px)
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+              const maxW = 800;
+              let w = img.width,
+                h = img.height;
+              if (w > maxW) {
+                h = Math.round((h * maxW) / w);
+                w = maxW;
+              }
+              const canvas = document.createElement("canvas");
+              canvas.width = w;
+              canvas.height = h;
+              canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+              res(canvas.toDataURL("image/jpeg", 0.7));
+            };
+            img.src = e.target.result;
+          };
+          reader.onerror = rej;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // 이미지 미리보기
+      G("previewImage", (input, previewId, btnId) => {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const preview = document.getElementById(previewId);
+          preview.src = e.target.result;
+          preview.style.display = "block";
+          document.getElementById(btnId).style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      });
+
       // ── 페이지 이동 ──
       const TITLES = {
         home: "홈",
-        julife: "주간생명의 양식",
         sermon: "설교 영상",
+        books: "신앙서적",
         bulletin: "주보",
+        julife: "주간생명의 양식",
         more: "더보기",
         prayer: "기도 제목",
         notice: "공지사항",
@@ -2119,7 +2287,7 @@
           .forEach((el) => (el.style.display = "none"));
       });
 
-      // ── 날짜 ──
+      // 날짜
       function fd(iso) {
         const d = new Date(iso);
         return `${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
@@ -2165,20 +2333,35 @@
         showToast("✅ 이번 주 완료! " + pct + "%");
       });
 
-      // 주생 나눔 글
-      G("addJulife", () => {
-        const inp = document.getElementById("julifeInput");
-        if (!inp.value.trim()) {
-          alert("내용을 입력하세요!");
+      // 주생 이미지 업로드
+      G("uploadJulife", async () => {
+        const fileInput = document.getElementById("julifeFileInput");
+        const title = document.getElementById("julifeTitle").value.trim();
+        if (!fileInput.files[0]) {
+          showToast("이미지를 선택하세요");
           return;
         }
-        push(ref(db, "julife"), {
-          text: inp.value.trim(),
-          date: new Date().toISOString(),
-          author: currentUser?.name || "",
-        });
-        inp.value = "";
-        showToast("📖 주생 나눔 등록!");
+        if (!title) {
+          showToast("제목을 입력하세요");
+          return;
+        }
+        showToast("⏳ 업로드 중...");
+        try {
+          const base64 = await fileToBase64(fileInput.files[0]);
+          await push(ref(db, "julife"), {
+            title,
+            img: base64,
+            date: new Date().toISOString(),
+            author: currentUser?.name || "",
+          });
+          fileInput.value = "";
+          document.getElementById("julifePreview").style.display = "none";
+          document.getElementById("julifeUploadBtn").style.display = "none";
+          document.getElementById("julifeTitle").value = "";
+          showToast("✅ 주생 등록 완료!");
+        } catch (e) {
+          showToast("❌ 업로드 실패");
+        }
       });
       G("deleteJulife", (id) => remove(ref(db, "julife/" + id)));
       onValue(ref(db, "julife"), (snap) => {
@@ -2190,13 +2373,16 @@
             ? items
                 .map(
                   ([id, s]) => `
-    <div class="list-item" style="margin:0 14px 8px">
-      <div class="item-text">${s.text}</div>
-      <div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="deleteJulife('${id}')">삭제</button></div>
+    <div class="bulletin-card">
+      <img class="bulletin-img" src="${s.img}" alt="${s.title}"/>
+      <div class="bulletin-info">
+        <div><div class="bulletin-title">${s.title}</div><div class="bulletin-date">${s.author ? s.author + " · " : ""}${fdt(s.date)}</div></div>
+        <button class="tag-del" onclick="deleteJulife('${id}')">삭제</button>
+      </div>
     </div>`,
                 )
                 .join("")
-            : '<div class="empty2">첫 나눔을 올려보세요 🙏</div>';
+            : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
       });
 
       // ── 공지 ──
@@ -2265,25 +2451,35 @@
         document.getElementById("noticeDetail").style.display = "none";
       });
 
-      // ── 주보 ──
-      G("postBulletin", () => {
+      // ── 주보 (이미지 업로드) ──
+      G("uploadBulletin", async () => {
         if (!isAdmin) return;
-        const t = document.getElementById("bulletinTitle").value.trim();
-        const u = document.getElementById("bulletinUrl").value.trim();
-        const d = document.getElementById("bulletinDate").value;
-        if (!t || !u) {
-          showToast("제목과 링크를 입력하세요");
+        const fileInput = document.getElementById("bulletinFileInput");
+        const title = document.getElementById("bulletinTitle").value.trim();
+        if (!fileInput.files[0]) {
+          showToast("이미지를 선택하세요");
           return;
         }
-        push(ref(db, "bulletins"), {
-          title: t,
-          url: u,
-          date: d || new Date().toISOString(),
-        });
-        document.getElementById("bulletinTitle").value = "";
-        document.getElementById("bulletinUrl").value = "";
-        document.getElementById("bulletinDate").value = "";
-        showToast("✅ 주보 등록!");
+        if (!title) {
+          showToast("제목을 입력하세요");
+          return;
+        }
+        showToast("⏳ 업로드 중...");
+        try {
+          const base64 = await fileToBase64(fileInput.files[0]);
+          await push(ref(db, "bulletins"), {
+            title,
+            img: base64,
+            date: new Date().toISOString(),
+          });
+          fileInput.value = "";
+          document.getElementById("bulletinImgPreview").style.display = "none";
+          document.getElementById("bulletinUploadBtn").style.display = "none";
+          document.getElementById("bulletinTitle").value = "";
+          showToast("✅ 주보 등록 완료!");
+        } catch (e) {
+          showToast("❌ 업로드 실패");
+        }
       });
       G("deleteBulletin", (id) => {
         if (!isAdmin) return;
@@ -2298,9 +2494,12 @@
             ? items
                 .map(
                   ([id, b]) => `
-    <div class="card" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-      <div><div style="font-size:14px;font-weight:700">${b.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${b.date ? fd(b.date) : ""}</div></div>
-      <a href="${b.url}" target="_blank" rel="noopener" style="background:var(--blue);color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;text-decoration:none;flex-shrink:0">보기</a>
+    <div class="bulletin-card">
+      <img class="bulletin-img" src="${b.img}" alt="${b.title}"/>
+      <div class="bulletin-info">
+        <div><div class="bulletin-title">${b.title}</div><div class="bulletin-date">${fdt(b.date)}</div></div>
+        ${isAdmin ? `<button class="tag-del" onclick="deleteBulletin('${id}')">삭제</button>` : ""}
+      </div>
     </div>`,
                 )
                 .join("")
@@ -2312,6 +2511,75 @@
                 .map(
                   ([id, b]) =>
                     `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBulletin('${id}')">삭제</button></div>`,
+                )
+                .join("")
+            : '<div class="empty2">없음</div>';
+      });
+
+      // ── 신앙서적 (이미지 업로드) ──
+      G("uploadBook", async () => {
+        if (!isAdmin) return;
+        const fileInput = document.getElementById("bookFileInput");
+        const title = document.getElementById("bookTitle").value.trim();
+        const desc = document.getElementById("bookDesc").value.trim();
+        if (!fileInput.files[0]) {
+          showToast("이미지를 선택하세요");
+          return;
+        }
+        if (!title) {
+          showToast("책 제목을 입력하세요");
+          return;
+        }
+        showToast("⏳ 업로드 중...");
+        try {
+          const base64 = await fileToBase64(fileInput.files[0]);
+          await push(ref(db, "books"), {
+            title,
+            desc,
+            img: base64,
+            date: new Date().toISOString(),
+          });
+          fileInput.value = "";
+          document.getElementById("bookImgPreview").style.display = "none";
+          document.getElementById("bookUploadBtn").style.display = "none";
+          document.getElementById("bookTitle").value = "";
+          document.getElementById("bookDesc").value = "";
+          showToast("✅ 서적 등록 완료!");
+        } catch (e) {
+          showToast("❌ 업로드 실패");
+        }
+      });
+      G("deleteBook", (id) => {
+        if (!isAdmin) return;
+        if (confirm("삭제?")) remove(ref(db, "books/" + id));
+      });
+      onValue(ref(db, "books"), (snap) => {
+        const data = snap.val() || {};
+        const items = Object.entries(data).reverse().slice(0, 6);
+        const el = document.getElementById("bookList");
+        if (el)
+          el.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, b]) => `
+    <div class="grid2-card">
+      <div class="grid2-thumb">${b.img ? `<img src="${b.img}" alt="${b.title}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>` : '<div class="grid2-thumb-ph">📚</div>'}</div>
+      <div class="grid2-info">
+        <div class="grid2-title">${b.title}</div>
+        <div class="grid2-desc">${b.desc || ""}</div>
+        <div class="book-badge">📚 추천도서</div>
+      </div>
+    </div>`,
+                )
+                .join("")
+            : '<div class="empty2" style="grid-column:1/-1">등록된 서적이 없어요</div>';
+        const aEl = document.getElementById("adminBookList");
+        if (aEl)
+          aEl.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, b]) =>
+                    `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBook('${id}')">삭제</button></div>`,
                 )
                 .join("")
             : '<div class="empty2">없음</div>';
@@ -2355,15 +2623,11 @@
               .map(([id, s]) => {
                 const vid = getVid(s.url);
                 const thumb = vid
-                  ? `<img class="grid2-thumb-img" src="https://img.youtube.com/vi/${vid}/mqdefault.jpg"/><div class="grid2-play">▶</div>`
+                  ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/><div class="grid2-play">▶</div>`
                   : '<div class="grid2-thumb-ph">🎬</div>';
                 return `<${s.url ? `a href="${s.url}" target="_blank" rel="noopener"` : "div"} class="grid2-card">
-      <div class="grid2-thumb">${thumb}</div>
-      <div class="grid2-info">
-        <div class="grid2-title">${s.title}</div>
-        <div class="grid2-sub">${s.sub || ""}</div>
-        ${s.url ? '<div class="yt-badge">▶ YouTube</div>' : ""}
-      </div>
+      <div class="grid2-thumb" style="padding-top:56%">${thumb}</div>
+      <div class="grid2-info"><div class="grid2-title">${s.title}</div><div class="grid2-sub">${s.sub || ""}</div>${s.url ? '<div class="yt-badge">▶ YouTube</div>' : ""}</div>
     </${s.url ? "a" : "div"}>`;
               })
               .join("")
@@ -2376,63 +2640,6 @@
                 `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteSermon('${id}')">삭제</button></div>`,
             )
             .join("") || "";
-      });
-
-      // ── 신앙서적 ──
-      G("postBook", () => {
-        if (!isAdmin) return;
-        const t = document.getElementById("bookTitle").value.trim();
-        const img = document.getElementById("bookImg").value.trim();
-        const desc = document.getElementById("bookDesc").value.trim();
-        if (!t) {
-          showToast("책 제목을 입력하세요");
-          return;
-        }
-        push(ref(db, "books"), {
-          title: t,
-          img,
-          desc,
-          date: new Date().toISOString(),
-        });
-        document.getElementById("bookTitle").value = "";
-        document.getElementById("bookImg").value = "";
-        document.getElementById("bookDesc").value = "";
-        showToast("✅ 서적 등록!");
-      });
-      G("deleteBook", (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "books/" + id));
-      });
-      onValue(ref(db, "books"), (snap) => {
-        const data = snap.val() || {};
-        const items = Object.entries(data).reverse().slice(0, 6);
-        const el = document.getElementById("bookList");
-        if (el)
-          el.innerHTML = items.length
-            ? items
-                .map(
-                  ([id, b]) => `
-    <div class="grid2-card">
-      <div class="grid2-thumb">${b.img ? `<img class="grid2-thumb-img" src="${b.img}" onerror="this.parentElement.innerHTML='<div class=grid2-thumb-ph>📚</div>'/>` : '<div class="grid2-thumb-ph">📚</div>'}</div>
-      <div class="grid2-info">
-        <div class="grid2-title">${b.title}</div>
-        <div class="grid2-desc">${b.desc || ""}</div>
-        <div class="book-badge">📚 추천도서</div>
-      </div>
-    </div>`,
-                )
-                .join("")
-            : '<div class="empty2" style="grid-column:1/-1">등록된 서적이 없어요</div>';
-        const aEl = document.getElementById("adminBookList");
-        if (aEl)
-          aEl.innerHTML = items.length
-            ? items
-                .map(
-                  ([id, b]) =>
-                    `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBook('${id}')">삭제</button></div>`,
-                )
-                .join("")
-            : '<div class="empty2">없음</div>';
       });
 
       // ── 기도 ──
@@ -2469,14 +2676,9 @@
                 ([id, p]) => `
     <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 14px 8px">
       <div class="item-text">${p.answered ? "✅ " : ""} ${p.text}</div>
-      <div class="item-meta">
-        <span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span>
-        <div class="item-acts">
-          ${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}
-          <button class="tag-del" onclick="deletePrayer('${id}')">삭제</button>
-        </div>
-      </div>
-    </div>`,
+      <div class="item-meta"><span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span>
+        <div class="item-acts">${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}<button class="tag-del" onclick="deletePrayer('${id}')">삭제</button></div>
+      </div></div>`,
               )
               .join("")
           : '<div class="empty2">기도 제목을 추가해보세요</div>';
@@ -2505,10 +2707,8 @@
           ? items
               .map(
                 ([id, s]) => `
-    <div class="list-item">
-      <div class="item-text">${s.text}</div>
-      <div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="deleteSharing('${id}')">삭제</button></div>
-    </div>`,
+    <div class="list-item"><div class="item-text">${s.text}</div>
+    <div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="deleteSharing('${id}')">삭제</button></div></div>`,
               )
               .join("")
           : '<div class="empty2">첫 번째로 말씀을 나눠보세요 ✨</div>';
