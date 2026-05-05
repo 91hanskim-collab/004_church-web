@@ -793,12 +793,15 @@
       .img-upload-box {
         border: 2px dashed var(--border);
         border-radius: 12px;
-        padding: 20px;
+        padding: 20px 16px;
         text-align: center;
         cursor: pointer;
         background: #f8fafc;
         margin-bottom: 10px;
         transition: border-color 0.2s;
+        width: 100%;
+        display: block;
+        overflow: hidden;
       }
       .img-upload-box:hover {
         border-color: var(--blue);
@@ -807,18 +810,19 @@
         display: none;
       }
       .img-upload-box .icon {
-        font-size: 32px;
-        margin-bottom: 8px;
+        font-size: 28px;
+        margin-bottom: 6px;
       }
       .img-upload-box p {
-        font-size: 13px;
+        font-size: 12px;
         color: var(--sub);
+        word-break: keep-all;
       }
       .img-preview {
         width: 100%;
         border-radius: 10px;
-        max-height: 200px;
-        object-fit: cover;
+        max-height: 180px;
+        object-fit: contain;
         margin-bottom: 10px;
         display: none;
       }
@@ -1482,42 +1486,22 @@
             <button class="btn-p" onclick="increaseStreak()">
               이번 주 완료 ✅
             </button>
-          </div>
-          <!-- 주생 이미지 업로드 -->
-          <div class="card">
-            <div class="card-title" style="margin-bottom: 12px">
-              📸 이번 주 주생 올리기
-            </div>
-            <label class="img-upload-box" for="julifeFileInput">
-              <div class="icon">📸</div>
-              <p>
-                이미지를 선택하세요<br /><span
-                  style="font-size: 11px; color: #aaa"
-                  >JPG, PNG 등</span
-                >
-              </p>
-              <input
-                type="file"
-                id="julifeFileInput"
-                accept="image/*"
-                onchange="
-                  previewImage(this, 'julifePreview', 'julifeUploadBtn')
-                "
-              />
-            </label>
-            <img id="julifePreview" class="img-preview" />
-            <input
-              class="inp mb8"
-              id="julifeTitle"
-              placeholder="제목 (예: 2026년 5월 1일 주생)"
-            />
             <button
-              class="btn-p"
-              id="julifeUploadBtn"
-              onclick="uploadJulife()"
-              style="display: none"
+              onclick="resetStreak()"
+              style="
+                width: 100%;
+                margin-top: 8px;
+                padding: 11px;
+                background: #f1f5f9;
+                color: var(--sub);
+                border: none;
+                border-radius: 12px;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+              "
             >
-              업로드
+              ↺ 처음으로 되돌리기
             </button>
           </div>
           <div id="julifeList"><div class="empty2">불러오는 중...</div></div>
@@ -1945,8 +1929,39 @@
               <div style="margin-top: 12px" id="adminScheduleList"></div>
             </div>
             <div class="card">
-              <div class="adm-sec-title">✏️ 말씀나눔 관리</div>
-              <div id="adminSharingList"></div>
+              <div class="adm-sec-title">📖 주생 등록 (이미지)</div>
+              <label class="img-upload-box" for="julifeFileInput">
+                <div class="icon">📸</div>
+                <p>
+                  주생 이미지 선택<br /><span
+                    style="font-size: 11px; color: #aaa"
+                    >JPG, PNG</span
+                  >
+                </p>
+                <input
+                  type="file"
+                  id="julifeFileInput"
+                  accept="image/*"
+                  onchange="
+                    previewImage(this, 'julifeImgPreview', 'julifeUploadBtn')
+                  "
+                />
+              </label>
+              <img id="julifeImgPreview" class="img-preview" />
+              <input
+                class="inp mb8"
+                id="julifeTitle"
+                placeholder="제목 (예: 2026년 5월 1일 주생)"
+              />
+              <button
+                class="btn-p"
+                id="julifeUploadBtn"
+                onclick="uploadJulife()"
+                style="display: none"
+              >
+                업로드
+              </button>
+              <div style="margin-top: 12px" id="adminJulifeList"></div>
             </div>
             <div class="card">
               <div class="adm-sec-title">🎵 찬양신청 관리</div>
@@ -2306,13 +2321,7 @@
       let streak = 0,
         cont = 0;
       const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
-      G("increaseStreak", () => {
-        if (streak >= 52) {
-          showToast("🎉 1년 완주!");
-          return;
-        }
-        streak++;
-        cont++;
+      function updateGrapeUI() {
         const pct = Math.round((streak / 52) * 100);
         const stage = stages[Math.min(Math.floor(pct / 20), 4)];
         ["h-pct", "g-pct"].forEach((id) => {
@@ -2333,7 +2342,23 @@
         });
         const gd = document.getElementById("g-day");
         if (gd) gd.textContent = `${streak}주 / 52주`;
-        showToast("✅ 이번 주 완료! " + pct + "%");
+      }
+      G("increaseStreak", () => {
+        if (streak >= 52) {
+          showToast("🎉 1년 완주!");
+          return;
+        }
+        streak++;
+        cont++;
+        updateGrapeUI();
+        showToast("✅ 이번 주 완료! " + Math.round((streak / 52) * 100) + "%");
+      });
+      G("resetStreak", () => {
+        if (!confirm("포도나무를 처음으로 되돌릴까요?")) return;
+        streak = 0;
+        cont = 0;
+        updateGrapeUI();
+        showToast("↺ 처음으로 되돌렸어요");
       });
 
       // 주생 이미지 업로드
@@ -2380,12 +2405,22 @@
       <img class="bulletin-img" src="${s.img}" alt="${s.title}"/>
       <div class="bulletin-info">
         <div><div class="bulletin-title">${s.title}</div><div class="bulletin-date">${s.author ? s.author + " · " : ""}${fdt(s.date)}</div></div>
-        <button class="tag-del" onclick="deleteJulife('${id}')">삭제</button>
+        ${isAdmin ? `<button class="tag-del" onclick="deleteJulife('${id}')">삭제</button>` : ""}
       </div>
     </div>`,
                 )
                 .join("")
             : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
+        const aEl = document.getElementById("adminJulifeList");
+        if (aEl)
+          aEl.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, s]) =>
+                    `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteJulife('${id}')">삭제</button></div>`,
+                )
+                .join("")
+            : '<div class="empty2">없음</div>';
       });
 
       // ── 공지 ──
