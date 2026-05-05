@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="장유서은교회" />
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="theme-color" content="#1a56db" />
     <title>장유서은교회</title>
     <link
       rel="apple-touch-icon"
@@ -19,6 +19,12 @@
     <link
       rel="icon"
       href="https://raw.githubusercontent.com/91hanskim-collab/004_church-web/main/logo.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
     />
     <style>
       * {
@@ -30,15 +36,17 @@
         --blue: #1a56db;
         --blue2: #1e3a6e;
         --blue-light: #eff6ff;
-        --bg: #f1f5f9;
+        --bg: #f4f6fb;
         --card: #fff;
-        --border: #e2e8f0;
-        --text: #1e293b;
-        --sub: #64748b;
-        --radius: 16px;
+        --border: #e8edf5;
+        --text: #1a2236;
+        --sub: #7a8aaa;
+        --radius: 18px;
+        --shadow: 0 2px 12px rgba(26, 86, 219, 0.07);
+        --shadow-lg: 0 8px 32px rgba(26, 86, 219, 0.13);
       }
       body {
-        font-family: "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+        font-family: "Noto Sans KR", sans-serif;
         background: var(--bg);
         max-width: 420px;
         margin: 0 auto;
@@ -47,12 +55,12 @@
         overflow-x: hidden;
       }
 
-      /* 로그인 */
+      /* ── 로그인 ── */
       #loginScreen {
         position: fixed;
         inset: 0;
         overflow-y: auto;
-        background: #f8fafc;
+        background: #f4f6fb;
         z-index: 9999;
         max-width: 420px;
         margin: 0 auto;
@@ -60,45 +68,55 @@
       .ls-header {
         background: linear-gradient(
           160deg,
-          #1e3a6e 0%,
-          #2563eb 60%,
-          #38bdf8 100%
+          #0f2a5e 0%,
+          #1a56db 55%,
+          #3b82f6 100%
         );
-        padding: 40px 24px 32px;
+        padding: 44px 24px 36px;
         position: relative;
         overflow: hidden;
       }
       .ls-header::before {
         content: "";
         position: absolute;
-        bottom: -40px;
-        left: -20px;
-        right: -20px;
-        height: 80px;
-        background: #f8fafc;
+        bottom: -50px;
+        left: -30px;
+        right: -30px;
+        height: 100px;
+        background: #f4f6fb;
         border-radius: 50%;
+      }
+      .ls-header::after {
+        content: "";
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
       }
       .ls-logo-wrap {
         display: flex;
         align-items: center;
-        gap: 14px;
-        margin-bottom: 16px;
+        gap: 16px;
+        margin-bottom: 12px;
         position: relative;
         z-index: 1;
       }
       .ls-logo {
-        width: 64px;
-        height: 64px;
+        width: 68px;
+        height: 68px;
         background: #fff;
-        border-radius: 16px;
+        border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
       }
       .ls-logo img {
-        width: 56px;
-        height: 56px;
+        width: 58px;
+        height: 58px;
         object-fit: contain;
       }
       .ls-name {
@@ -106,73 +124,84 @@
       }
       .ls-denom {
         font-size: 11px;
-        opacity: 0.8;
+        opacity: 0.75;
         font-weight: 600;
-        letter-spacing: 0.5px;
-        margin-bottom: 4px;
+        letter-spacing: 0.8px;
+        margin-bottom: 5px;
       }
       .ls-church {
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 900;
         letter-spacing: -0.5px;
       }
       .ls-body {
-        padding: 32px 20px 20px;
+        padding: 36px 20px 24px;
       }
       .ls-card {
         background: #fff;
-        border-radius: 20px;
-        padding: 24px;
+        border-radius: 22px;
+        padding: 26px;
         border: 1px solid var(--border);
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        margin-bottom: 12px;
+        box-shadow: var(--shadow-lg);
+        margin-bottom: 14px;
       }
       .ls-card h2 {
-        font-size: 18px;
+        font-size: 19px;
         font-weight: 800;
         margin-bottom: 4px;
+        color: var(--text);
       }
       .ls-card p {
         font-size: 12px;
         color: var(--sub);
-        margin-bottom: 18px;
+        margin-bottom: 20px;
       }
       .l-inp {
         width: 100%;
-        padding: 13px 16px;
+        padding: 14px 16px;
         border: 1.5px solid var(--border);
-        border-radius: 12px;
+        border-radius: 13px;
         font-size: 15px;
         outline: none;
-        margin-bottom: 10px;
-        background: #f8fafc;
+        margin-bottom: 11px;
+        background: #f8fafd;
+        font-family: inherit;
+        color: var(--text);
       }
       .l-inp:focus {
         border-color: var(--blue);
         background: #fff;
+        box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
       }
       .l-btn-main {
         width: 100%;
-        padding: 14px;
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
+        padding: 15px;
+        background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
         border: none;
-        border-radius: 12px;
+        border-radius: 13px;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
+        font-family: inherit;
+        box-shadow: 0 4px 16px rgba(26, 86, 219, 0.3);
+      }
+      .l-btn-main:active {
+        opacity: 0.9;
+        transform: scale(0.99);
       }
       .l-btn-sub {
         width: 100%;
-        padding: 13px;
+        padding: 14px;
         background: #fff;
         color: var(--blue);
         border: 2px solid var(--blue);
-        border-radius: 12px;
+        border-radius: 13px;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
+        font-family: inherit;
       }
       .l-err {
         color: #ef4444;
@@ -197,46 +226,48 @@
         font-size: 13px;
         color: var(--sub);
         cursor: pointer;
+        font-family: inherit;
       }
       .pending-box {
         text-align: center;
-        padding: 10px 0;
+        padding: 12px 0;
       }
       .pending-box .pi {
-        font-size: 52px;
-        margin-bottom: 12px;
+        font-size: 56px;
+        margin-bottom: 14px;
       }
       .pending-box h3 {
-        font-size: 17px;
+        font-size: 18px;
         font-weight: 800;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
       }
       .pending-box p {
         font-size: 13px;
         color: var(--sub);
-        line-height: 1.8;
+        line-height: 1.9;
       }
       .intro-card {
         background: #fff;
-        border-radius: 20px;
-        padding: 20px;
+        border-radius: 22px;
+        padding: 22px;
         border: 1px solid var(--border);
-        margin-bottom: 12px;
+        margin-bottom: 14px;
+        box-shadow: var(--shadow);
       }
       .intro-header {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
+        background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
-        border-radius: 10px;
-        padding: 10px 16px;
+        border-radius: 11px;
+        padding: 11px 17px;
         font-size: 14px;
         font-weight: 800;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
       .intro-row {
         display: flex;
-        gap: 10px;
+        gap: 12px;
         align-items: flex-start;
-        margin-bottom: 12px;
+        margin-bottom: 13px;
       }
       .intro-row:last-child {
         margin-bottom: 0;
@@ -256,22 +287,24 @@
       .intro-txt {
         font-size: 13px;
         color: #334155;
-        line-height: 1.6;
+        line-height: 1.7;
       }
 
-      /* 앱 */
+      /* ── 앱 헤더 ── */
       #appScreen {
         display: none;
       }
       .app-header {
-        background: #fff;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
         position: sticky;
         top: 0;
         z-index: 100;
+        box-shadow: 0 1px 8px rgba(26, 86, 219, 0.06);
       }
       .app-header-top {
-        padding: 10px 16px;
+        padding: 11px 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -282,24 +315,26 @@
         gap: 10px;
       }
       .ah-logo {
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
         background: #fff;
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         border: 1px solid var(--border);
+        box-shadow: var(--shadow);
       }
       .ah-logo img {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         object-fit: contain;
       }
       .ah-denom {
         font-size: 10px;
         color: var(--sub);
         font-weight: 600;
+        letter-spacing: 0.3px;
       }
       .ah-name {
         font-size: 16px;
@@ -322,19 +357,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
       }
       .ah-user {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
+        background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
         border: none;
         border-radius: 999px;
-        padding: 6px 16px;
+        padding: 7px 18px;
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
+        font-family: inherit;
+        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.25);
       }
 
+      /* ── 페이지 ── */
       .page {
         display: none;
         padding-bottom: 90px;
@@ -343,59 +380,130 @@
         display: block;
       }
       .section {
-        padding: 14px 14px 0;
+        padding: 16px 16px 0;
       }
+
+      /* ── 카드 ── */
       .card {
         background: var(--card);
         border-radius: var(--radius);
-        padding: 18px;
-        margin-bottom: 12px;
+        padding: 20px;
+        margin-bottom: 14px;
         border: 1px solid var(--border);
+        box-shadow: var(--shadow);
       }
       .card-hd {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
       .card-title {
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 800;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 7px;
+        color: var(--text);
       }
       .card-more {
         font-size: 12px;
         color: var(--blue);
-        font-weight: 600;
+        font-weight: 700;
         background: none;
         border: none;
         cursor: pointer;
+        font-family: inherit;
       }
 
-      /* 달력 */
+      /* ── 홈 히어로 ── */
+      .home-hero {
+        background: linear-gradient(
+          135deg,
+          #0f2a5e 0%,
+          #1a56db 50%,
+          #3b82f6 100%
+        );
+        padding: 28px 20px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .home-hero::before {
+        content: "";
+        position: absolute;
+        right: -60px;
+        top: -60px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .home-hero::after {
+        content: "";
+        position: absolute;
+        left: -40px;
+        bottom: -40px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(8px);
+        border-radius: 999px;
+        padding: 5px 14px;
+        font-size: 11px;
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 14px;
+        letter-spacing: 0.3px;
+      }
+      .hero-date {
+        font-size: 28px;
+        font-weight: 900;
+        color: #fff;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-church {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── 달력 ── */
       .cal-nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
       .cal-nav-btn {
         background: var(--bg);
         border: none;
-        width: 30px;
-        height: 30px;
-        border-radius: 8px;
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 17px;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--blue);
+        font-weight: 700;
       }
       .cal-nav span {
-        font-size: 14px;
-        font-weight: 700;
+        font-size: 15px;
+        font-weight: 800;
+        color: var(--text);
       }
       .cal-grid {
         display: grid;
@@ -404,30 +512,32 @@
         text-align: center;
       }
       .cal-dn {
-        font-size: 10px;
+        font-size: 11px;
         color: var(--sub);
-        padding: 3px 0;
-        font-weight: 600;
+        padding: 4px 0;
+        font-weight: 700;
       }
       .cal-d {
-        font-size: 12px;
-        height: 32px;
-        border-radius: 8px;
+        font-size: 13px;
+        height: 34px;
+        border-radius: 10px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         font-weight: 500;
+        transition: background 0.15s;
       }
       .cal-d:hover {
         background: var(--blue-light);
       }
       .cal-d.today {
-        background: var(--blue);
+        background: linear-gradient(135deg, #1a56db, #3b82f6);
         color: #fff;
-        font-weight: 700;
+        font-weight: 800;
         border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.3);
       }
       .cal-d.has-ev::after {
         content: "";
@@ -441,26 +551,27 @@
         transform: translateX(-50%);
       }
       .cal-d.other {
-        color: #cbd5e1;
+        color: #c8d0e0;
       }
       .ev-box {
-        margin-top: 10px;
+        margin-top: 12px;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 7px;
       }
       .ev-item {
         display: flex;
         align-items: center;
-        gap: 8px;
-        background: var(--blue-light);
-        border-radius: 10px;
-        padding: 9px 12px;
-        font-size: 12px;
+        gap: 10px;
+        background: linear-gradient(135deg, #eff6ff, #e0eaff);
+        border-radius: 12px;
+        padding: 10px 14px;
+        font-size: 13px;
+        font-weight: 500;
       }
       .ev-dot {
-        width: 6px;
-        height: 6px;
+        width: 7px;
+        height: 7px;
         background: var(--blue);
         border-radius: 50%;
         flex-shrink: 0;
@@ -469,24 +580,28 @@
         font-size: 12px;
         color: var(--sub);
         text-align: center;
-        padding: 8px 0;
+        padding: 10px 0;
       }
 
-      /* 공지 */
+      /* ── 공지 ── */
       .notice-row {
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 10px 0;
+        gap: 9px;
+        padding: 12px 0;
         border-bottom: 1px solid var(--border);
         cursor: pointer;
+        transition: opacity 0.15s;
       }
       .notice-row:last-child {
         border-bottom: none;
       }
+      .notice-row:active {
+        opacity: 0.7;
+      }
       .n-tag {
-        border-radius: 6px;
-        padding: 2px 8px;
+        border-radius: 7px;
+        padding: 3px 9px;
         font-size: 11px;
         font-weight: 700;
         flex-shrink: 0;
@@ -505,7 +620,7 @@
         flex-shrink: 0;
       }
       .detail-wrap {
-        padding: 18px 14px;
+        padding: 20px 16px;
       }
       .back-btn {
         display: flex;
@@ -515,129 +630,157 @@
         border: none;
         color: var(--blue);
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
         padding: 0;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
+        font-family: inherit;
       }
       .detail-title2 {
-        font-size: 20px;
-        font-weight: 800;
-        margin-bottom: 6px;
+        font-size: 22px;
+        font-weight: 900;
+        margin-bottom: 8px;
         line-height: 1.3;
+        letter-spacing: -0.5px;
       }
       .detail-date2 {
         font-size: 12px;
         color: var(--sub);
-        margin-bottom: 16px;
-        padding-bottom: 16px;
+        margin-bottom: 18px;
+        padding-bottom: 18px;
         border-bottom: 1px solid var(--border);
       }
       .detail-body2 {
         font-size: 14px;
         color: #334155;
-        line-height: 2;
+        line-height: 2.1;
       }
 
-      /* 포도나무 */
+      /* ── 포도나무 ── */
       .grape-mini {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
       .grape-pct-h {
-        font-size: 32px;
+        font-size: 34px;
         font-weight: 900;
         color: var(--blue);
+        letter-spacing: -1px;
       }
       .grape-streak-h {
         font-size: 12px;
         color: #ea580c;
         font-weight: 700;
-        margin-top: 2px;
+        margin-top: 3px;
       }
       .bar-bg {
         background: var(--border);
         border-radius: 999px;
-        height: 8px;
+        height: 9px;
         overflow: hidden;
         margin: 4px 0 12px;
       }
       .bar-fill {
         height: 100%;
-        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
+        background: linear-gradient(90deg, #1a56db, #60a5fa);
         border-radius: 999px;
-        transition: width 0.5s;
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .grape-emoji-big {
-        font-size: 72px;
-        margin-bottom: 10px;
+        font-size: 76px;
+        margin-bottom: 12px;
       }
       .grape-pct-full {
-        font-size: 52px;
+        font-size: 56px;
         font-weight: 900;
-        color: var(--blue);
+        background: linear-gradient(135deg, #1a56db, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -2px;
       }
       .grape-day-full {
         font-size: 13px;
         color: var(--sub);
-        margin-top: 4px;
+        margin-top: 6px;
+        font-weight: 500;
       }
       .grape-streak-full {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        background: #fff7ed;
+        gap: 6px;
+        background: linear-gradient(135deg, #fff7ed, #fef3c7);
         border-radius: 999px;
-        padding: 6px 14px;
+        padding: 7px 16px;
         font-size: 13px;
         font-weight: 700;
-        color: #ea580c;
-        margin-top: 10px;
+        color: #d97706;
+        margin-top: 12px;
+        box-shadow: 0 2px 8px rgba(234, 88, 12, 0.1);
       }
       .bar-bg2 {
         background: var(--border);
         border-radius: 999px;
-        height: 10px;
+        height: 11px;
         overflow: hidden;
-        margin: 16px 0 6px;
+        margin: 18px 0 7px;
       }
       .bar-fill2 {
         height: 100%;
-        background: linear-gradient(90deg, #1e3a6e, #3b82f6);
+        background: linear-gradient(90deg, #1a56db, #60a5fa);
         border-radius: 999px;
-        transition: width 0.5s;
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      /* 페이지 히어로 */
+      /* ── 페이지 히어로 ── */
       .page-hero {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
-        padding: 20px 18px 24px;
+        background: linear-gradient(135deg, #0f2a5e, #1a56db);
+        padding: 22px 20px 26px;
         color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .page-hero::after {
+        content: "";
+        position: absolute;
+        right: -30px;
+        top: -30px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
       }
       .page-hero h2 {
-        font-size: 20px;
-        font-weight: 800;
-        margin-bottom: 3px;
+        font-size: 21px;
+        font-weight: 900;
+        margin-bottom: 4px;
+        letter-spacing: -0.5px;
       }
       .page-hero p {
         font-size: 12px;
         opacity: 0.8;
+        font-weight: 500;
       }
 
-      /* 아이템 */
+      /* ── 리스트 아이템 ── */
       .list-item {
-        background: #f8fafc;
-        border-radius: 12px;
-        padding: 14px;
-        margin-bottom: 8px;
+        background: #f8fafd;
+        border-radius: 14px;
+        padding: 15px;
+        margin-bottom: 9px;
         border: 1px solid var(--border);
+        transition: box-shadow 0.15s;
+      }
+      .list-item:hover {
+        box-shadow: var(--shadow);
       }
       .item-text {
         font-size: 14px;
-        line-height: 1.6;
-        margin-bottom: 8px;
+        line-height: 1.7;
+        margin-bottom: 9px;
+        font-weight: 500;
       }
       .item-meta {
         font-size: 11px;
@@ -658,56 +801,69 @@
       }
       .tag-ans {
         background: #dcfce7;
-        color: #16a34a;
+        color: #15803d;
         border: none;
-        border-radius: 7px;
-        padding: 4px 10px;
+        border-radius: 8px;
+        padding: 5px 11px;
         font-size: 11px;
         font-weight: 700;
         cursor: pointer;
+        font-family: inherit;
       }
       .tag-del {
         background: #fee2e2;
         color: #dc2626;
         border: none;
-        border-radius: 7px;
-        padding: 4px 10px;
+        border-radius: 8px;
+        padding: 5px 11px;
         font-size: 11px;
         font-weight: 700;
         cursor: pointer;
+        font-family: inherit;
       }
       .tag-like {
         background: #eff6ff;
-        color: #2563eb;
+        color: #1a56db;
         border: none;
-        border-radius: 7px;
-        padding: 4px 10px;
+        border-radius: 8px;
+        padding: 5px 11px;
         font-size: 11px;
         font-weight: 700;
         cursor: pointer;
+        font-family: inherit;
       }
 
-      /* 2열 그리드 */
+      /* ── 2열 그리드 ── */
       .grid2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding: 14px;
+        gap: 12px;
+        padding: 16px;
       }
       .grid2-card {
         background: #fff;
-        border-radius: 12px;
+        border-radius: 16px;
         overflow: hidden;
         border: 1px solid var(--border);
         text-decoration: none;
         display: block;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .grid2-card:active {
+        transform: scale(0.97);
       }
       .grid2-thumb {
         position: relative;
         width: 100%;
-        padding-top: 120%;
+        padding-top: 56%;
         overflow: hidden;
         background: #f1f5f9;
+      }
+      .grid2-thumb-book {
+        padding-top: 130%;
       }
       .grid2-thumb img {
         position: absolute;
@@ -724,30 +880,31 @@
         align-items: center;
         justify-content: center;
         font-size: 32px;
-        background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+        background: linear-gradient(135deg, #e8edf5, #dde5f0);
       }
       .grid2-play {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 32px;
-        height: 32px;
-        background: rgba(255, 255, 255, 0.9);
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.92);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
+        font-size: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       }
       .grid2-info {
-        padding: 10px 10px 12px;
+        padding: 12px 12px 14px;
       }
       .grid2-title {
         font-size: 12px;
         font-weight: 700;
         color: var(--text);
-        line-height: 1.4;
+        line-height: 1.5;
         margin-bottom: 4px;
         overflow: hidden;
         display: -webkit-box;
@@ -757,91 +914,100 @@
       .grid2-sub {
         font-size: 10px;
         color: var(--sub);
+        font-weight: 500;
       }
       .grid2-desc {
         font-size: 10px;
         color: var(--sub);
-        margin-top: 4px;
+        margin-top: 5px;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        line-height: 1.5;
+        line-height: 1.6;
       }
       .yt-badge {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
         background: #fee2e2;
         color: #dc2626;
-        border-radius: 5px;
-        padding: 2px 6px;
+        border-radius: 6px;
+        padding: 3px 8px;
         font-size: 10px;
         font-weight: 700;
-        margin-top: 4px;
+        margin-top: 5px;
       }
       .book-badge {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
         background: #ede9fe;
         color: #7c3aed;
-        border-radius: 5px;
-        padding: 2px 6px;
+        border-radius: 6px;
+        padding: 3px 8px;
         font-size: 10px;
         font-weight: 700;
-        margin-top: 4px;
+        margin-top: 5px;
       }
 
-      /* 이미지 업로드 */
+      /* ── 이미지 업로드 ── */
       .img-upload-box {
         border: 2px dashed var(--border);
-        border-radius: 12px;
-        padding: 20px 16px;
+        border-radius: 14px;
+        padding: 22px 16px;
         text-align: center;
         cursor: pointer;
-        background: #f8fafc;
+        background: #f8fafd;
         margin-bottom: 10px;
-        transition: border-color 0.2s;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
         width: 100%;
         display: block;
         overflow: hidden;
       }
       .img-upload-box:hover {
         border-color: var(--blue);
+        background: var(--blue-light);
       }
       .img-upload-box input {
         display: none;
       }
       .img-upload-box .icon {
         font-size: 28px;
-        margin-bottom: 6px;
+        margin-bottom: 7px;
       }
       .img-upload-box p {
         font-size: 12px;
         color: var(--sub);
         word-break: keep-all;
+        font-weight: 500;
       }
       .img-preview {
         width: 100%;
-        border-radius: 10px;
+        border-radius: 12px;
         max-height: 180px;
         object-fit: contain;
         margin-bottom: 10px;
         display: none;
       }
 
-      /* 주보/주생 이미지 뷰어 */
+      /* ── 주보/주생 카드 ── */
       .bulletin-card {
         background: #fff;
-        border-radius: 14px;
-        margin-bottom: 12px;
+        border-radius: 16px;
+        margin-bottom: 14px;
         overflow: hidden;
         border: 1px solid var(--border);
+        box-shadow: var(--shadow);
       }
       .bulletin-img {
         width: 100%;
         display: block;
-        border-radius: 14px 14px 0 0;
       }
       .bulletin-info {
-        padding: 12px 14px;
+        padding: 14px 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -854,92 +1020,101 @@
         font-size: 11px;
         color: var(--sub);
         margin-top: 2px;
+        font-weight: 500;
       }
 
-      /* 더보기 */
+      /* ── 더보기 그리드 ── */
       .more-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding: 14px;
+        gap: 12px;
+        padding: 16px;
       }
       .more-cell {
         background: #fff;
-        border-radius: 16px;
-        padding: 22px 12px;
+        border-radius: 18px;
+        padding: 24px 14px;
         text-align: center;
         cursor: pointer;
         border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
       }
       .more-cell:active {
-        background: var(--bg);
+        transform: scale(0.96);
+        box-shadow: none;
       }
       .mc-icon {
-        font-size: 32px;
-        margin-bottom: 8px;
+        font-size: 34px;
+        margin-bottom: 10px;
       }
       .mc-label {
         font-size: 13px;
-        font-weight: 700;
+        font-weight: 800;
+        color: var(--text);
       }
       .mc-desc {
         font-size: 11px;
         color: var(--sub);
-        margin-top: 2px;
+        margin-top: 3px;
+        font-weight: 500;
       }
       .sub-wrap {
         padding-bottom: 90px;
       }
 
-      /* 오시는 길 */
+      /* ── 오시는 길 ── */
       .map-box {
         background: linear-gradient(135deg, #dbeafe, #e0f2fe);
-        height: 160px;
+        height: 170px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 44px;
-        border-radius: 14px;
-        margin: 14px;
+        font-size: 48px;
+        border-radius: 16px;
+        margin: 16px;
       }
       .info-row {
         display: flex;
-        gap: 12px;
+        gap: 14px;
         align-items: flex-start;
-        padding: 12px 0;
+        padding: 13px 0;
         border-bottom: 1px solid var(--border);
       }
       .info-row:last-child {
         border-bottom: none;
       }
       .info-icon-box {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
         background: var(--blue-light);
-        border-radius: 10px;
+        border-radius: 11px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
+        font-size: 17px;
         flex-shrink: 0;
       }
       .info-label2 {
         font-size: 11px;
         color: var(--sub);
-        margin-bottom: 2px;
-        font-weight: 600;
+        margin-bottom: 3px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
       }
       .info-value2 {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
       }
 
-      /* 설정 */
+      /* ── 설정 ── */
       .s-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 14px 0;
+        padding: 15px 0;
         border-bottom: 1px solid var(--border);
       }
       .s-row:last-child {
@@ -947,39 +1122,42 @@
       }
       .s-label {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
       }
       .s-sub {
         font-size: 11px;
         color: var(--sub);
-        margin-top: 2px;
+        margin-top: 3px;
+        font-weight: 500;
       }
       .time-pill {
-        background: var(--blue);
+        background: linear-gradient(135deg, #1a56db, #3b82f6);
         color: #fff;
-        border-radius: 8px;
-        padding: 5px 12px;
-        font-size: 13px;
-        font-weight: 700;
+        border-radius: 10px;
+        padding: 6px 14px;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.2);
       }
 
-      /* 관리자 */
+      /* ── 관리자 ── */
       .adm-sec-title {
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--sub);
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 10px;
+        letter-spacing: 0.8px;
+        margin-bottom: 11px;
       }
       .adm-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 9px 0;
+        padding: 10px 0;
         border-bottom: 1px solid var(--border);
         font-size: 13px;
         gap: 8px;
+        font-weight: 500;
       }
       .adm-item:last-child {
         border-bottom: none;
@@ -991,84 +1169,111 @@
         white-space: nowrap;
       }
 
-      /* 버튼 */
+      /* ── 버튼 ── */
       .btn-p {
-        background: linear-gradient(135deg, #1e3a6e, #2563eb);
+        background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
         border: none;
-        border-radius: 12px;
-        padding: 13px;
+        border-radius: 13px;
+        padding: 14px;
         font-size: 14px;
         font-weight: 700;
         cursor: pointer;
         width: 100%;
-        margin-top: 8px;
+        margin-top: 9px;
+        font-family: inherit;
+        box-shadow: 0 3px 12px rgba(26, 86, 219, 0.25);
+        transition: opacity 0.15s;
       }
       .btn-p:active {
         opacity: 0.9;
       }
       .btn-o {
         background: #fff;
-        border: 1.5px solid var(--blue);
+        border: 2px solid var(--blue);
         color: var(--blue);
-        border-radius: 12px;
-        padding: 12px;
+        border-radius: 13px;
+        padding: 13px;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
         width: 100%;
-        margin-top: 8px;
+        margin-top: 9px;
+        font-family: inherit;
       }
       .btn-sm {
-        background: var(--blue);
+        background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
         border: none;
-        border-radius: 9px;
-        padding: 9px 14px;
+        border-radius: 10px;
+        padding: 10px 16px;
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
+        font-family: inherit;
+        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.2);
       }
       .btn-del {
         background: #fee2e2;
         color: #dc2626;
         border: none;
-        border-radius: 7px;
-        padding: 5px 10px;
+        border-radius: 8px;
+        padding: 6px 12px;
         font-size: 12px;
         font-weight: 700;
         cursor: pointer;
+        font-family: inherit;
+      }
+      .btn-reset {
+        width: 100%;
+        margin-top: 9px;
+        padding: 12px;
+        background: #f1f5f9;
+        color: var(--sub);
+        border: none;
+        border-radius: 13px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.15s;
+      }
+      .btn-reset:hover {
+        background: #e2e8f0;
       }
       .inp {
         width: 100%;
-        padding: 12px 14px;
+        padding: 13px 15px;
         border: 1.5px solid var(--border);
-        border-radius: 12px;
+        border-radius: 13px;
         font-size: 14px;
         outline: none;
-        background: #f8fafc;
+        background: #f8fafd;
+        font-family: inherit;
+        color: var(--text);
       }
       .inp:focus {
         border-color: var(--blue);
         background: #fff;
+        box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.08);
       }
       textarea.inp {
-        height: 80px;
+        height: 82px;
         resize: vertical;
       }
       .inp-row {
         display: flex;
         gap: 8px;
-        margin-top: 8px;
+        margin-top: 9px;
       }
       .inp-row .inp {
         margin: 0;
       }
       .mb8 {
-        margin-bottom: 8px;
+        margin-bottom: 9px;
       }
 
-      /* 탭바 */
+      /* ── 탭바 (SVG 아이콘) ── */
       .tab-bar {
         position: fixed;
         bottom: 0;
@@ -1076,56 +1281,61 @@
         transform: translateX(-50%);
         width: 100%;
         max-width: 420px;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(20px);
         display: flex;
         border-top: 1px solid var(--border);
         z-index: 100;
         padding-bottom: env(safe-area-inset-bottom);
+        box-shadow: 0 -4px 20px rgba(26, 86, 219, 0.08);
       }
       .tab-btn {
         flex: 1;
         background: none;
         border: none;
-        padding: 10px 0 8px;
+        padding: 10px 0 9px;
         font-size: 10px;
         color: var(--sub);
         cursor: pointer;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2px;
-        font-weight: 500;
+        gap: 3px;
+        font-weight: 600;
+        font-family: inherit;
+        transition: color 0.2s;
       }
-      .tab-btn .ti {
-        font-size: 22px;
+      .tab-btn svg {
+        width: 24px;
+        height: 24px;
         transition: transform 0.2s;
       }
       .tab-btn.active {
         color: var(--blue);
-        font-weight: 700;
       }
-      .tab-btn.active .ti {
-        transform: scale(1.1);
+      .tab-btn.active svg {
+        transform: scale(1.15);
       }
 
+      /* ── 토스트 ── */
       .toast {
         position: fixed;
-        bottom: 96px;
+        bottom: 100px;
         left: 50%;
         transform: translateX(-50%);
-        background: #1e293b;
+        background: #1a2236;
         color: #fff;
-        padding: 11px 22px;
+        padding: 12px 24px;
         border-radius: 999px;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 700;
         z-index: 9998;
         opacity: 0;
         transition: opacity 0.3s;
         white-space: nowrap;
         pointer-events: none;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        font-family: inherit;
       }
       .toast.show {
         opacity: 1;
@@ -1134,18 +1344,13 @@
         text-align: center;
         color: var(--sub);
         font-size: 13px;
-        padding: 24px 0;
-      }
-      .loading-spinner {
-        text-align: center;
-        padding: 20px;
-        color: var(--sub);
-        font-size: 13px;
+        padding: 28px 0;
+        font-weight: 500;
       }
     </style>
   </head>
   <body>
-    <!-- 로그인 -->
+    <!-- ══ 로그인 ══ -->
     <div id="loginScreen">
       <div class="ls-header">
         <div class="ls-logo-wrap">
@@ -1181,7 +1386,7 @@
           <div class="l-err" id="loginErr"></div>
           <button
             class="l-btn-main"
-            style="margin-top: 14px"
+            style="margin-top: 16px"
             onclick="doLogin()"
           >
             로그인
@@ -1207,7 +1412,7 @@
           <div class="l-err" id="signupErr"></div>
           <button
             class="l-btn-main"
-            style="margin-top: 6px"
+            style="margin-top: 8px"
             onclick="doSignup()"
           >
             가입 신청
@@ -1221,7 +1426,7 @@
             <p>관리자가 승인하면<br />로그인할 수 있어요 🙏</p>
             <button
               class="l-btn-sub"
-              style="margin-top: 18px"
+              style="margin-top: 20px"
               onclick="showLogin()"
             >
               ← 로그인으로
@@ -1354,7 +1559,7 @@
       </div>
     </div>
 
-    <!-- 앱 -->
+    <!-- ══ 앱 ══ -->
     <div id="appScreen">
       <div class="app-header">
         <div class="app-header-top">
@@ -1371,7 +1576,21 @@
             </div>
           </div>
           <div class="ah-right">
-            <button class="ah-btn" onclick="goPage('settings')">🔔</button>
+            <button class="ah-btn" onclick="goPage('settings')">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#7a8aaa"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+            </button>
             <button class="ah-user" id="userChip" onclick="goPage('settings')">
               나
             </button>
@@ -1382,6 +1601,11 @@
 
       <!-- 홈 -->
       <div class="page active" id="page-home">
+        <div class="home-hero">
+          <div class="hero-badge">📅 오늘</div>
+          <div class="hero-date" id="heroDate"></div>
+          <div class="hero-church">장유서은교회에 오신 것을 환영합니다 🙏</div>
+        </div>
         <div class="section">
           <div class="card">
             <div class="card-hd">
@@ -1407,7 +1631,7 @@
           <div class="card">
             <div class="card-hd">
               <div class="card-title">📖 주간생명의 양식</div>
-              <span id="h-grape" style="font-size: 26px">🌱</span>
+              <span id="h-grape" style="font-size: 28px">🌱</span>
             </div>
             <div class="grape-mini">
               <div>
@@ -1425,7 +1649,7 @@
         </div>
       </div>
 
-      <!-- 설교 영상 -->
+      <!-- 설교 -->
       <div class="page" id="page-sermon">
         <div class="page-hero">
           <h2>🎬 설교 영상</h2>
@@ -1479,6 +1703,7 @@
                 justify-content: space-between;
                 font-size: 11px;
                 color: var(--sub);
+                font-weight: 600;
               "
             >
               <span>🌱 시작</span><span>🍇 완성</span>
@@ -1486,21 +1711,7 @@
             <button class="btn-p" onclick="increaseStreak()">
               이번 주 완료 ✅
             </button>
-            <button
-              onclick="resetStreak()"
-              style="
-                width: 100%;
-                margin-top: 8px;
-                padding: 11px;
-                background: #f1f5f9;
-                color: var(--sub);
-                border: none;
-                border-radius: 12px;
-                font-size: 13px;
-                font-weight: 600;
-                cursor: pointer;
-              "
-            >
+            <button class="btn-reset" onclick="resetStreak()">
               ↺ 처음으로 되돌리기
             </button>
           </div>
@@ -1542,19 +1753,19 @@
               <div class="mc-desc">교회 위치 안내</div>
             </div>
           </div>
-          <div style="padding: 0 14px 14px">
+          <div style="padding: 0 16px 16px">
             <div
               class="more-cell"
               style="
                 display: flex;
                 align-items: center;
-                gap: 12px;
+                gap: 14px;
                 text-align: left;
-                padding: 16px 18px;
+                padding: 18px 20px;
               "
               onclick="goPage('settings')"
             >
-              <div style="font-size: 26px">⚙️</div>
+              <div style="font-size: 28px">⚙️</div>
               <div>
                 <div class="mc-label">설정 / 관리자</div>
                 <div class="mc-desc">앱 설정 및 관리자 페이지</div>
@@ -1562,7 +1773,6 @@
             </div>
           </div>
         </div>
-        <!-- 말씀 나눔 -->
         <div class="sub-wrap" id="sub-sharing" style="display: none">
           <div class="page-hero">
             <h2>✏️ 말씀 나눔</h2>
@@ -1575,13 +1785,12 @@
                 class="inp"
                 id="sharingInput"
                 placeholder="오늘 읽은 말씀이나 은혜를 나눠보세요 ✨"
-              ></textarea>
-              <button class="btn-p" onclick="addSharing()">나누기</button>
+              ></textarea
+              ><button class="btn-p" onclick="addSharing()">나누기</button>
             </div>
             <div id="sharingList"><div class="empty2">불러오는 중...</div></div>
           </div>
         </div>
-        <!-- 찬양 신청 -->
         <div class="sub-wrap" id="sub-praise" style="display: none">
           <div class="page-hero">
             <h2>🎵 찬양 신청</h2>
@@ -1601,7 +1810,6 @@
             <div id="praiseList"><div class="empty2">불러오는 중...</div></div>
           </div>
         </div>
-        <!-- 오시는 길 -->
         <div class="sub-wrap" id="sub-location" style="display: none">
           <div class="page-hero">
             <h2>📍 오시는 길</h2>
@@ -1610,12 +1818,12 @@
           <button
             class="back-btn"
             onclick="hideSub()"
-            style="padding: 16px 14px 0"
+            style="padding: 16px 16px 0"
           >
             ← 뒤로
           </button>
           <div class="map-box">🗺️</div>
-          <div style="padding: 0 14px">
+          <div style="padding: 0 16px">
             <div class="info-row">
               <div class="info-icon-box">🏛️</div>
               <div>
@@ -1719,7 +1927,7 @@
                   class="inp"
                   id="prayerTime"
                   value="06:00"
-                  style="margin-top: 8px; width: 110px"
+                  style="margin-top: 9px; width: 115px"
                   oninput="
                     document.getElementById('prayerDisplay').textContent =
                       this.value
@@ -1739,7 +1947,7 @@
                   class="inp"
                   id="wordTime"
                   value="07:00"
-                  style="margin-top: 8px; width: 110px"
+                  style="margin-top: 9px; width: 115px"
                   oninput="
                     document.getElementById('wordDisplay').textContent =
                       this.value
@@ -1762,9 +1970,9 @@
               class="btn-del"
               style="
                 width: 100%;
-                padding: 12px;
+                padding: 13px;
                 font-size: 14px;
-                border-radius: 12px;
+                border-radius: 13px;
               "
               onclick="doLogout()"
             >
@@ -1798,7 +2006,7 @@
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
-                  margin-bottom: 16px;
+                  margin-bottom: 18px;
                 "
               >
                 <div class="adm-sec-title" style="margin: 0">
@@ -1812,7 +2020,7 @@
               <div id="pendingListAdmin">
                 <div class="empty2">대기 없음</div>
               </div>
-              <div style="margin-top: 16px" class="adm-sec-title">
+              <div style="margin-top: 18px" class="adm-sec-title">
                 👤 승인된 교인
               </div>
               <div id="userListAdmin"></div>
@@ -1828,7 +2036,6 @@
               <button class="btn-p" onclick="postNotice()">공지 등록</button>
               <div style="margin-top: 12px" id="adminNoticeList"></div>
             </div>
-            <!-- 주보 등록 (이미지) -->
             <div class="card">
               <div class="adm-sec-title">📋 주보 등록 (이미지)</div>
               <label class="img-upload-box" for="bulletinFileInput">
@@ -1868,7 +2075,41 @@
               </button>
               <div style="margin-top: 12px" id="adminBulletinList"></div>
             </div>
-            <!-- 신앙서적 등록 (이미지) -->
+            <div class="card">
+              <div class="adm-sec-title">📖 주생 등록 (이미지)</div>
+              <label class="img-upload-box" for="julifeFileInput">
+                <div class="icon">📸</div>
+                <p>
+                  주생 이미지 선택<br /><span
+                    style="font-size: 11px; color: #aaa"
+                    >JPG, PNG</span
+                  >
+                </p>
+                <input
+                  type="file"
+                  id="julifeFileInput"
+                  accept="image/*"
+                  onchange="
+                    previewImage(this, 'julifeImgPreview', 'julifeUploadBtn')
+                  "
+                />
+              </label>
+              <img id="julifeImgPreview" class="img-preview" />
+              <input
+                class="inp mb8"
+                id="julifeTitle"
+                placeholder="제목 (예: 2026년 5월 1일 주생)"
+              />
+              <button
+                class="btn-p"
+                id="julifeUploadBtn"
+                onclick="uploadJulife()"
+                style="display: none"
+              >
+                업로드
+              </button>
+              <div style="margin-top: 12px" id="adminJulifeList"></div>
+            </div>
             <div class="card">
               <div class="adm-sec-title">📚 신앙서적 등록 (이미지)</div>
               <label class="img-upload-box" for="bookFileInput">
@@ -1929,39 +2170,8 @@
               <div style="margin-top: 12px" id="adminScheduleList"></div>
             </div>
             <div class="card">
-              <div class="adm-sec-title">📖 주생 등록 (이미지)</div>
-              <label class="img-upload-box" for="julifeFileInput">
-                <div class="icon">📸</div>
-                <p>
-                  주생 이미지 선택<br /><span
-                    style="font-size: 11px; color: #aaa"
-                    >JPG, PNG</span
-                  >
-                </p>
-                <input
-                  type="file"
-                  id="julifeFileInput"
-                  accept="image/*"
-                  onchange="
-                    previewImage(this, 'julifeImgPreview', 'julifeUploadBtn')
-                  "
-                />
-              </label>
-              <img id="julifeImgPreview" class="img-preview" />
-              <input
-                class="inp mb8"
-                id="julifeTitle"
-                placeholder="제목 (예: 2026년 5월 1일 주생)"
-              />
-              <button
-                class="btn-p"
-                id="julifeUploadBtn"
-                onclick="uploadJulife()"
-                style="display: none"
-              >
-                업로드
-              </button>
-              <div style="margin-top: 12px" id="adminJulifeList"></div>
+              <div class="adm-sec-title">✏️ 말씀나눔 관리</div>
+              <div id="adminSharingList"></div>
             </div>
             <div class="card">
               <div class="adm-sec-title">🎵 찬양신청 관리</div>
@@ -1971,25 +2181,93 @@
         </div>
       </div>
 
-      <!-- 탭바: 홈-설교-서적-주보-주생-더보기 -->
+      <!-- 탭바 SVG 아이콘 -->
       <div class="tab-bar">
         <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
-          <span class="ti">🏠</span>홈
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" /></svg
+          >홈
         </button>
         <button class="tab-btn" id="tab-sermon" onclick="goPage('sermon')">
-          <span class="ti">🎬</span>설교
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="23 7 16 12 23 17 23 7" />
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg
+          >설교
         </button>
         <button class="tab-btn" id="tab-books" onclick="goPage('books')">
-          <span class="ti">📚</span>서적
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            /></svg
+          >서적
         </button>
         <button class="tab-btn" id="tab-bulletin" onclick="goPage('bulletin')">
-          <span class="ti">📋</span>주보
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" /></svg
+          >주보
         </button>
         <button class="tab-btn" id="tab-julife" onclick="goPage('julife')">
-          <span class="ti">📖</span>주생
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg
+          >주생
         </button>
         <button class="tab-btn" id="tab-more" onclick="goPage('more')">
-          <span class="ti">⋯</span>더보기
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="1" />
+            <circle cx="19" cy="12" r="1" />
+            <circle cx="5" cy="12" r="1" /></svg
+          >더보기
         </button>
       </div>
     </div>
@@ -2021,7 +2299,6 @@
         currentUser = null;
       const G = (n, f) => (window[n] = f);
 
-      // ── 자동 로그인 ──
       function saveAL(u) {
         try {
           localStorage.setItem("seun_u", JSON.stringify(u));
@@ -2178,7 +2455,6 @@
         goPage("home");
       });
 
-      // 자동 로그인
       const saved = loadAL();
       if (saved) {
         if (ADMINS.includes(saved.pw)) {
@@ -2223,49 +2499,7 @@
         if (confirm("삭제?")) remove(ref(db, "users/" + id));
       });
 
-      // ── 이미지 파일 → Base64 변환 ──
-      function fileToBase64(file) {
-        return new Promise((res, rej) => {
-          // 이미지 압축 (max 800px)
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-              const maxW = 800;
-              let w = img.width,
-                h = img.height;
-              if (w > maxW) {
-                h = Math.round((h * maxW) / w);
-                w = maxW;
-              }
-              const canvas = document.createElement("canvas");
-              canvas.width = w;
-              canvas.height = h;
-              canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-              res(canvas.toDataURL("image/jpeg", 0.7));
-            };
-            img.src = e.target.result;
-          };
-          reader.onerror = rej;
-          reader.readAsDataURL(file);
-        });
-      }
-
-      // 이미지 미리보기
-      G("previewImage", (input, previewId, btnId) => {
-        const file = input.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const preview = document.getElementById(previewId);
-          preview.src = e.target.result;
-          preview.style.display = "block";
-          document.getElementById(btnId).style.display = "block";
-        };
-        reader.readAsDataURL(file);
-      });
-
-      // ── 페이지 이동 ──
+      // 페이지 이동
       const TITLES = {
         home: "홈",
         sermon: "설교 영상",
@@ -2306,6 +2540,23 @@
       });
 
       // 날짜
+      const now = new Date();
+      const mnArr = [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ];
+      document.getElementById("heroDate").textContent =
+        `${now.getFullYear()}년 ${mnArr[now.getMonth()]} ${now.getDate()}일`;
       function fd(iso) {
         const d = new Date(iso);
         return `${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
@@ -2317,7 +2568,46 @@
         return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
       }
 
-      // ── 주간생명의 양식 ──
+      // 이미지 Base64
+      function fileToBase64(file) {
+        return new Promise((res, rej) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+              const maxW = 800;
+              let w = img.width,
+                h = img.height;
+              if (w > maxW) {
+                h = Math.round((h * maxW) / w);
+                w = maxW;
+              }
+              const canvas = document.createElement("canvas");
+              canvas.width = w;
+              canvas.height = h;
+              canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+              res(canvas.toDataURL("image/jpeg", 0.75));
+            };
+            img.src = e.target.result;
+          };
+          reader.onerror = rej;
+          reader.readAsDataURL(file);
+        });
+      }
+      G("previewImage", (input, previewId, btnId) => {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const p = document.getElementById(previewId);
+          p.src = e.target.result;
+          p.style.display = "block";
+          document.getElementById(btnId).style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // 주간생명의 양식
       let streak = 0,
         cont = 0;
       const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
@@ -2361,69 +2651,7 @@
         showToast("↺ 처음으로 되돌렸어요");
       });
 
-      // 주생 이미지 업로드
-      G("uploadJulife", async () => {
-        const fileInput = document.getElementById("julifeFileInput");
-        const title = document.getElementById("julifeTitle").value.trim();
-        if (!fileInput.files[0]) {
-          showToast("이미지를 선택하세요");
-          return;
-        }
-        if (!title) {
-          showToast("제목을 입력하세요");
-          return;
-        }
-        showToast("⏳ 업로드 중...");
-        try {
-          const base64 = await fileToBase64(fileInput.files[0]);
-          await push(ref(db, "julife"), {
-            title,
-            img: base64,
-            date: new Date().toISOString(),
-            author: currentUser?.name || "",
-          });
-          fileInput.value = "";
-          document.getElementById("julifePreview").style.display = "none";
-          document.getElementById("julifeUploadBtn").style.display = "none";
-          document.getElementById("julifeTitle").value = "";
-          showToast("✅ 주생 등록 완료!");
-        } catch (e) {
-          showToast("❌ 업로드 실패");
-        }
-      });
-      G("deleteJulife", (id) => remove(ref(db, "julife/" + id)));
-      onValue(ref(db, "julife"), (snap) => {
-        const data = snap.val() || {};
-        const items = Object.entries(data).reverse();
-        const el = document.getElementById("julifeList");
-        if (el)
-          el.innerHTML = items.length
-            ? items
-                .map(
-                  ([id, s]) => `
-    <div class="bulletin-card">
-      <img class="bulletin-img" src="${s.img}" alt="${s.title}"/>
-      <div class="bulletin-info">
-        <div><div class="bulletin-title">${s.title}</div><div class="bulletin-date">${s.author ? s.author + " · " : ""}${fdt(s.date)}</div></div>
-        ${isAdmin ? `<button class="tag-del" onclick="deleteJulife('${id}')">삭제</button>` : ""}
-      </div>
-    </div>`,
-                )
-                .join("")
-            : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
-        const aEl = document.getElementById("adminJulifeList");
-        if (aEl)
-          aEl.innerHTML = items.length
-            ? items
-                .map(
-                  ([id, s]) =>
-                    `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteJulife('${id}')">삭제</button></div>`,
-                )
-                .join("")
-            : '<div class="empty2">없음</div>';
-      });
-
-      // ── 공지 ──
+      // 공지
       G("postNotice", () => {
         if (!isAdmin) return;
         const t = document.getElementById("noticeTitle").value.trim();
@@ -2451,7 +2679,7 @@
         const items = Object.entries(window._nd).reverse();
         const tags = [
           ["#eff6ff", "#1a56db", "공지"],
-          ["#f0fdf4", "#16a34a", "소식"],
+          ["#f0fdf4", "#15803d", "소식"],
           ["#fefce8", "#ca8a04", "안내"],
         ];
         const row = (id, n, i) => {
@@ -2489,33 +2717,33 @@
         document.getElementById("noticeDetail").style.display = "none";
       });
 
-      // ── 주보 (이미지 업로드) ──
+      // 주보
       G("uploadBulletin", async () => {
         if (!isAdmin) return;
-        const fileInput = document.getElementById("bulletinFileInput");
-        const title = document.getElementById("bulletinTitle").value.trim();
-        if (!fileInput.files[0]) {
+        const fi = document.getElementById("bulletinFileInput");
+        const t = document.getElementById("bulletinTitle").value.trim();
+        if (!fi.files[0]) {
           showToast("이미지를 선택하세요");
           return;
         }
-        if (!title) {
+        if (!t) {
           showToast("제목을 입력하세요");
           return;
         }
         showToast("⏳ 업로드 중...");
         try {
-          const base64 = await fileToBase64(fileInput.files[0]);
+          const b64 = await fileToBase64(fi.files[0]);
           await push(ref(db, "bulletins"), {
-            title,
-            img: base64,
+            title: t,
+            img: b64,
             date: new Date().toISOString(),
           });
-          fileInput.value = "";
+          fi.value = "";
           document.getElementById("bulletinImgPreview").style.display = "none";
           document.getElementById("bulletinUploadBtn").style.display = "none";
           document.getElementById("bulletinTitle").value = "";
-          showToast("✅ 주보 등록 완료!");
-        } catch (e) {
+          showToast("✅ 주보 등록!");
+        } catch {
           showToast("❌ 업로드 실패");
         }
       });
@@ -2534,10 +2762,7 @@
                   ([id, b]) => `
     <div class="bulletin-card">
       <img class="bulletin-img" src="${b.img}" alt="${b.title}"/>
-      <div class="bulletin-info">
-        <div><div class="bulletin-title">${b.title}</div><div class="bulletin-date">${fdt(b.date)}</div></div>
-        ${isAdmin ? `<button class="tag-del" onclick="deleteBulletin('${id}')">삭제</button>` : ""}
-      </div>
+      <div class="bulletin-info"><div><div class="bulletin-title">${b.title}</div><div class="bulletin-date">${fdt(b.date)}</div></div>${isAdmin ? `<button class="tag-del" onclick="deleteBulletin('${id}')">삭제</button>` : ""}</div>
     </div>`,
                 )
                 .join("")
@@ -2551,39 +2776,99 @@
                     `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBulletin('${id}')">삭제</button></div>`,
                 )
                 .join("")
-            : '<div class="empty2">없음</div>';
+            : "";
       });
 
-      // ── 신앙서적 (이미지 업로드) ──
-      G("uploadBook", async () => {
+      // 주생
+      G("uploadJulife", async () => {
         if (!isAdmin) return;
-        const fileInput = document.getElementById("bookFileInput");
-        const title = document.getElementById("bookTitle").value.trim();
-        const desc = document.getElementById("bookDesc").value.trim();
-        if (!fileInput.files[0]) {
+        const fi = document.getElementById("julifeFileInput");
+        const t = document.getElementById("julifeTitle").value.trim();
+        if (!fi.files[0]) {
           showToast("이미지를 선택하세요");
           return;
         }
-        if (!title) {
+        if (!t) {
+          showToast("제목을 입력하세요");
+          return;
+        }
+        showToast("⏳ 업로드 중...");
+        try {
+          const b64 = await fileToBase64(fi.files[0]);
+          await push(ref(db, "julife"), {
+            title: t,
+            img: b64,
+            date: new Date().toISOString(),
+            author: currentUser?.name || "",
+          });
+          fi.value = "";
+          document.getElementById("julifeImgPreview").style.display = "none";
+          document.getElementById("julifeUploadBtn").style.display = "none";
+          document.getElementById("julifeTitle").value = "";
+          showToast("✅ 주생 등록!");
+        } catch {
+          showToast("❌ 업로드 실패");
+        }
+      });
+      G("deleteJulife", (id) => remove(ref(db, "julife/" + id)));
+      onValue(ref(db, "julife"), (snap) => {
+        const data = snap.val() || {};
+        const items = Object.entries(data).reverse();
+        const el = document.getElementById("julifeList");
+        if (el)
+          el.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, s]) => `
+    <div class="bulletin-card">
+      <img class="bulletin-img" src="${s.img}" alt="${s.title}"/>
+      <div class="bulletin-info"><div><div class="bulletin-title">${s.title}</div><div class="bulletin-date">${s.author ? s.author + " · " : ""}${fdt(s.date)}</div></div>${isAdmin ? `<button class="tag-del" onclick="deleteJulife('${id}')">삭제</button>` : ""}</div>
+    </div>`,
+                )
+                .join("")
+            : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
+        const aEl = document.getElementById("adminJulifeList");
+        if (aEl)
+          aEl.innerHTML = items.length
+            ? items
+                .map(
+                  ([id, s]) =>
+                    `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteJulife('${id}')">삭제</button></div>`,
+                )
+                .join("")
+            : '<div class="empty2">없음</div>';
+      });
+
+      // 신앙서적
+      G("uploadBook", async () => {
+        if (!isAdmin) return;
+        const fi = document.getElementById("bookFileInput");
+        const t = document.getElementById("bookTitle").value.trim();
+        const desc = document.getElementById("bookDesc").value.trim();
+        if (!fi.files[0]) {
+          showToast("이미지를 선택하세요");
+          return;
+        }
+        if (!t) {
           showToast("책 제목을 입력하세요");
           return;
         }
         showToast("⏳ 업로드 중...");
         try {
-          const base64 = await fileToBase64(fileInput.files[0]);
+          const b64 = await fileToBase64(fi.files[0]);
           await push(ref(db, "books"), {
-            title,
+            title: t,
             desc,
-            img: base64,
+            img: b64,
             date: new Date().toISOString(),
           });
-          fileInput.value = "";
+          fi.value = "";
           document.getElementById("bookImgPreview").style.display = "none";
           document.getElementById("bookUploadBtn").style.display = "none";
           document.getElementById("bookTitle").value = "";
           document.getElementById("bookDesc").value = "";
-          showToast("✅ 서적 등록 완료!");
-        } catch (e) {
+          showToast("✅ 서적 등록!");
+        } catch {
           showToast("❌ 업로드 실패");
         }
       });
@@ -2601,12 +2886,8 @@
                 .map(
                   ([id, b]) => `
     <div class="grid2-card">
-      <div class="grid2-thumb">${b.img ? `<img src="${b.img}" alt="${b.title}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>` : '<div class="grid2-thumb-ph">📚</div>'}</div>
-      <div class="grid2-info">
-        <div class="grid2-title">${b.title}</div>
-        <div class="grid2-desc">${b.desc || ""}</div>
-        <div class="book-badge">📚 추천도서</div>
-      </div>
+      <div class="grid2-thumb grid2-thumb-book">${b.img ? `<img src="${b.img}" alt="${b.title}"/>` : '<div class="grid2-thumb-ph">📚</div>'}</div>
+      <div class="grid2-info"><div class="grid2-title">${b.title}</div><div class="grid2-desc">${b.desc || ""}</div><div class="book-badge">📚 추천도서</div></div>
     </div>`,
                 )
                 .join("")
@@ -2620,10 +2901,10 @@
                     `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBook('${id}')">삭제</button></div>`,
                 )
                 .join("")
-            : '<div class="empty2">없음</div>';
+            : "";
       });
 
-      // ── 설교 영상 ──
+      // 설교
       G("postSermon", () => {
         if (!isAdmin) return;
         const t = document.getElementById("sermonTitle").value.trim();
@@ -2680,7 +2961,7 @@
             .join("") || "";
       });
 
-      // ── 기도 ──
+      // 기도
       G("addPrayer", () => {
         const inp = document.getElementById("prayerInput");
         if (!inp.value.trim()) {
@@ -2712,17 +2993,17 @@
           ? items
               .map(
                 ([id, p]) => `
-    <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 14px 8px">
+    <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 16px 9px">
       <div class="item-text">${p.answered ? "✅ " : ""} ${p.text}</div>
       <div class="item-meta"><span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span>
-        <div class="item-acts">${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#16a34a;font-size:12px;font-weight:700">🙌 응답</span>'}<button class="tag-del" onclick="deletePrayer('${id}')">삭제</button></div>
+        <div class="item-acts">${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#15803d;font-size:12px;font-weight:700">🙌 응답</span>'}<button class="tag-del" onclick="deletePrayer('${id}')">삭제</button></div>
       </div></div>`,
               )
               .join("")
           : '<div class="empty2">기도 제목을 추가해보세요</div>';
       });
 
-      // ── 말씀 나눔 ──
+      // 말씀 나눔
       G("addSharing", () => {
         const inp = document.getElementById("sharingInput");
         if (!inp.value.trim()) {
@@ -2760,7 +3041,7 @@
           : '<div class="empty2">없음</div>';
       });
 
-      // ── 찬양 신청 ──
+      // 찬양 신청
       G("addPraise", () => {
         const inp = document.getElementById("praiseInput");
         if (!inp.value.trim()) {
@@ -2788,7 +3069,7 @@
               .map(
                 ([id, p]) => `
     <div class="list-item" style="display:flex;justify-content:space-between;align-items:center;">
-      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
+      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px;font-weight:500">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
       <div style="display:flex;gap:6px"><button class="tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button><button class="tag-del" onclick="deletePraise('${id}')">삭제</button></div>
     </div>`,
               )
@@ -2804,7 +3085,7 @@
           : '<div class="empty2">없음</div>';
       });
 
-      // ── 일정 ──
+      // 일정
       G("postSchedule", () => {
         if (!isAdmin) return;
         const d = document.getElementById("scheduleDate").value;
@@ -2838,22 +3119,7 @@
           : '<div class="empty2">없음</div>';
       });
 
-      // ── 달력 ──
-      const now = new Date();
-      const mnArr = [
-        "1월",
-        "2월",
-        "3월",
-        "4월",
-        "5월",
-        "6월",
-        "7월",
-        "8월",
-        "9월",
-        "10월",
-        "11월",
-        "12월",
-      ];
+      // 달력
       let calY = now.getFullYear(),
         calM = now.getMonth();
       function renderCal() {
@@ -2917,7 +3183,7 @@
       window._sd = {};
       renderCal();
 
-      // ── 관리자 ──
+      // 관리자
       G("adminLogin", () => {
         const pw = document.getElementById("adminPw").value;
         if (ADMINS.includes(pw)) {
@@ -2935,7 +3201,6 @@
         showToast("로그아웃");
       });
 
-      // ── 토스트 ──
       G("showToast", (msg) => {
         const t = document.getElementById("toast");
         t.textContent = msg;
