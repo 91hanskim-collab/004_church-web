@@ -48,11 +48,44 @@
       body {
         font-family: "Noto Sans KR", sans-serif;
         background: var(--bg);
-        max-width: 420px;
+        max-width: 960px;
         margin: 0 auto;
         min-height: 100vh;
         color: var(--text);
         overflow-x: hidden;
+      }
+      /* 반응형 */
+      @media (min-width: 600px) {
+        .tab-bar {
+          max-width: 960px;
+        }
+        .app-header {
+          max-width: 960px;
+        }
+        #loginScreen {
+          max-width: 520px;
+        }
+        .grid2 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .more-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .ls-body {
+          max-width: 480px;
+          margin: 0 auto;
+        }
+      }
+      @media (min-width: 900px) {
+        .grid2 {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .section {
+          padding: 20px 24px 0;
+        }
+        .card {
+          padding: 24px;
+        }
       }
 
       /* ── 로그인 ── */
