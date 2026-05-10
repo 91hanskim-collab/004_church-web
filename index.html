@@ -1845,8 +1845,10 @@
           <h2>📚 신앙서적</h2>
           <p>추천 신앙 도서</p>
         </div>
-        <div class="grid2" id="bookList">
-          <div class="empty2" style="grid-column: 1/-1">불러오는 중...</div>
+        <div class="section">
+          <div class="list-card-wrap" id="bookList">
+            <div class="empty2">불러오는 중...</div>
+          </div>
         </div>
       </div>
 
@@ -1856,8 +1858,10 @@
           <h2>📋 주보</h2>
           <p>이번 주 주보를 확인하세요</p>
         </div>
-        <div class="section" id="bulletinList">
-          <div class="empty2">불러오는 중...</div>
+        <div class="section">
+          <div class="list-card-wrap" id="bulletinList">
+            <div class="empty2">불러오는 중...</div>
+          </div>
         </div>
       </div>
 
@@ -1894,7 +1898,50 @@
               ↺ 처음으로 되돌리기
             </button>
           </div>
-          <div id="julifeList"><div class="empty2">불러오는 중...</div></div>
+          <div class="list-card-wrap" id="julifeList" style="margin-top: 14px">
+            <div class="empty2">불러오는 중...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 상세 페이지 (공통) -->
+      <div class="detail-page" id="detailPage">
+        <div class="dp-header">
+          <button class="dp-back" onclick="closeDetailPage()">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            뒤로
+          </button>
+          <div class="dp-header-title" id="dpHeaderTitle"></div>
+        </div>
+        <div class="dp-img-wrap">
+          <img
+            class="dp-img"
+            id="dpImg"
+            src=""
+            alt=""
+            onerror="
+              this.style.display = 'none';
+              document.getElementById('dpImgPh').style.display = 'flex';
+            "
+          />
+          <div class="dp-img-ph" id="dpImgPh" style="display: none">📄</div>
+        </div>
+        <div class="dp-body">
+          <div class="dp-title" id="dpTitle"></div>
+          <div class="dp-sub" id="dpSub"></div>
+          <div class="dp-desc" id="dpDesc"></div>
+          <div id="dpAdminBtn" style="margin-top: 20px"></div>
         </div>
       </div>
 
@@ -2937,13 +2984,7 @@
         if (el)
           el.innerHTML = items.length
             ? items
-                .map(
-                  ([id, b]) => `
-    <div class="bulletin-card">
-      <img class="bulletin-img" src="${b.img}" alt="${b.title}"/>
-      <div class="bulletin-info"><div><div class="bulletin-title">${b.title}</div><div class="bulletin-date">${fdt(b.date)}</div></div>${isAdmin ? `<button class="tag-del" onclick="deleteBulletin('${id}')">삭제</button>` : ""}</div>
-    </div>`,
-                )
+                .map(([id, b]) => renderListCard(id, b, "bulletin", "📋"))
                 .join("")
             : '<div class="empty2">등록된 주보가 없어요</div>';
         const aEl = document.getElementById("adminBulletinList");
@@ -2997,13 +3038,7 @@
         if (el)
           el.innerHTML = items.length
             ? items
-                .map(
-                  ([id, s]) => `
-    <div class="bulletin-card">
-      <img class="bulletin-img" src="${s.img}" alt="${s.title}"/>
-      <div class="bulletin-info"><div><div class="bulletin-title">${s.title}</div><div class="bulletin-date">${s.author ? s.author + " · " : ""}${fdt(s.date)}</div></div>${isAdmin ? `<button class="tag-del" onclick="deleteJulife('${id}')">삭제</button>` : ""}</div>
-    </div>`,
-                )
+                .map(([id, s]) => renderListCard(id, s, "julife", "📖"))
                 .join("")
             : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
         const aEl = document.getElementById("adminJulifeList");
@@ -3057,20 +3092,14 @@
       });
       onValue(ref(db, "books"), (snap) => {
         const data = snap.val() || {};
-        const items = Object.entries(data).reverse().slice(0, 6);
+        const items = Object.entries(data).reverse();
         const el = document.getElementById("bookList");
         if (el)
           el.innerHTML = items.length
             ? items
-                .map(
-                  ([id, b]) => `
-    <div class="grid2-card">
-      <div class="grid2-thumb grid2-thumb-book">${b.img ? `<img src="${b.img}" alt="${b.title}"/>` : '<div class="grid2-thumb-ph">📚</div>'}</div>
-      <div class="grid2-info"><div class="grid2-title">${b.title}</div><div class="grid2-desc">${b.desc || ""}</div><div class="book-badge">📚 추천도서</div></div>
-    </div>`,
-                )
+                .map(([id, b]) => renderListCard(id, b, "book", "📚"))
                 .join("")
-            : '<div class="empty2" style="grid-column:1/-1">등록된 서적이 없어요</div>';
+            : '<div class="empty2" >등록된 서적이 없어요</div>';
         const aEl = document.getElementById("adminBookList");
         if (aEl)
           aEl.innerHTML = items.length
