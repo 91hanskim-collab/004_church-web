@@ -8,7 +8,6 @@
     />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="장유서은교회" />
     <meta name="theme-color" content="#1a56db" />
     <title>장유서은교회</title>
@@ -21,7 +20,6 @@
       href="https://raw.githubusercontent.com/91hanskim-collab/004_church-web/main/logo.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -54,48 +52,15 @@
         color: var(--text);
         overflow-x: hidden;
       }
-      /* 반응형 */
-      @media (min-width: 600px) {
-        .tab-bar {
-          max-width: 960px;
-        }
-        .app-header {
-          max-width: 960px;
-        }
-        #loginScreen {
-          max-width: 520px;
-        }
-        .grid2 {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .more-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .ls-body {
-          max-width: 480px;
-          margin: 0 auto;
-        }
-      }
-      @media (min-width: 900px) {
-        .grid2 {
-          grid-template-columns: repeat(4, 1fr);
-        }
-        .section {
-          padding: 20px 24px 0;
-        }
-        .card {
-          padding: 24px;
-        }
-      }
 
-      /* ── 로그인 ── */
+      /* 로그인 */
       #loginScreen {
         position: fixed;
         inset: 0;
         overflow-y: auto;
         background: #f4f6fb;
         z-index: 9999;
-        max-width: 420px;
+        max-width: 960px;
         margin: 0 auto;
       }
       .ls-header {
@@ -118,16 +83,6 @@
         height: 100px;
         background: #f4f6fb;
         border-radius: 50%;
-      }
-      .ls-header::after {
-        content: "";
-        position: absolute;
-        right: -40px;
-        top: -40px;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.05);
       }
       .ls-logo-wrap {
         display: flex;
@@ -169,6 +124,8 @@
       }
       .ls-body {
         padding: 36px 20px 24px;
+        max-width: 480px;
+        margin: 0 auto;
       }
       .ls-card {
         background: #fff;
@@ -182,7 +139,6 @@
         font-size: 19px;
         font-weight: 800;
         margin-bottom: 4px;
-        color: var(--text);
       }
       .ls-card p {
         font-size: 12px;
@@ -204,7 +160,6 @@
       .l-inp:focus {
         border-color: var(--blue);
         background: #fff;
-        box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
       }
       .l-btn-main {
         width: 100%;
@@ -218,11 +173,6 @@
         cursor: pointer;
         margin-bottom: 10px;
         font-family: inherit;
-        box-shadow: 0 4px 16px rgba(26, 86, 219, 0.3);
-      }
-      .l-btn-main:active {
-        opacity: 0.9;
-        transform: scale(0.99);
       }
       .l-btn-sub {
         width: 100%;
@@ -285,7 +235,6 @@
         padding: 22px;
         border: 1px solid var(--border);
         margin-bottom: 14px;
-        box-shadow: var(--shadow);
       }
       .intro-header {
         background: linear-gradient(135deg, #0f2a5e, #1a56db);
@@ -323,7 +272,7 @@
         line-height: 1.7;
       }
 
-      /* ── 앱 헤더 ── */
+      /* 앱 */
       #appScreen {
         display: none;
       }
@@ -333,8 +282,8 @@
         border-bottom: 1px solid var(--border);
         position: sticky;
         top: 0;
-        z-index: 100;
-        box-shadow: 0 1px 8px rgba(26, 86, 219, 0.06);
+        z-index: 200;
+        max-width: 960px;
       }
       .app-header-top {
         padding: 11px 16px;
@@ -356,7 +305,6 @@
         align-items: center;
         justify-content: center;
         border: 1px solid var(--border);
-        box-shadow: var(--shadow);
       }
       .ah-logo img {
         width: 36px;
@@ -367,7 +315,6 @@
         font-size: 10px;
         color: var(--sub);
         font-weight: 600;
-        letter-spacing: 0.3px;
       }
       .ah-name {
         font-size: 16px;
@@ -401,10 +348,8 @@
         font-weight: 700;
         cursor: pointer;
         font-family: inherit;
-        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.25);
       }
 
-      /* ── 페이지 ── */
       .page {
         display: none;
         padding-bottom: 90px;
@@ -415,8 +360,6 @@
       .section {
         padding: 16px 16px 0;
       }
-
-      /* ── 카드 ── */
       .card {
         background: var(--card);
         border-radius: var(--radius);
@@ -449,7 +392,7 @@
         font-family: inherit;
       }
 
-      /* ── 홈 히어로 ── */
+      /* 홈 히어로 */
       .home-hero {
         background: linear-gradient(
           135deg,
@@ -471,16 +414,6 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.06);
       }
-      .home-hero::after {
-        content: "";
-        position: absolute;
-        left: -40px;
-        bottom: -40px;
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.04);
-      }
       .hero-badge {
         display: inline-flex;
         align-items: center;
@@ -493,7 +426,6 @@
         color: #fff;
         font-weight: 700;
         margin-bottom: 14px;
-        letter-spacing: 0.3px;
       }
       .hero-date {
         font-size: 28px;
@@ -501,18 +433,14 @@
         color: #fff;
         margin-bottom: 8px;
         letter-spacing: -0.5px;
-        position: relative;
-        z-index: 1;
       }
       .hero-church {
         font-size: 13px;
         color: rgba(255, 255, 255, 0.8);
         font-weight: 500;
-        position: relative;
-        z-index: 1;
       }
 
-      /* ── 달력 ── */
+      /* 달력 */
       .cal-nav {
         display: flex;
         justify-content: space-between;
@@ -536,7 +464,6 @@
       .cal-nav span {
         font-size: 15px;
         font-weight: 800;
-        color: var(--text);
       }
       .cal-grid {
         display: grid;
@@ -551,7 +478,7 @@
         font-weight: 700;
       }
       .cal-d {
-        font-size: 13px;
+        font-size: 12px;
         height: 34px;
         border-radius: 10px;
         cursor: pointer;
@@ -560,7 +487,6 @@
         justify-content: center;
         position: relative;
         font-weight: 500;
-        transition: background 0.15s;
       }
       .cal-d:hover {
         background: var(--blue-light);
@@ -570,7 +496,6 @@
         color: #fff;
         font-weight: 800;
         border-radius: 50%;
-        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.3);
       }
       .cal-d.has-ev::after {
         content: "";
@@ -596,7 +521,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        background: linear-gradient(135deg, #eff6ff, #e0eaff);
+        background: var(--blue-light);
         border-radius: 12px;
         padding: 10px 14px;
         font-size: 13px;
@@ -616,7 +541,7 @@
         padding: 10px 0;
       }
 
-      /* ── 공지 ── */
+      /* 공지 */
       .notice-row {
         display: flex;
         align-items: center;
@@ -624,13 +549,9 @@
         padding: 12px 0;
         border-bottom: 1px solid var(--border);
         cursor: pointer;
-        transition: opacity 0.15s;
       }
       .notice-row:last-child {
         border-bottom: none;
-      }
-      .notice-row:active {
-        opacity: 0.7;
       }
       .n-tag {
         border-radius: 7px;
@@ -674,7 +595,6 @@
         font-weight: 900;
         margin-bottom: 8px;
         line-height: 1.3;
-        letter-spacing: -0.5px;
       }
       .detail-date2 {
         font-size: 12px;
@@ -689,7 +609,7 @@
         line-height: 2.1;
       }
 
-      /* ── 포도나무 ── */
+      /* 포도나무 */
       .grape-mini {
         display: flex;
         justify-content: space-between;
@@ -700,7 +620,6 @@
         font-size: 34px;
         font-weight: 900;
         color: var(--blue);
-        letter-spacing: -1px;
       }
       .grape-streak-h {
         font-size: 12px;
@@ -719,7 +638,7 @@
         height: 100%;
         background: linear-gradient(90deg, #1a56db, #60a5fa);
         border-radius: 999px;
-        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: width 0.6s;
       }
       .grape-emoji-big {
         font-size: 76px;
@@ -732,26 +651,23 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        letter-spacing: -2px;
       }
       .grape-day-full {
         font-size: 13px;
         color: var(--sub);
         margin-top: 6px;
-        font-weight: 500;
       }
       .grape-streak-full {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: linear-gradient(135deg, #fff7ed, #fef3c7);
+        background: #fff7ed;
         border-radius: 999px;
         padding: 7px 16px;
         font-size: 13px;
         font-weight: 700;
         color: #d97706;
         margin-top: 12px;
-        box-shadow: 0 2px 8px rgba(234, 88, 12, 0.1);
       }
       .bar-bg2 {
         background: var(--border);
@@ -764,10 +680,10 @@
         height: 100%;
         background: linear-gradient(90deg, #1a56db, #60a5fa);
         border-radius: 999px;
-        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: width 0.6s;
       }
 
-      /* ── 페이지 히어로 ── */
+      /* 페이지 히어로 */
       .page-hero {
         background: linear-gradient(135deg, #0f2a5e, #1a56db);
         padding: 22px 20px 26px;
@@ -789,31 +705,24 @@
         font-size: 21px;
         font-weight: 900;
         margin-bottom: 4px;
-        letter-spacing: -0.5px;
       }
       .page-hero p {
         font-size: 12px;
         opacity: 0.8;
-        font-weight: 500;
       }
 
-      /* ── 리스트 아이템 ── */
+      /* 리스트 아이템 */
       .list-item {
         background: #f8fafd;
         border-radius: 14px;
         padding: 15px;
         margin-bottom: 9px;
         border: 1px solid var(--border);
-        transition: box-shadow 0.15s;
-      }
-      .list-item:hover {
-        box-shadow: var(--shadow);
       }
       .item-text {
         font-size: 14px;
         line-height: 1.7;
         margin-bottom: 9px;
-        font-weight: 500;
       }
       .item-meta {
         font-size: 11px;
@@ -866,7 +775,7 @@
         font-family: inherit;
       }
 
-      /* ── 2열 그리드 ── */
+      /* 설교 2열 그리드 */
       .grid2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -881,12 +790,6 @@
         text-decoration: none;
         display: block;
         box-shadow: var(--shadow);
-        transition:
-          transform 0.15s,
-          box-shadow 0.15s;
-      }
-      .grid2-card:active {
-        transform: scale(0.97);
       }
       .grid2-thumb {
         position: relative;
@@ -894,9 +797,6 @@
         padding-top: 56%;
         overflow: hidden;
         background: #f1f5f9;
-      }
-      .grid2-thumb-book {
-        padding-top: 130%;
       }
       .grid2-thumb img {
         position: absolute;
@@ -928,7 +828,6 @@
         align-items: center;
         justify-content: center;
         font-size: 15px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       }
       .grid2-info {
         padding: 12px 12px 14px;
@@ -947,17 +846,6 @@
       .grid2-sub {
         font-size: 10px;
         color: var(--sub);
-        font-weight: 500;
-      }
-      .grid2-desc {
-        font-size: 10px;
-        color: var(--sub);
-        margin-top: 5px;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        line-height: 1.6;
       }
       .yt-badge {
         display: inline-flex;
@@ -971,20 +859,183 @@
         font-weight: 700;
         margin-top: 5px;
       }
-      .book-badge {
-        display: inline-flex;
+
+      /* ── 리스트형 카드 (서적/주보/주생) ── */
+      .list-card-wrap {
+        background: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        margin-bottom: 14px;
+      }
+      .list-card {
+        display: flex;
+        gap: 14px;
         align-items: center;
-        gap: 3px;
-        background: #ede9fe;
-        color: #7c3aed;
-        border-radius: 6px;
-        padding: 3px 8px;
-        font-size: 10px;
-        font-weight: 700;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        transition: background 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .list-card:last-child {
+        border-bottom: none;
+      }
+      .list-card:active {
+        background: #f0f4ff;
+      }
+      .list-card-thumb {
+        width: 68px;
+        height: 90px;
+        border-radius: 10px;
+        object-fit: cover;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      }
+      .list-card-thumb-ph {
+        width: 68px;
+        height: 90px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #e8edf5, #dde5f0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        flex-shrink: 0;
+      }
+      .list-card-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .list-card-title {
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+      .list-card-desc {
+        font-size: 12px;
+        color: var(--sub);
+        line-height: 1.6;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .list-card-date {
+        font-size: 11px;
+        color: var(--sub);
         margin-top: 5px;
+        font-weight: 500;
+      }
+      .list-card-arrow {
+        color: #c8d0e0;
+        font-size: 20px;
+        flex-shrink: 0;
+        margin-left: 4px;
       }
 
-      /* ── 이미지 업로드 ── */
+      /* ── 상세 페이지 ── */
+      .detail-page {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: #fff;
+        z-index: 999;
+        overflow-y: auto;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .detail-page.open {
+        display: block;
+      }
+      .dp-header {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .dp-back {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 700;
+        font-family: inherit;
+        padding: 0;
+      }
+      .dp-header-title {
+        font-size: 15px;
+        font-weight: 800;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .dp-img-wrap {
+        padding: 28px 20px 16px;
+        display: flex;
+        justify-content: center;
+      }
+      .dp-img {
+        width: 150px;
+        border-radius: 14px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        display: block;
+      }
+      .dp-img-ph {
+        width: 150px;
+        height: 200px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #e8edf5, #dde5f0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 56px;
+      }
+      .dp-body {
+        padding: 4px 20px 60px;
+      }
+      .dp-title {
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+      .dp-sub {
+        font-size: 12px;
+        color: var(--sub);
+        margin-bottom: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--border);
+        font-weight: 500;
+      }
+      .dp-desc {
+        font-size: 15px;
+        color: #334155;
+        line-height: 2.1;
+      }
+      .dp-full-img {
+        width: 100%;
+        border-radius: 14px;
+        margin-top: 16px;
+        display: block;
+      }
+
+      /* 이미지 업로드 */
       .img-upload-box {
         border: 2px dashed var(--border);
         border-radius: 14px;
@@ -993,9 +1044,6 @@
         cursor: pointer;
         background: #f8fafd;
         margin-bottom: 10px;
-        transition:
-          border-color 0.2s,
-          background 0.2s;
         width: 100%;
         display: block;
         overflow: hidden;
@@ -1015,7 +1063,6 @@
         font-size: 12px;
         color: var(--sub);
         word-break: keep-all;
-        font-weight: 500;
       }
       .img-preview {
         width: 100%;
@@ -1026,183 +1073,7 @@
         display: none;
       }
 
-      /* ── 리스트형 카드 (서적/주보/주생) ── */
-      .list-card {
-        display: flex;
-        gap: 14px;
-        align-items: flex-start;
-        padding: 14px 16px;
-        background: #fff;
-        border-bottom: 1px solid var(--border);
-        cursor: pointer;
-        transition: background 0.15s;
-      }
-      .list-card:last-child {
-        border-bottom: none;
-      }
-      .list-card:active {
-        background: #f4f6fb;
-      }
-      .list-card-thumb {
-        width: 72px;
-        height: 96px;
-        border-radius: 10px;
-        object-fit: cover;
-        flex-shrink: 0;
-        background: linear-gradient(135deg, #e8edf5, #dde5f0);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-      .list-card-thumb-ph {
-        width: 72px;
-        height: 96px;
-        border-radius: 10px;
-        background: linear-gradient(135deg, #e8edf5, #dde5f0);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        flex-shrink: 0;
-      }
-      .list-card-body {
-        flex: 1;
-        min-width: 0;
-      }
-      .list-card-title {
-        font-size: 15px;
-        font-weight: 800;
-        color: var(--text);
-        margin-bottom: 5px;
-        line-height: 1.4;
-      }
-      .list-card-desc {
-        font-size: 13px;
-        color: var(--sub);
-        line-height: 1.6;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-      .list-card-date {
-        font-size: 11px;
-        color: var(--sub);
-        margin-top: 6px;
-        font-weight: 500;
-      }
-      .list-card-badge {
-        display: inline-block;
-        border-radius: 6px;
-        padding: 2px 8px;
-        font-size: 11px;
-        font-weight: 700;
-        margin-top: 6px;
-      }
-      .list-card-arrow {
-        color: #c8d0e0;
-        font-size: 18px;
-        align-self: center;
-        flex-shrink: 0;
-      }
-      .list-card-wrap {
-        background: #fff;
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-      }
-
-      /* ── 상세 페이지 ── */
-      .detail-page {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: #fff;
-        z-index: 500;
-        overflow-y: auto;
-        max-width: 960px;
-        margin: 0 auto;
-      }
-      .detail-page.open {
-        display: block;
-      }
-      .dp-header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
-        padding: 14px 16px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 10;
-      }
-      .dp-back {
-        background: none;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--blue);
-        font-size: 14px;
-        font-weight: 700;
-        font-family: inherit;
-      }
-      .dp-header-title {
-        font-size: 15px;
-        font-weight: 800;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .dp-img-wrap {
-        padding: 24px 20px;
-        display: flex;
-        justify-content: center;
-      }
-      .dp-img {
-        width: 160px;
-        border-radius: 14px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        display: block;
-      }
-      .dp-img-ph {
-        width: 160px;
-        height: 220px;
-        border-radius: 14px;
-        background: linear-gradient(135deg, #e8edf5, #dde5f0);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 56px;
-      }
-      .dp-body {
-        padding: 0 20px 40px;
-      }
-      .dp-title {
-        font-size: 22px;
-        font-weight: 900;
-        letter-spacing: -0.5px;
-        margin-bottom: 8px;
-        color: var(--text);
-      }
-      .dp-sub {
-        font-size: 13px;
-        color: var(--sub);
-        margin-bottom: 18px;
-        font-weight: 500;
-        padding-bottom: 18px;
-        border-bottom: 1px solid var(--border);
-      }
-      .dp-desc {
-        font-size: 15px;
-        color: #334155;
-        line-height: 2;
-      }
-
-      /* ── 더보기 그리드 ── */
+      /* 더보기 */
       .more-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1217,13 +1088,9 @@
         cursor: pointer;
         border: 1px solid var(--border);
         box-shadow: var(--shadow);
-        transition:
-          transform 0.15s,
-          box-shadow 0.15s;
       }
       .more-cell:active {
         transform: scale(0.96);
-        box-shadow: none;
       }
       .mc-icon {
         font-size: 34px;
@@ -1232,19 +1099,17 @@
       .mc-label {
         font-size: 13px;
         font-weight: 800;
-        color: var(--text);
       }
       .mc-desc {
         font-size: 11px;
         color: var(--sub);
         margin-top: 3px;
-        font-weight: 500;
       }
       .sub-wrap {
         padding-bottom: 90px;
       }
 
-      /* ── 오시는 길 ── */
+      /* 오시는 길 */
       .map-box {
         background: linear-gradient(135deg, #dbeafe, #e0f2fe);
         height: 170px;
@@ -1281,14 +1146,13 @@
         color: var(--sub);
         margin-bottom: 3px;
         font-weight: 700;
-        letter-spacing: 0.3px;
       }
       .info-value2 {
         font-size: 14px;
         font-weight: 700;
       }
 
-      /* ── 설정 ── */
+      /* 설정 */
       .s-row {
         display: flex;
         justify-content: space-between;
@@ -1307,7 +1171,6 @@
         font-size: 11px;
         color: var(--sub);
         margin-top: 3px;
-        font-weight: 500;
       }
       .time-pill {
         background: linear-gradient(135deg, #1a56db, #3b82f6);
@@ -1316,10 +1179,9 @@
         padding: 6px 14px;
         font-size: 14px;
         font-weight: 800;
-        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.2);
       }
 
-      /* ── 관리자 ── */
+      /* 관리자 */
       .adm-sec-title {
         font-size: 11px;
         font-weight: 800;
@@ -1336,7 +1198,6 @@
         border-bottom: 1px solid var(--border);
         font-size: 13px;
         gap: 8px;
-        font-weight: 500;
       }
       .adm-item:last-child {
         border-bottom: none;
@@ -1348,7 +1209,7 @@
         white-space: nowrap;
       }
 
-      /* ── 버튼 ── */
+      /* 버튼 */
       .btn-p {
         background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
@@ -1361,8 +1222,6 @@
         width: 100%;
         margin-top: 9px;
         font-family: inherit;
-        box-shadow: 0 3px 12px rgba(26, 86, 219, 0.25);
-        transition: opacity 0.15s;
       }
       .btn-p:active {
         opacity: 0.9;
@@ -1390,7 +1249,6 @@
         font-weight: 700;
         cursor: pointer;
         font-family: inherit;
-        box-shadow: 0 2px 8px rgba(26, 86, 219, 0.2);
       }
       .btn-del {
         background: #fee2e2;
@@ -1415,10 +1273,6 @@
         font-weight: 700;
         cursor: pointer;
         font-family: inherit;
-        transition: background 0.15s;
-      }
-      .btn-reset:hover {
-        background: #e2e8f0;
       }
       .inp {
         width: 100%;
@@ -1434,7 +1288,6 @@
       .inp:focus {
         border-color: var(--blue);
         background: #fff;
-        box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.08);
       }
       textarea.inp {
         height: 82px;
@@ -1452,21 +1305,20 @@
         margin-bottom: 9px;
       }
 
-      /* ── 탭바 (SVG 아이콘) ── */
+      /* 탭바 */
       .tab-bar {
         position: fixed;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
-        max-width: 420px;
+        max-width: 960px;
         background: rgba(255, 255, 255, 0.97);
         backdrop-filter: blur(20px);
         display: flex;
         border-top: 1px solid var(--border);
         z-index: 100;
         padding-bottom: env(safe-area-inset-bottom);
-        box-shadow: 0 -4px 20px rgba(26, 86, 219, 0.08);
       }
       .tab-btn {
         flex: 1;
@@ -1482,7 +1334,6 @@
         gap: 3px;
         font-weight: 600;
         font-family: inherit;
-        transition: color 0.2s;
       }
       .tab-btn svg {
         width: 24px;
@@ -1496,7 +1347,6 @@
         transform: scale(1.15);
       }
 
-      /* ── 토스트 ── */
       .toast {
         position: fixed;
         bottom: 100px;
@@ -1513,7 +1363,6 @@
         transition: opacity 0.3s;
         white-space: nowrap;
         pointer-events: none;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         font-family: inherit;
       }
       .toast.show {
@@ -1524,12 +1373,11 @@
         color: var(--sub);
         font-size: 13px;
         padding: 28px 0;
-        font-weight: 500;
       }
     </style>
   </head>
   <body>
-    <!-- ══ 로그인 ══ -->
+    <!-- 로그인 -->
     <div id="loginScreen">
       <div class="ls-header">
         <div class="ls-logo-wrap">
@@ -1738,7 +1586,7 @@
       </div>
     </div>
 
-    <!-- ══ 앱 ══ -->
+    <!-- 앱 -->
     <div id="appScreen">
       <div class="app-header">
         <div class="app-header-top">
@@ -1901,47 +1749,6 @@
           <div class="list-card-wrap" id="julifeList" style="margin-top: 14px">
             <div class="empty2">불러오는 중...</div>
           </div>
-        </div>
-      </div>
-
-      <!-- 상세 페이지 (공통) -->
-      <div class="detail-page" id="detailPage">
-        <div class="dp-header">
-          <button class="dp-back" onclick="closeDetailPage()">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-            뒤로
-          </button>
-          <div class="dp-header-title" id="dpHeaderTitle"></div>
-        </div>
-        <div class="dp-img-wrap">
-          <img
-            class="dp-img"
-            id="dpImg"
-            src=""
-            alt=""
-            onerror="
-              this.style.display = 'none';
-              document.getElementById('dpImgPh').style.display = 'flex';
-            "
-          />
-          <div class="dp-img-ph" id="dpImgPh" style="display: none">📄</div>
-        </div>
-        <div class="dp-body">
-          <div class="dp-title" id="dpTitle"></div>
-          <div class="dp-sub" id="dpSub"></div>
-          <div class="dp-desc" id="dpDesc"></div>
-          <div id="dpAdminBtn" style="margin-top: 20px"></div>
         </div>
       </div>
 
@@ -2266,12 +2073,7 @@
               <div class="adm-sec-title">📋 주보 등록 (이미지)</div>
               <label class="img-upload-box" for="bulletinFileInput">
                 <div class="icon">📋</div>
-                <p>
-                  주보 이미지 선택<br /><span
-                    style="font-size: 11px; color: #aaa"
-                    >JPG, PNG</span
-                  >
-                </p>
+                <p>주보 이미지 선택 (JPG, PNG)</p>
                 <input
                   type="file"
                   id="bulletinFileInput"
@@ -2305,12 +2107,7 @@
               <div class="adm-sec-title">📖 주생 등록 (이미지)</div>
               <label class="img-upload-box" for="julifeFileInput">
                 <div class="icon">📸</div>
-                <p>
-                  주생 이미지 선택<br /><span
-                    style="font-size: 11px; color: #aaa"
-                    >JPG, PNG</span
-                  >
-                </p>
+                <p>주생 이미지 선택 (JPG, PNG)</p>
                 <input
                   type="file"
                   id="julifeFileInput"
@@ -2340,12 +2137,7 @@
               <div class="adm-sec-title">📚 신앙서적 등록 (이미지)</div>
               <label class="img-upload-box" for="bookFileInput">
                 <div class="icon">📚</div>
-                <p>
-                  책 표지 이미지 선택<br /><span
-                    style="font-size: 11px; color: #aaa"
-                    >JPG, PNG</span
-                  >
-                </p>
+                <p>책 표지 이미지 선택 (JPG, PNG)</p>
                 <input
                   type="file"
                   id="bookFileInput"
@@ -2407,7 +2199,47 @@
         </div>
       </div>
 
-      <!-- 탭바 SVG 아이콘 -->
+      <!-- ══ 상세 페이지 ══ -->
+      <div class="detail-page" id="detailPage">
+        <div class="dp-header">
+          <button class="dp-back" onclick="closeDetailPage()">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            뒤로
+          </button>
+          <div class="dp-header-title" id="dpHeaderTitle"></div>
+        </div>
+        <div class="dp-img-wrap" id="dpImgWrap">
+          <img class="dp-img" id="dpImg" src="" alt="" />
+          <div class="dp-img-ph" id="dpImgPh" style="display: none">📄</div>
+        </div>
+        <div class="dp-body">
+          <div class="dp-title" id="dpTitle"></div>
+          <div class="dp-sub" id="dpSub"></div>
+          <div class="dp-desc" id="dpDesc"></div>
+          <!-- 주보/주생: 전체 이미지 크게 보기 -->
+          <img
+            class="dp-full-img"
+            id="dpFullImg"
+            src=""
+            alt=""
+            style="display: none"
+          />
+          <div id="dpAdminBtn" style="margin-top: 20px"></div>
+        </div>
+      </div>
+
+      <!-- 탭바 -->
       <div class="tab-bar">
         <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
           <svg
@@ -2464,8 +2296,7 @@
             />
             <polyline points="14 2 14 8 20 8" />
             <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-            <polyline points="10 9 9 9 8 9" /></svg
+            <line x1="16" y1="17" x2="8" y2="17" /></svg
           >주보
         </button>
         <button class="tab-btn" id="tab-julife" onclick="goPage('julife')">
@@ -2525,6 +2356,7 @@
         currentUser = null;
       const G = (n, f) => (window[n] = f);
 
+      // 자동 로그인
       function saveAL(u) {
         try {
           localStorage.setItem("seun_u", JSON.stringify(u));
@@ -2801,7 +2633,7 @@
           reader.onload = (e) => {
             const img = new Image();
             img.onload = () => {
-              const maxW = 800;
+              const maxW = 900;
               let w = img.width,
                 h = img.height;
               if (w > maxW) {
@@ -2812,7 +2644,7 @@
               canvas.width = w;
               canvas.height = h;
               canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-              res(canvas.toDataURL("image/jpeg", 0.75));
+              res(canvas.toDataURL("image/jpeg", 0.8));
             };
             img.src = e.target.result;
           };
@@ -2833,7 +2665,94 @@
         reader.readAsDataURL(file);
       });
 
-      // 주간생명의 양식
+      // ── 상세 페이지 ──
+      G("openDetailPage", (itemJson, type) => {
+        const item =
+          typeof itemJson === "string" ? JSON.parse(itemJson) : itemJson;
+        const dp = document.getElementById("detailPage");
+        const dpImg = document.getElementById("dpImg");
+        const dpImgPh = document.getElementById("dpImgPh");
+        const dpFullImg = document.getElementById("dpFullImg");
+
+        document.getElementById("dpHeaderTitle").textContent = item.title || "";
+        document.getElementById("dpTitle").textContent = item.title || "";
+        document.getElementById("dpSub").textContent =
+          (item.author ? item.author + " · " : "") + fdt(item.date);
+        document.getElementById("dpDesc").textContent = item.desc || "";
+
+        if (item.img) {
+          // 서적: 썸네일만, 주보/주생: 전체 이미지도 표시
+          dpImg.src = item.img;
+          dpImg.style.display = "block";
+          dpImgPh.style.display = "none";
+          if (type === "bulletin" || type === "julife") {
+            dpFullImg.src = item.img;
+            dpFullImg.style.display = "block";
+            document.getElementById("dpImgWrap").style.display = "none";
+          } else {
+            dpFullImg.style.display = "none";
+            document.getElementById("dpImgWrap").style.display = "flex";
+          }
+        } else {
+          dpImg.style.display = "none";
+          dpImgPh.style.display = "flex";
+          dpImgPh.textContent =
+            type === "book" ? "📚" : type === "bulletin" ? "📋" : "📖";
+          dpFullImg.style.display = "none";
+          document.getElementById("dpImgWrap").style.display = "flex";
+        }
+
+        document.getElementById("dpAdminBtn").innerHTML = isAdmin
+          ? `<button class="btn-del" style="width:100%;padding:13px;border-radius:13px;font-size:14px;margin-top:16px" onclick="deleteDetailItem('${item._id}','${type}')">이 항목 삭제</button>`
+          : "";
+
+        dp.classList.add("open");
+        dp.scrollTop = 0;
+        document.body.style.overflow = "hidden";
+      });
+
+      G("closeDetailPage", () => {
+        document.getElementById("detailPage").classList.remove("open");
+        document.body.style.overflow = "";
+      });
+
+      G("deleteDetailItem", (id, type) => {
+        if (!isAdmin) return;
+        if (!confirm("삭제할까요?")) return;
+        const paths = {
+          book: "books/",
+          bulletin: "bulletins/",
+          julife: "julife/",
+        };
+        remove(ref(db, paths[type] + id));
+        window.closeDetailPage();
+        showToast("✅ 삭제됐어요");
+      });
+
+      // ── 리스트 카드 렌더 헬퍼 ──
+      function renderListCard(id, item, type, icon) {
+        const safeItem = JSON.stringify({ ...item, _id: id }).replace(
+          /'/g,
+          "&#39;",
+        );
+        const thumb = item.img
+          ? `<img class="list-card-thumb" src="${item.img}" alt="${item.title}" onerror="this.style.display='none'"/>`
+          : `<div class="list-card-thumb-ph">${icon}</div>`;
+        const desc = item.desc
+          ? `<div class="list-card-desc">${item.desc}</div>`
+          : "";
+        return `<div class="list-card" onclick='openDetailPage(${safeItem},"${type}")'>
+    ${thumb}
+    <div class="list-card-body">
+      <div class="list-card-title">${item.title}</div>
+      ${desc}
+      <div class="list-card-date">${item.author ? item.author + " · " : ""}${fd(item.date)}</div>
+    </div>
+    <div class="list-card-arrow">›</div>
+  </div>`;
+      }
+
+      // 포도나무
       let streak = 0,
         cont = 0;
       const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
@@ -3099,7 +3018,7 @@
             ? items
                 .map(([id, b]) => renderListCard(id, b, "book", "📚"))
                 .join("")
-            : '<div class="empty2" >등록된 서적이 없어요</div>';
+            : '<div class="empty2">등록된 서적이 없어요</div>';
         const aEl = document.getElementById("adminBookList");
         if (aEl)
           aEl.innerHTML = items.length
@@ -3277,7 +3196,7 @@
               .map(
                 ([id, p]) => `
     <div class="list-item" style="display:flex;justify-content:space-between;align-items:center;">
-      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px;font-weight:500">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
+      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
       <div style="display:flex;gap:6px"><button class="tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button><button class="tag-del" onclick="deletePraise('${id}')">삭제</button></div>
     </div>`,
               )
@@ -3409,6 +3328,7 @@
         showToast("로그아웃");
       });
 
+      // 토스트
       G("showToast", (msg) => {
         const t = document.getElementById("toast");
         t.textContent = msg;
