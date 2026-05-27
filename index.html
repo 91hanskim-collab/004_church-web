@@ -283,7 +283,6 @@
         position: sticky;
         top: 0;
         z-index: 200;
-        max-width: 960px;
       }
       .app-header-top {
         padding: 11px 16px;
@@ -380,7 +379,6 @@
         display: flex;
         align-items: center;
         gap: 7px;
-        color: var(--text);
       }
       .card-more {
         font-size: 12px;
@@ -419,7 +417,6 @@
         align-items: center;
         gap: 5px;
         background: rgba(255, 255, 255, 0.18);
-        backdrop-filter: blur(8px);
         border-radius: 999px;
         padding: 5px 14px;
         font-size: 11px;
@@ -459,7 +456,6 @@
         align-items: center;
         justify-content: center;
         color: var(--blue);
-        font-weight: 700;
       }
       .cal-nav span {
         font-size: 15px;
@@ -480,7 +476,7 @@
       .cal-d {
         font-size: 12px;
         height: 34px;
-        border-radius: 10px;
+        border-radius: 8px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -525,7 +521,6 @@
         border-radius: 12px;
         padding: 10px 14px;
         font-size: 13px;
-        font-weight: 500;
       }
       .ev-dot {
         width: 7px;
@@ -538,7 +533,7 @@
         font-size: 12px;
         color: var(--sub);
         text-align: center;
-        padding: 10px 0;
+        padding: 8px 0;
       }
 
       /* 공지 */
@@ -775,7 +770,7 @@
         font-family: inherit;
       }
 
-      /* 설교 2열 그리드 */
+      /* 설교 2열 */
       .grid2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -835,7 +830,6 @@
       .grid2-title {
         font-size: 12px;
         font-weight: 700;
-        color: var(--text);
         line-height: 1.5;
         margin-bottom: 4px;
         overflow: hidden;
@@ -860,7 +854,7 @@
         margin-top: 5px;
       }
 
-      /* ── 리스트형 카드 (서적/주보/주생) ── */
+      /* ── 리스트형 카드 ── */
       .list-card-wrap {
         background: #fff;
         border-radius: var(--radius);
@@ -878,6 +872,7 @@
         cursor: pointer;
         transition: background 0.15s;
         -webkit-tap-highlight-color: transparent;
+        user-select: none;
       }
       .list-card:last-child {
         border-bottom: none;
@@ -892,6 +887,7 @@
         object-fit: cover;
         flex-shrink: 0;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        display: block;
       }
       .list-card-thumb-ph {
         width: 68px;
@@ -928,7 +924,6 @@
         font-size: 11px;
         color: var(--sub);
         margin-top: 5px;
-        font-weight: 500;
       }
       .list-card-arrow {
         color: #c8d0e0;
@@ -938,17 +933,17 @@
       }
 
       /* ── 상세 페이지 ── */
-      .detail-page {
+      .dp-overlay {
         display: none;
         position: fixed;
         inset: 0;
         background: #fff;
-        z-index: 999;
+        z-index: 9000;
         overflow-y: auto;
         max-width: 960px;
         margin: 0 auto;
       }
-      .detail-page.open {
+      .dp-overlay.open {
         display: block;
       }
       .dp-header {
@@ -971,7 +966,7 @@
         align-items: center;
         gap: 4px;
         color: var(--blue);
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 700;
         font-family: inherit;
         padding: 0;
@@ -984,55 +979,71 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      .dp-img-wrap {
-        padding: 28px 20px 16px;
+      .dp-img-center {
         display: flex;
         justify-content: center;
+        padding: 28px 20px 20px;
       }
-      .dp-img {
-        width: 150px;
-        border-radius: 14px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      .dp-book-img {
+        width: 140px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
         display: block;
       }
-      .dp-img-ph {
-        width: 150px;
-        height: 200px;
-        border-radius: 14px;
-        background: linear-gradient(135deg, #e8edf5, #dde5f0);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 56px;
+      .dp-full-img {
+        width: 100%;
+        display: block;
+        border-radius: 0;
       }
       .dp-body {
-        padding: 4px 20px 60px;
+        padding: 20px 20px 60px;
       }
       .dp-title {
         font-size: 22px;
         font-weight: 900;
         letter-spacing: -0.5px;
         margin-bottom: 8px;
-        color: var(--text);
       }
-      .dp-sub {
+      .dp-meta {
         font-size: 12px;
         color: var(--sub);
-        margin-bottom: 18px;
         padding-bottom: 18px;
+        margin-bottom: 18px;
         border-bottom: 1px solid var(--border);
-        font-weight: 500;
       }
-      .dp-desc {
+      .dp-desc-text {
         font-size: 15px;
         color: #334155;
         line-height: 2.1;
+        margin-bottom: 20px;
       }
-      .dp-full-img {
-        width: 100%;
-        border-radius: 14px;
-        margin-top: 16px;
+      .dp-buy-btn {
         display: block;
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #0f2a5e, #1a56db);
+        color: #fff;
+        border: none;
+        border-radius: 13px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        text-align: center;
+        text-decoration: none;
+        margin-bottom: 10px;
+      }
+      .dp-del-btn {
+        width: 100%;
+        padding: 13px;
+        background: #fee2e2;
+        color: #dc2626;
+        border: none;
+        border-radius: 13px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
       }
 
       /* 이미지 업로드 */
@@ -1222,9 +1233,6 @@
         width: 100%;
         margin-top: 9px;
         font-family: inherit;
-      }
-      .btn-p:active {
-        opacity: 0.9;
       }
       .btn-o {
         background: #fff;
@@ -2070,7 +2078,7 @@
               <div style="margin-top: 12px" id="adminNoticeList"></div>
             </div>
             <div class="card">
-              <div class="adm-sec-title">📋 주보 등록 (이미지)</div>
+              <div class="adm-sec-title">📋 주보 등록</div>
               <label class="img-upload-box" for="bulletinFileInput">
                 <div class="icon">📋</div>
                 <p>주보 이미지 선택 (JPG, PNG)</p>
@@ -2104,7 +2112,7 @@
               <div style="margin-top: 12px" id="adminBulletinList"></div>
             </div>
             <div class="card">
-              <div class="adm-sec-title">📖 주생 등록 (이미지)</div>
+              <div class="adm-sec-title">📖 주생 등록</div>
               <label class="img-upload-box" for="julifeFileInput">
                 <div class="icon">📸</div>
                 <p>주생 이미지 선택 (JPG, PNG)</p>
@@ -2134,7 +2142,7 @@
               <div style="margin-top: 12px" id="adminJulifeList"></div>
             </div>
             <div class="card">
-              <div class="adm-sec-title">📚 신앙서적 등록 (이미지)</div>
+              <div class="adm-sec-title">📚 신앙서적 등록</div>
               <label class="img-upload-box" for="bookFileInput">
                 <div class="icon">📚</div>
                 <p>책 표지 이미지 선택 (JPG, PNG)</p>
@@ -2149,6 +2157,11 @@
               </label>
               <img id="bookImgPreview" class="img-preview" />
               <input class="inp mb8" id="bookTitle" placeholder="책 제목" />
+              <input
+                class="inp mb8"
+                id="bookLink"
+                placeholder="구입 링크 (예스24, 교보문고 등 URL)"
+              />
               <textarea
                 class="inp mb8"
                 id="bookDesc"
@@ -2199,10 +2212,10 @@
         </div>
       </div>
 
-      <!-- ══ 상세 페이지 ══ -->
-      <div class="detail-page" id="detailPage">
+      <!-- ══ 상세 페이지 오버레이 ══ -->
+      <div class="dp-overlay" id="dpOverlay">
         <div class="dp-header">
-          <button class="dp-back" onclick="closeDetailPage()">
+          <button class="dp-back" id="dpBackBtn">
             <svg
               width="20"
               height="20"
@@ -2219,23 +2232,36 @@
           </button>
           <div class="dp-header-title" id="dpHeaderTitle"></div>
         </div>
-        <div class="dp-img-wrap" id="dpImgWrap">
-          <img class="dp-img" id="dpImg" src="" alt="" />
-          <div class="dp-img-ph" id="dpImgPh" style="display: none">📄</div>
+        <!-- 신앙서적용: 책 표지 썸네일 -->
+        <div class="dp-img-center" id="dpImgCenter">
+          <img class="dp-book-img" id="dpBookImg" src="" alt="" />
         </div>
+        <!-- 주보/주생용: 전체 이미지 -->
+        <img
+          class="dp-full-img"
+          id="dpFullImg"
+          src=""
+          alt=""
+          style="display: none"
+        />
         <div class="dp-body">
           <div class="dp-title" id="dpTitle"></div>
-          <div class="dp-sub" id="dpSub"></div>
-          <div class="dp-desc" id="dpDesc"></div>
-          <!-- 주보/주생: 전체 이미지 크게 보기 -->
-          <img
-            class="dp-full-img"
-            id="dpFullImg"
-            src=""
-            alt=""
+          <div class="dp-meta" id="dpMeta"></div>
+          <div class="dp-desc-text" id="dpDescText"></div>
+          <!-- 구입 링크 버튼 (서적만) -->
+          <a
+            class="dp-buy-btn"
+            id="dpBuyBtn"
+            href="#"
+            target="_blank"
+            rel="noopener"
             style="display: none"
-          />
-          <div id="dpAdminBtn" style="margin-top: 20px"></div>
+            >📖 구입하기</a
+          >
+          <!-- 관리자 삭제 버튼 -->
+          <button class="dp-del-btn" id="dpDelBtn" style="display: none">
+            삭제
+          </button>
         </div>
       </div>
 
@@ -2354,7 +2380,99 @@
       const ADMINS = ["church2025", "admin1234", "pastor0000"];
       let isAdmin = false,
         currentUser = null;
-      const G = (n, f) => (window[n] = f);
+
+      // ── 상세 페이지 (onclick에 JSON 안 씀 → 캐시 사용) ──
+      const itemCache = {};
+
+      function openDetail_item(cacheKey) {
+        const item = itemCache[cacheKey];
+        if (!item) return;
+        const type = cacheKey.split("_")[0];
+        const dp = document.getElementById("dpOverlay");
+        document.getElementById("dpHeaderTitle").textContent = item.title || "";
+        document.getElementById("dpTitle").textContent = item.title || "";
+        document.getElementById("dpMeta").textContent =
+          (item.author ? item.author + " · " : "") + fdt(item.date);
+        document.getElementById("dpDescText").textContent = item.desc || "";
+
+        const bookImgWrap = document.getElementById("dpImgCenter");
+        const bookImg = document.getElementById("dpBookImg");
+        const fullImg = document.getElementById("dpFullImg");
+        const buyBtn = document.getElementById("dpBuyBtn");
+        const delBtn = document.getElementById("dpDelBtn");
+
+        if (type === "book") {
+          // 책: 썸네일 + 구입링크
+          bookImgWrap.style.display = "flex";
+          bookImg.src = item.img || "";
+          bookImg.style.display = item.img ? "block" : "none";
+          fullImg.style.display = "none";
+          if (item.link) {
+            buyBtn.href = item.link;
+            buyBtn.style.display = "block";
+          } else buyBtn.style.display = "none";
+        } else {
+          // 주보/주생: 전체 이미지
+          bookImgWrap.style.display = "none";
+          fullImg.src = item.img || "";
+          fullImg.style.display = item.img ? "block" : "none";
+          buyBtn.style.display = "none";
+        }
+
+        if (isAdmin) {
+          delBtn.style.display = "block";
+          delBtn.onclick = () => {
+            if (!confirm("삭제할까요?")) return;
+            const paths = {
+              book: "books/",
+              bulletin: "bulletins/",
+              julife: "julife/",
+            };
+            remove(ref(db, paths[type] + item._id));
+            closeDpOverlay();
+            showToast("✅ 삭제됐어요");
+          };
+        } else delBtn.style.display = "none";
+
+        dp.classList.add("open");
+        dp.scrollTop = 0;
+      }
+
+      function closeDpOverlay() {
+        document.getElementById("dpOverlay").classList.remove("open");
+      }
+      document
+        .getElementById("dpBackBtn")
+        .addEventListener("click", closeDpOverlay);
+
+      // 리스트 카드 렌더
+      function renderListCard(id, item, type, icon) {
+        const cacheKey = type + "_" + id;
+        itemCache[cacheKey] = { ...item, _id: id };
+        const thumb = item.img
+          ? `<img class="list-card-thumb" src="${item.img}" alt="" onerror="this.style.display='none'"/>`
+          : `<div class="list-card-thumb-ph">${icon}</div>`;
+        const desc = item.desc
+          ? `<div class="list-card-desc">${item.desc}</div>`
+          : "";
+        return `<div class="list-card" data-key="${cacheKey}">
+    ${thumb}
+    <div class="list-card-body">
+      <div class="list-card-title">${item.title}</div>
+      ${desc}
+      <div class="list-card-date">${item.author ? item.author + " · " : ""}${fd(item.date)}</div>
+    </div>
+    <div class="list-card-arrow">›</div>
+  </div>`;
+      }
+
+      // 이벤트 위임으로 카드 클릭 처리 (onclick 속성 안 씀)
+      document.addEventListener("click", (e) => {
+        const card = e.target.closest(".list-card");
+        if (card && card.dataset.key) {
+          openDetail_item(card.dataset.key);
+        }
+      });
 
       // 자동 로그인
       function saveAL(u) {
@@ -2376,21 +2494,21 @@
         }
       }
 
-      G("showLogin", () => {
+      window.showLogin = () => {
         ["loginCard", "churchInfo"].forEach(
           (id) => (document.getElementById(id).style.display = "block"),
         );
         ["signupCard", "pendingCard"].forEach(
           (id) => (document.getElementById(id).style.display = "none"),
         );
-      });
-      G("showSignup", () => {
+      };
+      window.showSignup = () => {
         document.getElementById("signupCard").style.display = "block";
         ["loginCard", "churchInfo"].forEach(
           (id) => (document.getElementById(id).style.display = "none"),
         );
         document.getElementById("pendingCard").style.display = "none";
-      });
+      };
 
       let usersDB = {},
         pendingDB = {};
@@ -2421,7 +2539,7 @@
           : '<div class="empty2">대기 없음</div>';
       });
 
-      G("doSignup", () => {
+      window.doSignup = () => {
         const name = document.getElementById("signupName").value.trim();
         const pw = document.getElementById("signupPw").value;
         const pw2 = document.getElementById("signupPw2").value;
@@ -2449,9 +2567,9 @@
         document.getElementById("signupCard").style.display = "none";
         document.getElementById("pendingCard").style.display = "block";
         showToast("🙏 가입 신청 완료!");
-      });
+      };
 
-      G("doLogin", () => {
+      window.doLogin = () => {
         const name = document.getElementById("loginName").value.trim();
         const pw = document.getElementById("loginPw").value;
         const err = document.getElementById("loginErr");
@@ -2482,7 +2600,7 @@
           return;
         }
         err.textContent = "이름 또는 비밀번호가 맞지 않아요";
-      });
+      };
       document.getElementById("loginPw").addEventListener("keydown", (e) => {
         if (e.key === "Enter") window.doLogin();
       });
@@ -2495,7 +2613,7 @@
         document.getElementById("settingsUser").textContent =
           `${currentUser.name}님, 안녕하세요! 🙏`;
       }
-      G("doLogout", () => {
+      window.doLogout = () => {
         clearAL();
         currentUser = null;
         document.getElementById("loginScreen").style.display = "block";
@@ -2510,8 +2628,8 @@
         document.getElementById("loginPw").value = "";
         document.getElementById("loginErr").textContent = "";
         document.getElementById("autoLoginCheck").checked = false;
-        goPage("home");
-      });
+        window.goPage("home");
+      };
 
       const saved = loadAL();
       if (saved) {
@@ -2536,7 +2654,7 @@
         }
       }
 
-      G("approveUser", async (id) => {
+      window.approveUser = async (id) => {
         if (!isAdmin) return;
         const u = pendingDB[id];
         if (!u) return;
@@ -2547,15 +2665,15 @@
         });
         await remove(ref(db, "pending/" + id));
         showToast("✅ " + u.name + "님 승인!");
-      });
-      G("rejectUser", (id) => {
+      };
+      window.rejectUser = (id) => {
         if (!isAdmin) return;
         if (confirm("거절?")) remove(ref(db, "pending/" + id));
-      });
-      G("deleteUser", (id) => {
+      };
+      window.deleteUser = (id) => {
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "users/" + id));
-      });
+      };
 
       // 페이지 이동
       const TITLES = {
@@ -2570,7 +2688,7 @@
         settings: "설정",
         admin: "관리자",
       };
-      G("goPage", (id) => {
+      window.goPage = (id) => {
         document
           .querySelectorAll(".page")
           .forEach((p) => p.classList.remove("active"));
@@ -2580,22 +2698,22 @@
         document.getElementById("page-" + id).classList.add("active");
         const t = document.getElementById("tab-" + id);
         if (t) t.classList.add("active");
-        if (id === "more") hideSub();
-        if (id === "notice") closeDetail();
-      });
-      G("showSub", (sub) => {
+        if (id === "more") window.hideSub();
+        if (id === "notice") window.closeDetail();
+      };
+      window.showSub = (sub) => {
         document.getElementById("moreMenu").style.display = "none";
         document
           .querySelectorAll('[id^="sub-"]')
           .forEach((el) => (el.style.display = "none"));
         document.getElementById("sub-" + sub).style.display = "block";
-      });
-      G("hideSub", () => {
+      };
+      window.hideSub = () => {
         document.getElementById("moreMenu").style.display = "block";
         document
           .querySelectorAll('[id^="sub-"]')
           .forEach((el) => (el.style.display = "none"));
-      });
+      };
 
       // 날짜
       const now = new Date();
@@ -2652,7 +2770,7 @@
           reader.readAsDataURL(file);
         });
       }
-      G("previewImage", (input, previewId, btnId) => {
+      window.previewImage = (input, previewId, btnId) => {
         const file = input.files[0];
         if (!file) return;
         const reader = new FileReader();
@@ -2663,94 +2781,7 @@
           document.getElementById(btnId).style.display = "block";
         };
         reader.readAsDataURL(file);
-      });
-
-      // ── 상세 페이지 ──
-      G("openDetailPage", (itemJson, type) => {
-        const item =
-          typeof itemJson === "string" ? JSON.parse(itemJson) : itemJson;
-        const dp = document.getElementById("detailPage");
-        const dpImg = document.getElementById("dpImg");
-        const dpImgPh = document.getElementById("dpImgPh");
-        const dpFullImg = document.getElementById("dpFullImg");
-
-        document.getElementById("dpHeaderTitle").textContent = item.title || "";
-        document.getElementById("dpTitle").textContent = item.title || "";
-        document.getElementById("dpSub").textContent =
-          (item.author ? item.author + " · " : "") + fdt(item.date);
-        document.getElementById("dpDesc").textContent = item.desc || "";
-
-        if (item.img) {
-          // 서적: 썸네일만, 주보/주생: 전체 이미지도 표시
-          dpImg.src = item.img;
-          dpImg.style.display = "block";
-          dpImgPh.style.display = "none";
-          if (type === "bulletin" || type === "julife") {
-            dpFullImg.src = item.img;
-            dpFullImg.style.display = "block";
-            document.getElementById("dpImgWrap").style.display = "none";
-          } else {
-            dpFullImg.style.display = "none";
-            document.getElementById("dpImgWrap").style.display = "flex";
-          }
-        } else {
-          dpImg.style.display = "none";
-          dpImgPh.style.display = "flex";
-          dpImgPh.textContent =
-            type === "book" ? "📚" : type === "bulletin" ? "📋" : "📖";
-          dpFullImg.style.display = "none";
-          document.getElementById("dpImgWrap").style.display = "flex";
-        }
-
-        document.getElementById("dpAdminBtn").innerHTML = isAdmin
-          ? `<button class="btn-del" style="width:100%;padding:13px;border-radius:13px;font-size:14px;margin-top:16px" onclick="deleteDetailItem('${item._id}','${type}')">이 항목 삭제</button>`
-          : "";
-
-        dp.classList.add("open");
-        dp.scrollTop = 0;
-        document.body.style.overflow = "hidden";
-      });
-
-      G("closeDetailPage", () => {
-        document.getElementById("detailPage").classList.remove("open");
-        document.body.style.overflow = "";
-      });
-
-      G("deleteDetailItem", (id, type) => {
-        if (!isAdmin) return;
-        if (!confirm("삭제할까요?")) return;
-        const paths = {
-          book: "books/",
-          bulletin: "bulletins/",
-          julife: "julife/",
-        };
-        remove(ref(db, paths[type] + id));
-        window.closeDetailPage();
-        showToast("✅ 삭제됐어요");
-      });
-
-      // ── 리스트 카드 렌더 헬퍼 ──
-      function renderListCard(id, item, type, icon) {
-        const safeItem = JSON.stringify({ ...item, _id: id }).replace(
-          /'/g,
-          "&#39;",
-        );
-        const thumb = item.img
-          ? `<img class="list-card-thumb" src="${item.img}" alt="${item.title}" onerror="this.style.display='none'"/>`
-          : `<div class="list-card-thumb-ph">${icon}</div>`;
-        const desc = item.desc
-          ? `<div class="list-card-desc">${item.desc}</div>`
-          : "";
-        return `<div class="list-card" onclick='openDetailPage(${safeItem},"${type}")'>
-    ${thumb}
-    <div class="list-card-body">
-      <div class="list-card-title">${item.title}</div>
-      ${desc}
-      <div class="list-card-date">${item.author ? item.author + " · " : ""}${fd(item.date)}</div>
-    </div>
-    <div class="list-card-arrow">›</div>
-  </div>`;
-      }
+      };
 
       // 포도나무
       let streak = 0,
@@ -2778,7 +2809,7 @@
         const gd = document.getElementById("g-day");
         if (gd) gd.textContent = `${streak}주 / 52주`;
       }
-      G("increaseStreak", () => {
+      window.increaseStreak = () => {
         if (streak >= 52) {
           showToast("🎉 1년 완주!");
           return;
@@ -2787,17 +2818,17 @@
         cont++;
         updateGrapeUI();
         showToast("✅ 이번 주 완료! " + Math.round((streak / 52) * 100) + "%");
-      });
-      G("resetStreak", () => {
+      };
+      window.resetStreak = () => {
         if (!confirm("포도나무를 처음으로 되돌릴까요?")) return;
         streak = 0;
         cont = 0;
         updateGrapeUI();
         showToast("↺ 처음으로 되돌렸어요");
-      });
+      };
 
       // 공지
-      G("postNotice", () => {
+      window.postNotice = () => {
         if (!isAdmin) return;
         const t = document.getElementById("noticeTitle").value.trim();
         const b = document.getElementById("noticeBody").value.trim();
@@ -2813,15 +2844,15 @@
         document.getElementById("noticeTitle").value = "";
         document.getElementById("noticeBody").value = "";
         showToast("✅ 공지 등록!");
-      });
-      G("deleteNotice", (id) => {
+      };
+      window.deleteNotice = (id) => {
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "notices/" + id));
-      });
-      window._nd = {};
+      };
+      let _nd = {};
       onValue(ref(db, "notices"), (snap) => {
-        window._nd = snap.val() || {};
-        const items = Object.entries(window._nd).reverse();
+        _nd = snap.val() || {};
+        const items = Object.entries(_nd).reverse();
         const tags = [
           ["#eff6ff", "#1a56db", "공지"],
           ["#f0fdf4", "#15803d", "소식"],
@@ -2849,21 +2880,21 @@
               .join("")
           : "";
       });
-      G("openDetail", (id) => {
-        const n = window._nd[id];
+      window.openDetail = (id) => {
+        const n = _nd[id];
         document.getElementById("noticeListView").style.display = "none";
         document.getElementById("noticeDetail").style.display = "block";
         document.getElementById("detailTitle").textContent = n.title;
         document.getElementById("detailDate").textContent = fdt(n.date);
         document.getElementById("detailBody").textContent = n.body;
-      });
-      G("closeDetail", () => {
+      };
+      window.closeDetail = () => {
         document.getElementById("noticeListView").style.display = "block";
         document.getElementById("noticeDetail").style.display = "none";
-      });
+      };
 
       // 주보
-      G("uploadBulletin", async () => {
+      window.uploadBulletin = async () => {
         if (!isAdmin) return;
         const fi = document.getElementById("bulletinFileInput");
         const t = document.getElementById("bulletinTitle").value.trim();
@@ -2891,11 +2922,11 @@
         } catch {
           showToast("❌ 업로드 실패");
         }
-      });
-      G("deleteBulletin", (id) => {
+      };
+      window.deleteBulletin = (id) => {
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "bulletins/" + id));
-      });
+      };
       onValue(ref(db, "bulletins"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -2919,7 +2950,7 @@
       });
 
       // 주생
-      G("uploadJulife", async () => {
+      window.uploadJulife = async () => {
         if (!isAdmin) return;
         const fi = document.getElementById("julifeFileInput");
         const t = document.getElementById("julifeTitle").value.trim();
@@ -2948,8 +2979,8 @@
         } catch {
           showToast("❌ 업로드 실패");
         }
-      });
-      G("deleteJulife", (id) => remove(ref(db, "julife/" + id)));
+      };
+      window.deleteJulife = (id) => remove(ref(db, "julife/" + id));
       onValue(ref(db, "julife"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -2972,11 +3003,12 @@
             : '<div class="empty2">없음</div>';
       });
 
-      // 신앙서적
-      G("uploadBook", async () => {
+      // 신앙서적 (link 필드 추가)
+      window.uploadBook = async () => {
         if (!isAdmin) return;
         const fi = document.getElementById("bookFileInput");
         const t = document.getElementById("bookTitle").value.trim();
+        const link = document.getElementById("bookLink").value.trim();
         const desc = document.getElementById("bookDesc").value.trim();
         if (!fi.files[0]) {
           showToast("이미지를 선택하세요");
@@ -2991,6 +3023,7 @@
           const b64 = await fileToBase64(fi.files[0]);
           await push(ref(db, "books"), {
             title: t,
+            link,
             desc,
             img: b64,
             date: new Date().toISOString(),
@@ -2999,16 +3032,17 @@
           document.getElementById("bookImgPreview").style.display = "none";
           document.getElementById("bookUploadBtn").style.display = "none";
           document.getElementById("bookTitle").value = "";
+          document.getElementById("bookLink").value = "";
           document.getElementById("bookDesc").value = "";
           showToast("✅ 서적 등록!");
         } catch {
           showToast("❌ 업로드 실패");
         }
-      });
-      G("deleteBook", (id) => {
+      };
+      window.deleteBook = (id) => {
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "books/" + id));
-      });
+      };
       onValue(ref(db, "books"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -3032,7 +3066,7 @@
       });
 
       // 설교
-      G("postSermon", () => {
+      window.postSermon = () => {
         if (!isAdmin) return;
         const t = document.getElementById("sermonTitle").value.trim();
         const s = document.getElementById("sermonSub").value.trim();
@@ -3051,11 +3085,11 @@
         document.getElementById("sermonSub").value = "";
         document.getElementById("sermonUrl").value = "";
         showToast("✅ 영상 등록!");
-      });
-      G("deleteSermon", (id) => {
+      };
+      window.deleteSermon = (id) => {
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "sermons/" + id));
-      });
+      };
       function getVid(u) {
         const m = (u || "").match(/(?:v=|youtu\.be\/)([^&\s]+)/);
         return m ? m[1] : null;
@@ -3089,7 +3123,7 @@
       });
 
       // 기도
-      G("addPrayer", () => {
+      window.addPrayer = () => {
         const inp = document.getElementById("prayerInput");
         if (!inp.value.trim()) {
           alert("기도 제목을 입력하세요!");
@@ -3103,16 +3137,15 @@
         });
         inp.value = "";
         showToast("🙏 기도 제목 추가!");
-      });
+      };
       document
         .getElementById("prayerInput")
         .addEventListener("keydown", (e) => {
           if (e.key === "Enter") window.addPrayer();
         });
-      G("deletePrayer", (id) => remove(ref(db, "prayers/" + id)));
-      G("answerPrayer", (id) =>
-        update(ref(db, "prayers/" + id), { answered: true }),
-      );
+      window.deletePrayer = (id) => remove(ref(db, "prayers/" + id));
+      window.answerPrayer = (id) =>
+        update(ref(db, "prayers/" + id), { answered: true });
       onValue(ref(db, "prayers"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -3131,7 +3164,7 @@
       });
 
       // 말씀 나눔
-      G("addSharing", () => {
+      window.addSharing = () => {
         const inp = document.getElementById("sharingInput");
         if (!inp.value.trim()) {
           alert("내용을 입력하세요!");
@@ -3144,8 +3177,8 @@
         });
         inp.value = "";
         showToast("✏️ 말씀 나눔 등록!");
-      });
-      G("deleteSharing", (id) => remove(ref(db, "sharings/" + id)));
+      };
+      window.deleteSharing = (id) => remove(ref(db, "sharings/" + id));
       onValue(ref(db, "sharings"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -3169,7 +3202,7 @@
       });
 
       // 찬양 신청
-      G("addPraise", () => {
+      window.addPraise = () => {
         const inp = document.getElementById("praiseInput");
         if (!inp.value.trim()) {
           alert("찬양 제목을 입력하세요!");
@@ -3183,11 +3216,10 @@
         });
         inp.value = "";
         showToast("🎵 찬양 신청!");
-      });
-      G("deletePraise", (id) => remove(ref(db, "praises/" + id)));
-      G("likePraise", (id, cur) =>
-        update(ref(db, "praises/" + id), { likes: cur + 1 }),
-      );
+      };
+      window.deletePraise = (id) => remove(ref(db, "praises/" + id));
+      window.likePraise = (id, cur) =>
+        update(ref(db, "praises/" + id), { likes: cur + 1 });
       onValue(ref(db, "praises"), (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
@@ -3213,7 +3245,7 @@
       });
 
       // 일정
-      G("postSchedule", () => {
+      window.postSchedule = () => {
         if (!isAdmin) return;
         const d = document.getElementById("scheduleDate").value;
         const n = document.getElementById("scheduleName").value.trim();
@@ -3225,11 +3257,11 @@
         document.getElementById("scheduleDate").value = "";
         document.getElementById("scheduleName").value = "";
         showToast("✅ 일정 등록!");
-      });
-      G("deleteSchedule", (id) => {
+      };
+      window.deleteSchedule = (id) => {
         if (!isAdmin) return;
         if (confirm("삭제?")) remove(ref(db, "schedules/" + id));
-      });
+      };
       window._sd = {};
       onValue(ref(db, "schedules"), (snap) => {
         window._sd = snap.val() || {};
@@ -3277,7 +3309,7 @@
         document.getElementById("calGrid").innerHTML = h;
         showEv(now.getDate());
       }
-      G("showEv", (d) => {
+      window.showEv = (d) => {
         const items = Object.values(window._sd).filter((s) => {
           const dt = new Date(s.date);
           return (
@@ -3294,8 +3326,8 @@
               )
               .join("")
           : `<div class="ev-empty">${calM + 1}월 ${d}일 · 일정 없음</div>`;
-      });
-      G("changeMonth", (dir) => {
+      };
+      window.changeMonth = (dir) => {
         calM += dir;
         if (calM > 11) {
           calM = 0;
@@ -3306,12 +3338,12 @@
           calY--;
         }
         renderCal();
-      });
+      };
       window._sd = {};
       renderCal();
 
       // 관리자
-      G("adminLogin", () => {
+      window.adminLogin = () => {
         const pw = document.getElementById("adminPw").value;
         if (ADMINS.includes(pw)) {
           isAdmin = true;
@@ -3319,22 +3351,22 @@
           document.getElementById("adminPanel").style.display = "block";
           showToast("✅ 관리자 로그인!");
         } else showToast("❌ 비밀번호 오류");
-      });
-      G("adminLogout", () => {
+      };
+      window.adminLogout = () => {
         isAdmin = false;
         document.getElementById("adminLoginCard").style.display = "block";
         document.getElementById("adminPanel").style.display = "none";
         document.getElementById("adminPw").value = "";
         showToast("로그아웃");
-      });
+      };
 
       // 토스트
-      G("showToast", (msg) => {
+      window.showToast = (msg) => {
         const t = document.getElementById("toast");
         t.textContent = msg;
         t.classList.add("show");
         setTimeout(() => t.classList.remove("show"), 2500);
-      });
+      };
     </script>
   </body>
 </html>
