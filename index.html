@@ -53,7 +53,6 @@
         overflow-x: hidden;
       }
 
-      /* 로그인 */
       #loginScreen {
         position: fixed;
         inset: 0;
@@ -272,7 +271,6 @@
         line-height: 1.7;
       }
 
-      /* 앱 */
       #appScreen {
         display: none;
       }
@@ -390,7 +388,6 @@
         font-family: inherit;
       }
 
-      /* 홈 히어로 */
       .home-hero {
         background: linear-gradient(
           135deg,
@@ -437,7 +434,6 @@
         font-weight: 500;
       }
 
-      /* 달력 */
       .cal-nav {
         display: flex;
         justify-content: space-between;
@@ -536,7 +532,6 @@
         padding: 8px 0;
       }
 
-      /* 공지 */
       .notice-row {
         display: flex;
         align-items: center;
@@ -604,7 +599,6 @@
         line-height: 2.1;
       }
 
-      /* 포도나무 */
       .grape-mini {
         display: flex;
         justify-content: space-between;
@@ -678,7 +672,6 @@
         transition: width 0.6s;
       }
 
-      /* 페이지 히어로 */
       .page-hero {
         background: linear-gradient(135deg, #0f2a5e, #1a56db);
         padding: 22px 20px 26px;
@@ -706,7 +699,6 @@
         opacity: 0.8;
       }
 
-      /* 리스트 아이템 */
       .list-item {
         background: #f8fafd;
         border-radius: 14px;
@@ -770,7 +762,6 @@
         font-family: inherit;
       }
 
-      /* 설교 2열 */
       .grid2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -932,7 +923,21 @@
         margin-left: 4px;
       }
 
-      /* ── 상세 페이지 ── */
+      /* PDF 배지 */
+      .pdf-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: #fee2e2;
+        color: #dc2626;
+        border-radius: 6px;
+        padding: 3px 8px;
+        font-size: 10px;
+        font-weight: 700;
+        margin-top: 5px;
+      }
+
+      /* ── 상세 페이지 오버레이 ── */
       .dp-overlay {
         display: none;
         position: fixed;
@@ -990,11 +995,6 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
         display: block;
       }
-      .dp-full-img {
-        width: 100%;
-        display: block;
-        border-radius: 0;
-      }
       .dp-body {
         padding: 20px 20px 60px;
       }
@@ -1016,6 +1016,29 @@
         color: #334155;
         line-height: 2.1;
         margin-bottom: 20px;
+      }
+
+      /* PDF 다운로드 버튼 */
+      .dp-pdf-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #dc2626, #ef4444);
+        color: #fff;
+        border: none;
+        border-radius: 13px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: none;
+        margin-bottom: 10px;
+      }
+      .dp-pdf-btn:hover {
+        opacity: 0.9;
       }
       .dp-buy-btn {
         display: block;
@@ -1044,6 +1067,56 @@
         font-weight: 700;
         cursor: pointer;
         font-family: inherit;
+      }
+
+      /* PDF 업로드 박스 */
+      .pdf-upload-box {
+        border: 2px dashed #fca5a5;
+        border-radius: 14px;
+        padding: 22px 16px;
+        text-align: center;
+        cursor: pointer;
+        background: #fff5f5;
+        margin-bottom: 10px;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+      }
+      .pdf-upload-box:hover {
+        border-color: #dc2626;
+        background: #fee2e2;
+      }
+      .pdf-upload-box input {
+        display: none;
+      }
+      .pdf-upload-box .icon {
+        font-size: 28px;
+        margin-bottom: 7px;
+      }
+      .pdf-upload-box p {
+        font-size: 12px;
+        color: #dc2626;
+        word-break: keep-all;
+        font-weight: 600;
+      }
+      .pdf-selected {
+        background: #f0fdf4;
+        border: 2px solid #86efac;
+        border-radius: 14px;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        display: none;
+        align-items: center;
+        gap: 10px;
+      }
+      .pdf-selected-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #15803d;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       /* 이미지 업로드 */
@@ -1084,7 +1157,30 @@
         display: none;
       }
 
-      /* 더보기 */
+      /* 업로드 진행바 */
+      .upload-progress {
+        display: none;
+        margin-bottom: 10px;
+      }
+      .upload-progress-bar {
+        height: 8px;
+        background: var(--border);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .upload-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #dc2626, #f87171);
+        border-radius: 999px;
+        transition: width 0.3s;
+      }
+      .upload-progress-text {
+        font-size: 12px;
+        color: var(--sub);
+        text-align: center;
+        margin-top: 5px;
+      }
+
       .more-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1120,7 +1216,6 @@
         padding-bottom: 90px;
       }
 
-      /* 오시는 길 */
       .map-box {
         background: linear-gradient(135deg, #dbeafe, #e0f2fe);
         height: 170px;
@@ -1163,7 +1258,6 @@
         font-weight: 700;
       }
 
-      /* 설정 */
       .s-row {
         display: flex;
         justify-content: space-between;
@@ -1192,7 +1286,6 @@
         font-weight: 800;
       }
 
-      /* 관리자 */
       .adm-sec-title {
         font-size: 11px;
         font-weight: 800;
@@ -1220,7 +1313,6 @@
         white-space: nowrap;
       }
 
-      /* 버튼 */
       .btn-p {
         background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
@@ -1313,7 +1405,6 @@
         margin-bottom: 9px;
       }
 
-      /* 탭바 */
       .tab-bar {
         position: fixed;
         bottom: 0;
@@ -2077,29 +2168,47 @@
               <button class="btn-p" onclick="postNotice()">공지 등록</button>
               <div style="margin-top: 12px" id="adminNoticeList"></div>
             </div>
+
+            <!-- 주보 등록 (PDF) -->
             <div class="card">
-              <div class="adm-sec-title">📋 주보 등록</div>
-              <label class="img-upload-box" for="bulletinFileInput">
-                <div class="icon">📋</div>
-                <p>주보 이미지 선택 (JPG, PNG)</p>
+              <div class="adm-sec-title">📋 주보 등록 (PDF)</div>
+              <label class="pdf-upload-box" for="bulletinPdfInput">
+                <div class="icon">📄</div>
+                <p>주보 PDF 파일 선택</p>
                 <input
                   type="file"
-                  id="bulletinFileInput"
-                  accept="image/*"
+                  id="bulletinPdfInput"
+                  accept="application/pdf"
                   onchange="
-                    previewImage(
+                    onPdfSelected(
                       this,
-                      'bulletinImgPreview',
+                      'bulletinPdfSelected',
+                      'bulletinPdfName',
                       'bulletinUploadBtn',
                     )
                   "
                 />
               </label>
-              <img id="bulletinImgPreview" class="img-preview" />
+              <div class="pdf-selected" id="bulletinPdfSelected">
+                <span>📄</span>
+                <span class="pdf-selected-name" id="bulletinPdfName"></span>
+              </div>
+              <div class="upload-progress" id="bulletinProgress">
+                <div class="upload-progress-bar">
+                  <div
+                    class="upload-progress-fill"
+                    id="bulletinProgressFill"
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <div class="upload-progress-text" id="bulletinProgressText">
+                  업로드 중...
+                </div>
+              </div>
               <input
                 class="inp mb8"
                 id="bulletinTitle"
-                placeholder="주보 제목 (예: 2026년 5월 1일)"
+                placeholder="주보 제목 (예: 2026년 6월 1일 주보)"
               />
               <button
                 class="btn-p"
@@ -2107,29 +2216,51 @@
                 onclick="uploadBulletin()"
                 style="display: none"
               >
-                업로드
+                📤 업로드
               </button>
               <div style="margin-top: 12px" id="adminBulletinList"></div>
             </div>
+
+            <!-- 주생 등록 (PDF) -->
             <div class="card">
-              <div class="adm-sec-title">📖 주생 등록</div>
-              <label class="img-upload-box" for="julifeFileInput">
-                <div class="icon">📸</div>
-                <p>주생 이미지 선택 (JPG, PNG)</p>
+              <div class="adm-sec-title">📖 주간생명의 양식 등록 (PDF)</div>
+              <label class="pdf-upload-box" for="julifePdfInput">
+                <div class="icon">📄</div>
+                <p>주생 PDF 파일 선택</p>
                 <input
                   type="file"
-                  id="julifeFileInput"
-                  accept="image/*"
+                  id="julifePdfInput"
+                  accept="application/pdf"
                   onchange="
-                    previewImage(this, 'julifeImgPreview', 'julifeUploadBtn')
+                    onPdfSelected(
+                      this,
+                      'julifePdfSelected',
+                      'julifePdfName',
+                      'julifeUploadBtn',
+                    )
                   "
                 />
               </label>
-              <img id="julifeImgPreview" class="img-preview" />
+              <div class="pdf-selected" id="julifePdfSelected">
+                <span>📄</span>
+                <span class="pdf-selected-name" id="julifePdfName"></span>
+              </div>
+              <div class="upload-progress" id="julifeProgress">
+                <div class="upload-progress-bar">
+                  <div
+                    class="upload-progress-fill"
+                    id="julifeProgressFill"
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <div class="upload-progress-text" id="julifeProgressText">
+                  업로드 중...
+                </div>
+              </div>
               <input
                 class="inp mb8"
                 id="julifeTitle"
-                placeholder="제목 (예: 2026년 5월 1일 주생)"
+                placeholder="제목 (예: 2026년 6월 1일 주생)"
               />
               <button
                 class="btn-p"
@@ -2137,10 +2268,11 @@
                 onclick="uploadJulife()"
                 style="display: none"
               >
-                업로드
+                📤 업로드
               </button>
               <div style="margin-top: 12px" id="adminJulifeList"></div>
             </div>
+
             <div class="card">
               <div class="adm-sec-title">📚 신앙서적 등록</div>
               <label class="img-upload-box" for="bookFileInput">
@@ -2212,7 +2344,7 @@
         </div>
       </div>
 
-      <!-- ══ 상세 페이지 오버레이 ══ -->
+      <!-- 상세 페이지 오버레이 -->
       <div class="dp-overlay" id="dpOverlay">
         <div class="dp-header">
           <button class="dp-back" id="dpBackBtn">
@@ -2232,23 +2364,26 @@
           </button>
           <div class="dp-header-title" id="dpHeaderTitle"></div>
         </div>
-        <!-- 신앙서적용: 책 표지 썸네일 -->
+        <!-- 신앙서적: 책 표지 -->
         <div class="dp-img-center" id="dpImgCenter">
           <img class="dp-book-img" id="dpBookImg" src="" alt="" />
         </div>
-        <!-- 주보/주생용: 전체 이미지 -->
-        <img
-          class="dp-full-img"
-          id="dpFullImg"
-          src=""
-          alt=""
-          style="display: none"
-        />
         <div class="dp-body">
           <div class="dp-title" id="dpTitle"></div>
           <div class="dp-meta" id="dpMeta"></div>
           <div class="dp-desc-text" id="dpDescText"></div>
-          <!-- 구입 링크 버튼 (서적만) -->
+          <!-- PDF 다운로드 버튼 (주보/주생) -->
+          <a
+            class="dp-pdf-btn"
+            id="dpPdfBtn"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            style="display: none"
+          >
+            📄 PDF 다운로드
+          </a>
+          <!-- 구입 링크 버튼 (서적) -->
           <a
             class="dp-buy-btn"
             id="dpBuyBtn"
@@ -2381,7 +2516,71 @@
       let isAdmin = false,
         currentUser = null;
 
-      // ── 상세 페이지 (onclick에 JSON 안 씀 → 캐시 사용) ──
+      // ── Cloudinary 설정 ──
+      const CLOUD_NAME = "douvbmfa9";
+      const UPLOAD_PRESET = "church-app";
+
+      // ── PDF Cloudinary 업로드 함수 ──
+      async function uploadPdfToCloudinary(
+        file,
+        progressBarId,
+        progressFillId,
+        progressTextId,
+      ) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", UPLOAD_PRESET);
+        formData.append("resource_type", "raw");
+
+        const progressWrap = document.getElementById(progressBarId);
+        const progressFill = document.getElementById(progressFillId);
+        const progressText = document.getElementById(progressTextId);
+        if (progressWrap) progressWrap.style.display = "block";
+
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open(
+            "POST",
+            `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`,
+          );
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) {
+              const pct = Math.round((e.loaded / e.total) * 100);
+              if (progressFill) progressFill.style.width = pct + "%";
+              if (progressText)
+                progressText.textContent = `업로드 중... ${pct}%`;
+            }
+          };
+          xhr.onload = () => {
+            if (progressWrap) progressWrap.style.display = "none";
+            if (xhr.status === 200) {
+              const data = JSON.parse(xhr.responseText);
+              resolve(data.secure_url);
+            } else {
+              reject(new Error("업로드 실패"));
+            }
+          };
+          xhr.onerror = () => {
+            if (progressWrap) progressWrap.style.display = "none";
+            reject(new Error("네트워크 오류"));
+          };
+          xhr.send(formData);
+        });
+      }
+
+      // PDF 파일 선택 시 미리보기
+      window.onPdfSelected = (input, selectedId, nameId, btnId) => {
+        const file = input.files[0];
+        if (!file) return;
+        const selectedBox = document.getElementById(selectedId);
+        const nameEl = document.getElementById(nameId);
+        const btn = document.getElementById(btnId);
+        if (selectedBox) selectedBox.style.display = "flex";
+        if (nameEl) nameEl.textContent = file.name;
+        if (btn) btn.style.display = "block";
+      };
+
+      // ── 상세 페이지 캐시 ──
       const itemCache = {};
 
       function openDetail_item(cacheKey) {
@@ -2397,26 +2596,29 @@
 
         const bookImgWrap = document.getElementById("dpImgCenter");
         const bookImg = document.getElementById("dpBookImg");
-        const fullImg = document.getElementById("dpFullImg");
+        const pdfBtn = document.getElementById("dpPdfBtn");
         const buyBtn = document.getElementById("dpBuyBtn");
         const delBtn = document.getElementById("dpDelBtn");
 
         if (type === "book") {
-          // 책: 썸네일 + 구입링크
           bookImgWrap.style.display = "flex";
           bookImg.src = item.img || "";
           bookImg.style.display = item.img ? "block" : "none";
-          fullImg.style.display = "none";
+          pdfBtn.style.display = "none";
           if (item.link) {
             buyBtn.href = item.link;
             buyBtn.style.display = "block";
           } else buyBtn.style.display = "none";
         } else {
-          // 주보/주생: 전체 이미지
+          // 주보 / 주생: PDF 다운로드 버튼
           bookImgWrap.style.display = "none";
-          fullImg.src = item.img || "";
-          fullImg.style.display = item.img ? "block" : "none";
           buyBtn.style.display = "none";
+          if (item.pdfUrl) {
+            pdfBtn.href = item.pdfUrl;
+            pdfBtn.style.display = "flex";
+          } else {
+            pdfBtn.style.display = "none";
+          }
         }
 
         if (isAdmin) {
@@ -2445,33 +2647,34 @@
         .getElementById("dpBackBtn")
         .addEventListener("click", closeDpOverlay);
 
-      // 리스트 카드 렌더
+      // 리스트 카드 렌더 (주보/주생은 PDF 배지)
       function renderListCard(id, item, type, icon) {
         const cacheKey = type + "_" + id;
         itemCache[cacheKey] = { ...item, _id: id };
-        const thumb = item.img
-          ? `<img class="list-card-thumb" src="${item.img}" alt="" onerror="this.style.display='none'"/>`
-          : `<div class="list-card-thumb-ph">${icon}</div>`;
+        const thumb = `<div class="list-card-thumb-ph">${icon}</div>`;
         const desc = item.desc
           ? `<div class="list-card-desc">${item.desc}</div>`
           : "";
+        const badge =
+          type === "bulletin" || type === "julife"
+            ? `<div class="pdf-badge">📄 PDF</div>`
+            : "";
         return `<div class="list-card" data-key="${cacheKey}">
     ${thumb}
     <div class="list-card-body">
       <div class="list-card-title">${item.title}</div>
       ${desc}
+      ${badge}
       <div class="list-card-date">${item.author ? item.author + " · " : ""}${fd(item.date)}</div>
     </div>
     <div class="list-card-arrow">›</div>
   </div>`;
       }
 
-      // 이벤트 위임으로 카드 클릭 처리 (onclick 속성 안 씀)
+      // 이벤트 위임
       document.addEventListener("click", (e) => {
         const card = e.target.closest(".list-card");
-        if (card && card.dataset.key) {
-          openDetail_item(card.dataset.key);
-        }
+        if (card && card.dataset.key) openDetail_item(card.dataset.key);
       });
 
       // 자동 로그인
@@ -2676,18 +2879,6 @@
       };
 
       // 페이지 이동
-      const TITLES = {
-        home: "홈",
-        sermon: "설교 영상",
-        books: "신앙서적",
-        bulletin: "주보",
-        julife: "주간생명의 양식",
-        more: "더보기",
-        prayer: "기도 제목",
-        notice: "공지사항",
-        settings: "설정",
-        admin: "관리자",
-      };
       window.goPage = (id) => {
         document
           .querySelectorAll(".page")
@@ -2744,7 +2935,7 @@
         return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
       }
 
-      // 이미지 Base64
+      // 이미지 Base64 (신앙서적용)
       function fileToBase64(file) {
         return new Promise((res, rej) => {
           const reader = new FileReader();
@@ -2893,34 +3084,42 @@
         document.getElementById("noticeDetail").style.display = "none";
       };
 
-      // 주보
+      // ── 주보 (PDF) ──
       window.uploadBulletin = async () => {
         if (!isAdmin) return;
-        const fi = document.getElementById("bulletinFileInput");
+        const fi = document.getElementById("bulletinPdfInput");
         const t = document.getElementById("bulletinTitle").value.trim();
         if (!fi.files[0]) {
-          showToast("이미지를 선택하세요");
+          showToast("PDF 파일을 선택하세요");
           return;
         }
         if (!t) {
           showToast("제목을 입력하세요");
           return;
         }
+        document.getElementById("bulletinUploadBtn").disabled = true;
         showToast("⏳ 업로드 중...");
         try {
-          const b64 = await fileToBase64(fi.files[0]);
+          const pdfUrl = await uploadPdfToCloudinary(
+            fi.files[0],
+            "bulletinProgress",
+            "bulletinProgressFill",
+            "bulletinProgressText",
+          );
           await push(ref(db, "bulletins"), {
             title: t,
-            img: b64,
+            pdfUrl,
             date: new Date().toISOString(),
           });
           fi.value = "";
-          document.getElementById("bulletinImgPreview").style.display = "none";
+          document.getElementById("bulletinPdfSelected").style.display = "none";
           document.getElementById("bulletinUploadBtn").style.display = "none";
           document.getElementById("bulletinTitle").value = "";
-          showToast("✅ 주보 등록!");
-        } catch {
-          showToast("❌ 업로드 실패");
+          document.getElementById("bulletinUploadBtn").disabled = false;
+          showToast("✅ 주보 등록 완료!");
+        } catch (e) {
+          document.getElementById("bulletinUploadBtn").disabled = false;
+          showToast("❌ 업로드 실패: " + e.message);
         }
       };
       window.deleteBulletin = (id) => {
@@ -2943,41 +3142,49 @@
             ? items
                 .map(
                   ([id, b]) =>
-                    `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBulletin('${id}')">삭제</button></div>`,
+                    `<div class="adm-item"><span>📄 ${b.title}</span><button class="btn-del" onclick="deleteBulletin('${id}')">삭제</button></div>`,
                 )
                 .join("")
             : "";
       });
 
-      // 주생
+      // ── 주생 (PDF) ──
       window.uploadJulife = async () => {
         if (!isAdmin) return;
-        const fi = document.getElementById("julifeFileInput");
+        const fi = document.getElementById("julifePdfInput");
         const t = document.getElementById("julifeTitle").value.trim();
         if (!fi.files[0]) {
-          showToast("이미지를 선택하세요");
+          showToast("PDF 파일을 선택하세요");
           return;
         }
         if (!t) {
           showToast("제목을 입력하세요");
           return;
         }
+        document.getElementById("julifeUploadBtn").disabled = true;
         showToast("⏳ 업로드 중...");
         try {
-          const b64 = await fileToBase64(fi.files[0]);
+          const pdfUrl = await uploadPdfToCloudinary(
+            fi.files[0],
+            "julifeProgress",
+            "julifeProgressFill",
+            "julifeProgressText",
+          );
           await push(ref(db, "julife"), {
             title: t,
-            img: b64,
+            pdfUrl,
             date: new Date().toISOString(),
             author: currentUser?.name || "",
           });
           fi.value = "";
-          document.getElementById("julifeImgPreview").style.display = "none";
+          document.getElementById("julifePdfSelected").style.display = "none";
           document.getElementById("julifeUploadBtn").style.display = "none";
           document.getElementById("julifeTitle").value = "";
-          showToast("✅ 주생 등록!");
-        } catch {
-          showToast("❌ 업로드 실패");
+          document.getElementById("julifeUploadBtn").disabled = false;
+          showToast("✅ 주생 등록 완료!");
+        } catch (e) {
+          document.getElementById("julifeUploadBtn").disabled = false;
+          showToast("❌ 업로드 실패: " + e.message);
         }
       };
       window.deleteJulife = (id) => remove(ref(db, "julife/" + id));
@@ -2997,13 +3204,13 @@
             ? items
                 .map(
                   ([id, s]) =>
-                    `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteJulife('${id}')">삭제</button></div>`,
+                    `<div class="adm-item"><span>📄 ${s.title}</span><button class="btn-del" onclick="deleteJulife('${id}')">삭제</button></div>`,
                 )
                 .join("")
             : '<div class="empty2">없음</div>';
       });
 
-      // 신앙서적 (link 필드 추가)
+      // 신앙서적
       window.uploadBook = async () => {
         if (!isAdmin) return;
         const fi = document.getElementById("bookFileInput");
