@@ -1597,11 +1597,7 @@
             >
           </div>
           <div class="l-err" id="loginErr"></div>
-          <button
-            class="l-btn-main"
-            style="margin-top: 16px"
-            onclick="doLogin()"
-          >
+          <button class="l-btn-main" style="margin-top: 16px" id="loginBtn">
             로그인
           </button>
         </div>
@@ -2935,6 +2931,9 @@
           },
         );
       };
+      document
+        .getElementById("loginBtn")
+        .addEventListener("click", () => window.doLogin());
       document.getElementById("loginPw").addEventListener("keydown", (e) => {
         if (e.key === "Enter") window.doLogin();
       });
