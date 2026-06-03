@@ -2941,7 +2941,14 @@
           imgCenter.style.display = "none";
           buyBtn.style.display = "none";
           if (item.pdfUrl) {
-            pdfBtn.href = item.pdfUrl;
+            // iOS 사파리에서 PDF 다운로드 되도록 URL 변환
+            const dlUrl = item.pdfUrl.replace(
+              "/raw/upload/",
+              "/raw/upload/fl_attachment:" +
+                encodeURIComponent(item.title) +
+                "/",
+            );
+            pdfBtn.href = dlUrl;
             pdfBtn.style.display = "flex";
           } else {
             pdfBtn.style.display = "none";
