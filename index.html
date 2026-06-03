@@ -24,6 +24,11 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Firebase SDK (모듈 아닌 일반 방식) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
     <style>
       * {
         box-sizing: border-box;
@@ -52,7 +57,6 @@
         color: var(--text);
         overflow-x: hidden;
       }
-
       #loginScreen {
         position: fixed;
         inset: 0;
@@ -270,7 +274,6 @@
         color: #334155;
         line-height: 1.7;
       }
-
       #appScreen {
         display: none;
       }
@@ -346,7 +349,6 @@
         cursor: pointer;
         font-family: inherit;
       }
-
       .page {
         display: none;
         padding-bottom: 90px;
@@ -387,7 +389,6 @@
         cursor: pointer;
         font-family: inherit;
       }
-
       .home-hero {
         background: linear-gradient(
           135deg,
@@ -433,7 +434,6 @@
         color: rgba(255, 255, 255, 0.8);
         font-weight: 500;
       }
-
       .cal-nav {
         display: flex;
         justify-content: space-between;
@@ -531,7 +531,6 @@
         text-align: center;
         padding: 8px 0;
       }
-
       .notice-row {
         display: flex;
         align-items: center;
@@ -598,7 +597,6 @@
         color: #334155;
         line-height: 2.1;
       }
-
       .grape-mini {
         display: flex;
         justify-content: space-between;
@@ -671,7 +669,6 @@
         border-radius: 999px;
         transition: width 0.6s;
       }
-
       .page-hero {
         background: linear-gradient(135deg, #0f2a5e, #1a56db);
         padding: 22px 20px 26px;
@@ -698,7 +695,6 @@
         font-size: 12px;
         opacity: 0.8;
       }
-
       .list-item {
         background: #f8fafd;
         border-radius: 14px;
@@ -761,7 +757,6 @@
         cursor: pointer;
         font-family: inherit;
       }
-
       .grid2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -844,8 +839,7 @@
         font-weight: 700;
         margin-top: 5px;
       }
-
-      /* ── 신앙서적 카드 (이미지 있음) ── */
+      /* 신앙서적 카드 */
       .list-card-wrap {
         background: #fff;
         border-radius: var(--radius);
@@ -925,8 +919,7 @@
         flex-shrink: 0;
         margin-left: 4px;
       }
-
-      /* ── 주보/주생 텍스트 목록 스타일 ── */
+      /* 주보/주생 텍스트 목록 */
       .doc-list-wrap {
         background: #fff;
         border-radius: var(--radius);
@@ -990,20 +983,11 @@
         font-size: 10px;
         font-weight: 700;
       }
-      .doc-views {
-        display: inline-flex;
-        align-items: center;
-        gap: 3px;
-        color: var(--sub);
-        font-size: 11px;
-      }
       .doc-arrow {
         color: #c8d0e0;
         font-size: 18px;
         flex-shrink: 0;
       }
-
-      /* 조회수 배지 */
       .views-badge {
         display: inline-flex;
         align-items: center;
@@ -1011,22 +995,7 @@
         font-size: 11px;
         color: var(--sub);
       }
-
-      /* PDF 배지 */
-      .pdf-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        background: #fee2e2;
-        color: #dc2626;
-        border-radius: 6px;
-        padding: 3px 8px;
-        font-size: 10px;
-        font-weight: 700;
-        margin-top: 5px;
-      }
-
-      /* ── 상세 페이지 오버레이 ── */
+      /* 상세 오버레이 */
       .dp-overlay {
         display: none;
         position: fixed;
@@ -1102,6 +1071,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        flex-wrap: wrap;
       }
       .dp-desc-text {
         font-size: 15px;
@@ -1126,9 +1096,6 @@
         font-family: inherit;
         text-decoration: none;
         margin-bottom: 10px;
-      }
-      .dp-pdf-btn:hover {
-        opacity: 0.9;
       }
       .dp-buy-btn {
         display: block;
@@ -1158,8 +1125,7 @@
         cursor: pointer;
         font-family: inherit;
       }
-
-      /* PDF 업로드 박스 */
+      /* PDF 업로드 */
       .pdf-upload-box {
         border: 2px dashed #fca5a5;
         border-radius: 14px;
@@ -1230,7 +1196,6 @@
         text-align: center;
         margin-top: 5px;
       }
-
       .img-upload-box {
         border: 2px dashed var(--border);
         border-radius: 14px;
@@ -1267,7 +1232,6 @@
         margin-bottom: 10px;
         display: none;
       }
-
       .more-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1302,7 +1266,6 @@
       .sub-wrap {
         padding-bottom: 90px;
       }
-
       .map-box {
         background: linear-gradient(135deg, #dbeafe, #e0f2fe);
         height: 170px;
@@ -1344,7 +1307,6 @@
         font-size: 14px;
         font-weight: 700;
       }
-
       .s-row {
         display: flex;
         justify-content: space-between;
@@ -1372,7 +1334,6 @@
         font-size: 14px;
         font-weight: 800;
       }
-
       .adm-sec-title {
         font-size: 11px;
         font-weight: 800;
@@ -1399,7 +1360,6 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-
       .btn-p {
         background: linear-gradient(135deg, #0f2a5e, #1a56db);
         color: #fff;
@@ -1491,7 +1451,6 @@
       .mb8 {
         margin-bottom: 9px;
       }
-
       .tab-bar {
         position: fixed;
         bottom: 0;
@@ -1532,7 +1491,6 @@
       .tab-btn.active svg {
         transform: scale(1.15);
       }
-
       .toast {
         position: fixed;
         bottom: 100px;
@@ -1601,7 +1559,7 @@
             로그인
           </button>
         </div>
-        <button class="l-btn-sub" onclick="showSignup()">회원가입</button>
+        <button class="l-btn-sub" id="signupOpenBtn">회원가입</button>
         <div class="ls-card" id="signupCard" style="display: none">
           <h2>회원가입</h2>
           <p>가입 후 관리자 승인이 필요해요</p>
@@ -1619,14 +1577,10 @@
             placeholder="비밀번호 확인"
           />
           <div class="l-err" id="signupErr"></div>
-          <button
-            class="l-btn-main"
-            style="margin-top: 8px"
-            onclick="doSignup()"
-          >
+          <button class="l-btn-main" style="margin-top: 8px" id="doSignupBtn">
             가입 신청
           </button>
-          <button class="l-btn-sub" onclick="showLogin()">← 로그인으로</button>
+          <button class="l-btn-sub" id="backToLoginBtn">← 로그인으로</button>
         </div>
         <div class="ls-card" id="pendingCard" style="display: none">
           <div class="pending-box">
@@ -1636,7 +1590,7 @@
             <button
               class="l-btn-sub"
               style="margin-top: 20px"
-              onclick="showLogin()"
+              id="pendingBackBtn"
             >
               ← 로그인으로
             </button>
@@ -1785,7 +1739,7 @@
             </div>
           </div>
           <div class="ah-right">
-            <button class="ah-btn" onclick="goPage('settings')">
+            <button class="ah-btn" id="settingsBtn">
               <svg
                 width="22"
                 height="22"
@@ -1800,15 +1754,12 @@
                 <path d="M13.73 21a2 2 0 0 1-3.46 0" />
               </svg>
             </button>
-            <button class="ah-user" id="userChip" onclick="goPage('settings')">
-              나
-            </button>
+            <button class="ah-user" id="userChip">나</button>
           </div>
         </div>
       </div>
       <div class="toast" id="toast"></div>
 
-      <!-- 홈 -->
       <div class="page active" id="page-home">
         <div class="home-hero">
           <div class="hero-badge">📅 오늘</div>
@@ -1821,9 +1772,9 @@
               <div class="card-title">📅 이번 달 일정</div>
             </div>
             <div class="cal-nav">
-              <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+              <button class="cal-nav-btn" id="calPrev">‹</button>
               <span id="calTitle"></span>
-              <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+              <button class="cal-nav-btn" id="calNext">›</button>
             </div>
             <div class="cal-grid" id="calGrid"></div>
             <div class="ev-box" id="evList"></div>
@@ -1831,9 +1782,7 @@
           <div class="card">
             <div class="card-hd">
               <div class="card-title">📢 최신 공지</div>
-              <button class="card-more" onclick="goPage('notice')">
-                더보기 ›
-              </button>
+              <button class="card-more" id="noticeMoreBtn">더보기 ›</button>
             </div>
             <div id="homeNotice"><div class="empty2">불러오는 중...</div></div>
           </div>
@@ -1851,14 +1800,11 @@
             <div class="bar-bg">
               <div class="bar-fill" id="h-bar" style="width: 0%"></div>
             </div>
-            <button class="btn-p" onclick="increaseStreak()">
-              이번 주 완료 ✅
-            </button>
+            <button class="btn-p" id="streakBtn">이번 주 완료 ✅</button>
           </div>
         </div>
       </div>
 
-      <!-- 설교 -->
       <div class="page" id="page-sermon">
         <div class="page-hero">
           <h2>🎬 설교 영상</h2>
@@ -1869,7 +1815,6 @@
         </div>
       </div>
 
-      <!-- 신앙서적 -->
       <div class="page" id="page-books">
         <div class="page-hero">
           <h2>📚 신앙서적</h2>
@@ -1882,7 +1827,6 @@
         </div>
       </div>
 
-      <!-- 주보 -->
       <div class="page" id="page-bulletin">
         <div class="page-hero">
           <h2>📋 주보</h2>
@@ -1895,7 +1839,6 @@
         </div>
       </div>
 
-      <!-- 주생 -->
       <div class="page" id="page-julife">
         <div class="page-hero">
           <h2>📖 주간생명의 양식</h2>
@@ -1921,12 +1864,8 @@
             >
               <span>🌱 시작</span><span>🍇 완성</span>
             </div>
-            <button class="btn-p" onclick="increaseStreak()">
-              이번 주 완료 ✅
-            </button>
-            <button class="btn-reset" onclick="resetStreak()">
-              ↺ 처음으로 되돌리기
-            </button>
+            <button class="btn-p" id="streakBtn2">이번 주 완료 ✅</button>
+            <button class="btn-reset" id="resetBtn">↺ 처음으로 되돌리기</button>
           </div>
           <div class="doc-list-wrap" id="julifeList" style="margin-top: 14px">
             <div class="empty2">불러오는 중...</div>
@@ -1934,7 +1873,6 @@
         </div>
       </div>
 
-      <!-- 더보기 -->
       <div class="page" id="page-more">
         <div id="moreMenu">
           <div class="page-hero">
@@ -1942,27 +1880,27 @@
             <p>다양한 기능을 이용해보세요</p>
           </div>
           <div class="more-grid">
-            <div class="more-cell" onclick="goPage('prayer')">
+            <div class="more-cell" id="mc-prayer">
               <div class="mc-icon">🙏</div>
               <div class="mc-label">기도 제목</div>
               <div class="mc-desc">함께 기도해요</div>
             </div>
-            <div class="more-cell" onclick="goPage('notice')">
+            <div class="more-cell" id="mc-notice">
               <div class="mc-icon">📢</div>
               <div class="mc-label">공지사항</div>
               <div class="mc-desc">교회 소식</div>
             </div>
-            <div class="more-cell" onclick="showSub('sharing')">
+            <div class="more-cell" id="mc-sharing">
               <div class="mc-icon">✏️</div>
               <div class="mc-label">말씀 나눔</div>
               <div class="mc-desc">은혜를 함께해요</div>
             </div>
-            <div class="more-cell" onclick="showSub('praise')">
+            <div class="more-cell" id="mc-praise">
               <div class="mc-icon">🎵</div>
               <div class="mc-label">찬양 신청</div>
               <div class="mc-desc">찬양을 신청하세요</div>
             </div>
-            <div class="more-cell" onclick="showSub('location')">
+            <div class="more-cell" id="mc-location">
               <div class="mc-icon">📍</div>
               <div class="mc-label">오시는 길</div>
               <div class="mc-desc">교회 위치 안내</div>
@@ -1971,6 +1909,7 @@
           <div style="padding: 0 16px 16px">
             <div
               class="more-cell"
+              id="mc-settings"
               style="
                 display: flex;
                 align-items: center;
@@ -1978,7 +1917,6 @@
                 text-align: left;
                 padding: 18px 20px;
               "
-              onclick="goPage('settings')"
             >
               <div style="font-size: 28px">⚙️</div>
               <div>
@@ -1994,14 +1932,14 @@
             <p>은혜를 함께 나눠요</p>
           </div>
           <div class="section">
-            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
+            <button class="back-btn" id="sharingBackBtn">← 뒤로</button>
             <div class="card">
               <textarea
                 class="inp"
                 id="sharingInput"
                 placeholder="오늘 읽은 말씀이나 은혜를 나눠보세요 ✨"
               ></textarea
-              ><button class="btn-p" onclick="addSharing()">나누기</button>
+              ><button class="btn-p" id="addSharingBtn">나누기</button>
             </div>
             <div id="sharingList"><div class="empty2">불러오는 중...</div></div>
           </div>
@@ -2012,14 +1950,14 @@
             <p>함께 부를 찬양을 신청하세요</p>
           </div>
           <div class="section">
-            <button class="back-btn" onclick="hideSub()">← 뒤로</button>
+            <button class="back-btn" id="praiseBackBtn">← 뒤로</button>
             <div class="card">
               <div class="inp-row">
                 <input
                   class="inp"
                   id="praiseInput"
                   placeholder="찬양 제목 입력"
-                /><button class="btn-sm" onclick="addPraise()">신청</button>
+                /><button class="btn-sm" id="addPraiseBtn">신청</button>
               </div>
             </div>
             <div id="praiseList"><div class="empty2">불러오는 중...</div></div>
@@ -2032,7 +1970,7 @@
           </div>
           <button
             class="back-btn"
-            onclick="hideSub()"
+            id="locationBackBtn"
             style="padding: 16px 16px 0"
           >
             ← 뒤로
@@ -2078,7 +2016,6 @@
         </div>
       </div>
 
-      <!-- 기도 -->
       <div class="page" id="page-prayer">
         <div class="page-hero">
           <h2>🙏 기도 제목</h2>
@@ -2091,14 +2028,13 @@
                 class="inp"
                 id="prayerInput"
                 placeholder="기도 제목을 입력하세요"
-              /><button class="btn-sm" onclick="addPrayer()">추가</button>
+              /><button class="btn-sm" id="addPrayerBtn">추가</button>
             </div>
           </div>
           <div id="prayerList"><div class="empty2">불러오는 중...</div></div>
         </div>
       </div>
 
-      <!-- 공지 -->
       <div class="page" id="page-notice">
         <div id="noticeListView">
           <div class="page-hero">
@@ -2114,14 +2050,13 @@
           </div>
         </div>
         <div class="detail-wrap" id="noticeDetail" style="display: none">
-          <button class="back-btn" onclick="closeDetail()">← 목록으로</button>
+          <button class="back-btn" id="noticeDetailBackBtn">← 목록으로</button>
           <div class="detail-title2" id="detailTitle"></div>
           <div class="detail-date2" id="detailDate"></div>
           <div class="detail-body2" id="detailBody"></div>
         </div>
       </div>
 
-      <!-- 설정 -->
       <div class="page" id="page-settings">
         <div class="page-hero">
           <h2>⚙️ 설정</h2>
@@ -2143,10 +2078,6 @@
                   id="prayerTime"
                   value="06:00"
                   style="margin-top: 9px; width: 115px"
-                  oninput="
-                    document.getElementById('prayerDisplay').textContent =
-                      this.value
-                  "
                 />
               </div>
             </div>
@@ -2163,22 +2094,14 @@
                   id="wordTime"
                   value="07:00"
                   style="margin-top: 9px; width: 115px"
-                  oninput="
-                    document.getElementById('wordDisplay').textContent =
-                      this.value
-                  "
                 />
               </div>
             </div>
-            <button class="btn-p" onclick="showToast('💾 저장됐어요!')">
-              저장하기 💾
-            </button>
+            <button class="btn-p" id="saveAlarmBtn">저장하기 💾</button>
           </div>
           <div class="card">
             <div class="adm-sec-title">🔐 관리자</div>
-            <button class="btn-o" onclick="goPage('admin')">
-              관리자 페이지 →
-            </button>
+            <button class="btn-o" id="goAdminBtn">관리자 페이지 →</button>
           </div>
           <div class="card">
             <button
@@ -2189,7 +2112,7 @@
                 font-size: 14px;
                 border-radius: 13px;
               "
-              onclick="doLogout()"
+              id="logoutBtn"
             >
               로그아웃
             </button>
@@ -2197,7 +2120,6 @@
         </div>
       </div>
 
-      <!-- 관리자 -->
       <div class="page" id="page-admin">
         <div class="page-hero">
           <h2>🔐 관리자</h2>
@@ -2212,7 +2134,7 @@
               id="adminPw"
               placeholder="관리자 비밀번호"
             />
-            <button class="btn-p" onclick="adminLogin()">로그인</button>
+            <button class="btn-p" id="adminLoginBtn">로그인</button>
           </div>
           <div id="adminPanel" style="display: none">
             <div class="card">
@@ -2227,9 +2149,7 @@
                 <div class="adm-sec-title" style="margin: 0">
                   ✅ 관리자 모드
                 </div>
-                <button class="btn-del" onclick="adminLogout()">
-                  로그아웃
-                </button>
+                <button class="btn-del" id="adminLogoutBtn">로그아웃</button>
               </div>
               <div class="adm-sec-title">⏳ 가입 승인 대기</div>
               <div id="pendingListAdmin">
@@ -2248,10 +2168,9 @@
                 id="noticeBody"
                 placeholder="내용"
               ></textarea>
-              <button class="btn-p" onclick="postNotice()">공지 등록</button>
+              <button class="btn-p" id="postNoticeBtn">공지 등록</button>
               <div style="margin-top: 12px" id="adminNoticeList"></div>
             </div>
-            <!-- 주보 PDF -->
             <div class="card">
               <div class="adm-sec-title">📋 주보 등록 (PDF)</div>
               <label class="pdf-upload-box" for="bulletinPdfInput">
@@ -2261,14 +2180,6 @@
                   type="file"
                   id="bulletinPdfInput"
                   accept="application/pdf"
-                  onchange="
-                    onPdfSelected(
-                      this,
-                      'bulletinPdfSelected',
-                      'bulletinPdfName',
-                      'bulletinUploadBtn',
-                    )
-                  "
                 />
               </label>
               <div class="pdf-selected" id="bulletinPdfSelected">
@@ -2295,14 +2206,12 @@
               <button
                 class="btn-p"
                 id="bulletinUploadBtn"
-                onclick="uploadBulletin()"
                 style="display: none"
               >
                 📤 업로드
               </button>
               <div style="margin-top: 12px" id="adminBulletinList"></div>
             </div>
-            <!-- 주생 PDF -->
             <div class="card">
               <div class="adm-sec-title">📖 주간생명의 양식 등록 (PDF)</div>
               <label class="pdf-upload-box" for="julifePdfInput">
@@ -2312,14 +2221,6 @@
                   type="file"
                   id="julifePdfInput"
                   accept="application/pdf"
-                  onchange="
-                    onPdfSelected(
-                      this,
-                      'julifePdfSelected',
-                      'julifePdfName',
-                      'julifeUploadBtn',
-                    )
-                  "
                 />
               </label>
               <div class="pdf-selected" id="julifePdfSelected">
@@ -2343,30 +2244,17 @@
                 id="julifeTitle"
                 placeholder="제목 (예: 2026년 6월 1일 주생)"
               />
-              <button
-                class="btn-p"
-                id="julifeUploadBtn"
-                onclick="uploadJulife()"
-                style="display: none"
-              >
+              <button class="btn-p" id="julifeUploadBtn" style="display: none">
                 📤 업로드
               </button>
               <div style="margin-top: 12px" id="adminJulifeList"></div>
             </div>
-            <!-- 신앙서적 -->
             <div class="card">
               <div class="adm-sec-title">📚 신앙서적 등록</div>
               <label class="img-upload-box" for="bookFileInput">
                 <div class="icon">📚</div>
                 <p>책 표지 이미지 선택 (JPG, PNG)</p>
-                <input
-                  type="file"
-                  id="bookFileInput"
-                  accept="image/*"
-                  onchange="
-                    previewImage(this, 'bookImgPreview', 'bookUploadBtn')
-                  "
-                />
+                <input type="file" id="bookFileInput" accept="image/*" />
               </label>
               <img id="bookImgPreview" class="img-preview" />
               <input class="inp mb8" id="bookTitle" placeholder="책 제목" />
@@ -2375,13 +2263,12 @@
                 id="bookLink"
                 placeholder="구입 링크 URL"
               />
-              <textarea class="inp mb8" id="bookDesc" placeholder="책 소개" />
-              <button
-                class="btn-p"
-                id="bookUploadBtn"
-                onclick="uploadBook()"
-                style="display: none"
-              >
+              <textarea
+                class="inp mb8"
+                id="bookDesc"
+                placeholder="책 소개"
+              ></textarea>
+              <button class="btn-p" id="bookUploadBtn" style="display: none">
                 등록
               </button>
               <div style="margin-top: 12px" id="adminBookList"></div>
@@ -2395,7 +2282,7 @@
                 placeholder="날짜 · 목사님"
               />
               <input class="inp mb8" id="sermonUrl" placeholder="유튜브 링크" />
-              <button class="btn-p" onclick="postSermon()">영상 등록</button>
+              <button class="btn-p" id="postSermonBtn">영상 등록</button>
               <div style="margin-top: 12px" id="adminSermonList"></div>
             </div>
             <div class="card">
@@ -2406,7 +2293,7 @@
                 id="scheduleName"
                 placeholder="일정 이름"
               />
-              <button class="btn-p" onclick="postSchedule()">일정 등록</button>
+              <button class="btn-p" id="postScheduleBtn">일정 등록</button>
               <div style="margin-top: 12px" id="adminScheduleList"></div>
             </div>
             <div class="card">
@@ -2421,7 +2308,7 @@
         </div>
       </div>
 
-      <!-- 상세 페이지 오버레이 -->
+      <!-- 상세 오버레이 -->
       <div class="dp-overlay" id="dpOverlay">
         <div class="dp-header">
           <button class="dp-back" id="dpBackBtn">
@@ -2435,9 +2322,8 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-            뒤로
+              <polyline points="15 18 9 12 15 6" /></svg
+            >뒤로
           </button>
           <div class="dp-header-title" id="dpHeaderTitle"></div>
         </div>
@@ -2472,9 +2358,8 @@
         </div>
       </div>
 
-      <!-- 탭바 -->
       <div class="tab-bar">
-        <button class="tab-btn active" id="tab-home" onclick="goPage('home')">
+        <button class="tab-btn active" id="tab-home">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -2487,7 +2372,7 @@
             <polyline points="9 22 9 12 15 12 15 22" /></svg
           >홈
         </button>
-        <button class="tab-btn" id="tab-sermon" onclick="goPage('sermon')">
+        <button class="tab-btn" id="tab-sermon">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -2500,7 +2385,7 @@
             <rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg
           >설교
         </button>
-        <button class="tab-btn" id="tab-books" onclick="goPage('books')">
+        <button class="tab-btn" id="tab-books">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -2515,7 +2400,7 @@
             /></svg
           >서적
         </button>
-        <button class="tab-btn" id="tab-bulletin" onclick="goPage('bulletin')">
+        <button class="tab-btn" id="tab-bulletin">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -2532,7 +2417,7 @@
             <line x1="16" y1="17" x2="8" y2="17" /></svg
           >주보
         </button>
-        <button class="tab-btn" id="tab-julife" onclick="goPage('julife')">
+        <button class="tab-btn" id="tab-julife">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -2545,7 +2430,7 @@
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg
           >주생
         </button>
-        <button class="tab-btn" id="tab-more" onclick="goPage('more')">
+        <button class="tab-btn" id="tab-more">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -2562,18 +2447,8 @@
       </div>
     </div>
 
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        push,
-        onValue,
-        remove,
-        update,
-        get,
-      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
+    <script>
+      // Firebase 초기화
       const fc = {
         apiKey: "AIzaSyAQ9yKmwNNKxSLGrq8q2k5RN6CgIFXGhqE",
         authDomain: "church-app-4a233.firebaseapp.com",
@@ -2584,208 +2459,51 @@
         messagingSenderId: "1033367843213",
         appId: "1:1033367843213:web:7dd24d8db59b226582cdc4",
       };
-      const db = getDatabase(initializeApp(fc));
-      const ADMINS = ["church2025", "admin1234", "pastor0000"];
-      let isAdmin = false,
-        currentUser = null;
+      firebase.initializeApp(fc);
+      const db = firebase.database();
 
+      const ADMINS = ["church2025", "admin1234", "pastor0000"];
       const CLOUD_NAME = "douvbmfa9";
       const UPLOAD_PRESET = "church-app";
+      let isAdmin = false,
+        currentUser = null,
+        usersDB = {},
+        pendingDB = {};
 
-      // ── Cloudinary PDF 업로드 ──
-      async function uploadPdfToCloudinary(
-        file,
-        progressBarId,
-        progressFillId,
-        progressTextId,
-      ) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", UPLOAD_PRESET);
-        formData.append("resource_type", "raw");
-        const pw = document.getElementById(progressBarId);
-        const pf = document.getElementById(progressFillId);
-        const pt = document.getElementById(progressTextId);
-        if (pw) pw.style.display = "block";
-        return new Promise((resolve, reject) => {
-          const xhr = new XMLHttpRequest();
-          xhr.open(
-            "POST",
-            `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`,
-          );
-          xhr.upload.onprogress = (e) => {
-            if (e.lengthComputable) {
-              const p = Math.round((e.loaded / e.total) * 100);
-              if (pf) pf.style.width = p + "%";
-              if (pt) pt.textContent = `업로드 중... ${p}%`;
-            }
-          };
-          xhr.onload = () => {
-            if (pw) pw.style.display = "none";
-            if (xhr.status === 200) {
-              resolve(JSON.parse(xhr.responseText).secure_url);
-            } else {
-              reject(new Error("업로드 실패"));
-            }
-          };
-          xhr.onerror = () => {
-            if (pw) pw.style.display = "none";
-            reject(new Error("네트워크 오류"));
-          };
-          xhr.send(formData);
-        });
+      // ── 유틸 ──
+      const $ = (id) => document.getElementById(id);
+      function showToast(msg) {
+        const t = $("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2500);
       }
-
-      window.onPdfSelected = (input, selectedId, nameId, btnId) => {
-        const file = input.files[0];
-        if (!file) return;
-        const sb = document.getElementById(selectedId);
-        const ne = document.getElementById(nameId);
-        const btn = document.getElementById(btnId);
-        if (sb) sb.style.display = "flex";
-        if (ne) ne.textContent = file.name;
-        if (btn) btn.style.display = "block";
-      };
-
-      // ── 조회수 증가 ──
-      function incrementViews(type, id, current) {
-        update(ref(db, `${type}/${id}`), { views: (current || 0) + 1 });
-      }
-
-      // ── 상세 페이지 캐시 ──
-      const itemCache = {};
-
-      function openDetail_item(cacheKey) {
-        const item = itemCache[cacheKey];
-        if (!item) return;
-        const type = cacheKey.split("_")[0];
-
-        // 조회수 증가
-        incrementViews(
-          type === "book"
-            ? "books"
-            : type === "bulletin"
-              ? "bulletins"
-              : "julife",
-          item._id,
-          item.views || 0,
+      function fd(iso) {
+        const d = new Date(iso);
+        return (
+          String(d.getMonth() + 1).padStart(2, "0") +
+          "." +
+          String(d.getDate()).padStart(2, "0")
         );
-
-        document.getElementById("dpHeaderTitle").textContent = item.title || "";
-        document.getElementById("dpTitle").textContent = item.title || "";
-
-        // meta: 날짜 + 조회수
-        const views = (item.views || 0) + 1;
-        document.getElementById("dpMeta").innerHTML =
-          `<span>${item.author ? item.author + " · " : ""}${fdt(item.date)}</span><span class="views-badge">👁 ${views}회</span>`;
-
-        document.getElementById("dpDescText").textContent = item.desc || "";
-
-        const bookImgWrap = document.getElementById("dpImgCenter");
-        const bookImg = document.getElementById("dpBookImg");
-        const pdfBtn = document.getElementById("dpPdfBtn");
-        const buyBtn = document.getElementById("dpBuyBtn");
-        const delBtn = document.getElementById("dpDelBtn");
-
-        if (type === "book") {
-          bookImgWrap.style.display = "flex";
-          bookImg.src = item.img || "";
-          bookImg.style.display = item.img ? "block" : "none";
-          pdfBtn.style.display = "none";
-          if (item.link) {
-            buyBtn.href = item.link;
-            buyBtn.style.display = "block";
-          } else buyBtn.style.display = "none";
-        } else {
-          bookImgWrap.style.display = "none";
-          buyBtn.style.display = "none";
-          if (item.pdfUrl) {
-            const dlUrl = item.pdfUrl.replace(
-              "/raw/upload/",
-              "/raw/upload/fl_attachment/",
-            );
-            pdfBtn.href = dlUrl;
-            pdfBtn.setAttribute("download", item.title + ".pdf");
-            pdfBtn.style.display = "flex";
-          } else pdfBtn.style.display = "none";
-        }
-
-        if (isAdmin) {
-          delBtn.style.display = "block";
-          delBtn.onclick = () => {
-            if (!confirm("삭제할까요?")) return;
-            const paths = {
-              book: "books/",
-              bulletin: "bulletins/",
-              julife: "julife/",
-            };
-            remove(ref(db, paths[type] + item._id));
-            closeDpOverlay();
-            showToast("✅ 삭제됐어요");
-          };
-        } else delBtn.style.display = "none";
-
-        document.getElementById("dpOverlay").classList.add("open");
-        document.getElementById("dpOverlay").scrollTop = 0;
       }
-
-      function closeDpOverlay() {
-        document.getElementById("dpOverlay").classList.remove("open");
+      function fdt(iso) {
+        const d = new Date(iso);
+        const h = d.getHours(),
+          m = d.getMinutes();
+        return (
+          d.getFullYear() +
+          "." +
+          String(d.getMonth() + 1).padStart(2, "0") +
+          "." +
+          String(d.getDate()).padStart(2, "0") +
+          " " +
+          (h < 12 ? "오전" : "오후") +
+          " " +
+          (h % 12 || 12) +
+          ":" +
+          String(m).padStart(2, "0")
+        );
       }
-      document
-        .getElementById("dpBackBtn")
-        .addEventListener("click", closeDpOverlay);
-
-      // ── 신앙서적 카드 (이미지 있음) ──
-      function renderBookCard(id, item) {
-        const cacheKey = "book_" + id;
-        itemCache[cacheKey] = { ...item, _id: id };
-        const thumb = item.img
-          ? `<img class="list-card-thumb" src="${item.img}" alt="" onerror="this.style.display='none'"/>`
-          : `<div class="list-card-thumb-ph">📚</div>`;
-        const desc = item.desc
-          ? `<div class="list-card-desc">${item.desc}</div>`
-          : "";
-        return `<div class="list-card" data-key="${cacheKey}">
-    ${thumb}
-    <div class="list-card-body">
-      <div class="list-card-title">${item.title}</div>
-      ${desc}
-      <div class="list-card-meta">
-        <span>${fd(item.date)}</span>
-        <span class="views-badge">👁 ${item.views || 0}</span>
-      </div>
-    </div>
-    <div class="list-card-arrow">›</div>
-  </div>`;
-      }
-
-      // ── 주보/주생 텍스트 행 (이미지 없음) ──
-      function renderDocRow(id, item, type, idx, total) {
-        const cacheKey = type + "_" + id;
-        itemCache[cacheKey] = { ...item, _id: id };
-        const num = total - idx;
-        return `<div class="doc-row" data-key="${cacheKey}">
-    <div class="doc-num">${num}</div>
-    <div class="doc-body">
-      <div class="doc-title">${item.title}</div>
-      <div class="doc-meta">
-        <span class="doc-pdf-badge">📄 PDF</span>
-        <span>${fd(item.date)}</span>
-        <span class="views-badge">👁 ${item.views || 0}</span>
-      </div>
-    </div>
-    <div class="doc-arrow">›</div>
-  </div>`;
-      }
-
-      // 이벤트 위임
-      document.addEventListener("click", (e) => {
-        const card = e.target.closest(".list-card,.doc-row");
-        if (card && card.dataset.key) openDetail_item(card.dataset.key);
-      });
-
-      // 자동 로그인
       function saveAL(u) {
         try {
           localStorage.setItem("seun_u", JSON.stringify(u));
@@ -2805,56 +2523,141 @@
         }
       }
 
-      window.showLogin = () => {
-        ["loginCard", "churchInfo"].forEach(
-          (id) => (document.getElementById(id).style.display = "block"),
-        );
-        ["signupCard", "pendingCard"].forEach(
-          (id) => (document.getElementById(id).style.display = "none"),
-        );
-      };
-      window.showSignup = () => {
-        document.getElementById("signupCard").style.display = "block";
-        ["loginCard", "churchInfo"].forEach(
-          (id) => (document.getElementById(id).style.display = "none"),
-        );
-        document.getElementById("pendingCard").style.display = "none";
-      };
+      // ── 페이지 이동 ──
+      function goPage(id) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        $("page-" + id).classList.add("active");
+        const t = $("tab-" + id);
+        if (t) t.classList.add("active");
+        if (id === "more") hideSub();
+        if (id === "notice") closeDetail();
+      }
+      function showSub(sub) {
+        $("moreMenu").style.display = "none";
+        document
+          .querySelectorAll('[id^="sub-"]')
+          .forEach((el) => (el.style.display = "none"));
+        $("sub-" + sub).style.display = "block";
+      }
+      function hideSub() {
+        $("moreMenu").style.display = "block";
+        document
+          .querySelectorAll('[id^="sub-"]')
+          .forEach((el) => (el.style.display = "none"));
+      }
 
-      let usersDB = {},
-        pendingDB = {};
-      onValue(ref(db, "users"), (snap) => {
-        usersDB = snap.val() || {};
-        const el = document.getElementById("userListAdmin");
-        if (el)
-          el.innerHTML =
-            Object.entries(usersDB)
-              .map(
-                ([id, u]) =>
-                  `<div class="adm-item"><span>✅ ${u.name}</span><button class="btn-del" onclick="deleteUser('${id}')">삭제</button></div>`,
-              )
-              .join("") || '<div class="empty2">없음</div>';
-      });
-      onValue(ref(db, "pending"), (snap) => {
-        pendingDB = snap.val() || {};
-        const el = document.getElementById("pendingListAdmin");
-        if (!el) return;
-        const items = Object.entries(pendingDB);
-        el.innerHTML = items.length
-          ? items
-              .map(
-                ([id, u]) =>
-                  `<div class="adm-item"><span>⏳ ${u.name}</span><div style="display:flex;gap:6px"><button class="tag-ans" onclick="approveUser('${id}')">승인</button><button class="btn-del" onclick="rejectUser('${id}')">거절</button></div></div>`,
-              )
-              .join("")
-          : '<div class="empty2">대기 없음</div>';
-      });
+      // ── 탭 버튼 ──
+      $("tab-home").onclick = () => goPage("home");
+      $("tab-sermon").onclick = () => goPage("sermon");
+      $("tab-books").onclick = () => goPage("books");
+      $("tab-bulletin").onclick = () => goPage("bulletin");
+      $("tab-julife").onclick = () => goPage("julife");
+      $("tab-more").onclick = () => goPage("more");
+      $("settingsBtn").onclick = () => goPage("settings");
+      $("userChip").onclick = () => goPage("settings");
+      $("noticeMoreBtn").onclick = () => goPage("notice");
+      $("goAdminBtn").onclick = () => goPage("admin");
+      $("mc-prayer").onclick = () => goPage("prayer");
+      $("mc-notice").onclick = () => goPage("notice");
+      $("mc-sharing").onclick = () => showSub("sharing");
+      $("mc-praise").onclick = () => showSub("praise");
+      $("mc-location").onclick = () => showSub("location");
+      $("mc-settings").onclick = () => goPage("settings");
+      $("sharingBackBtn").onclick = hideSub;
+      $("praiseBackBtn").onclick = hideSub;
+      $("locationBackBtn").onclick = hideSub;
+      $("noticeDetailBackBtn").onclick = closeDetail;
+      $("dpBackBtn").onclick = closeDpOverlay;
+      $("calPrev").onclick = () => changeMonth(-1);
+      $("calNext").onclick = () => changeMonth(1);
+      $("saveAlarmBtn").onclick = () => showToast("💾 저장됐어요!");
+      $("prayerTime").oninput = () =>
+        ($("prayerDisplay").textContent = $("prayerTime").value);
+      $("wordTime").oninput = () =>
+        ($("wordDisplay").textContent = $("wordTime").value);
 
-      window.doSignup = () => {
-        const name = document.getElementById("signupName").value.trim();
-        const pw = document.getElementById("signupPw").value;
-        const pw2 = document.getElementById("signupPw2").value;
-        const err = document.getElementById("signupErr");
+      // ── 로그인 ──
+      $("loginBtn").onclick = doLogin;
+      $("loginPw").onkeydown = (e) => {
+        if (e.key === "Enter") doLogin();
+      };
+      $("signupOpenBtn").onclick = showSignup;
+      $("doSignupBtn").onclick = doSignup;
+      $("backToLoginBtn").onclick = showLoginPage;
+      $("pendingBackBtn").onclick = showLoginPage;
+
+      function showLoginPage() {
+        $("loginCard").style.display = "block";
+        $("churchInfo").style.display = "block";
+        $("signupCard").style.display = "none";
+        $("pendingCard").style.display = "none";
+      }
+      function showSignup() {
+        $("signupCard").style.display = "block";
+        $("loginCard").style.display = "none";
+        $("churchInfo").style.display = "none";
+        $("pendingCard").style.display = "none";
+      }
+      function doLogin() {
+        const name = $("loginName").value.trim();
+        const pw = $("loginPw").value;
+        const err = $("loginErr");
+        const auto = $("autoLoginCheck").checked;
+        if (!name || !pw) {
+          err.textContent = "이름과 비밀번호를 입력하세요";
+          return;
+        }
+        if (ADMINS.includes(pw)) {
+          currentUser = { name, role: "admin" };
+          if (auto) saveAL({ name, pw });
+          startApp();
+          return;
+        }
+        err.textContent = "확인 중...";
+        db.ref("users")
+          .get()
+          .then((snap) => {
+            const users = snap.val() || {};
+            const found = Object.values(users).find(
+              (u) => u.name === name && u.pw === pw,
+            );
+            if (found) {
+              usersDB = users;
+              currentUser = { name, role: "user" };
+              if (auto) saveAL({ name, pw });
+              startApp();
+              return;
+            }
+            db.ref("pending")
+              .get()
+              .then((psnap) => {
+                const pending = psnap.val() || {};
+                pendingDB = pending;
+                if (
+                  Object.values(pending).find(
+                    (u) => u.name === name && u.pw === pw,
+                  )
+                ) {
+                  err.textContent = "⏳ 아직 승인 대기 중이에요";
+                } else {
+                  err.textContent = "이름 또는 비밀번호가 맞지 않아요";
+                }
+              });
+          })
+          .catch(() => {
+            err.textContent = "네트워크 오류. 다시 시도해주세요.";
+          });
+      }
+      function doSignup() {
+        const name = $("signupName").value.trim();
+        const pw = $("signupPw").value;
+        const pw2 = $("signupPw2").value;
+        const err = $("signupErr");
         if (!name || !pw) {
           err.textContent = "이름과 비밀번호를 입력하세요";
           return;
@@ -2874,101 +2677,40 @@
           err.textContent = "이미 존재하는 이름이에요";
           return;
         }
-        push(ref(db, "pending"), { name, pw, date: new Date().toISOString() });
-        document.getElementById("signupCard").style.display = "none";
-        document.getElementById("pendingCard").style.display = "block";
+        db.ref("pending").push({ name, pw, date: new Date().toISOString() });
+        $("signupCard").style.display = "none";
+        $("pendingCard").style.display = "block";
         showToast("🙏 가입 신청 완료!");
-      };
-
-      window.doLogin = () => {
-        const name = document.getElementById("loginName").value.trim();
-        const pw = document.getElementById("loginPw").value;
-        const err = document.getElementById("loginErr");
-        const auto = document.getElementById("autoLoginCheck").checked;
-        if (!name || !pw) {
-          err.textContent = "이름과 비밀번호를 입력하세요";
-          return;
-        }
-        if (ADMINS.includes(pw)) {
-          currentUser = { name, role: "admin" };
-          if (auto) saveAL({ name, pw });
-          startApp();
-          return;
-        }
-        err.textContent = "확인 중...";
-        get(ref(db, "users"))
-          .then((snap) => {
-            const users = snap.val() || {};
-            const found = Object.values(users).find(
-              (u) => u.name === name && u.pw === pw,
-            );
-            if (found) {
-              usersDB = users;
-              currentUser = { name, role: "user" };
-              if (auto) saveAL({ name, pw });
-              startApp();
-              return;
-            }
-            get(ref(db, "pending")).then((psnap) => {
-              const pending = psnap.val() || {};
-              pendingDB = pending;
-              if (
-                Object.values(pending).find(
-                  (u) => u.name === name && u.pw === pw,
-                )
-              ) {
-                err.textContent = "⏳ 아직 승인 대기 중이에요";
-              } else {
-                err.textContent = "이름 또는 비밀번호가 맞지 않아요";
-              }
-            });
-          })
-          .catch(() => {
-            err.textContent = "네트워크 오류. 다시 시도해주세요.";
-          });
-      };
-      document
-        .getElementById("loginBtn")
-        .addEventListener("click", () => window.doLogin());
-      document.getElementById("loginPw").addEventListener("keydown", (e) => {
-        if (e.key === "Enter") window.doLogin();
-      });
-
-      function startApp() {
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("appScreen").style.display = "block";
-        document.getElementById("userChip").textContent =
-          currentUser.name.charAt(0);
-        document.getElementById("settingsUser").textContent =
-          `${currentUser.name}님, 안녕하세요! 🙏`;
       }
-      window.doLogout = () => {
+      function startApp() {
+        $("loginScreen").style.display = "none";
+        $("appScreen").style.display = "block";
+        $("userChip").textContent = currentUser.name.charAt(0);
+        $("settingsUser").textContent = currentUser.name + "님, 안녕하세요! 🙏";
+      }
+      $("logoutBtn").onclick = () => {
         clearAL();
         currentUser = null;
-        document.getElementById("loginScreen").style.display = "block";
-        document.getElementById("appScreen").style.display = "none";
-        ["loginCard", "churchInfo"].forEach(
-          (id) => (document.getElementById(id).style.display = "block"),
-        );
-        ["signupCard", "pendingCard"].forEach(
-          (id) => (document.getElementById(id).style.display = "none"),
-        );
-        document.getElementById("loginName").value = "";
-        document.getElementById("loginPw").value = "";
-        document.getElementById("loginErr").textContent = "";
-        document.getElementById("autoLoginCheck").checked = false;
-        window.goPage("home");
+        $("loginScreen").style.display = "block";
+        $("appScreen").style.display = "none";
+        showLoginPage();
+        $("loginName").value = "";
+        $("loginPw").value = "";
+        $("loginErr").textContent = "";
+        $("autoLoginCheck").checked = false;
+        goPage("home");
       };
 
+      // 자동 로그인
       const saved = loadAL();
       if (saved) {
         if (ADMINS.includes(saved.pw)) {
           currentUser = { name: saved.name, role: "admin" };
           startApp();
         } else {
-          onValue(
-            ref(db, "users"),
-            (snap) => {
+          db.ref("users")
+            .get()
+            .then((snap) => {
               const u = snap.val() || {};
               const f = Object.values(u).find(
                 (x) => x.name === saved.name && x.pw === saved.pw,
@@ -2977,60 +2719,51 @@
                 currentUser = { name: saved.name, role: "user" };
                 startApp();
               }
-            },
-            { onlyOnce: true },
-          );
+            });
         }
       }
 
-      window.approveUser = async (id) => {
+      // ── Firebase DB 리스너 ──
+      db.ref("users").on("value", (snap) => {
+        usersDB = snap.val() || {};
+        const el = $("userListAdmin");
+        if (el)
+          el.innerHTML =
+            Object.entries(usersDB)
+              .map(
+                ([id, u]) =>
+                  `<div class="adm-item"><span>✅ ${u.name}</span><button class="btn-del" onclick="db.ref('users/${id}').remove()">삭제</button></div>`,
+              )
+              .join("") || '<div class="empty2">없음</div>';
+      });
+      db.ref("pending").on("value", (snap) => {
+        pendingDB = snap.val() || {};
+        const el = $("pendingListAdmin");
+        if (!el) return;
+        const items = Object.entries(pendingDB);
+        el.innerHTML = items.length
+          ? items
+              .map(
+                ([id, u]) =>
+                  `<div class="adm-item"><span>⏳ ${u.name}</span><div style="display:flex;gap:6px"><button class="tag-ans" onclick="approveUser('${id}')">승인</button><button class="btn-del" onclick="db.ref('pending/${id}').remove()">거절</button></div></div>`,
+              )
+              .join("")
+          : '<div class="empty2">대기 없음</div>';
+      });
+      function approveUser(id) {
         if (!isAdmin) return;
         const u = pendingDB[id];
         if (!u) return;
-        await push(ref(db, "users"), {
+        db.ref("users").push({
           name: u.name,
           pw: u.pw,
           date: new Date().toISOString(),
         });
-        await remove(ref(db, "pending/" + id));
+        db.ref("pending/" + id).remove();
         showToast("✅ " + u.name + "님 승인!");
-      };
-      window.rejectUser = (id) => {
-        if (!isAdmin) return;
-        if (confirm("거절?")) remove(ref(db, "pending/" + id));
-      };
-      window.deleteUser = (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "users/" + id));
-      };
+      }
 
-      window.goPage = (id) => {
-        document
-          .querySelectorAll(".page")
-          .forEach((p) => p.classList.remove("active"));
-        document
-          .querySelectorAll(".tab-btn")
-          .forEach((b) => b.classList.remove("active"));
-        document.getElementById("page-" + id).classList.add("active");
-        const t = document.getElementById("tab-" + id);
-        if (t) t.classList.add("active");
-        if (id === "more") window.hideSub();
-        if (id === "notice") window.closeDetail();
-      };
-      window.showSub = (sub) => {
-        document.getElementById("moreMenu").style.display = "none";
-        document
-          .querySelectorAll('[id^="sub-"]')
-          .forEach((el) => (el.style.display = "none"));
-        document.getElementById("sub-" + sub).style.display = "block";
-      };
-      window.hideSub = () => {
-        document.getElementById("moreMenu").style.display = "block";
-        document
-          .querySelectorAll('[id^="sub-"]')
-          .forEach((el) => (el.style.display = "none"));
-      };
-
+      // ── 날짜 ──
       const now = new Date();
       const mnArr = [
         "1월",
@@ -3046,19 +2779,249 @@
         "11월",
         "12월",
       ];
-      document.getElementById("heroDate").textContent =
-        `${now.getFullYear()}년 ${mnArr[now.getMonth()]} ${now.getDate()}일`;
-      function fd(iso) {
-        const d = new Date(iso);
-        return `${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+      $("heroDate").textContent =
+        now.getFullYear() +
+        "년 " +
+        mnArr[now.getMonth()] +
+        " " +
+        now.getDate() +
+        "일";
+
+      // ── 포도나무 ──
+      let streak = 0,
+        cont = 0;
+      const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
+      function updateGrapeUI() {
+        const pct = Math.round((streak / 52) * 100);
+        const stage = stages[Math.min(Math.floor(pct / 20), 4)];
+        ["h-pct", "g-pct"].forEach((id) => {
+          const e = $(id);
+          if (e) e.textContent = pct + "%";
+        });
+        ["h-bar", "g-bar"].forEach((id) => {
+          const e = $(id);
+          if (e) e.style.width = pct + "%";
+        });
+        ["h-streak", "g-streak"].forEach((id) => {
+          const e = $(id);
+          if (e) e.textContent = "🔥 " + cont + "주 연속";
+        });
+        ["h-grape", "grapeEmoji"].forEach((id) => {
+          const e = $(id);
+          if (e) e.textContent = stage;
+        });
+        const gd = $("g-day");
+        if (gd) gd.textContent = streak + "주 / 52주";
       }
-      function fdt(iso) {
-        const d = new Date(iso);
-        const h = d.getHours(),
-          m = d.getMinutes();
-        return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} ${h < 12 ? "오전" : "오후"} ${h % 12 || 12}:${String(m).padStart(2, "0")}`;
+      function increaseStreak() {
+        if (streak >= 52) {
+          showToast("🎉 1년 완주!");
+          return;
+        }
+        streak++;
+        cont++;
+        updateGrapeUI();
+        showToast("✅ 이번 주 완료! " + Math.round((streak / 52) * 100) + "%");
+      }
+      function resetStreak() {
+        if (!confirm("포도나무를 처음으로 되돌릴까요?")) return;
+        streak = 0;
+        cont = 0;
+        updateGrapeUI();
+        showToast("↺ 처음으로 되돌렸어요");
+      }
+      $("streakBtn").onclick = increaseStreak;
+      $("streakBtn2").onclick = increaseStreak;
+      $("resetBtn").onclick = resetStreak;
+
+      // ── 공지 ──
+      $("postNoticeBtn").onclick = () => {
+        if (!isAdmin) return;
+        const t = $("noticeTitle").value.trim();
+        const b = $("noticeBody").value.trim();
+        if (!t || !b) {
+          showToast("제목과 내용을 입력하세요");
+          return;
+        }
+        db.ref("notices").push({
+          title: t,
+          body: b,
+          date: new Date().toISOString(),
+        });
+        $("noticeTitle").value = "";
+        $("noticeBody").value = "";
+        showToast("✅ 공지 등록!");
+      };
+      let _nd = {};
+      db.ref("notices").on("value", (snap) => {
+        _nd = snap.val() || {};
+        const items = Object.entries(_nd).reverse();
+        const tags = [
+          ["#eff6ff", "#1a56db", "공지"],
+          ["#f0fdf4", "#15803d", "소식"],
+          ["#fefce8", "#ca8a04", "안내"],
+        ];
+        const row = (id, n, i) => {
+          const [bg, cl, lb] = tags[i % 3];
+          return `<div class="notice-row" onclick="openNotice('${id}')"><span class="n-tag" style="background:${bg};color:${cl}">${lb}</span><span class="n-title">${n.title}</span><span class="n-date">${fd(n.date)}</span></div>`;
+        };
+        $("homeNotice").innerHTML = items.length
+          ? items
+              .slice(0, 3)
+              .map(([id, n], i) => row(id, n, i))
+              .join("")
+          : '<div class="empty2">공지가 없어요</div>';
+        $("noticeList").innerHTML = items.length
+          ? items.map(([id, n], i) => row(id, n, i)).join("")
+          : '<div class="empty2">공지가 없어요</div>';
+        $("adminNoticeList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, n]) =>
+                  `<div class="adm-item"><span>${n.title}</span><button class="btn-del" onclick="db.ref('notices/${id}').remove()">삭제</button></div>`,
+              )
+              .join("")
+          : "";
+      });
+      function openNotice(id) {
+        const n = _nd[id];
+        $("noticeListView").style.display = "none";
+        $("noticeDetail").style.display = "block";
+        $("detailTitle").textContent = n.title;
+        $("detailDate").textContent = fdt(n.date);
+        $("detailBody").textContent = n.body;
+      }
+      function closeDetail() {
+        $("noticeListView").style.display = "block";
+        $("noticeDetail").style.display = "none";
       }
 
+      // ── 상세 오버레이 ──
+      const itemCache = {};
+      function openDetail(cacheKey) {
+        const item = itemCache[cacheKey];
+        if (!item) return;
+        const type = cacheKey.split("_")[0];
+        const dbPath =
+          type === "book"
+            ? "books"
+            : type === "bulletin"
+              ? "bulletins"
+              : "julife";
+        db.ref(dbPath + "/" + item._id).transaction((cur) => ({
+          ...cur,
+          views: ((cur && cur.views) || 0) + 1,
+        }));
+        $("dpHeaderTitle").textContent = item.title || "";
+        $("dpTitle").textContent = item.title || "";
+        $("dpMeta").innerHTML =
+          "<span>" +
+          (item.author ? item.author + " · " : "") +
+          fdt(item.date) +
+          '</span><span class="views-badge">👁 ' +
+          ((item.views || 0) + 1) +
+          "회</span>";
+        $("dpDescText").textContent = item.desc || "";
+        const imgCenter = $("dpImgCenter");
+        const pdfBtn = $("dpPdfBtn");
+        const buyBtn = $("dpBuyBtn");
+        const delBtn = $("dpDelBtn");
+        if (type === "book") {
+          imgCenter.style.display = "flex";
+          $("dpBookImg").src = item.img || "";
+          $("dpBookImg").style.display = item.img ? "block" : "none";
+          pdfBtn.style.display = "none";
+          if (item.link) {
+            buyBtn.href = item.link;
+            buyBtn.style.display = "block";
+          } else {
+            buyBtn.style.display = "none";
+          }
+        } else {
+          imgCenter.style.display = "none";
+          buyBtn.style.display = "none";
+          if (item.pdfUrl) {
+            pdfBtn.href = item.pdfUrl;
+            pdfBtn.style.display = "flex";
+          } else {
+            pdfBtn.style.display = "none";
+          }
+        }
+        if (isAdmin) {
+          delBtn.style.display = "block";
+          delBtn.onclick = () => {
+            if (!confirm("삭제할까요?")) return;
+            db.ref(dbPath + "/" + item._id).remove();
+            closeDpOverlay();
+            showToast("✅ 삭제됐어요");
+          };
+        } else delBtn.style.display = "none";
+        $("dpOverlay").classList.add("open");
+        $("dpOverlay").scrollTop = 0;
+      }
+      function closeDpOverlay() {
+        $("dpOverlay").classList.remove("open");
+      }
+      document.addEventListener("click", (e) => {
+        const card = e.target.closest(".list-card,.doc-row");
+        if (card && card.dataset.key) openDetail(card.dataset.key);
+      });
+
+      // ── 신앙서적 카드 렌더 ──
+      function renderBookCard(id, item) {
+        const key = "book_" + id;
+        itemCache[key] = { ...item, _id: id };
+        const thumb = item.img
+          ? `<img class="list-card-thumb" src="${item.img}" alt=""/>`
+          : `<div class="list-card-thumb-ph">📚</div>`;
+        return `<div class="list-card" data-key="${key}">${thumb}<div class="list-card-body"><div class="list-card-title">${item.title}</div>${item.desc ? `<div class="list-card-desc">${item.desc}</div>` : ""}<div class="list-card-meta"><span>${fd(item.date)}</span><span class="views-badge">👁 ${item.views || 0}</span></div></div><div class="list-card-arrow">›</div></div>`;
+      }
+
+      // ── 주보/주생 행 렌더 ──
+      function renderDocRow(id, item, type, idx, total) {
+        const key = type + "_" + id;
+        itemCache[key] = { ...item, _id: id };
+        return `<div class="doc-row" data-key="${key}"><div class="doc-num">${total - idx}</div><div class="doc-body"><div class="doc-title">${item.title}</div><div class="doc-meta"><span class="doc-pdf-badge">📄 PDF</span><span>${fd(item.date)}</span><span class="views-badge">👁 ${item.views || 0}</span></div></div><div class="doc-arrow">›</div></div>`;
+      }
+
+      // ── Cloudinary PDF 업로드 ──
+      function uploadPdf(file, progressId, fillId, textId) {
+        return new Promise((resolve, reject) => {
+          const fd = new FormData();
+          fd.append("file", file);
+          fd.append("upload_preset", UPLOAD_PRESET);
+          fd.append("resource_type", "raw");
+          const pw = $(progressId),
+            pf = $(fillId),
+            pt = $(textId);
+          if (pw) pw.style.display = "block";
+          const xhr = new XMLHttpRequest();
+          xhr.open(
+            "POST",
+            "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/raw/upload",
+          );
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) {
+              const p = Math.round((e.loaded / e.total) * 100);
+              if (pf) pf.style.width = p + "%";
+              if (pt) pt.textContent = "업로드 중... " + p + "%";
+            }
+          };
+          xhr.onload = () => {
+            if (pw) pw.style.display = "none";
+            xhr.status === 200
+              ? resolve(JSON.parse(xhr.responseText).secure_url)
+              : reject(new Error("실패"));
+          };
+          xhr.onerror = () => {
+            if (pw) pw.style.display = "none";
+            reject(new Error("오류"));
+          };
+          xhr.send(fd);
+        });
+      }
+
+      // 이미지 Base64
       function fileToBase64(file) {
         return new Promise((res, rej) => {
           const reader = new FileReader();
@@ -3084,268 +3047,158 @@
           reader.readAsDataURL(file);
         });
       }
-      window.previewImage = (input, previewId, btnId) => {
-        const file = input.files[0];
+
+      // ── 주보 ──
+      $("bulletinPdfInput").onchange = () => {
+        const file = $("bulletinPdfInput").files[0];
         if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const p = document.getElementById(previewId);
-          p.src = e.target.result;
-          p.style.display = "block";
-          document.getElementById(btnId).style.display = "block";
-        };
-        reader.readAsDataURL(file);
+        $("bulletinPdfSelected").style.display = "flex";
+        $("bulletinPdfName").textContent = file.name;
+        $("bulletinUploadBtn").style.display = "block";
       };
-
-      // 포도나무
-      let streak = 0,
-        cont = 0;
-      const stages = ["🌱", "🌿", "🍃", "🌾", "🍇"];
-      function updateGrapeUI() {
-        const pct = Math.round((streak / 52) * 100);
-        const stage = stages[Math.min(Math.floor(pct / 20), 4)];
-        ["h-pct", "g-pct"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.textContent = pct + "%";
-        });
-        ["h-bar", "g-bar"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.style.width = pct + "%";
-        });
-        ["h-streak", "g-streak"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.textContent = `🔥 ${cont}주 연속`;
-        });
-        ["h-grape", "grapeEmoji"].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.textContent = stage;
-        });
-        const gd = document.getElementById("g-day");
-        if (gd) gd.textContent = `${streak}주 / 52주`;
-      }
-      window.increaseStreak = () => {
-        if (streak >= 52) {
-          showToast("🎉 1년 완주!");
-          return;
-        }
-        streak++;
-        cont++;
-        updateGrapeUI();
-        showToast("✅ 이번 주 완료! " + Math.round((streak / 52) * 100) + "%");
-      };
-      window.resetStreak = () => {
-        if (!confirm("포도나무를 처음으로 되돌릴까요?")) return;
-        streak = 0;
-        cont = 0;
-        updateGrapeUI();
-        showToast("↺ 처음으로 되돌렸어요");
-      };
-
-      // 공지
-      window.postNotice = () => {
+      $("bulletinUploadBtn").onclick = async () => {
         if (!isAdmin) return;
-        const t = document.getElementById("noticeTitle").value.trim();
-        const b = document.getElementById("noticeBody").value.trim();
-        if (!t || !b) {
-          showToast("제목과 내용을 입력하세요");
-          return;
-        }
-        push(ref(db, "notices"), {
-          title: t,
-          body: b,
-          date: new Date().toISOString(),
-        });
-        document.getElementById("noticeTitle").value = "";
-        document.getElementById("noticeBody").value = "";
-        showToast("✅ 공지 등록!");
-      };
-      window.deleteNotice = (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "notices/" + id));
-      };
-      let _nd = {};
-      onValue(ref(db, "notices"), (snap) => {
-        _nd = snap.val() || {};
-        const items = Object.entries(_nd).reverse();
-        const tags = [
-          ["#eff6ff", "#1a56db", "공지"],
-          ["#f0fdf4", "#15803d", "소식"],
-          ["#fefce8", "#ca8a04", "안내"],
-        ];
-        const row = (id, n, i) => {
-          const [bg, cl, lb] = tags[i % 3];
-          return `<div class="notice-row" onclick="openDetail('${id}')"><span class="n-tag" style="background:${bg};color:${cl}">${lb}</span><span class="n-title">${n.title}</span><span class="n-date">${fd(n.date)}</span></div>`;
-        };
-        document.getElementById("homeNotice").innerHTML = items.length
-          ? items
-              .slice(0, 3)
-              .map(([id, n], i) => row(id, n, i))
-              .join("")
-          : '<div class="empty2">공지가 없어요</div>';
-        document.getElementById("noticeList").innerHTML = items.length
-          ? items.map(([id, n], i) => row(id, n, i)).join("")
-          : '<div class="empty2">공지가 없어요</div>';
-        document.getElementById("adminNoticeList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, n]) =>
-                  `<div class="adm-item"><span>${n.title}</span><button class="btn-del" onclick="deleteNotice('${id}')">삭제</button></div>`,
-              )
-              .join("")
-          : "";
-      });
-      window.openDetail = (id) => {
-        const n = _nd[id];
-        document.getElementById("noticeListView").style.display = "none";
-        document.getElementById("noticeDetail").style.display = "block";
-        document.getElementById("detailTitle").textContent = n.title;
-        document.getElementById("detailDate").textContent = fdt(n.date);
-        document.getElementById("detailBody").textContent = n.body;
-      };
-      window.closeDetail = () => {
-        document.getElementById("noticeListView").style.display = "block";
-        document.getElementById("noticeDetail").style.display = "none";
-      };
-
-      // 주보 PDF
-      window.uploadBulletin = async () => {
-        if (!isAdmin) return;
-        const fi = document.getElementById("bulletinPdfInput");
-        const t = document.getElementById("bulletinTitle").value.trim();
+        const fi = $("bulletinPdfInput");
+        const t = $("bulletinTitle").value.trim();
         if (!fi.files[0]) {
-          showToast("PDF 파일을 선택하세요");
+          showToast("PDF를 선택하세요");
           return;
         }
         if (!t) {
           showToast("제목을 입력하세요");
           return;
         }
-        document.getElementById("bulletinUploadBtn").disabled = true;
+        $("bulletinUploadBtn").disabled = true;
         showToast("⏳ 업로드 중...");
         try {
-          const pdfUrl = await uploadPdfToCloudinary(
+          const pdfUrl = await uploadPdf(
             fi.files[0],
             "bulletinProgress",
             "bulletinProgressFill",
             "bulletinProgressText",
           );
-          await push(ref(db, "bulletins"), {
-            title: t,
-            pdfUrl,
-            date: new Date().toISOString(),
-            views: 0,
-          });
+          await db
+            .ref("bulletins")
+            .push({
+              title: t,
+              pdfUrl,
+              date: new Date().toISOString(),
+              views: 0,
+            });
           fi.value = "";
-          document.getElementById("bulletinPdfSelected").style.display = "none";
-          document.getElementById("bulletinUploadBtn").style.display = "none";
-          document.getElementById("bulletinTitle").value = "";
-          document.getElementById("bulletinUploadBtn").disabled = false;
+          $("bulletinPdfSelected").style.display = "none";
+          $("bulletinUploadBtn").style.display = "none";
+          $("bulletinTitle").value = "";
+          $("bulletinUploadBtn").disabled = false;
           showToast("✅ 주보 등록 완료!");
         } catch (e) {
-          document.getElementById("bulletinUploadBtn").disabled = false;
-          showToast("❌ 업로드 실패: " + e.message);
+          $("bulletinUploadBtn").disabled = false;
+          showToast("❌ 실패: " + e.message);
         }
       };
-      window.deleteBulletin = (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "bulletins/" + id));
-      };
-      onValue(ref(db, "bulletins"), (snap) => {
+      db.ref("bulletins").on("value", (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        const el = document.getElementById("bulletinList");
-        if (el)
-          el.innerHTML = items.length
-            ? items
-                .map(([id, b], i) =>
-                  renderDocRow(id, b, "bulletin", i, items.length),
-                )
-                .join("")
-            : '<div class="empty2">등록된 주보가 없어요</div>';
-        const aEl = document.getElementById("adminBulletinList");
-        if (aEl)
-          aEl.innerHTML = items.length
-            ? items
-                .map(
-                  ([id, b]) =>
-                    `<div class="adm-item"><span>📄 ${b.title}</span><button class="btn-del" onclick="deleteBulletin('${id}')">삭제</button></div>`,
-                )
-                .join("")
-            : "";
+        $("bulletinList").innerHTML = items.length
+          ? items.map(([id, b], i) =>
+              renderDocRow(id, b, "bulletin", i, items.length),
+            )
+          : '<div class="empty2">등록된 주보가 없어요</div>';
+        $("adminBulletinList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, b]) =>
+                  `<div class="adm-item"><span>📄 ${b.title}</span><button class="btn-del" onclick="db.ref('bulletins/${id}').remove()">삭제</button></div>`,
+              )
+              .join("")
+          : "";
       });
 
-      // 주생 PDF
-      window.uploadJulife = async () => {
+      // ── 주생 ──
+      $("julifePdfInput").onchange = () => {
+        const file = $("julifePdfInput").files[0];
+        if (!file) return;
+        $("julifePdfSelected").style.display = "flex";
+        $("julifePdfName").textContent = file.name;
+        $("julifeUploadBtn").style.display = "block";
+      };
+      $("julifeUploadBtn").onclick = async () => {
         if (!isAdmin) return;
-        const fi = document.getElementById("julifePdfInput");
-        const t = document.getElementById("julifeTitle").value.trim();
+        const fi = $("julifePdfInput");
+        const t = $("julifeTitle").value.trim();
         if (!fi.files[0]) {
-          showToast("PDF 파일을 선택하세요");
+          showToast("PDF를 선택하세요");
           return;
         }
         if (!t) {
           showToast("제목을 입력하세요");
           return;
         }
-        document.getElementById("julifeUploadBtn").disabled = true;
+        $("julifeUploadBtn").disabled = true;
         showToast("⏳ 업로드 중...");
         try {
-          const pdfUrl = await uploadPdfToCloudinary(
+          const pdfUrl = await uploadPdf(
             fi.files[0],
             "julifeProgress",
             "julifeProgressFill",
             "julifeProgressText",
           );
-          await push(ref(db, "julife"), {
-            title: t,
-            pdfUrl,
-            date: new Date().toISOString(),
-            author: currentUser?.name || "",
-            views: 0,
-          });
+          await db
+            .ref("julife")
+            .push({
+              title: t,
+              pdfUrl,
+              date: new Date().toISOString(),
+              author: currentUser ? currentUser.name : "",
+              views: 0,
+            });
           fi.value = "";
-          document.getElementById("julifePdfSelected").style.display = "none";
-          document.getElementById("julifeUploadBtn").style.display = "none";
-          document.getElementById("julifeTitle").value = "";
-          document.getElementById("julifeUploadBtn").disabled = false;
+          $("julifePdfSelected").style.display = "none";
+          $("julifeUploadBtn").style.display = "none";
+          $("julifeTitle").value = "";
+          $("julifeUploadBtn").disabled = false;
           showToast("✅ 주생 등록 완료!");
         } catch (e) {
-          document.getElementById("julifeUploadBtn").disabled = false;
-          showToast("❌ 업로드 실패: " + e.message);
+          $("julifeUploadBtn").disabled = false;
+          showToast("❌ 실패: " + e.message);
         }
       };
-      window.deleteJulife = (id) => remove(ref(db, "julife/" + id));
-      onValue(ref(db, "julife"), (snap) => {
+      db.ref("julife").on("value", (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        const el = document.getElementById("julifeList");
-        if (el)
-          el.innerHTML = items.length
-            ? items
-                .map(([id, s], i) =>
-                  renderDocRow(id, s, "julife", i, items.length),
-                )
-                .join("")
-            : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
-        const aEl = document.getElementById("adminJulifeList");
-        if (aEl)
-          aEl.innerHTML = items.length
-            ? items
-                .map(
-                  ([id, s]) =>
-                    `<div class="adm-item"><span>📄 ${s.title}</span><button class="btn-del" onclick="deleteJulife('${id}')">삭제</button></div>`,
-                )
-                .join("")
-            : '<div class="empty2">없음</div>';
+        $("julifeList").innerHTML = items.length
+          ? items.map(([id, s], i) =>
+              renderDocRow(id, s, "julife", i, items.length),
+            )
+          : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
+        $("adminJulifeList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, s]) =>
+                  `<div class="adm-item"><span>📄 ${s.title}</span><button class="btn-del" onclick="db.ref('julife/${id}').remove()">삭제</button></div>`,
+              )
+              .join("")
+          : '<div class="empty2">없음</div>';
       });
 
-      // 신앙서적
-      window.uploadBook = async () => {
+      // ── 신앙서적 ──
+      $("bookFileInput").onchange = () => {
+        const file = $("bookFileInput").files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          $("bookImgPreview").src = e.target.result;
+          $("bookImgPreview").style.display = "block";
+          $("bookUploadBtn").style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      };
+      $("bookUploadBtn").onclick = async () => {
         if (!isAdmin) return;
-        const fi = document.getElementById("bookFileInput");
-        const t = document.getElementById("bookTitle").value.trim();
-        const link = document.getElementById("bookLink").value.trim();
-        const desc = document.getElementById("bookDesc").value.trim();
+        const fi = $("bookFileInput");
+        const t = $("bookTitle").value.trim();
+        const link = $("bookLink").value.trim();
+        const desc = $("bookDesc").value.trim();
         if (!fi.files[0]) {
           showToast("이미지를 선택하세요");
           return;
@@ -3357,272 +3210,240 @@
         showToast("⏳ 업로드 중...");
         try {
           const b64 = await fileToBase64(fi.files[0]);
-          await push(ref(db, "books"), {
-            title: t,
-            link,
-            desc,
-            img: b64,
-            date: new Date().toISOString(),
-            views: 0,
-          });
+          await db
+            .ref("books")
+            .push({
+              title: t,
+              link,
+              desc,
+              img: b64,
+              date: new Date().toISOString(),
+              views: 0,
+            });
           fi.value = "";
-          document.getElementById("bookImgPreview").style.display = "none";
-          document.getElementById("bookUploadBtn").style.display = "none";
-          document.getElementById("bookTitle").value = "";
-          document.getElementById("bookLink").value = "";
-          document.getElementById("bookDesc").value = "";
+          $("bookImgPreview").style.display = "none";
+          $("bookUploadBtn").style.display = "none";
+          $("bookTitle").value = "";
+          $("bookLink").value = "";
+          $("bookDesc").value = "";
           showToast("✅ 서적 등록!");
         } catch {
           showToast("❌ 업로드 실패");
         }
       };
-      window.deleteBook = (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "books/" + id));
-      };
-      onValue(ref(db, "books"), (snap) => {
+      db.ref("books").on("value", (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        const el = document.getElementById("bookList");
-        if (el)
-          el.innerHTML = items.length
-            ? items.map(([id, b]) => renderBookCard(id, b)).join("")
-            : '<div class="empty2">등록된 서적이 없어요</div>';
-        const aEl = document.getElementById("adminBookList");
-        if (aEl)
-          aEl.innerHTML = items.length
-            ? items
-                .map(
-                  ([id, b]) =>
-                    `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="deleteBook('${id}')">삭제</button></div>`,
-                )
-                .join("")
-            : "";
+        $("bookList").innerHTML = items.length
+          ? items.map(([id, b]) => renderBookCard(id, b)).join("")
+          : '<div class="empty2">등록된 서적이 없어요</div>';
+        $("adminBookList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, b]) =>
+                  `<div class="adm-item"><span>${b.title}</span><button class="btn-del" onclick="db.ref('books/${id}').remove()">삭제</button></div>`,
+              )
+              .join("")
+          : "";
       });
 
-      // 설교
-      window.postSermon = () => {
+      // ── 설교 ──
+      $("postSermonBtn").onclick = () => {
         if (!isAdmin) return;
-        const t = document.getElementById("sermonTitle").value.trim();
-        const s = document.getElementById("sermonSub").value.trim();
-        const u = document.getElementById("sermonUrl").value.trim();
+        const t = $("sermonTitle").value.trim();
+        const s = $("sermonSub").value.trim();
+        const u = $("sermonUrl").value.trim();
         if (!t) {
           showToast("제목을 입력하세요");
           return;
         }
-        push(ref(db, "sermons"), {
+        db.ref("sermons").push({
           title: t,
           sub: s,
           url: u,
           date: new Date().toISOString(),
         });
-        document.getElementById("sermonTitle").value = "";
-        document.getElementById("sermonSub").value = "";
-        document.getElementById("sermonUrl").value = "";
+        $("sermonTitle").value = "";
+        $("sermonSub").value = "";
+        $("sermonUrl").value = "";
         showToast("✅ 영상 등록!");
-      };
-      window.deleteSermon = (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "sermons/" + id));
       };
       function getVid(u) {
         const m = (u || "").match(/(?:v=|youtu\.be\/)([^&\s]+)/);
         return m ? m[1] : null;
       }
-      onValue(ref(db, "sermons"), (snap) => {
+      db.ref("sermons").on("value", (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse().slice(0, 6);
-        const el = document.getElementById("sermonList");
-        el.innerHTML = items.length
+        $("sermonList").innerHTML = items.length
           ? items
               .map(([id, s]) => {
                 const vid = getVid(s.url);
                 const thumb = vid
                   ? `<img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/><div class="grid2-play">▶</div>`
                   : '<div class="grid2-thumb-ph">🎬</div>';
-                return `<${s.url ? `a href="${s.url}" target="_blank" rel="noopener"` : "div"} class="grid2-card">
-      <div class="grid2-thumb" style="padding-top:56%">${thumb}</div>
-      <div class="grid2-info"><div class="grid2-title">${s.title}</div><div class="grid2-sub">${s.sub || ""}</div>${s.url ? '<div class="yt-badge">▶ YouTube</div>' : ""}</div>
-    </${s.url ? "a" : "div"}>`;
+                return `<${s.url ? `a href="${s.url}" target="_blank" rel="noopener"` : "div"} class="grid2-card"><div class="grid2-thumb" style="padding-top:56%">${thumb}</div><div class="grid2-info"><div class="grid2-title">${s.title}</div><div class="grid2-sub">${s.sub || ""}</div>${s.url ? '<div class="yt-badge">▶ YouTube</div>' : ""}</div></${s.url ? "a" : "div"}>`;
               })
               .join("")
           : '<div class="empty2" style="grid-column:1/-1">등록된 영상이 없어요</div>';
-        document.getElementById("adminSermonList").innerHTML =
+        $("adminSermonList").innerHTML =
           Object.entries(snap.val() || {})
             .reverse()
             .map(
               ([id, s]) =>
-                `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="deleteSermon('${id}')">삭제</button></div>`,
+                `<div class="adm-item"><span>${s.title}</span><button class="btn-del" onclick="db.ref('sermons/${id}').remove()">삭제</button></div>`,
             )
             .join("") || "";
       });
 
-      // 기도
-      window.addPrayer = () => {
-        const inp = document.getElementById("prayerInput");
+      // ── 기도 ──
+      $("addPrayerBtn").onclick = addPrayer;
+      $("prayerInput").onkeydown = (e) => {
+        if (e.key === "Enter") addPrayer();
+      };
+      function addPrayer() {
+        const inp = $("prayerInput");
         if (!inp.value.trim()) {
-          alert("기도 제목을 입력하세요!");
+          showToast("기도 제목을 입력하세요");
           return;
         }
-        push(ref(db, "prayers"), {
+        db.ref("prayers").push({
           text: inp.value.trim(),
           date: new Date().toISOString(),
           answered: false,
-          author: currentUser?.name || "",
+          author: currentUser ? currentUser.name : "",
         });
         inp.value = "";
         showToast("🙏 기도 제목 추가!");
-      };
-      document
-        .getElementById("prayerInput")
-        .addEventListener("keydown", (e) => {
-          if (e.key === "Enter") window.addPrayer();
-        });
-      window.deletePrayer = (id) => remove(ref(db, "prayers/" + id));
-      window.answerPrayer = (id) =>
-        update(ref(db, "prayers/" + id), { answered: true });
-      onValue(ref(db, "prayers"), (snap) => {
+      }
+      db.ref("prayers").on("value", (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        document.getElementById("prayerList").innerHTML = items.length
+        $("prayerList").innerHTML = items.length
           ? items
               .map(
-                ([id, p]) => `
-    <div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 16px 9px">
-      <div class="item-text">${p.answered ? "✅ " : ""} ${p.text}</div>
-      <div class="item-meta"><span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span>
-        <div class="item-acts">${!p.answered ? `<button class="tag-ans" onclick="answerPrayer('${id}')">응답됨</button>` : '<span style="color:#15803d;font-size:12px;font-weight:700">🙌 응답</span>'}<button class="tag-del" onclick="deletePrayer('${id}')">삭제</button></div>
-      </div></div>`,
+                ([id, p]) =>
+                  `<div class="list-item ${p.answered ? "answered" : ""}" style="margin:0 16px 9px"><div class="item-text">${p.answered ? "✅ " : ""}${p.text}</div><div class="item-meta"><span>${p.author ? p.author + " · " : ""}${fdt(p.date)}</span><div class="item-acts">${!p.answered ? `<button class="tag-ans" onclick="db.ref('prayers/${id}').update({answered:true})">응답됨</button>` : '<span style="color:#15803d;font-size:12px;font-weight:700">🙌 응답</span>'}<button class="tag-del" onclick="db.ref('prayers/${id}').remove()">삭제</button></div></div></div>`,
               )
               .join("")
           : '<div class="empty2">기도 제목을 추가해보세요</div>';
       });
 
-      // 말씀 나눔
-      window.addSharing = () => {
-        const inp = document.getElementById("sharingInput");
+      // ── 말씀나눔 ──
+      $("addSharingBtn").onclick = addSharing;
+      function addSharing() {
+        const inp = $("sharingInput");
         if (!inp.value.trim()) {
-          alert("내용을 입력하세요!");
+          showToast("내용을 입력하세요");
           return;
         }
-        push(ref(db, "sharings"), {
+        db.ref("sharings").push({
           text: inp.value.trim(),
           date: new Date().toISOString(),
-          author: currentUser?.name || "",
+          author: currentUser ? currentUser.name : "",
         });
         inp.value = "";
         showToast("✏️ 말씀 나눔 등록!");
-      };
-      window.deleteSharing = (id) => remove(ref(db, "sharings/" + id));
-      onValue(ref(db, "sharings"), (snap) => {
+      }
+      db.ref("sharings").on("value", (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        document.getElementById("sharingList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, s]) => `
-    <div class="list-item"><div class="item-text">${s.text}</div>
-    <div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="deleteSharing('${id}')">삭제</button></div></div>`,
-              )
-              .join("")
-          : '<div class="empty2">첫 번째로 말씀을 나눠보세요 ✨</div>';
-        document.getElementById("adminSharingList").innerHTML = items.length
+        $("sharingList").innerHTML = items.length
           ? items
               .map(
                 ([id, s]) =>
-                  `<div class="adm-item"><span>${s.text.slice(0, 20)}</span><button class="btn-del" onclick="deleteSharing('${id}')">삭제</button></div>`,
+                  `<div class="list-item"><div class="item-text">${s.text}</div><div class="item-meta"><span>${s.author ? s.author + " · " : ""}${fdt(s.date)}</span><button class="tag-del" onclick="db.ref('sharings/${id}').remove()">삭제</button></div></div>`,
+              )
+              .join("")
+          : '<div class="empty2">첫 번째로 말씀을 나눠보세요 ✨</div>';
+        $("adminSharingList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, s]) =>
+                  `<div class="adm-item"><span>${s.text.slice(0, 20)}</span><button class="btn-del" onclick="db.ref('sharings/${id}').remove()">삭제</button></div>`,
               )
               .join("")
           : '<div class="empty2">없음</div>';
       });
 
-      // 찬양 신청
-      window.addPraise = () => {
-        const inp = document.getElementById("praiseInput");
+      // ── 찬양신청 ──
+      $("addPraiseBtn").onclick = addPraise;
+      $("praiseInput").onkeydown = (e) => {
+        if (e.key === "Enter") addPraise();
+      };
+      function addPraise() {
+        const inp = $("praiseInput");
         if (!inp.value.trim()) {
-          alert("찬양 제목을 입력하세요!");
+          showToast("찬양 제목을 입력하세요");
           return;
         }
-        push(ref(db, "praises"), {
+        db.ref("praises").push({
           title: inp.value.trim(),
           date: new Date().toISOString(),
           likes: 0,
-          author: currentUser?.name || "",
+          author: currentUser ? currentUser.name : "",
         });
         inp.value = "";
         showToast("🎵 찬양 신청!");
-      };
-      window.deletePraise = (id) => remove(ref(db, "praises/" + id));
-      window.likePraise = (id, cur) =>
-        update(ref(db, "praises/" + id), { likes: cur + 1 });
-      onValue(ref(db, "praises"), (snap) => {
+      }
+      db.ref("praises").on("value", (snap) => {
         const data = snap.val() || {};
         const items = Object.entries(data).reverse();
-        document.getElementById("praiseList").innerHTML = items.length
-          ? items
-              .map(
-                ([id, p]) => `
-    <div class="list-item" style="display:flex;justify-content:space-between;align-items:center;">
-      <div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div>
-      <div style="display:flex;gap:6px"><button class="tag-like" onclick="likePraise('${id}',${p.likes || 0})">❤️ ${p.likes || 0}</button><button class="tag-del" onclick="deletePraise('${id}')">삭제</button></div>
-    </div>`,
-              )
-              .join("")
-          : '<div class="empty2">신청된 찬양이 없어요</div>';
-        document.getElementById("adminPraiseList").innerHTML = items.length
+        $("praiseList").innerHTML = items.length
           ? items
               .map(
                 ([id, p]) =>
-                  `<div class="adm-item"><span>${p.title}</span><button class="btn-del" onclick="deletePraise('${id}')">삭제</button></div>`,
+                  `<div class="list-item" style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:700">${p.title}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${p.author ? p.author + " · " : ""}${fd(p.date)}</div></div><div style="display:flex;gap:6px"><button class="tag-like" onclick="db.ref('praises/${id}').update({likes:${(p.likes || 0) + 1}})">❤️ ${p.likes || 0}</button><button class="tag-del" onclick="db.ref('praises/${id}').remove()">삭제</button></div></div>`,
+              )
+              .join("")
+          : '<div class="empty2">신청된 찬양이 없어요</div>';
+        $("adminPraiseList").innerHTML = items.length
+          ? items
+              .map(
+                ([id, p]) =>
+                  `<div class="adm-item"><span>${p.title}</span><button class="btn-del" onclick="db.ref('praises/${id}').remove()">삭제</button></div>`,
               )
               .join("")
           : '<div class="empty2">없음</div>';
       });
 
-      // 일정
-      window.postSchedule = () => {
+      // ── 일정 ──
+      $("postScheduleBtn").onclick = () => {
         if (!isAdmin) return;
-        const d = document.getElementById("scheduleDate").value;
-        const n = document.getElementById("scheduleName").value.trim();
+        const d = $("scheduleDate").value;
+        const n = $("scheduleName").value.trim();
         if (!d || !n) {
           showToast("날짜와 이름을 입력하세요");
           return;
         }
-        push(ref(db, "schedules"), { date: d, name: n });
-        document.getElementById("scheduleDate").value = "";
-        document.getElementById("scheduleName").value = "";
+        db.ref("schedules").push({ date: d, name: n });
+        $("scheduleDate").value = "";
+        $("scheduleName").value = "";
         showToast("✅ 일정 등록!");
       };
-      window.deleteSchedule = (id) => {
-        if (!isAdmin) return;
-        if (confirm("삭제?")) remove(ref(db, "schedules/" + id));
-      };
-      window._sd = {};
-      onValue(ref(db, "schedules"), (snap) => {
-        window._sd = snap.val() || {};
+      let _sd = {};
+      db.ref("schedules").on("value", (snap) => {
+        _sd = snap.val() || {};
         renderCal();
-        document.getElementById("adminScheduleList").innerHTML = Object.entries(
-          window._sd,
-        ).length
-          ? Object.entries(window._sd)
+        $("adminScheduleList").innerHTML = Object.entries(_sd).length
+          ? Object.entries(_sd)
               .map(
                 ([id, s]) =>
-                  `<div class="adm-item"><span>${s.date} · ${s.name}</span><button class="btn-del" onclick="deleteSchedule('${id}')">삭제</button></div>`,
+                  `<div class="adm-item"><span>${s.date} · ${s.name}</span><button class="btn-del" onclick="db.ref('schedules/${id}').remove()">삭제</button></div>`,
               )
               .join("")
           : '<div class="empty2">없음</div>';
       });
 
-      // 달력
+      // ── 달력 ──
       let calY = now.getFullYear(),
         calM = now.getMonth();
       function renderCal() {
         const fd2 = new Date(calY, calM, 1).getDay(),
           dim = new Date(calY, calM + 1, 0).getDate();
-        document.getElementById("calTitle").textContent =
-          `${calY}년 ${mnArr[calM]}`;
+        $("calTitle").textContent = calY + "년 " + mnArr[calM];
         const evD = new Set();
-        Object.values(window._sd).forEach((s) => {
+        Object.values(_sd).forEach((s) => {
           const d = new Date(s.date);
           if (d.getFullYear() === calY && d.getMonth() === calM)
             evD.add(d.getDate());
@@ -3638,14 +3459,14 @@
             calY === now.getFullYear()
               ? "today"
               : "";
-          const e = evD.has(d) ? "has-ev" : "";
-          h += `<div class="cal-d ${t} ${e}" onclick="showEv(${d})">${d}</div>`;
+          const ev = evD.has(d) ? "has-ev" : "";
+          h += `<div class="cal-d ${t} ${ev}" onclick="showEv(${d})">${d}</div>`;
         }
-        document.getElementById("calGrid").innerHTML = h;
+        $("calGrid").innerHTML = h;
         showEv(now.getDate());
       }
-      window.showEv = (d) => {
-        const items = Object.values(window._sd).filter((s) => {
+      function showEv(d) {
+        const items = Object.values(_sd).filter((s) => {
           const dt = new Date(s.date);
           return (
             dt.getFullYear() === calY &&
@@ -3653,7 +3474,7 @@
             dt.getDate() === d
           );
         });
-        document.getElementById("evList").innerHTML = items.length
+        $("evList").innerHTML = items.length
           ? items
               .map(
                 (s) =>
@@ -3661,8 +3482,8 @@
               )
               .join("")
           : `<div class="ev-empty">${calM + 1}월 ${d}일 · 일정 없음</div>`;
-      };
-      window.changeMonth = (dir) => {
+      }
+      function changeMonth(dir) {
         calM += dir;
         if (calM > 11) {
           calM = 0;
@@ -3673,77 +3494,26 @@
           calY--;
         }
         renderCal();
-      };
-      window._sd = {};
+      }
       renderCal();
 
-      // 관리자
-      window.adminLogin = () => {
-        const pw = document.getElementById("adminPw").value;
+      // ── 관리자 ──
+      $("adminLoginBtn").onclick = () => {
+        const pw = $("adminPw").value;
         if (ADMINS.includes(pw)) {
           isAdmin = true;
-          document.getElementById("adminLoginCard").style.display = "none";
-          document.getElementById("adminPanel").style.display = "block";
+          $("adminLoginCard").style.display = "none";
+          $("adminPanel").style.display = "block";
           showToast("✅ 관리자 로그인!");
         } else showToast("❌ 비밀번호 오류");
       };
-      window.adminLogout = () => {
+      $("adminLogoutBtn").onclick = () => {
         isAdmin = false;
-        document.getElementById("adminLoginCard").style.display = "block";
-        document.getElementById("adminPanel").style.display = "none";
-        document.getElementById("adminPw").value = "";
+        $("adminLoginCard").style.display = "block";
+        $("adminPanel").style.display = "none";
+        $("adminPw").value = "";
         showToast("로그아웃");
       };
-
-      window.showToast = (msg) => {
-        const t = document.getElementById("toast");
-        t.textContent = msg;
-        t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 2500);
-      };
-
-      // ── onclick에서 쓰는 함수들 전역 노출 ──
-      window.showLogin = window.showLogin;
-      window.showSignup = window.showSignup;
-      window.doSignup = window.doSignup;
-      window.doLogin = window.doLogin;
-      window.doLogout = window.doLogout;
-      window.goPage = window.goPage;
-      window.showSub = window.showSub;
-      window.hideSub = window.hideSub;
-      window.changeMonth = window.changeMonth;
-      window.showEv = window.showEv;
-      window.increaseStreak = window.increaseStreak;
-      window.resetStreak = window.resetStreak;
-      window.postNotice = window.postNotice;
-      window.deleteNotice = window.deleteNotice;
-      window.openDetail = window.openDetail;
-      window.closeDetail = window.closeDetail;
-      window.uploadBulletin = window.uploadBulletin;
-      window.deleteBulletin = window.deleteBulletin;
-      window.uploadJulife = window.uploadJulife;
-      window.deleteJulife = window.deleteJulife;
-      window.uploadBook = window.uploadBook;
-      window.deleteBook = window.deleteBook;
-      window.postSermon = window.postSermon;
-      window.deleteSermon = window.deleteSermon;
-      window.addPrayer = window.addPrayer;
-      window.deletePrayer = window.deletePrayer;
-      window.answerPrayer = window.answerPrayer;
-      window.addSharing = window.addSharing;
-      window.deleteSharing = window.deleteSharing;
-      window.addPraise = window.addPraise;
-      window.deletePraise = window.deletePraise;
-      window.likePraise = window.likePraise;
-      window.postSchedule = window.postSchedule;
-      window.deleteSchedule = window.deleteSchedule;
-      window.approveUser = window.approveUser;
-      window.rejectUser = window.rejectUser;
-      window.deleteUser = window.deleteUser;
-      window.adminLogin = window.adminLogin;
-      window.adminLogout = window.adminLogout;
-      window.onPdfSelected = window.onPdfSelected;
-      window.previewImage = window.previewImage;
     </script>
   </body>
 </html>
