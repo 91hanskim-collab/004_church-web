@@ -2571,6 +2571,7 @@
         onValue,
         remove,
         update,
+        get,
       } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
       const fc = {
@@ -2894,42 +2895,37 @@
           startApp();
           return;
         }
-        // Firebase에서 직접 최신 데이터 가져와서 로그인 확인
         err.textContent = "확인 중...";
-        import("https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js").then(
-          ({ get, ref: dbRef }) => {
-            get(dbRef(db, "users"))
-              .then((snap) => {
-                const users = snap.val() || {};
-                const found = Object.values(users).find(
+        get(ref(db, "users"))
+          .then((snap) => {
+            const users = snap.val() || {};
+            const found = Object.values(users).find(
+              (u) => u.name === name && u.pw === pw,
+            );
+            if (found) {
+              usersDB = users;
+              currentUser = { name, role: "user" };
+              if (auto) saveAL({ name, pw });
+              startApp();
+              return;
+            }
+            get(ref(db, "pending")).then((psnap) => {
+              const pending = psnap.val() || {};
+              pendingDB = pending;
+              if (
+                Object.values(pending).find(
                   (u) => u.name === name && u.pw === pw,
-                );
-                if (found) {
-                  usersDB = users;
-                  currentUser = { name, role: "user" };
-                  if (auto) saveAL({ name, pw });
-                  startApp();
-                  return;
-                }
-                get(dbRef(db, "pending")).then((psnap) => {
-                  const pending = psnap.val() || {};
-                  pendingDB = pending;
-                  if (
-                    Object.values(pending).find(
-                      (u) => u.name === name && u.pw === pw,
-                    )
-                  ) {
-                    err.textContent = "⏳ 아직 승인 대기 중이에요";
-                  } else {
-                    err.textContent = "이름 또는 비밀번호가 맞지 않아요";
-                  }
-                });
-              })
-              .catch(() => {
-                err.textContent = "네트워크 오류. 다시 시도해주세요.";
-              });
-          },
-        );
+                )
+              ) {
+                err.textContent = "⏳ 아직 승인 대기 중이에요";
+              } else {
+                err.textContent = "이름 또는 비밀번호가 맞지 않아요";
+              }
+            });
+          })
+          .catch(() => {
+            err.textContent = "네트워크 오류. 다시 시도해주세요.";
+          });
       };
       document
         .getElementById("loginBtn")
@@ -3705,6 +3701,49 @@
         t.classList.add("show");
         setTimeout(() => t.classList.remove("show"), 2500);
       };
+
+      // ── onclick에서 쓰는 함수들 전역 노출 ──
+      window.showLogin = window.showLogin;
+      window.showSignup = window.showSignup;
+      window.doSignup = window.doSignup;
+      window.doLogin = window.doLogin;
+      window.doLogout = window.doLogout;
+      window.goPage = window.goPage;
+      window.showSub = window.showSub;
+      window.hideSub = window.hideSub;
+      window.changeMonth = window.changeMonth;
+      window.showEv = window.showEv;
+      window.increaseStreak = window.increaseStreak;
+      window.resetStreak = window.resetStreak;
+      window.postNotice = window.postNotice;
+      window.deleteNotice = window.deleteNotice;
+      window.openDetail = window.openDetail;
+      window.closeDetail = window.closeDetail;
+      window.uploadBulletin = window.uploadBulletin;
+      window.deleteBulletin = window.deleteBulletin;
+      window.uploadJulife = window.uploadJulife;
+      window.deleteJulife = window.deleteJulife;
+      window.uploadBook = window.uploadBook;
+      window.deleteBook = window.deleteBook;
+      window.postSermon = window.postSermon;
+      window.deleteSermon = window.deleteSermon;
+      window.addPrayer = window.addPrayer;
+      window.deletePrayer = window.deletePrayer;
+      window.answerPrayer = window.answerPrayer;
+      window.addSharing = window.addSharing;
+      window.deleteSharing = window.deleteSharing;
+      window.addPraise = window.addPraise;
+      window.deletePraise = window.deletePraise;
+      window.likePraise = window.likePraise;
+      window.postSchedule = window.postSchedule;
+      window.deleteSchedule = window.deleteSchedule;
+      window.approveUser = window.approveUser;
+      window.rejectUser = window.rejectUser;
+      window.deleteUser = window.deleteUser;
+      window.adminLogin = window.adminLogin;
+      window.adminLogout = window.adminLogout;
+      window.onPdfSelected = window.onPdfSelected;
+      window.previewImage = window.previewImage;
     </script>
   </body>
 </html>
