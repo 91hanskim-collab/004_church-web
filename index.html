@@ -2703,7 +2703,12 @@
           bookImgWrap.style.display = "none";
           buyBtn.style.display = "none";
           if (item.pdfUrl) {
-            pdfBtn.href = item.pdfUrl;
+            const dlUrl = item.pdfUrl.replace(
+              "/raw/upload/",
+              "/raw/upload/fl_attachment/",
+            );
+            pdfBtn.href = dlUrl;
+            pdfBtn.setAttribute("download", item.title + ".pdf");
             pdfBtn.style.display = "flex";
           } else pdfBtn.style.display = "none";
         }
@@ -2893,22 +2898,42 @@
           startApp();
           return;
         }
-        const found = Object.values(usersDB).find(
-          (u) => u.name === name && u.pw === pw,
+        // Firebase에서 직접 최신 데이터 가져와서 로그인 확인
+        err.textContent = "확인 중...";
+        import("https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js").then(
+          ({ get, ref: dbRef }) => {
+            get(dbRef(db, "users"))
+              .then((snap) => {
+                const users = snap.val() || {};
+                const found = Object.values(users).find(
+                  (u) => u.name === name && u.pw === pw,
+                );
+                if (found) {
+                  usersDB = users;
+                  currentUser = { name, role: "user" };
+                  if (auto) saveAL({ name, pw });
+                  startApp();
+                  return;
+                }
+                get(dbRef(db, "pending")).then((psnap) => {
+                  const pending = psnap.val() || {};
+                  pendingDB = pending;
+                  if (
+                    Object.values(pending).find(
+                      (u) => u.name === name && u.pw === pw,
+                    )
+                  ) {
+                    err.textContent = "⏳ 아직 승인 대기 중이에요";
+                  } else {
+                    err.textContent = "이름 또는 비밀번호가 맞지 않아요";
+                  }
+                });
+              })
+              .catch(() => {
+                err.textContent = "네트워크 오류. 다시 시도해주세요.";
+              });
+          },
         );
-        if (found) {
-          currentUser = { name, role: "user" };
-          if (auto) saveAL({ name, pw });
-          startApp();
-          return;
-        }
-        if (
-          Object.values(pendingDB).find((u) => u.name === name && u.pw === pw)
-        ) {
-          err.textContent = "⏳ 아직 승인 대기 중이에요";
-          return;
-        }
-        err.textContent = "이름 또는 비밀번호가 맞지 않아요";
       };
       document.getElementById("loginPw").addEventListener("keydown", (e) => {
         if (e.key === "Enter") window.doLogin();
