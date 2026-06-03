@@ -2168,6 +2168,47 @@
                 id="noticeBody"
                 placeholder="내용"
               ></textarea>
+              <label
+                class="pdf-upload-box"
+                for="noticePdfInput"
+                style="margin-top: 4px"
+              >
+                <div class="icon">📎</div>
+                <p>PDF 첨부 (선택사항)</p>
+                <input
+                  type="file"
+                  id="noticePdfInput"
+                  accept="application/pdf"
+                />
+              </label>
+              <div class="pdf-selected" id="noticePdfSelected">
+                <span>📄</span
+                ><span class="pdf-selected-name" id="noticePdfName"></span
+                ><button
+                  style="
+                    background: none;
+                    border: none;
+                    color: #dc2626;
+                    cursor: pointer;
+                    font-size: 16px;
+                  "
+                  id="noticePdfClear"
+                >
+                  ✕
+                </button>
+              </div>
+              <div class="upload-progress" id="noticeProgress">
+                <div class="upload-progress-bar">
+                  <div
+                    class="upload-progress-fill"
+                    id="noticeProgressFill"
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <div class="upload-progress-text" id="noticeProgressText">
+                  업로드 중...
+                </div>
+              </div>
               <button class="btn-p" id="postNoticeBtn">공지 등록</button>
               <div style="margin-top: 12px" id="adminNoticeList"></div>
             </div>
@@ -2835,7 +2876,20 @@
       $("resetBtn").onclick = resetStreak;
 
       // ── 공지 ──
-      $("postNoticeBtn").onclick = () => {
+      // ── 공지 PDF 첨부 ──
+      $("noticePdfInput").onchange = () => {
+        const file = $("noticePdfInput").files[0];
+        if (!file) return;
+        $("noticePdfSelected").style.display = "flex";
+        $("noticePdfName").textContent = file.name;
+      };
+      $("noticePdfClear").onclick = () => {
+        $("noticePdfInput").value = "";
+        $("noticePdfSelected").style.display = "none";
+        $("noticePdfName").textContent = "";
+      };
+
+      $("postNoticeBtn").onclick = async () => {
         if (!isAdmin) return;
         const t = $("noticeTitle").value.trim();
         const b = $("noticeBody").value.trim();
@@ -2843,13 +2897,32 @@
           showToast("제목과 내용을 입력하세요");
           return;
         }
-        db.ref("notices").push({
-          title: t,
-          body: b,
-          date: new Date().toISOString(),
-        });
+        $("postNoticeBtn").disabled = true;
+        let pdfUrl = "";
+        const pdfFile = $("noticePdfInput").files[0];
+        if (pdfFile) {
+          showToast("⏳ 업로드 중...");
+          try {
+            pdfUrl = await uploadPdf(
+              pdfFile,
+              "noticeProgress",
+              "noticeProgressFill",
+              "noticeProgressText",
+            );
+          } catch (e) {
+            $("postNoticeBtn").disabled = false;
+            showToast("❌ PDF 업로드 실패");
+            return;
+          }
+        }
+        await db
+          .ref("notices")
+          .push({ title: t, body: b, pdfUrl, date: new Date().toISOString() });
         $("noticeTitle").value = "";
         $("noticeBody").value = "";
+        $("noticePdfInput").value = "";
+        $("noticePdfSelected").style.display = "none";
+        $("postNoticeBtn").disabled = false;
         showToast("✅ 공지 등록!");
       };
       let _nd = {};
@@ -2890,6 +2963,20 @@
         $("detailTitle").textContent = n.title;
         $("detailDate").textContent = fdt(n.date);
         $("detailBody").textContent = n.body;
+        // PDF 첨부 버튼
+        let pdfHtml = "";
+        if (n.pdfUrl) {
+          pdfHtml = `<a href="${n.pdfUrl}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;border-radius:13px;font-size:15px;font-weight:700;text-decoration:none;margin-top:18px;">📄 첨부 PDF 다운로드</a>`;
+        }
+        // 기존 PDF 버튼 제거 후 새로 추가
+        const existing = $("noticeDetailPdf");
+        if (existing) existing.remove();
+        if (pdfHtml) {
+          const div = document.createElement("div");
+          div.id = "noticeDetailPdf";
+          div.innerHTML = pdfHtml;
+          $("detailBody").after(div);
+        }
       }
       function closeDetail() {
         $("noticeListView").style.display = "block";
@@ -2941,14 +3028,8 @@
           imgCenter.style.display = "none";
           buyBtn.style.display = "none";
           if (item.pdfUrl) {
-            // iOS 사파리에서 PDF 다운로드 되도록 URL 변환
-            const dlUrl = item.pdfUrl.replace(
-              "/raw/upload/",
-              "/raw/upload/fl_attachment:" +
-                encodeURIComponent(item.title) +
-                "/",
-            );
-            pdfBtn.href = dlUrl;
+            pdfBtn.href = item.pdfUrl;
+            pdfBtn.target = "_blank";
             pdfBtn.style.display = "flex";
           } else {
             pdfBtn.style.display = "none";
@@ -2997,7 +3078,6 @@
           const fd = new FormData();
           fd.append("file", file);
           fd.append("upload_preset", UPLOAD_PRESET);
-          fd.append("resource_type", "raw");
           const pw = $(progressId),
             pf = $(fillId),
             pt = $(textId);
@@ -3005,7 +3085,7 @@
           const xhr = new XMLHttpRequest();
           xhr.open(
             "POST",
-            "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/raw/upload",
+            "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/auto/upload",
           );
           xhr.upload.onprogress = (e) => {
             if (e.lengthComputable) {
