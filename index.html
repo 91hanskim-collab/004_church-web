@@ -189,6 +189,8 @@
         cursor: pointer;
         font-family: inherit;
       }
+      .ls-body > .l-btn-sub { margin-bottom:10px; }
+      .inp-label { display:block; color:var(--sub); font-size:12px; font-weight:700; margin:4px 0 6px; }
       .l-err {
         color: #ef4444;
         font-size: 13px;
@@ -1518,6 +1520,18 @@
         font-size: 13px;
         padding: 28px 0;
       }
+      .date-doc-card { background:#fff; border:1px solid #e5eaf4; border-radius:18px; padding:18px; margin:0 16px 16px; box-shadow:0 5px 18px rgba(22,55,110,.06); }
+      .date-doc-card label { display:block; font-weight:800; margin-bottom:10px; color:var(--text); }
+      .date-doc-card input[type="date"] { width:100%; min-height:48px; border:1px solid #dce4f2; border-radius:12px; padding:0 12px; color:var(--text); font:inherit; background:#fff; }
+      .date-doc-result { margin-top:14px; padding:15px; border-radius:13px; background:#f4f7fd; }
+      .date-doc-title { font-weight:800; color:var(--text); margin-bottom:5px; }
+      .date-doc-meta { color:var(--sub); font-size:12px; margin-bottom:12px; }
+      .date-doc-open { display:flex; min-height:46px; align-items:center; justify-content:center; border-radius:11px; background:linear-gradient(135deg,#1d4ed8,#3b82f6); color:#fff; text-decoration:none; font-weight:800; }
+      .public-directions { margin:16px 0 28px; padding:18px; border:1px solid #e4eaf5; background:#fff; border-radius:18px; }
+      .public-directions h3 { margin:0 0 8px; font-size:17px; }
+      .public-directions p { color:var(--sub); font-size:13px; line-height:1.6; margin:0 0 12px; }
+      .map-links { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+      .map-links a { display:flex; align-items:center; justify-content:center; min-height:42px; padding:5px; text-align:center; border-radius:10px; background:#eef4ff; color:#1d4ed8; font-size:12px; font-weight:800; text-decoration:none; }
     </style>
   </head>
   <body>
@@ -1560,6 +1574,17 @@
           </button>
         </div>
         <button class="l-btn-sub" id="signupOpenBtn">회원가입</button>
+        <button class="l-btn-sub" id="loginDirectionsBtn">📍 오시는 길</button>
+        <div class="ls-card public-directions" id="loginDirections" style="display:none">
+          <h3>📍 장유서은교회 오시는 길</h3>
+          <p>경상남도 김해시 금관대로 599번길 4-20<br>지도 앱에서 자동차·대중교통 길찾기를 선택할 수 있어요.</p>
+          <div class="map-links">
+            <a href="https://map.kakao.com/link/search/%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%EA%B8%88%EA%B4%80%EB%8C%80%EB%A1%9C%20599%EB%B2%88%EA%B8%B8%204-20" target="_blank" rel="noopener">카카오맵</a>
+            <a href="https://map.naver.com/p/search/%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%EA%B8%88%EA%B4%80%EB%8C%80%EB%A1%9C%20599%EB%B2%88%EA%B8%B8%204-20" target="_blank" rel="noopener">네이버지도</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%EA%B8%88%EA%B4%80%EB%8C%80%EB%A1%9C%20599%EB%B2%88%EA%B8%B8%204-20" target="_blank" rel="noopener">Google 지도</a>
+          </div>
+          <button class="l-btn-sub" id="loginDirectionsBackBtn">← 로그인 화면으로</button>
+        </div>
         <div class="ls-card" id="signupCard" style="display: none">
           <h2>회원가입</h2>
           <p>가입 후 관리자 승인이 필요해요</p>
@@ -1761,11 +1786,6 @@
       <div class="toast" id="toast"></div>
 
       <div class="page active" id="page-home">
-        <div class="home-hero">
-          <div class="hero-badge">📅 오늘</div>
-          <div class="hero-date" id="heroDate"></div>
-          <div class="hero-church">장유서은교회에 오신 것을 환영합니다 🙏</div>
-        </div>
         <div class="section">
           <div class="card">
             <div class="card-hd">
@@ -1833,8 +1853,10 @@
           <p>이번 주 주보를 확인하세요</p>
         </div>
         <div class="section">
-          <div class="doc-list-wrap" id="bulletinList">
-            <div class="empty2">불러오는 중...</div>
+          <div class="date-doc-card">
+            <label for="bulletinDateSelect">주보 날짜 선택</label>
+            <input type="date" id="bulletinDateSelect" />
+            <div class="date-doc-result" id="bulletinSelected"><div class="empty2">날짜를 선택해 주세요.</div></div>
           </div>
         </div>
       </div>
@@ -1867,8 +1889,10 @@
             <button class="btn-p" id="streakBtn2">이번 주 완료 ✅</button>
             <button class="btn-reset" id="resetBtn">↺ 처음으로 되돌리기</button>
           </div>
-          <div class="doc-list-wrap" id="julifeList" style="margin-top: 14px">
-            <div class="empty2">불러오는 중...</div>
+          <div class="date-doc-card" style="margin-top:14px">
+            <label for="julifeDateSelect">주생 날짜 선택</label>
+            <input type="date" id="julifeDateSelect" />
+            <div class="date-doc-result" id="julifeSelected"><div class="empty2">날짜를 선택해 주세요.</div></div>
           </div>
         </div>
       </div>
@@ -1988,14 +2012,22 @@
               <div class="info-icon-box">📌</div>
               <div>
                 <div class="info-label2">주소</div>
-                <div class="info-value2">주소를 입력해주세요</div>
+                <div class="info-value2">경상남도 김해시 금관대로 599번길 4-20</div>
               </div>
             </div>
             <div class="info-row">
               <div class="info-icon-box">🚌</div>
               <div>
                 <div class="info-label2">대중교통</div>
-                <div class="info-value2">교통편을 입력해주세요</div>
+                <div class="info-value2">아래 지도 앱에서 대중교통 길찾기를 선택해 주세요</div>
+              </div>
+            </div>
+            <div class="public-directions">
+              <h3>지도에서 길찾기</h3>
+              <div class="map-links">
+                <a href="https://map.kakao.com/link/search/%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%EA%B8%88%EA%B4%80%EB%8C%80%EB%A1%9C%20599%EB%B2%88%EA%B8%B8%204-20" target="_blank" rel="noopener">카카오맵</a>
+                <a href="https://map.naver.com/p/search/%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%EA%B8%88%EA%B4%80%EB%8C%80%EB%A1%9C%20599%EB%B2%88%EA%B8%B8%204-20" target="_blank" rel="noopener">네이버지도</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84%20%EA%B9%80%ED%95%B4%EC%8B%9C%20%EA%B8%88%EA%B4%80%EB%8C%80%EB%A1%9C%20599%EB%B2%88%EA%B8%B8%204-20" target="_blank" rel="noopener">Google 지도</a>
               </div>
             </div>
             <div class="info-row">
@@ -2244,6 +2276,8 @@
                 id="bulletinTitle"
                 placeholder="주보 제목 (예: 2026년 6월 1일 주보)"
               />
+              <label class="inp-label" for="bulletinIssueDate">주보 날짜</label>
+              <input class="inp mb8" type="date" id="bulletinIssueDate" />
               <button
                 class="btn-p"
                 id="bulletinUploadBtn"
@@ -2285,6 +2319,8 @@
                 id="julifeTitle"
                 placeholder="제목 (예: 2026년 6월 1일 주생)"
               />
+              <label class="inp-label" for="julifeIssueDate">주생 날짜</label>
+              <input class="inp mb8" type="date" id="julifeIssueDate" />
               <button class="btn-p" id="julifeUploadBtn" style="display: none">
                 📤 업로드
               </button>
@@ -2382,7 +2418,7 @@
             target="_blank"
             rel="noopener"
             style="display: none"
-            >📄 PDF 다운로드</a
+            >📄 PDF 열기</a
           >
           <a
             class="dp-buy-btn"
@@ -2527,6 +2563,14 @@
           String(d.getDate()).padStart(2, "0")
         );
       }
+      function localDateValue(value) {
+        if (!value) return "";
+        if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+        const d = new Date(value);
+        if (Number.isNaN(d.getTime())) return "";
+        return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, "0"), String(d.getDate()).padStart(2, "0")].join("-");
+      }
+      function todayDateValue() { return localDateValue(new Date().toISOString()); }
       function fdt(iso) {
         const d = new Date(iso);
         const h = d.getHours(),
@@ -2628,18 +2672,32 @@
         if (e.key === "Enter") doLogin();
       };
       $("signupOpenBtn").onclick = showSignup;
+      $("loginDirectionsBtn").onclick = () => {
+        $("loginCard").style.display = "none";
+        $("signupOpenBtn").style.display = "none";
+        $("loginDirectionsBtn").style.display = "none";
+        $("churchInfo").style.display = "none";
+        $("loginDirections").style.display = "block";
+      };
+      $("loginDirectionsBackBtn").onclick = showLoginPage;
       $("doSignupBtn").onclick = doSignup;
       $("backToLoginBtn").onclick = showLoginPage;
       $("pendingBackBtn").onclick = showLoginPage;
 
       function showLoginPage() {
         $("loginCard").style.display = "block";
+        $("signupOpenBtn").style.display = "block";
+        $("loginDirections").style.display = "none";
+        $("loginDirectionsBtn").style.display = "block";
         $("churchInfo").style.display = "block";
         $("signupCard").style.display = "none";
         $("pendingCard").style.display = "none";
       }
       function showSignup() {
         $("signupCard").style.display = "block";
+        $("loginDirections").style.display = "none";
+        $("loginDirectionsBtn").style.display = "none";
+        $("signupOpenBtn").style.display = "none";
         $("loginCard").style.display = "none";
         $("churchInfo").style.display = "none";
         $("pendingCard").style.display = "none";
@@ -2820,14 +2878,6 @@
         "11월",
         "12월",
       ];
-      $("heroDate").textContent =
-        now.getFullYear() +
-        "년 " +
-        mnArr[now.getMonth()] +
-        " " +
-        now.getDate() +
-        "일";
-
       // ── 포도나무 ──
       let streak = 0,
         cont = 0;
@@ -3071,6 +3121,29 @@
         itemCache[key] = { ...item, _id: id };
         return `<div class="doc-row" data-key="${key}"><div class="doc-num">${total - idx}</div><div class="doc-body"><div class="doc-title">${item.title}</div><div class="doc-meta"><span class="doc-pdf-badge">📄 PDF</span><span>${fd(item.date)}</span><span class="views-badge">👁 ${item.views || 0}</span></div></div><div class="doc-arrow">›</div></div>`;
       }
+      const dateDocs = { bulletin: [], julife: [] };
+      function escapeHtml(value) {
+        return String(value || "").replace(/[&<>"']/g, (ch) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+      }
+      function renderDateDoc(type) {
+        const isBulletin = type === "bulletin";
+        const picker = $(isBulletin ? "bulletinDateSelect" : "julifeDateSelect");
+        const target = $(isBulletin ? "bulletinSelected" : "julifeSelected");
+        const chosen = picker.value;
+        const match = dateDocs[type].find((entry) => localDateValue(entry.item.date) === chosen);
+        if (!chosen) {
+          target.innerHTML = '<div class="empty2">날짜를 선택해 주세요.</div>';
+          return;
+        }
+        if (!match) {
+          target.innerHTML = `<div class="empty2">${chosen}에 등록된 ${isBulletin ? "주보" : "주생"}가 없습니다.</div>`;
+          return;
+        }
+        const title = escapeHtml(match.item.title || (isBulletin ? "주보" : "주생"));
+        const url = /^https:\/\//i.test(match.item.pdfUrl || "") ? escapeHtml(match.item.pdfUrl) : "";
+        const label = isBulletin ? "주보 PDF 열기" : "주생 PDF 열기";
+        target.innerHTML = `<div class="date-doc-title">${title}</div><div class="date-doc-meta">${chosen} · 👁 ${Number(match.item.views || 0)}회</div>${url ? `<a class="date-doc-open" href="${url}" target="_blank" rel="noopener">📄 ${label}</a>` : '<div class="empty2">PDF 주소를 확인할 수 없습니다.</div>'}`;
+      }
 
       // ── Cloudinary PDF 업로드 ──
       function uploadPdf(file, progressId, fillId, textId) {
@@ -3136,6 +3209,12 @@
       }
 
       // ── 주보 ──
+      $("bulletinIssueDate").value = todayDateValue();
+      $("julifeIssueDate").value = todayDateValue();
+      $("bulletinDateSelect").value = todayDateValue();
+      $("julifeDateSelect").value = todayDateValue();
+      $("bulletinDateSelect").onchange = () => renderDateDoc("bulletin");
+      $("julifeDateSelect").onchange = () => renderDateDoc("julife");
       $("bulletinPdfInput").onchange = () => {
         const file = $("bulletinPdfInput").files[0];
         if (!file) return;
@@ -3147,6 +3226,7 @@
         if (!isAdmin) return;
         const fi = $("bulletinPdfInput");
         const t = $("bulletinTitle").value.trim();
+        const issueDate = $("bulletinIssueDate").value;
         if (!fi.files[0]) {
           showToast("PDF를 선택하세요");
           return;
@@ -3155,6 +3235,7 @@
           showToast("제목을 입력하세요");
           return;
         }
+        if (!issueDate) { showToast("주보 날짜를 선택하세요"); return; }
         $("bulletinUploadBtn").disabled = true;
         showToast("⏳ 업로드 중...");
         try {
@@ -3169,13 +3250,14 @@
             .push({
               title: t,
               pdfUrl,
-              date: new Date().toISOString(),
+              date: new Date(issueDate + "T12:00:00").toISOString(),
               views: 0,
             });
           fi.value = "";
           $("bulletinPdfSelected").style.display = "none";
           $("bulletinUploadBtn").style.display = "none";
           $("bulletinTitle").value = "";
+          $("bulletinIssueDate").value = todayDateValue();
           $("bulletinUploadBtn").disabled = false;
           showToast("✅ 주보 등록 완료!");
         } catch (e) {
@@ -3185,12 +3267,9 @@
       };
       db.ref("bulletins").on("value", (snap) => {
         const data = snap.val() || {};
-        const items = Object.entries(data).reverse();
-        $("bulletinList").innerHTML = items.length
-          ? items.map(([id, b], i) =>
-              renderDocRow(id, b, "bulletin", i, items.length),
-            )
-          : '<div class="empty2">등록된 주보가 없어요</div>';
+        const items = Object.entries(data).sort((a,b) => String(b[1].date || "").localeCompare(String(a[1].date || "")));
+        dateDocs.bulletin = items.map(([id, item]) => ({id, item}));
+        renderDateDoc("bulletin");
         $("adminBulletinList").innerHTML = items.length
           ? items
               .map(
@@ -3213,6 +3292,7 @@
         if (!isAdmin) return;
         const fi = $("julifePdfInput");
         const t = $("julifeTitle").value.trim();
+        const issueDate = $("julifeIssueDate").value;
         if (!fi.files[0]) {
           showToast("PDF를 선택하세요");
           return;
@@ -3221,6 +3301,7 @@
           showToast("제목을 입력하세요");
           return;
         }
+        if (!issueDate) { showToast("주생 날짜를 선택하세요"); return; }
         $("julifeUploadBtn").disabled = true;
         showToast("⏳ 업로드 중...");
         try {
@@ -3235,7 +3316,7 @@
             .push({
               title: t,
               pdfUrl,
-              date: new Date().toISOString(),
+              date: new Date(issueDate + "T12:00:00").toISOString(),
               author: currentUser ? currentUser.name : "",
               views: 0,
             });
@@ -3243,6 +3324,7 @@
           $("julifePdfSelected").style.display = "none";
           $("julifeUploadBtn").style.display = "none";
           $("julifeTitle").value = "";
+          $("julifeIssueDate").value = todayDateValue();
           $("julifeUploadBtn").disabled = false;
           showToast("✅ 주생 등록 완료!");
         } catch (e) {
@@ -3252,12 +3334,9 @@
       };
       db.ref("julife").on("value", (snap) => {
         const data = snap.val() || {};
-        const items = Object.entries(data).reverse();
-        $("julifeList").innerHTML = items.length
-          ? items.map(([id, s], i) =>
-              renderDocRow(id, s, "julife", i, items.length),
-            )
-          : '<div class="empty2">이번 주 주생을 올려보세요 📖</div>';
+        const items = Object.entries(data).sort((a,b) => String(b[1].date || "").localeCompare(String(a[1].date || "")));
+        dateDocs.julife = items.map(([id, item]) => ({id, item}));
+        renderDateDoc("julife");
         $("adminJulifeList").innerHTML = items.length
           ? items
               .map(
