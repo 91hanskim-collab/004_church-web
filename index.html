@@ -1602,6 +1602,57 @@
       .public-directions p { color:var(--sub); font-size:13px; line-height:1.6; margin:0 0 12px; }
       .map-links { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
       .map-links a { display:flex; align-items:center; justify-content:center; min-height:42px; padding:5px; text-align:center; border-radius:10px; background:#eef4ff; color:#1d4ed8; font-size:12px; font-weight:800; text-decoration:none; }
+    
+      /* 2026-11-24 Rev.1: 홈 화면을 확정 시안에 맞춰 정돈 */
+      #appScreen:has(#page-home.active) {
+        background-image: url("church-landscape.webp");
+        background-position: center top;
+        background-size: 100% 100vh;
+        background-repeat: no-repeat;
+      }
+      #appScreen:has(#page-home.active) .app-header { background: transparent; backdrop-filter: none; border: 0; }
+      #appScreen:has(#page-home.active) .app-header-top { padding: 12px 22px 8px; }
+      #appScreen:has(#page-home.active) .ah-logo { width: 48px; height: 48px; background: transparent; border: 0; border-radius: 0; }
+      #appScreen:has(#page-home.active) .ah-logo img { width: 48px; height: 48px; mix-blend-mode: multiply; }
+      #appScreen:has(#page-home.active) .ah-btn { display: none; }
+      #page-home { min-height: calc(100vh - 65px); padding-bottom: calc(100px + env(safe-area-inset-bottom)); background: transparent; }
+      #page-home .section { padding: 70px 18px 0; }
+      #page-home .home-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; padding: 8px 2px 12px; color:#102b58; }
+      #page-home .home-heading strong { font-size:20px; font-weight:900; letter-spacing:-.4px; }
+      #page-home .home-heading span { color:#4f6386; font-size:14px; white-space:nowrap; }
+      #page-home .card { background:rgba(255,255,255,.88); border:1px solid rgba(255,255,255,.84); border-radius:22px; box-shadow:0 5px 18px rgba(48,104,155,.12); backdrop-filter:blur(10px); margin-bottom:12px; padding:16px; }
+      #page-home .home-calendar-card { padding:11px 15px 9px; }
+      #page-home .cal-nav { margin-bottom:4px; }
+      #page-home .cal-nav-btn { width:36px;height:36px;border-radius:12px; }
+      #page-home .cal-nav span { font-size:17px; }
+      #page-home .cal-dn { padding:0; font-size:12px; }
+      #page-home .cal-d { height:26px; font-size:13px; }
+      #page-home .ev-box { margin-top:4px; }
+      #page-home .ev-empty { padding:0; }
+      #page-home .card-hd { margin-bottom:8px; }
+      #page-home .card-title { font-size:16px; }
+      #page-home .notice-row { padding:7px 0; }
+      #page-home .home-jusaeng-card { padding:12px 16px; }
+      #page-home .home-jusaeng-copy { margin:0 0 5px; color:#40577f; font-size:13px; line-height:1.45; }
+      #page-home .home-jusaeng-progress { display:flex; align-items:center; gap:9px; }
+      #page-home .home-sprout { display:inline-flex; align-items:center; justify-content:center; flex:0 0 42px; width:42px; height:42px; border-radius:50%; background:#edf8e8; font-size:27px; }
+      #page-home .home-jusaeng-progress .bar-bg { flex:1; min-width:30px; height:10px; margin:0; }
+      #page-home .home-jusaeng-progress .grape-pct-h { font-size:17px; color:#142d5b; }
+      #page-home .home-jusaeng-progress .home-guide-link { min-width:0; min-height:38px; padding:0 12px; border:1.5px solid #1765ed; background:rgba(255,255,255,.76); color:#1260e7; border-radius:13px; box-shadow:none; white-space:nowrap; font-size:13px; }
+      #page-home .home-streak-label { display:none; }
+      #page-home .home-guide-card { text-align:left; padding:12px 16px; }
+      #page-home .home-guide-card .card-title { font-size:16px; }
+      #page-home .home-guide-card p { margin:3px 0 7px; font-size:13px; text-align:left; }
+      #page-home .home-guide-card .home-guide-link { min-height:38px; min-width:170px; }
+      @media (max-width:390px) {
+        #page-home .section { padding-left:14px; padding-right:14px; padding-top:70px; }
+        #page-home .card { padding:13px; border-radius:19px; }
+        #page-home .home-jusaeng-progress { gap:6px; }
+        #page-home .home-sprout { flex-basis:34px; width:34px; height:34px; font-size:23px; }
+        #page-home .home-jusaeng-progress .home-guide-link { padding:0 8px; font-size:12px; }
+        #page-home .home-streak-label { margin-left:40px; }
+      }
+
     </style>
   </head>
   <body>
@@ -1824,7 +1875,7 @@
           <div class="ah-left">
             <div class="ah-logo">
               <img
-                src="https://raw.githubusercontent.com/91hanskim-collab/004_church-web/main/logo.png"
+                src="church-mark.png"
                 onerror="this.style.display = 'none'"
               />
             </div>
@@ -1857,10 +1908,8 @@
 
       <div class="page active" id="page-home">
         <div class="section">
-          <div class="card">
-            <div class="card-hd">
-              <div class="card-title">📅 이번 달 일정</div>
-            </div>
+          <div class="home-heading"><strong>📅 이번 달 일정</strong><span id="homeMonthLabel"></span></div>
+          <div class="card home-calendar-card">
             <div class="cal-nav">
               <button class="cal-nav-btn" id="calPrev">‹</button>
               <span id="calTitle"></span>
@@ -1876,17 +1925,16 @@
             </div>
             <div id="homeNotice"><div class="empty2">불러오는 중...</div></div>
           </div>
-          <div class="card">
-            <div class="card-hd">
-              <div class="card-title">🌱 이번 주 주생</div>
+          <div class="card home-jusaeng-card">
+            <div class="card-hd"><div class="card-title">🌱 이번 주 주생</div></div>
+            <p class="home-jusaeng-copy">이번 주 주생을 이어가며, 말씀으로 은혜를 누리세요.</p>
+            <div class="home-jusaeng-progress">
+              <span id="h-grape" class="home-sprout">🌱</span>
+              <div class="bar-bg"><div class="bar-fill" id="h-bar" style="width:0%"></div></div>
+              <strong class="grape-pct-h" id="h-pct">0%</strong>
+              <button type="button" class="home-guide-link" id="homeJulifeBtn">주생 이어하기</button>
             </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 12px">
-              <div style="color:var(--sub);font-size:13px">말씀으로 한 주를 이어가요</div>
-              <div style="display:flex;align-items:center;gap:9px"><span id="h-grape" style="font-size:24px">🌱</span><strong class="grape-pct-h" id="h-pct">0%</strong></div>
-            </div>
-            <div class="bar-bg"><div class="bar-fill" id="h-bar" style="width:0%"></div></div>
-            <div id="h-streak" style="font-size:12px;color:var(--sub);margin:8px 0 12px">🔥 0주 연속</div>
-            <button type="button" class="home-guide-link" id="homeJulifeBtn" style="width:100%;min-height:44px">주생 이어하기 <span>›</span></button>
+            <div id="h-streak" class="home-streak-label">🔥 0주 연속</div>
           </div>
           <div class="card home-guide-card">
             <div class="card-hd"><div class="card-title">ⓘ 앱 사용 안내</div></div>
@@ -3794,6 +3842,7 @@
         const fd2 = new Date(calY, calM, 1).getDay(),
           dim = new Date(calY, calM + 1, 0).getDate();
         $("calTitle").textContent = calY + "년 " + mnArr[calM];
+        if ($("homeMonthLabel")) $("homeMonthLabel").textContent = calY + "년 " + mnArr[calM];
         const evD = new Set();
         Object.values(_sd).forEach((s) => {
           const d = new Date(s.date);
