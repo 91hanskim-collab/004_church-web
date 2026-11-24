@@ -1,0 +1,50 @@
+#appScreen:has(#page-home.active), #page-guide {
+  background: #deefff url(church-meadow.webp) center top / 100% 100% no-repeat;
+}
+#appScreen:has(#page-home.active) { min-height:100svh; }
+#appScreen:has(#page-home.active) .app-header { position:relative; }
+#appScreen:has(#page-home.active) .app-header-top { padding:18px 6%; }
+#appScreen:has(#page-home.active) .ah-logo,
+#appScreen:has(#page-home.active) .ah-logo img { width:33px; height:33px; }
+#appScreen:has(#page-home.active) .ah-name { font-size:18px; }
+#appScreen:has(#page-home.active) .ah-user { width:36px; height:36px; padding:0; border-radius:50%; background:#0061e6; font-size:16px; }
+#page-home .section { padding:clamp(55px,16vw,80px) 4.5% 0; }
+#page-home .card { border-radius:15px; padding:10px 16px; margin-bottom:9px; background:rgba(255,255,255,.91); }
+#page-home .card-title { font-size:18px; }
+#page-home .home-heading { padding:5px 5px 11px; }
+#page-home .home-heading strong { font-size:22px; }
+#page-home .cal-nav-btn { width:36px; height:27px; background:#e6efff; }
+#page-home .cal-nav span {font-size:19px;}
+#page-home .cal-d.today { width:29px; justify-self:center; }
+#page-home .cal-d { font-size:14px; }
+#page-home .notice-row::after { content:'›'; color:#546689; font-size:20px; }
+#page-home .home-sprout { background:transparent; font-size:29px; }
+#page-home .home-guide-card .home-guide-link { display:flex; margin:auto; min-width:144px; min-height:34px; }
+#page-home .home-guide-card p { text-align:center; margin:6px 0 10px; }
+.help-symbol { display:inline-grid; place-items:center; color:#0069ff; width:21px; height:21px; border:2px solid; border-radius:50%; font-size:14px; }
+#appScreen:has(#page-guide.active) :is(.app-header,.tab-bar) { display:none; }
+#page-guide { min-height:100svh; padding-bottom:26px; }
+.guide-heading { display:flex; align-items:center; gap:10px; padding:16px 20px; }
+.guide-heading h2 { font-size:22px; }
+.guide-heading button { border:0; border-radius:10px; background:#eff8ff; color:#006aff; width:34px; height:34px; font-size:28px; line-height:1; cursor:pointer; }
+.guide-lead { text-align:center; font-size:14px; padding:8px; background:#ffffffaa; }
+#page-guide .guide-card { margin:7px 2.5%; border-radius:14px; padding:10px 13px; background:#fffffff2; }
+#page-guide .guide-card h3 { margin-bottom:7px; }
+.guide-platforms { border-top:1px solid #d9e4f6; padding-top:8px; gap:4px; }
+.guide-platform { min-height:35px; }
+.guide-platform.active,.guide-url button { background:#0065ff; }
+.guide-steps,.guide-detail ol { list-style:none; padding:0; margin:0; counter-reset:step; }
+.guide-steps li,.guide-detail li { counter-increment:step; }
+.guide-steps li { display:flex; align-items:center; gap:6px; border:1px solid #d2dff2; border-radius:8px; margin:4px 0; padding:4px 7px; font-weight:650; }
+.guide-steps li::before { content:'🧭'; color:#006aff; background:#e9f3ff; text-align:center; width:31px; border-radius:6px; font-size:18px; flex:none; }
+.guide-steps li:nth-child(2)::before { content:'⇧'; }
+.guide-steps li:nth-child(3)::before { content:'＋'; }
+.guide-steps li:nth-child(4)::before { content:'✓'; }
+.guide-menu-list { gap:4px; }
+.guide-menu-list summary { padding:5px 10px; font-size:17px; }
+.guide-menu-list summary span { color:#006aff; font-size:19px; min-width:26px; }
+.guide-detail { display:grid; grid-template-columns:1.3fr 1fr; align-items:center; gap:8px; padding:7px; }
+.guide-detail li { display:flex; align-items:baseline; gap:6px; font-size:13px; margin:8px 0; }
+.guide-detail li::before { content:counter(step); border-radius:50%; background:#0873ff; color:white; flex:none; width:20px; text-align:center; }
+.guide-detail img { width:100%; height:148px; object-fit:cover; object-position:top; margin:0; }
+#page-guide .guide-note { text-align:center; font-weight:700; font-size:14px; }

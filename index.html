@@ -1654,6 +1654,7 @@
       }
 
     </style>
+  <link rel="stylesheet" href="church-mobile.css">
   </head>
   <body>
     <!-- 로그인 -->
@@ -1920,13 +1921,13 @@
           </div>
           <div class="card">
             <div class="card-hd">
-              <div class="card-title">📢 최신 공지</div>
+              <div class="card-title">최신 공지</div>
               <button class="card-more" id="noticeMoreBtn">더보기 ›</button>
             </div>
             <div id="homeNotice"><div class="empty2">불러오는 중...</div></div>
           </div>
           <div class="card home-jusaeng-card">
-            <div class="card-hd"><div class="card-title">🌱 이번 주 주생</div></div>
+            <div class="card-hd"><div class="card-title">이번 주 주생</div></div>
             <p class="home-jusaeng-copy">이번 주 주생을 이어가며, 말씀으로 은혜를 누리세요.</p>
             <div class="home-jusaeng-progress">
               <span id="h-grape" class="home-sprout">🌱</span>
@@ -1937,16 +1938,16 @@
             <div id="h-streak" class="home-streak-label">🔥 0주 연속</div>
           </div>
           <div class="card home-guide-card">
-            <div class="card-hd"><div class="card-title">ⓘ 앱 사용 안내</div></div>
-            <p>휴대폰 홈 화면에 앱을 추가하는 방법과 각 메뉴 사용법을 쉽게 확인할 수 있어요.</p>
+            <div class="card-hd"><div class="card-title"><b class="help-symbol">?</b> 앱 사용 안내</div></div>
+            <p>홈 화면에 추가하는 방법부터 각 탭 사용법까지 한곳에서 확인하세요.</p>
             <button type="button" class="home-guide-link" id="homeGuideBtn">사용법 보기 <span>›</span></button>
           </div>
         </div>
       </div>
 
       <div class="page" id="page-guide">
-        <div class="page-hero guide-hero"><h2>앱 사용 안내</h2><p>교회 앱을 휴대폰에서 쉽게 사용하는 방법입니다</p></div>
-        <button type="button" class="guide-back" id="guideBackBtn">← 뒤로</button>
+        <div class="guide-heading"><button id="guideBackBtn" aria-label="홈으로 돌아가기">‹</button><h2>앱 사용 안내</h2></div>
+        <p class="guide-lead">교회 앱을 휴대폰에서 쉽게 사용하는 방법을 안내해 드립니다.</p>
         <div class="card guide-card">
           <h3>🔗 교회 앱 주소</h3>
           <div class="guide-url"><input id="guideAppUrl" type="text" readonly aria-label="교회 앱 주소"><button type="button" id="copyGuideUrl">▢ 주소 복사</button></div>
@@ -1962,17 +1963,17 @@
         </div>
         <div class="card guide-card">
           <h3>☰ 각 메뉴 사용법</h3>
-          <p class="guide-help" style="margin:0 0 12px">아래 메뉴를 누르면 설명과 화면 예시가 펼쳐집니다.</p>
+          <p class="guide-help" style="margin:0 0 12px">화살표를 누르면 설명과 화면 예시가 펼쳐집니다. 한 번에 하나씩 볼 수 있어요.</p>
           <div class="guide-menu-list">
-            <details><summary>⌂ 홈</summary><div class="guide-detail"><p>이번 달 일정과 최신 공지를 확인합니다. 아래쪽에는 이번 주 주생 진행률과 앱 사용 안내가 있습니다.</p><img src="guide-assets/home.webp" alt="홈 화면 예시" loading="lazy"></div></details>
-            <details><summary>▶ 설교</summary><div class="guide-detail"><p>설교 목록에서 원하는 영상을 눌러 말씀을 다시 들을 수 있습니다.</p><img src="guide-assets/sermon.webp" alt="설교 화면 예시" loading="lazy"></div></details>
-            <details><summary>▤ 서적</summary><div class="guide-detail"><p>책 표지와 소개를 확인하고, 등록된 구매 링크가 있으면 눌러 이동합니다.</p><img src="guide-assets/books.webp" alt="서적 화면 예시" loading="lazy"></div></details>
-            <details><summary>▧ 주보</summary><div class="guide-detail"><p>날짜를 선택해 주보를 열고, PDF 화면의 다운로드 버튼으로 휴대폰에 저장합니다.</p><img src="guide-assets/bulletin.webp" alt="주보 화면 예시" loading="lazy"></div></details>
-            <details><summary>▣ 주생</summary><div class="guide-detail"><p>날짜를 선택해 주생 PDF를 열고 다운로드할 수 있습니다. 묵상을 마치면 ‘이번 주 완료’를 눌러 진도와 새싹을 키워 보세요.</p><img src="guide-assets/julife.webp" alt="주생 화면 예시" loading="lazy"></div></details>
-            <details><summary>••• 더보기</summary><div class="guide-detail"><p>공지사항, 기도 제목, 말씀 나눔, 찬양 신청, 오시는 길, 설정과 관리자 기능을 이용할 수 있습니다.</p><img src="guide-assets/more.webp" alt="더보기 화면 예시" loading="lazy"></div></details>
+            <details name="guide-menu"><summary><span aria-hidden="true">⌂</span>홈</summary><div class="guide-detail"><ol><li>달력에서 날짜를 선택하세요.</li><li>선택한 날의 일정을 확인하세요.</li></ol><img src="guide-assets/home.webp" alt="홈 화면 예시" loading="lazy"></div></details>
+            <details name="guide-menu"><summary><span aria-hidden="true">▶</span>설교</summary><div class="guide-detail"><ol><li>설교 영상을 선택하세요.</li><li>재생 버튼을 누르세요.</li></ol><img src="guide-assets/sermon.webp" alt="설교 화면 예시" loading="lazy"></div></details>
+            <details name="guide-menu"><summary><span aria-hidden="true">▤</span>서적</summary><div class="guide-detail"><ol><li>목록에서 책을 선택하세요.</li><li>소개와 구매 링크를 확인하세요.</li></ol><img src="guide-assets/books.webp" alt="서적 화면 예시" loading="lazy"></div></details>
+            <details name="guide-menu" open><summary><span aria-hidden="true">▧</span>주보</summary><div class="guide-detail"><ol><li>날짜를 선택하세요.</li><li>주보 PDF를 열어보세요.</li><li>필요하면 다운로드 또는 공유하세요.</li></ol><img src="guide-assets/bulletin.webp" alt="주보 화면 예시" loading="lazy"></div></details>
+            <details name="guide-menu"><summary><span aria-hidden="true">▣</span>주생</summary><div class="guide-detail"><ol><li>날짜를 선택하세요.</li><li>주생 PDF를 열어 읽거나 저장하세요.</li><li>묵상 후 이번 주 완료를 누르세요.</li></ol><img src="guide-assets/julife.webp" alt="주생 화면 예시" loading="lazy"></div></details>
+            <details name="guide-menu"><summary><span aria-hidden="true">•••</span>더보기</summary><div class="guide-detail"><ol><li>원하는 메뉴를 선택하세요.</li><li>공지나 오시는 길을 확인하세요.</li></ol><img src="guide-assets/more.webp" alt="더보기 화면 예시" loading="lazy"></div></details>
           </div>
         </div>
-        <div class="guide-card guide-note">📥 주보·주생 PDF를 저장한 뒤 찾기 어려우면 휴대폰의 ‘파일’ 앱 또는 ‘다운로드’ 폴더를 확인해 주세요.</div>
+        <div class="guide-card guide-note">ⓘ 도움이 더 필요하신가요? 교회에 문의해 주세요.</div>
       </div>
 
       <div class="page" id="page-sermon">
